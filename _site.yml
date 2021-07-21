@@ -2,7 +2,7 @@ name: "biostatlab"
 title: "BiostatLab"
 description: |
   BiostatLab
-output_dir: "_site"
+output_dir: "."
 navbar:
   right:
     - text: "Home"
