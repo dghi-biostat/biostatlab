@@ -4,9 +4,20 @@ description: |
   BiostatLab
 output_dir: "."
 navbar:
+  search: true
   right:
     - text: "Home"
       href: index.html
+    - text: "705"
+      menu:
+        - text: "Lab 0"
+          href: lab_0.html
+        - text: "Lab 1"
+          href: lab_1.html
+        - text: "Lab 2"
+          href: lab_2.html
     - text: "About"
       href: about.html
+    - icon: fab fa-github
+      href: https://github.com/dghi-biostat/biostatlab
 output: distill::distill_article
