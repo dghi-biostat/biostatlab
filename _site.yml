@@ -8,6 +8,18 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "How-to"
+      menu:
+        - text: "Use RStudio"
+          href: help_rstudio.html
+        - text: "Start a new project"
+          href: help_newproject.html
+        - text: "Work with packages"
+          href: help_packages.html
+        - text: "R jargon"
+          href: help_jargon.html
+        - text: "Visualize in R"
+          href: help_visualize.html
     - text: "705"
       menu:
         - text: "Lab 0"
@@ -16,6 +28,8 @@ navbar:
           href: lab_1.html
         - text: "Lab 2"
           href: lab_2.html
+    - text: "Function Dictionary"
+      href: fun_dict.html
     - text: "About"
       href: about.html
     - icon: fab fa-github

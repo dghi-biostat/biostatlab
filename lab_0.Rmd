@@ -10,35 +10,99 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Lab 0 {.tabset}
+# Lab 0 Goals:
 
-## Task 1:
+By the end of this lab, you will have demonstrated a basic familiarity with the R coding environment and R Markdown files. You will be able to:
 
-Open RStudio. Click File > New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.
+* Start a new project and import data
+* Understand useful R terminology
+* Use summary statistics to describe the Kenya dataset
+* Create a categorical variable using a continuous one
+* Generate histograms and boxplots using ggplot2
+* Create a simple cross-tabulation of two variables
 
-## Task 2: 
+# Task 1: Establish a workflow
+
+In R, we organize our work by projects. It is best practice to keep no more than one project in any single folder on your computer. First, we should establish the file folders from which we'll be working. 
+
+## Create folders to store your work
+
+If you haven't already, now would be a good time to: 
+
+1. Create a new folder on your computer called "705 Lab".
+
+2. Within that folder, create a folder for this lab, called "Lab 0".
+
+3. Finally, within that folder, create a folder for your data, called "data"
+
+4. Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called "data"
+
+__Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep *you* happy.__
+
+## Create a New Project in RStudio
+
+Now open RStudio and take a deep breath. Don't panic. This will all be very familiar in a few short months from now. 
+
+Initiate a new project by going to *File* and clicking *New Project*. 
+
+TODO: INSERT SCREENSHOT
+
+Then select *Existing Directory* and hit *Browse*. Navigate to the folder titled __Lab 0__. Open it, then hit *Open*. 
+
+# Task 2: Familiarize yourself with R Markdown
+
+Now, you will open a special kind of document known as "R Markdown". This is a text editor (like Word or Google Docs), but with a twist. You can run code *within the document*. This makes data analysis an interactive, iterative (and therefore fun?) process that usually goes:
+
+  1. Write some code intended to transform your data
+  2. Run the code
+  3. Observe how your dataset behaved
+  4. (Optional) Take a few notes
+  5. Tweak code
+  6. Repeat
+  
+For each lab, we will provide you with a skeleton Markdown file on Sakai. If you haven't already, download that file ("lab0_705_fall2021.Rmd") and save it to your folder called "Lab 0".
+
+Now open the file in RStudio. You can just double-click on it from the file folder. It will appear, but might feel a little pinched. Luckily, RStudio allows Markdowns to pop-out. 
+
+Click the white square at the top of the file that I've circled in the photo below to do just that:
+
+![Pop-out](images/popout.png)
 
 
-Next, open a new R Markdown file.
+# Task 3: Load packages and data
 
-## Task 3:
+## Installing packages
 
-a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3.b. directly.
+Packages are collections of functions. As we'll see shortly, we use functions as code to view, manipulate, and analyze our data. 
 
-`install.packages("tidyverse")`
-`install.packages("skimr")`
+There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.
 
-b. Load libraries:
+Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
 
-
-In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:
-
-`library(tidyverse)`
-`library(skimr)`
+Lucky for us, packages are easily retrieved from the command line. If you haven't already, run the following code from your console to download the packages that we'll be needing for this semester:
 
 
+```{r eval = FALSE, echo = TRUE}
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("epiR")
+install.packages("devtools")
+devtools::install_github("potato-nathan/epiAssist")
+```
 
 
+## Load libraries
+
+To enable R to use a package's functions in our current project environment, we need to load the packages using `library()`
+
+In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+__Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically. You can surround them with quotes and it will load all the same. 
 
 
 ## Task 4: Load data
