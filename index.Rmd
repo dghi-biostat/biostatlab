@@ -1,7 +1,7 @@
 ---
-title: "BiostatLab"
+title: "Biostat Lab"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs!
 site: distill::distill_website
 ---
 
@@ -13,3 +13,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+
+# Hello, friend!
+
+## This is the DGHI Biostatistics lab assignment homepage. Save this site's link to your bookmark browser and return here to access lab materials. Navigate to the various labs and help documents using the bar at the top of the page.
+
+# A quick note on R and RStudio:
+
+### For this lab, you are going to need to download [R and RStudio](https://www.rstudio.com/products/rstudio/download/#download), a pair of free open-source softwares used for everything from data analysis to web design. 
+
+### Don't hesitate to ask for help if you are having software problems. 

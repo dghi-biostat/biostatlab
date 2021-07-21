@@ -1,7 +1,7 @@
 ---
 title: "Lab 0"
 description: |
-  Biostatistics & Epi, Lab 0 - GLHLTH 705
+  Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, summary statistics, create a variable with mutate, visualize with ggplot2\n
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -97,32 +97,79 @@ To enable R to use a package's functions in our current project environment, we 
 
 In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
 
-```{r}
+```{r eval = FALSE, echo = TRUE}
 library(tidyverse)
 library(skimr)
 ```
 
-__Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically. You can surround them with quotes and it will load all the same. 
+__Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically. You can surround them with quotes and it will load all the same.__
 
 
-## Task 4: Load data
+# Task 4: Load data
 
-You will use the dataset kenya_dhs_dataset_lab_0.rds for this lab. Save the kenya_dhs_dataset_lab_0.rds dataset from SAKAI into the same folder as your New Project.  Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:
+You will use the dataset Lab_0_kenya.rds for this lab. You've hopefully already saved this lab's dataset to the folder Lab 0 > data. You will use the function readRDS() to import the data file from your computer's folder. 
 
-`kenya <- file name` 
+Since our project is located within the folder called "Lab 0", our computer will automatically look within that folder for the data.
+
+All we need to do is specify that it's in the folder called "data". 
+
+Use the following code to load your data into R and give it the name `kenya`. 
+
+```{r echo = TRUE, eval = FALSE}
+
+kenya <- readRDS('data/Lab_0_kenya.rds')
+
+```
+
+`<-` is called the __*Assignment Operator*__. We can use it to assign names to objects in our coding environment:
+
+We can use our assignment operator for characters, numbers, logical operators, etc.:
+
+```{r echo = TRUE, eval = TRUE}
+fruit <- "oranges"
+
+number <- 99
+
+logical <- FALSE
+```
+
+Now that the above values are stored in our environment, we can use them in various other functions or operations:
+
+```{r echo = TRUE, eval = TRUE}
+paste(fruit, "are orange", sep = " ")
+
+number + 1
+
+isTRUE(logical)
+```
+
+We've done the same thing with our dataset, giving it the name `kenya`. Use the function `head()` to view the first six rows in the dataset:
+
+```{r echo = TRUE, eval = FALSE}
+
+head(kenya)
+
+```
 
 
 
+# Task 5: Explore the dataframe
 
-## Task 5: Explore the dataframe
+__Familiarize yourself with the data by using the commands `ncol()`, `nrow()`, `class()`, and `names()`.__
 
-Familiarize yourself with the data by using the commands `head()`, `length()`, `skim()`, and `nrow()`.
+  * __Are there any string/character variables?__
+  * __Are there any variable or value labels?__ 
+  * __Do any variables have notes?__ 
 
-* Are there any string/character variables?
-* Are there any variable or value labels? 
-* Do any variables have notes? 
+Similar to the function `head()`, we can feed our `kenya` dataframe to various functions that tell us other useful information about it. 
 
+Use `ncol()` to print the number of columns in our dataframe
 
+Use `nrow()` to print the number of rows
+
+Use `class()` to view each variable's "type"
+
+Use `names()` to view each variable's name.
 
 
 ## Task 6: Create variable mage
