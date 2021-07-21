@@ -1,7 +1,7 @@
 ---
-title: "Biostat Lab"
+title: "BiostatLab"
 description: |
-  The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs!
+  The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs
 site: distill::distill_website
 ---
 

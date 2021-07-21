@@ -10,11 +10,11 @@
     },
     {
       "path": "index.html",
-      "title": "Biostat Lab",
-      "description": "The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs!\n",
+      "title": "BiostatLab",
+      "description": "The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs\n",
       "author": [],
       "contents": "\r\nHello, friend!\r\nThis is the DGHI Biostatistics lab assignment homepage. Save this site’s link to your bookmark browser and return here to access lab materials. Navigate to the various labs and help documents using the bar at the top of the page.\r\nA quick note on R and RStudio:\r\nFor this lab, you are going to need to download R and RStudio, a pair of free open-source softwares used for everything from data analysis to web design.\r\nDon’t hesitate to ask for help if you are having software problems.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-07-21T18:37:07-04:00"
+      "last_modified": "2021-07-21T18:39:42-04:00"
     },
     {
       "path": "lab_0.html",
