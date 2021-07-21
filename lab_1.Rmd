@@ -1,0 +1,123 @@
+---
+title: "Lab 1"
+description: |
+  Biostatistics & Epi, Lab 1 - GLHLTH 705
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# Lab 1: {.tabset}
+
+## Goals
+
+* Generate derived variables
+* Identify and recode special values 
+* Run descriptive statistics for continuous and categorical variables 
+* Generate graphics for continuous variables 
+* Generate a complete data dictionary
+
+## Task 1: Load libraries & packages
+
+Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}
+
+
+To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
+
+
+## Task 2: Recode variables
+
+Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (e.g., missing, unknown) and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command.
+
+### Task2a: bord5
+
+bord5: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable bord (birth order).
+
+
+### Task 2b: male
+
+male: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable b4.
+
+
+### Task 2c: mweight
+
+mweight: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable v437. Note that v437 contains 1 implied decimal place. Divide by 10 to get kilograms. 
+
+
+### Task 2d: mheight
+
+mheight:  Continuous maternal height at time of interview (in meters). Based on variable v438. Note that this variable is in centimeters and also contains 1 implied decimal place.
+
+
+
+### Task 2e: mbmi
+
+mbmi: maternal body mass index (BMI).  Weight (kilograms) / height2 (meters). 
+
+
+
+## Task 3: Frequency histograms
+
+Generate frequency histograms of mweight, mheight and mbmi.  Put meaningful axis labels and a title on each figure.
+
+
+### Task 3a: mweight
+
+
+### Task 3b: mheight
+
+
+### Task 3c: mbmi
+
+
+## Task 4: Boxplots
+
+Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
+
+### Task 4a: mweight
+
+
+### Task 4b: mheight
+
+
+
+### Task 4c: mbmi
+
+
+
+## Task 5: Frequency table
+
+Fill in Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
+
+### Task 5a: bord5
+
+
+### Task 5b: magec
+
+
+### Task 5c: male
+
+
+
+## Task 6: Table 2
+
+Table 2 is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.
+
+a.	Fill in these columns in this table for the variables originally on the dataset.
+b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
+
+
+## Task 7: Short answer
+
+__Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
+__(Response no longer than 250 words, please)__
+
+
+
+
+
+

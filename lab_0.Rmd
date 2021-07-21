@@ -1,0 +1,113 @@
+---
+title: "Lab 0"
+description: |
+  Biostatistics & Epi, Lab 0 - GLHLTH 705
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Lab 0 {.tabset}
+
+## Task 1:
+
+Open RStudio. Click File > New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.
+
+## Task 2: 
+
+
+Next, open a new R Markdown file.
+
+## Task 3:
+
+a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3.b. directly.
+
+`install.packages("tidyverse")`
+`install.packages("skimr")`
+
+b. Load libraries:
+
+
+In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:
+
+`library(tidyverse)`
+`library(skimr)`
+
+
+
+
+
+
+## Task 4: Load data
+
+You will use the dataset kenya_dhs_dataset_lab_0.rds for this lab. Save the kenya_dhs_dataset_lab_0.rds dataset from SAKAI into the same folder as your New Project.  Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:
+
+`kenya <- file name` 
+
+
+
+
+## Task 5: Explore the dataframe
+
+Familiarize yourself with the data by using the commands `head()`, `length()`, `skim()`, and `nrow()`.
+
+* Are there any string/character variables?
+* Are there any variable or value labels? 
+* Do any variables have notes? 
+
+
+
+
+## Task 6: Create variable mage
+
+Create a variable mage for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children) using the `mutate()` function. This is calculated from variables b3 (month code of child’s birth) and v011 (month code of mother’s birth). The difference between the values of these variables is months, so divide by 12 to get years. See the data dictionary for a more detailed description of month codes and how to use them. Use the `as.integer()` function within your `mutate()` function to truncate the calculated value to an integer.
+
+REMINDER: For your mutate function to work, you have to merge the changes into your dataset. As an example, use this before the mutate function:
+`kenya <- kenya %>%` 
+
+
+## Task 7: Frequency distributions of mage
+
+Suppose you want to break down mage into three categories. First, look at the frequency distribution (one-way frequency table) for mage to see where you might draw lines for your categories using the table() command.
+
+* Are there any missing values for age? If so, how many?
+* Which range of ages appear the most frequently in mage?
+
+
+
+## Task 8: Create variable magec
+
+Using mage, generate a new variable with three categories: <18, 18-39, and ≥ 40, naming the new variable “magec” (mother’s age categorical). Set the values for magec to be 0,1,2, where 0 corresponds to the youngest age group (<18).
+Recommended steps:
+
+* First, don't forget to use the assignment operator to save your changes to the kenya dataframe.
+* Then, use `mutate()`  to create a new variable, magec, 
+* within your `mutate()` command, use `case_when()` to create a series of conditional statements that assigns number 0, 1, and 2 to each category 
+* on a new line of code, use `factor()` to assign labels to each level of your new variable
+*	Variable Label: “Age in years categorized” 
+*	Values: 
+  + 0:  <18 
+  + 1:	18-39
+  + 2:  ≥ 40
+
+
+
+## Task 9: Cross-tab of mage and magec
+
+Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.
+
+
+
+
+## Task 10: Save new dataset
+
+Save the new dataset in the same directory using a different file name with the form shown in the instructions on page 1 using the saveRDS() command.
+
+
+
+
+
+
