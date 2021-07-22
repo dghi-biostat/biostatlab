@@ -1,6 +1,5 @@
 ---
 title: 'Lab 0 - Kenya, Due: ____'
-author: "DGHI Biostat Team"
 date: "7/20/2021"
 output: html_document
 ---

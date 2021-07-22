@@ -1,10 +1,14 @@
 name: "biostatlab"
-title: "BiostatLab"
+title: "DGHI/Biostat Lab"
+theme: theme.css
+favicon: images/favicon.ico
 description: |
-  BiostatLab
+  Biostat & Epi Lab
 output_dir: "."
 navbar:
-  search: true
+  logo:
+    image: images/logo.png
+    href: https://pngtree.com/so/cat
   right:
     - text: "How-to"
       menu:
@@ -18,18 +22,35 @@ navbar:
           href: help_jargon.html
         - text: "Visualize in R"
           href: help_visualize.html
-    - text: "705 Labs"
+    - text: "Lab Assignments"
       menu:
+        - text: "705 Labs"
         - text: "Lab 0"
           href: lab_0.html
         - text: "Lab 1"
           href: lab_1.html
         - text: "Lab 2"
           href: lab_2.html
+        - text: "Lab 3"
+          href: lab_3.html
+        - text: "Lab 4"
+          href: lab_4.html
+        - text: '---------'
+        - text: '707 Labs'
+        - text: "Lab 1"
+          href: lab_01.html
+        - text: "Lab 2"
+          href: lab_02.html
+        - text: "Lab 3"
+          href: lab_03.html
+        - text: "Lab 4"
+          href: lab_4.html
     - text: "Function Dictionary"
       href: fun_dict.html
     - text: "About"
       href: about.html
     - icon: fab fa-github
       href: https://github.com/dghi-biostat/biostatlab
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
