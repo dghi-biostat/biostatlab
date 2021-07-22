@@ -1,5 +1,6 @@
 name: "biostatlab"
 title: "BiostatLab"
+favicon: images/favicon.ico
 description: |
   BiostatLab
 output_dir: "."

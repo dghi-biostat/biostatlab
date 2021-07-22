@@ -7,28 +7,32 @@ output: html_document
 
 # Lab 0 {.tabset}
 
-## Task 1:
+## Task 1: Establsih a workflow
 
 Open RStudio. Click File > New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.
 
-## Task 2: 
+## Task 2: Familiarize yourself with R Markdown
 
 
-Next, open a new R Markdown file.
+## Task 3: Install packages and load libraries
 
-## Task 3:
-
-a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3.b. directly.
+a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3b directly.
 
 `install.packages("tidyverse")`
 `install.packages("skimr")`
+`install.packages("epiR")`
+`install.packages("devtools")`
+`devtools::install_github("potato-nathan/epiAssist")`
 
 b. Load libraries:
 
+For this lab, we need {skimr} and {tidyverse}
+
 ```{r}
 # load library tidyverse
-library(tidyverse)
+
 # now load library skimr
+
 ```
 
 
