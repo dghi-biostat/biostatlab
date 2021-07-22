@@ -3,10 +3,10 @@
     {
       "path": "about.html",
       "title": "About this site",
-      "description": "Some additional details about the website",
+      "description": "Contact your teaching team with questions",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-07-21T18:40:44-04:00"
+      "contents": "\r\nTODO: Names, links to websites, and contact information\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-22T11:26:14-04:00"
     },
     {
       "path": "index.html",
