@@ -1,0 +1,29 @@
+---
+title: "Function Dictionary"
+description: |
+  A searchable table of all relevant functions for 705 and 707 labs
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(DT)
+```
+
+```{r results = 'hide'}
+
+table <- read.csv('files/R Function Dictionary.csv', header = TRUE)
+
+table
+
+```
+
+
+```{r}
+datatable(table, filter = 'top', options = list(pagelength = 20), rownames = FALSE)
+```
+
+
+
