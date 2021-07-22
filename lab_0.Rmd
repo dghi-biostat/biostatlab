@@ -4,6 +4,7 @@ description: |
   Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, summary statistics, create a variable with mutate, visualize with ggplot2\n
 date: "`r Sys.Date()`"
 output: distill::distill_article
+    
 ---
 
 ```{r setup, include=FALSE}

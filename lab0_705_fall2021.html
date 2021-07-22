@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="DGHI Biostat Team" />
 
-<meta name="date" content="2021-07-22" />
 
-<title>Lab 1</title>
+<title>Lab 0 - Kenya, Due: ____</title>
 
 <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content=""/>
@@ -972,103 +972,84 @@ How-to
 
 
 
-<h1 class="title toc-ignore">Lab 1</h1>
-<h4 class="date">2021-07-22</h4>
+<h1 class="title toc-ignore">Lab 0 - Kenya, Due: ____</h1>
+<h4 class="author">DGHI Biostat Team</h4>
+<h4 class="date">7/20/2021</h4>
 
 </div>
 
 
-<div id="lab-1" class="section level1 tabset">
-<h1 class="tabset">Lab 1:</h1>
-<div id="goals" class="section level2">
-<h2>Goals</h2>
+<div id="lab-0" class="section level1 tabset">
+<h1 class="tabset">Lab 0</h1>
+<div id="task-1-establsih-a-workflow" class="section level2">
+<h2>Task 1: Establsih a workflow</h2>
+<p>Open RStudio. Click File &gt; New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.</p>
+</div>
+<div id="task-2-familiarize-yourself-with-r-markdown" class="section level2">
+<h2>Task 2: Familiarize yourself with R Markdown</h2>
+</div>
+<div id="task-3-install-packages-and-load-libraries" class="section level2">
+<h2>Task 3: Install packages and load libraries</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3b directly.</li>
+</ol>
+<p><code>install.packages("tidyverse")</code> <code>install.packages("skimr")</code> <code>install.packages("epiR")</code> <code>install.packages("devtools")</code> <code>devtools::install_github("potato-nathan/epiAssist")</code></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Load libraries:</li>
+</ol>
+<p>For this lab, we need {skimr} and {tidyverse}</p>
+<pre class="r"><code># load library tidyverse
+
+# now load library skimr</code></pre>
+<p>In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:</p>
+<p><code>library(tidyverse)</code> <code>library(skimr)</code></p>
+</div>
+<div id="task-4-load-data" class="section level2">
+<h2>Task 4: Load data</h2>
+<p>You will use the dataset kenya_dhs_dataset_lab_0.rds for this lab. Save the kenya_dhs_dataset_lab_0.rds dataset from SAKAI into the same folder as your New Project. Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:</p>
+<p><code>kenya &lt;- file name</code></p>
+</div>
+<div id="task-5-explore-the-dataframe" class="section level2">
+<h2>Task 5: Explore the dataframe</h2>
+<p>Familiarize yourself with the data by using the commands <code>head()</code>, <code>length()</code>, <code>skim()</code>, and <code>nrow()</code>.</p>
 <ul>
-<li>Generate derived variables</li>
-<li>Identify and recode special values</li>
-<li>Run descriptive statistics for continuous and categorical variables</li>
-<li>Generate graphics for continuous variables</li>
-<li>Generate a complete data dictionary</li>
+<li>Are there any string/character variables?</li>
+<li>Are there any variable or value labels?</li>
+<li>Do any variables have notes?</li>
 </ul>
 </div>
-<div id="task-1-load-libraries-packages" class="section level2">
-<h2>Task 1: Load libraries &amp; packages</h2>
-<p>Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}</p>
-<p>To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)</p>
+<div id="task-6-create-variable-mage" class="section level2">
+<h2>Task 6: Create variable mage</h2>
+<p>Create a variable mage for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children) using the <code>mutate()</code> function. This is calculated from variables b3 (month code of child’s birth) and v011 (month code of mother’s birth). The difference between the values of these variables is months, so divide by 12 to get years. See the data dictionary for a more detailed description of month codes and how to use them. Use the <code>as.integer()</code> function within your <code>mutate()</code> function to truncate the calculated value to an integer.</p>
+<p>REMINDER: For your mutate function to work, you have to merge the changes into your dataset. As an example, use this before the mutate function: <code>kenya &lt;- kenya %&gt;%</code></p>
 </div>
-<div id="task-2-recode-variables" class="section level2">
-<h2>Task 2: Recode variables</h2>
-<p>Construct the following derived variables using a pipe and <code>mutate()</code>. For each, examine the component variables for coded special values (e.g., missing, unknown) and be sure to set derived variable values appropriately. Label all variables and the coded values for the categorical ones using the <code>factor()</code> command.</p>
-<div id="task2a-bord5" class="section level3">
-<h3>Task2a: bord5</h3>
-<p>bord5: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable bord (birth order).</p>
+<div id="task-7-frequency-distributions-of-mage" class="section level2">
+<h2>Task 7: Frequency distributions of mage</h2>
+<p>Suppose you want to break down mage into three categories. First, look at the frequency distribution (one-way frequency table) for mage to see where you might draw lines for your categories using the table() command.</p>
+<ul>
+<li>Are there any missing values for age? If so, how many?</li>
+<li>Which range of ages appear the most frequently in mage?</li>
+</ul>
 </div>
-<div id="task-2b-male" class="section level3">
-<h3>Task 2b: male</h3>
-<p>male: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable b4.</p>
+<div id="task-8-create-variable-magec" class="section level2">
+<h2>Task 8: Create variable magec</h2>
+<p>Using mage, generate a new variable with three categories: &lt;18, 18-39, and ≥ 40, naming the new variable “magec” (mother’s age categorical). Set the values for magec to be 0,1,2, where 0 corresponds to the youngest age group (&lt;18). Recommended steps:</p>
+<ul>
+<li>First, don’t forget to use the assignment operator to save your changes to the kenya dataframe.</li>
+<li>Then, use <code>mutate()</code> to create a new variable, magec,</li>
+<li>within your <code>mutate()</code> command, use <code>case_when()</code> to create a series of conditional statements that assigns number 0, 1, and 2 to each category</li>
+<li>on a new line of code, use <code>factor()</code> to assign labels to each level of your new variable</li>
+<li>Variable Label: “Age in years categorized”</li>
+<li>Values: 0: &lt;18 1: 18-39 2: ≥ 40</li>
+</ul>
 </div>
-<div id="task-2c-mweight" class="section level3">
-<h3>Task 2c: mweight</h3>
-<p>mweight: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable v437. Note that v437 contains 1 implied decimal place. Divide by 10 to get kilograms.</p>
+<div id="task-9-cross-tab-of-mage-and-magec" class="section level2">
+<h2>Task 9: Cross-tab of mage and magec</h2>
+<p>Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.). Type “?table” for help with how to create a 2x2 table. Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.</p>
 </div>
-<div id="task-2d-mheight" class="section level3">
-<h3>Task 2d: mheight</h3>
-<p>mheight: Continuous maternal height at time of interview (in meters). Based on variable v438. Note that this variable is in centimeters and also contains 1 implied decimal place.</p>
-</div>
-<div id="task-2e-mbmi" class="section level3">
-<h3>Task 2e: mbmi</h3>
-<p>mbmi: maternal body mass index (BMI). Weight (kilograms) / height2 (meters).</p>
-</div>
-</div>
-<div id="task-3-frequency-histograms" class="section level2">
-<h2>Task 3: Frequency histograms</h2>
-<p>Generate frequency histograms of mweight, mheight and mbmi. Put meaningful axis labels and a title on each figure.</p>
-<div id="task-3a-mweight" class="section level3">
-<h3>Task 3a: mweight</h3>
-</div>
-<div id="task-3b-mheight" class="section level3">
-<h3>Task 3b: mheight</h3>
-</div>
-<div id="task-3c-mbmi" class="section level3">
-<h3>Task 3c: mbmi</h3>
-</div>
-</div>
-<div id="task-4-boxplots" class="section level2">
-<h2>Task 4: Boxplots</h2>
-<p>Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.</p>
-<div id="task-4a-mweight" class="section level3">
-<h3>Task 4a: mweight</h3>
-</div>
-<div id="task-4b-mheight" class="section level3">
-<h3>Task 4b: mheight</h3>
-</div>
-<div id="task-4c-mbmi" class="section level3">
-<h3>Task 4c: mbmi</h3>
-</div>
-</div>
-<div id="task-5-frequency-table" class="section level2">
-<h2>Task 5: Frequency table</h2>
-<p>Fill in Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.</p>
-<div id="task-5a-bord5" class="section level3">
-<h3>Task 5a: bord5</h3>
-</div>
-<div id="task-5b-magec" class="section level3">
-<h3>Task 5b: magec</h3>
-</div>
-<div id="task-5c-male" class="section level3">
-<h3>Task 5c: male</h3>
-</div>
-</div>
-<div id="task-6-table-2" class="section level2">
-<h2>Task 6: Table 2</h2>
-<p>Table 2 is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Fill in these columns in this table for the variables originally on the dataset.</li>
-<li>Add rows for the 7 new variables that you have created in both Labs 0 and 1.</li>
-</ol>
-</div>
-<div id="task-7-short-answer" class="section level2">
-<h2>Task 7: Short answer</h2>
-<p><strong>Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?</strong> <strong>(Response no longer than 250 words, please)</strong></p>
+<div id="task-10-save-new-dataset" class="section level2">
+<h2>Task 10: Save new dataset</h2>
+<p>Save the new dataset in the same directory using a different file name with the form shown in the instructions on page 1 using the saveRDS() command.</p>
 </div>
 </div>
 
