@@ -2159,7 +2159,7 @@ How-to
 <figure>
 <img src="images/popout.png" alt="Pop-out" /><figcaption aria-hidden="true">Pop-out</figcaption>
 </figure>
-<h1 id="task-3-load-packages-and-data">Task 3: Load packages and data</h1>
+<h1 id="task-3-install-and-load-packages">Task 3: Install and load packages</h1>
 <h2 id="installing-packages">Installing packages</h2>
 <p>Packages are collections of functions. As we’ll see shortly, we use functions as code to view, manipulate, and analyze our data.</p>
 <p>There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.</p>
@@ -2175,7 +2175,7 @@ How-to
 </code></pre>
 </div>
 </div>
-<h2 id="load-libraries">Load libraries</h2>
+<h2 id="load-packages-with-library">Load packages with <code>library()</code></h2>
 <p>To enable R to use a package’s functions in our current project environment, we need to load the packages using the <code>library()</code> function.</p>
 <p>In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2186,7 +2186,7 @@ How-to
 </div>
 </div>
 <p><strong>Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using <code>library()</code>, R recognizes them as package objects automatically, and so don’t need quotes. You can surround them with quotes and it will load all the same.</strong></p>
-<h1 id="task-4-load-data">Task 4: Load data</h1>
+<h1 id="task-4-load-data-with-readrds">Task 4: Load data with <code>readRDS()</code></h1>
 <p>You will use the dataset Lab_0_kenya.rds for this lab. You’ve hopefully already saved this lab’s dataset to the folder Lab 0 &gt; data. You will use the function readRDS() to import the data file from your computer’s folder.</p>
 <p>Since our project is located within the folder called “Lab 0”, our computer will automatically look within that folder for the data.</p>
 <p>All we need to do is specify that it’s in the folder called “data”.</p>

@@ -81,7 +81,7 @@ Click the white square at the top of the file that I've circled in the photo bel
 ![Pop-out](images/popout.png)
 
 
-# Task 3: Load packages and data
+# Task 3: Install and load packages
 
 ## Installing packages
 
@@ -103,7 +103,7 @@ devtools::install_github("potato-nathan/epiAssist")
 ```
 
 
-## Load libraries
+## Load packages with `library()`
 
 To enable R to use a package's functions in our current project environment, we need to load the packages using the `library()` function.
 
@@ -117,7 +117,7 @@ library(skimr)
 __Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically, and so don't need quotes. You can surround them with quotes and it will load all the same.__
 
 
-# Task 4: Load data
+# Task 4: Load data with `readRDS()`
 
 You will use the dataset Lab_0_kenya.rds for this lab. You've hopefully already saved this lab's dataset to the folder Lab 0 > data. You will use the function readRDS() to import the data file from your computer's folder. 
 
