@@ -20,6 +20,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # A quick note on R and RStudio:
 
-### For this lab, you are going to need to download [R and RStudio](https://www.rstudio.com/products/rstudio/download/#download), a pair of free open-source softwares used for everything from data analysis to web design. 
+#### For this lab, you are going to need to download [R and RStudio](https://www.rstudio.com/products/rstudio/download/#download), a pair of free open-source softwares used for everything from data analysis to web design. 
 
-### Don't hesitate to ask for help if you are having software problems. 
+### Don't hesitate to ask for help if you are having problems with software, code, etc.
