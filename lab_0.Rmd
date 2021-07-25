@@ -1,7 +1,7 @@
 ---
 title: "Lab 0"
 description: |
-  Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, summary statistics, create a variable with mutate, visualize with ggplot2
+  Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, summary statistics, create a variable with mutate, visualize with ggplot2\n
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -14,24 +14,24 @@ library(tidyverse)
 library(skimr)
 ```
 
+### LAB MATERIALS: 
+
+* [R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
+Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `firsInitial_YourLastName_Lab0.Rmd`, and submit it using the Sakai dropbox.
+
+* Lab_0_kenya.rds - data file available on Sakai
+
 # Lab 0 Goals:
 
 By the end of this lab, you will have demonstrated a basic familiarity with the R coding environment and R Markdown files. You will be able to:
 
-    * Start a new project and import data
-    * Understand useful R terminology
-    * Use summary statistics to describe the Kenya dataset
-    * Create a categorical variable using a continuous one
-    * Generate histograms and boxplots using ggplot2
-    * Create a simple cross-tabulation of two variables
+  * Start a new project and import data
+  * Understand useful R terminology
+  * Use summary statistics to describe the Kenya dataset
+  * Create a categorical variable using a continuous one
+  * Generate histograms and boxplots using ggplot2
+  * Create a simple cross-tabulation of two variables
     
-### LAB MATERIALS: 
-
-Download 
-
-[__this R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
-
-Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `firsInitial_YourLastName_Lab0.Rmd`, and submit it using the Sakai dropbox. 
 
 # Task 1: Establish a workflow
 
@@ -41,36 +41,33 @@ In R, we organize our work by projects. It is best practice to keep no more than
 
 If you haven't already, now would be a good time to: 
 
-    1. Create a new folder on your computer called "705 Lab".
-
-    2. Within that folder, create a folder for this lab, called "Lab 0".
-
-    3. Finally, within that folder, create a folder for your data, called "data"
-  
-    4. Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called "data"
+  1. Create a new folder on your computer called "705 Lab".
+  2. Within that folder, create a folder for this lab, called "Lab 0".
+  3. Finally, within that folder, create a folder for your data, called "data"
+  4. Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called "data"
 
 __Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep *you* happy.__
 
 ## Create a New Project in RStudio
 
-Now open RStudio and take a deep breath. Don't panic. This will all be very familiar in a few short months from now. 
+Now open RStudio and take a deep breath. Don't panic. This will all be very familiar in a few short months. 
 
-Initiate a new project by going to *File* and clicking *New Project*. 
+Initiate a new project by going to __*File*__ and clicking __*New Project*__. 
 
 TODO: INSERT SCREENSHOT
 
-Then select *Existing Directory* and hit *Browse*. Navigate to the folder titled __Lab 0__. Open it, then hit *Open*. 
+Then select __*Existing Directory*__ and hit __*Browse*__. Navigate to the folder titled __Lab 0__. Open it, then hit __*Open*__. 
 
 # Task 2: Familiarize yourself with R Markdown
 
-Now, you will open a special kind of document known as "R Markdown". This is a text editor (like Word or Google Docs), but with a twist. You can run code *within the document*. This makes data analysis an interactive, iterative (and therefore fun?) process that usually goes:
+Now, you will open a special kind of document known as "R Markdown". This is a text editor (like Word or Google Docs), but with a twist. You can run code *within the document*. This makes data analysis an interactive, iterative (and therefore fun?) process that usually looks like this:
 
-    1. Write some code intended to transform your data
-    2. Run the code
-    3. Observe how your dataset behaved
-    4. (Optional) Take a few notes
-    5. Tweak code
-    6. Repeat
+  1. Write some code intended to transform your data
+  2. Run the code
+  3. Observe how your dataset behaved
+  4. (Optional) Take a few notes
+  5. Tweak code
+  6. Repeat
   
 For each lab, we will provide you with a skeleton Markdown file on Sakai. If you haven't already, download that file ("lab0_705_fall2021.Rmd") and save it to your folder called "Lab 0".
 
@@ -81,7 +78,7 @@ Click the white square at the top of the file that I've circled in the photo bel
 ![Pop-out](images/popout.png)
 
 
-# Task 3: Install and load packages
+# Task 3: Load packages and data
 
 ## Installing packages
 
@@ -103,7 +100,7 @@ devtools::install_github("potato-nathan/epiAssist")
 ```
 
 
-## Load packages with `library()`
+## Load libraries
 
 To enable R to use a package's functions in our current project environment, we need to load the packages using the `library()` function.
 
@@ -117,7 +114,7 @@ library(skimr)
 __Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically, and so don't need quotes. You can surround them with quotes and it will load all the same.__
 
 
-# Task 4: Load data with `readRDS()`
+# Task 4: Load data
 
 You will use the dataset Lab_0_kenya.rds for this lab. You've hopefully already saved this lab's dataset to the folder Lab 0 > data. You will use the function readRDS() to import the data file from your computer's folder. 
 
@@ -213,8 +210,8 @@ We must also provide the argument `useNA = 'always'` to our `table()` function i
 
 Use `table()` to look at `mage`, then consider the following questions:
 
-    * Are there any missing values for age? If so, how many?
-    * Which range of ages appear the most frequently in mage?
+  * Are there any missing values for age? If so, how many?
+  * Which range of ages appear the most frequently in mage?
 
 
 
@@ -288,12 +285,12 @@ Using function `saveRDS()`, save the new dataset in the same directory as our or
 
 `saveRDS()` takes two primary arguments:
 
-    * The dataframe object you want to save
-    * The location in which you'd like it saved as a .rds file
+  * The dataframe object you want to save
+  * The location in which you'd like it saved as a .rds file
     
 Don't forget the following:
 
-    * The file locations should be in quotes, so that R knows to read it as a character string
-    * Your file should be saved in your local Lab 0 folder, `data/`
+  * The file locations should be in quotes, so that R knows to read it as a character string
+  * Your file should be saved in your local Lab 0 folder, `data/`
 
 
