@@ -10,6 +10,8 @@ navbar:
     image: images/logo.png
     href: https://pngtree.com/so/cat
   right:
+    - text: "Analysis Map"
+      href: mind_map.html
     - text: "How-to"
       menu:
         - text: "Use RStudio"
@@ -45,8 +47,12 @@ navbar:
           href: lab_03.html
         - text: "Lab 4"
           href: lab_4.html
+    - text: "Submission Guidelines"
+      href: "submit.html"
     - text: "Function Dictionary"
       href: fun_dict.html
+    - text: "Data Dictionary"
+      href: data_dict.html
     - text: "About"
       href: about.html
     - icon: fab fa-github

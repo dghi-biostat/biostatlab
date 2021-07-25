@@ -10,10 +10,17 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+### LAB MATERIALS: 
 
-# Lab 1: {.tabset}
+* [R Markdown file for Lab 1.__](assignments/lab1_705_fall2021.Rmd)
+Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `firsInitial_YourLastName_Lab1.Rmd`, and submit it using the Sakai dropbox.
 
-## Goals
+* [Excel document for Tables 1 & 2](assignments/Lab1_Tables.xlsx)
+TODO: Set up answer entry on Sakai?
+
+* Lab_1_kenya.rds - data file available on Sakai
+
+# Lab 1 Goals:
 
 * Generate derived variables
 * Identify and recode special values 
@@ -21,97 +28,78 @@ knitr::opts_chunk$set(echo = FALSE)
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
-## Task 1: Load libraries & packages
+# Task 1: Load libraries & packages
 
 Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}
 
 
-To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
+** To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
 
 
-## Task 2: Recode variables
+# Task 2: Recode variables
 
-Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (e.g., missing, unknown) and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command.
+Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command. 
 
-### Task2a: bord5
+[Help with pipes](TODO)
 
-bord5: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable bord (birth order).
+[Help with factors](TODO)
 
+__Task2a: bord5__
 
-### Task 2b: male
-
-male: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable b4.
-
-
-### Task 2c: mweight
-
-mweight: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable v437. Note that v437 contains 1 implied decimal place. Divide by 10 to get kilograms. 
+__`bord5`__: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
 
 
-### Task 2d: mheight
+__Task 2b: male__
 
-mheight:  Continuous maternal height at time of interview (in meters). Based on variable v438. Note that this variable is in centimeters and also contains 1 implied decimal place.
-
-
-
-### Task 2e: mbmi
-
-mbmi: maternal body mass index (BMI).  Weight (kilograms) / height2 (meters). 
+__`male`__: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
 
 
+__Task 2c: mweight__
 
-## Task 3: Frequency histograms
-
-Generate frequency histograms of mweight, mheight and mbmi.  Put meaningful axis labels and a title on each figure.
-
-
-### Task 3a: mweight
+__`mweight:`__ Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
 
 
-### Task 3b: mheight
+__Task 2d: mheight__
+
+__`mheight`__:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
 
 
-### Task 3c: mbmi
+__Task 2e: mbmi__
+
+__`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
 
 
-## Task 4: Boxplots
+
+# Task 3: Frequency histograms
+
+Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__.  Put meaningful axis labels and a title on each figure.
+
+[Help with histograms in ggplot2](TODO)
+
+
+# Task 4: Boxplots
 
 Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
 
-### Task 4a: mweight
-
-
-### Task 4b: mheight
+[Help with boxplots in ggplot2](TODO)
 
 
 
-### Task 4c: mbmi
+# Task 5: Frequency table (Table 1)
+
+Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
 
 
 
-## Task 5: Frequency table
+# Task 6: Data dictionary (Table 2)
 
-Fill in Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
-
-### Task 5a: bord5
-
-
-### Task 5b: magec
-
-
-### Task 5c: male
-
-
-
-## Task 6: Table 2
-
-Table 2 is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.
+__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.
 
 a.	Fill in these columns in this table for the variables originally on the dataset.
 b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
 
 
-## Task 7: Short answer
+# Task 7: Short answer
 
 __Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
 __(Response no longer than 250 words, please)__
