@@ -2421,7 +2421,7 @@ How-to
 <a href="help_newproject.html">Start a new project</a>
 <a href="help_packages.html">Work with packages</a>
 <a href="help_jargon.html">R jargon</a>
-<a href="help_visualize.html">Visualize in R</a>
+<a href="help_ggplot2.html">Visualize in R (ggplot2)</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2500,6 +2500,7 @@ Lab Assignments
 </ul>
 </nav>
 </div>
+<p><strong><em>Note: This lab is no graded</em></strong> (i.e. does not contribute to your course evaluation, so don’t fret)</p>
 <h3 id="lab-materials">LAB MATERIALS:</h3>
 <ul>
 <li><p><a href="assignments/lab0_705_fall2021.Rmd">R Markdown file for Lab 0.__</a> Click link to download. Fill it in with your answers to the following lab tasks. Once you’re finished, rename it as <code>firsInitial_YourLastName_Lab0.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
@@ -2660,9 +2661,9 @@ Lab Assignments
 <h1 id="task-8-create-variable-magec">Task 8: Create variable magec</h1>
 <p>Using <code>mage</code>, generate a new variable with three categories: &lt;18, 18-39, and ≥ 40, naming the new variable <code>magec</code> (__m__other’s <strong>age</strong> __c__ategorical). Set the values for <code>magec</code> to be 0,1,2, where 0 corresponds to the youngest age group (&lt;18). Recommended steps:</p>
 <ul>
-<li>First, don’t forget to use the assignment operator to save your changes to the kenya dataframe.</li>
-<li>Then, use <code>mutate()</code> to create a new variable, magec,</li>
-<li>within your <code>mutate()</code> command, use <code>case_when()</code> to create a series of conditional statements that assigns number 0, 1, and 2 to each category</li>
+<li>First, don’t forget to use the assignment operator to save your changes to the <code>kenya</code> data frame.</li>
+<li>Then, use a pipe (%&gt;%) and then <code>mutate()</code> to create a new variable, magec,</li>
+<li>within your <code>mutate()</code> command, use <code>case_when()</code> to create a series of conditional statements that assign numbers 0, 1, and 2 to each category</li>
 <li>on a new line of code, use <code>factor()</code> to assign labels to each level of your new variable</li>
 <li>Values:</li>
 <li>0: &lt;18</li>

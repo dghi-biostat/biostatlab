@@ -14,6 +14,8 @@ library(tidyverse)
 library(skimr)
 ```
 
+__*Note: This lab is no graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
+
 ### LAB MATERIALS: 
 
 * [R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
@@ -220,9 +222,9 @@ Use `table()` to look at `mage`, then consider the following questions:
 Using `mage`, generate a new variable with three categories: <18, 18-39, and ≥ 40, naming the new variable `magec` (__m__other’s __age__ __c__ategorical). Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).
 Recommended steps:
 
-* First, don't forget to use the assignment operator to save your changes to the kenya dataframe.
-* Then, use `mutate()`  to create a new variable, magec, 
-* within your `mutate()` command, use `case_when()` to create a series of conditional statements that assigns number 0, 1, and 2 to each category 
+* First, don't forget to use the assignment operator to save your changes to the `kenya` data frame.
+* Then, use a pipe (%>%) and then `mutate()`  to create a new variable, magec, 
+* within your `mutate()` command, use `case_when()` to create a series of conditional statements that assign numbers 0, 1, and 2 to each category 
 * on a new line of code, use `factor()` to assign labels to each level of your new variable
 *	Values: 
   + 0:  <18 
