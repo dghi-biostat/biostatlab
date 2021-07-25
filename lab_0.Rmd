@@ -170,9 +170,9 @@ __Familiarize yourself with the data by using the commands `ncol()`, `nrow()`, `
   * __Are there any variable or value labels?__ 
   * __Do any variables have notes?__ 
 
-Similar to the function `head()`, we can feed our `kenya` dataframe to various functions that tell us other useful information about it. 
+Similar to the function `head()`, we can feed our `kenya` data frame to various functions that tell us other useful information about it. 
 
-Use `ncol()` to print the number of columns in our dataframe
+Use `ncol()` to print the number of columns in our data frame
 
 Use `nrow()` to print the number of rows
 
@@ -180,7 +180,7 @@ Use `class()` to view each variable's "type"
 
 Use `names()` to view each variable's name.
 
-Use `skim()` to print summary statistics for each variable in the dataframe
+Use `skim()` to print summary statistics for each variable in the data frame
 
 
 # Task 6: Create variable mage
@@ -192,7 +192,7 @@ The `mutate()` function works with the following syntax.
 ```{r mutate, echo = TRUE, eval = FALSE}
 # don't forget to write over your old dataframe with the new "mutated" one
 data <- data %>%
-  mutate(newVariableName = (Variable1 - Variable 2))
+  mutate(newVariableName = (Variable1 - Variable2))
 ```
 
 
@@ -260,7 +260,7 @@ We can also use `tidyverse` functions to accomplish a two-way tabulation of our 
 # example code:
 
 # notice that we don't want to assign this operation to a name
-# we just want to view the output
+# we just want to view the output, hence the lack of "data <- "
 data %>%
   group_by(x, y) %>%
   count()

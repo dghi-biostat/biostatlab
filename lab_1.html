@@ -2409,6 +2409,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" class="title">DGHI/Biostat Lab</a>
 </div>
 <div class="nav-right">
+<a href="mind_map.html">Analysis Map</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 How-to
@@ -2444,7 +2445,9 @@ Lab Assignments
 <a href="lab_4.html">Lab 4</a>
 </div>
 </div>
+<a href="submit.html">Submission Guidelines</a>
 <a href="fun_dict.html">Function Dictionary</a>
+<a href="data_dict.html">Data Dictionary</a>
 <a href="about.html">About</a>
 <a href="https://github.com/dghi-biostat/biostatlab">
 <i class="fab fa-github" aria-hidden="true"></i>
@@ -2470,44 +2473,25 @@ Lab Assignments
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#lab-1">Lab 1:</a>
-<ul>
-<li><a href="#goals">Goals</a></li>
+<li><a href="#lab-materials">LAB MATERIALS:</a></li>
+<li><a href="#lab-1-goals">Lab 1 Goals:</a></li>
 <li><a href="#task-1-load-libraries-packages">Task 1: Load libraries &amp; packages</a></li>
-<li><a href="#task-2-recode-variables">Task 2: Recode variables</a>
-<ul>
-<li><a href="#task2a-bord5">Task2a: bord5</a></li>
-<li><a href="#task-2b-male">Task 2b: male</a></li>
-<li><a href="#task-2c-mweight">Task 2c: mweight</a></li>
-<li><a href="#task-2d-mheight">Task 2d: mheight</a></li>
-<li><a href="#task-2e-mbmi">Task 2e: mbmi</a></li>
-</ul></li>
-<li><a href="#task-3-frequency-histograms">Task 3: Frequency histograms</a>
-<ul>
-<li><a href="#task-3a-mweight">Task 3a: mweight</a></li>
-<li><a href="#task-3b-mheight">Task 3b: mheight</a></li>
-<li><a href="#task-3c-mbmi">Task 3c: mbmi</a></li>
-</ul></li>
-<li><a href="#task-4-boxplots">Task 4: Boxplots</a>
-<ul>
-<li><a href="#task-4a-mweight">Task 4a: mweight</a></li>
-<li><a href="#task-4b-mheight">Task 4b: mheight</a></li>
-<li><a href="#task-4c-mbmi">Task 4c: mbmi</a></li>
-</ul></li>
-<li><a href="#task-5-frequency-table">Task 5: Frequency table</a>
-<ul>
-<li><a href="#task-5a-bord5">Task 5a: bord5</a></li>
-<li><a href="#task-5b-magec">Task 5b: magec</a></li>
-<li><a href="#task-5c-male">Task 5c: male</a></li>
-</ul></li>
-<li><a href="#task-6-table-2">Task 6: Table 2</a></li>
+<li><a href="#task-2-recode-variables">Task 2: Recode variables</a></li>
+<li><a href="#task-3-frequency-histograms">Task 3: Frequency histograms</a></li>
+<li><a href="#task-4-boxplots">Task 4: Boxplots</a></li>
+<li><a href="#task-5-frequency-table-table-1">Task 5: Frequency table (Table 1)</a></li>
+<li><a href="#task-6-data-dictionary-table-2">Task 6: Data dictionary (Table 2)</a></li>
 <li><a href="#task-7-short-answer">Task 7: Short answer</a></li>
-</ul></li>
 </ul>
 </nav>
 </div>
-<h1 class="tabset" id="lab-1">Lab 1:</h1>
-<h2 id="goals">Goals</h2>
+<h3 id="lab-materials">LAB MATERIALS:</h3>
+<ul>
+<li><p><a href="assignments/lab1_705_fall2021.Rmd">R Markdown file for Lab 1.__</a> Click link to download. Fill it in with your answers to the following lab tasks. Once you’re finished, rename it as <code>firsInitial_YourLastName_Lab1.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
+<li><p><a href="assignments/Lab1_Tables.xlsx">Excel document for Tables 1 &amp; 2</a> TODO: Set up answer entry on Sakai?</p></li>
+<li><p>Lab_1_kenya.rds - data file available on Sakai</p></li>
+</ul>
+<h1 id="lab-1-goals">Lab 1 Goals:</h1>
 <ul>
 <li>Generate derived variables</li>
 <li>Identify and recode special values</li>
@@ -2515,43 +2499,390 @@ Lab Assignments
 <li>Generate graphics for continuous variables</li>
 <li>Generate a complete data dictionary</li>
 </ul>
-<h2 id="task-1-load-libraries-packages">Task 1: Load libraries &amp; packages</h2>
-<p>Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}</p>
-<p>To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)</p>
-<h2 id="task-2-recode-variables">Task 2: Recode variables</h2>
-<p>Construct the following derived variables using a pipe and <code>mutate()</code>. For each, examine the component variables for coded special values (e.g., missing, unknown) and be sure to set derived variable values appropriately. Label all variables and the coded values for the categorical ones using the <code>factor()</code> command.</p>
-<h3 id="task2a-bord5">Task2a: bord5</h3>
-<p>bord5: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable bord (birth order).</p>
-<h3 id="task-2b-male">Task 2b: male</h3>
-<p>male: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable b4.</p>
-<h3 id="task-2c-mweight">Task 2c: mweight</h3>
-<p>mweight: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable v437. Note that v437 contains 1 implied decimal place. Divide by 10 to get kilograms.</p>
-<h3 id="task-2d-mheight">Task 2d: mheight</h3>
-<p>mheight: Continuous maternal height at time of interview (in meters). Based on variable v438. Note that this variable is in centimeters and also contains 1 implied decimal place.</p>
-<h3 id="task-2e-mbmi">Task 2e: mbmi</h3>
-<p>mbmi: maternal body mass index (BMI). Weight (kilograms) / height2 (meters).</p>
-<h2 id="task-3-frequency-histograms">Task 3: Frequency histograms</h2>
-<p>Generate frequency histograms of mweight, mheight and mbmi. Put meaningful axis labels and a title on each figure.</p>
-<h3 id="task-3a-mweight">Task 3a: mweight</h3>
-<h3 id="task-3b-mheight">Task 3b: mheight</h3>
-<h3 id="task-3c-mbmi">Task 3c: mbmi</h3>
-<h2 id="task-4-boxplots">Task 4: Boxplots</h2>
+<h1 id="task-1-load-libraries-packages">Task 1: Load libraries &amp; packages</h1>
+<p>Use the dataset Lab_1_kenya.rds for this assignment.</p>
+<p>You will also need packages {skimr} and {tidyverse}</p>
+<p>** Reminder: To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)</p>
+<h1 id="task-2-recode-variables">Task 2: Recode variables</h1>
+<p>Construct the following derived variables using a pipe and <code>mutate()</code>. For each, examine the component variables for coded special values (i.e. “NA”) and be sure to set derived variable values appropriately. Label all variables and the coded values for the categorical ones using the <code>factor()</code> command.</p>
+<p><a href="TODO"><strong>Help with pipes</strong></a></p>
+<p><a href="TODO"><strong>Help with factors</strong></a></p>
+<p><strong>Task2a: bord5</strong></p>
+<p><strong><code>bord5</code></strong>: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable <code>bord</code> (birth order).</p>
+<p><strong>Task 2b: male</strong></p>
+<p><strong><code>male</code></strong>: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable <code>b4</code>.</p>
+<p><strong>Task 2c: mweight</strong></p>
+<p><strong><code>mweight:</code></strong> Continuous variable for maternal weight at time of interview (in kilograms). Based on variable <code>v437</code>. Note that <code>v437</code> contains 1 implied decimal place. Divide by 10 to get kilograms.</p>
+<p><strong>Task 2d: mheight</strong></p>
+<p><strong><code>mheight</code></strong>: Continuous maternal height at time of interview (in meters). Based on variable <code>v438</code>. Note that this variable is in centimeters and also contains 1 implied decimal place.</p>
+<p><strong>Task 2e: mbmi</strong></p>
+<p><strong><code>mbmi</code></strong>: maternal body mass index (BMI). Weight (kilograms) / height^2 (meters).</p>
+<h1 id="task-3-frequency-histograms">Task 3: Frequency histograms</h1>
+<p>Generate frequency histograms of <strong><code>mweight</code></strong>, <strong><code>mheight</code></strong> and <strong><code>mbmi</code></strong>. Put meaningful axis labels and a title on each figure.</p>
+<p><a href="TODO"><strong>Help with histograms in ggplot2</strong></a></p>
+<h1 id="task-4-boxplots">Task 4: Boxplots</h1>
 <p>Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.</p>
-<h3 id="task-4a-mweight">Task 4a: mweight</h3>
-<h3 id="task-4b-mheight">Task 4b: mheight</h3>
-<h3 id="task-4c-mbmi">Task 4c: mbmi</h3>
-<h2 id="task-5-frequency-table">Task 5: Frequency table</h2>
-<p>Fill in Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.</p>
-<h3 id="task-5a-bord5">Task 5a: bord5</h3>
-<h3 id="task-5b-magec">Task 5b: magec</h3>
-<h3 id="task-5c-male">Task 5c: male</h3>
-<h2 id="task-6-table-2">Task 6: Table 2</h2>
-<p>Table 2 is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.</p>
+<p><a href="TODO"><strong>Help with boxplots in ggplot2</strong></a></p>
+<h1 id="task-5-frequency-table-table-1">Task 5: Frequency table (Table 1)</h1>
+<p>Fill in <strong>Table 1</strong> with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. <strong><em>Round percentages to 1 decimal place</em></strong>.</p>
+<p>We would like you to use a pipe (<code>%&gt;%</code>) with <code>group_by()</code> and <code>summarize()</code> to generate summary statistics.</p>
+<p><code>group_by()</code> works by grouping rows by categorical variables. It then allows a function like <code>summarize()</code> to calculate summary statistics on those sub-groups, including percentages and frequency counts.</p>
+<p>As an example, we can use the <code>mtcars</code> dataset available within RStudio:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Say we want to know the frequency counts of cars with 4, 6, and 8 cylinders (variable: <code>cyl</code>) based on whether or not a car has an automatic or manual transmission (variable <code>am</code>, 0 = automatic, 1 = manual).</p>
+<p>We can use <code>group_by()</code> to create subgroups according to <code>am</code> and <code>cyl</code>. Using <code>group_by()</code> by itself doesn’t alter the appearance of our data frame, but our observations are now implicitly grouped according to transmission type and number of cylinders.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We might use <code>summarize()</code> to operate on these sub-groups. <code>summarize()</code> works with the following syntax:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
+            anotherColumnName <span class='op'>=</span> <span class='fu'>anotherFunction</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>,
+            <span class='va'>etc.</span>, <span class='va'>etc....</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Depending on whether our variable is categorical or continuous, we can use summary statistic functions like <code>n()</code> (for raw counts), <code>mean()</code>, <code>sd()</code>, <code>median()</code>, <code>IQR()</code>, <code>min()</code>, and <code>max()</code> within our <code>summarize()</code> function. Except for <code>n()</code>, which doesn’t take any arguments, the rest of these functions take a variable name.</p>
+<p>We can start by using <code>n()</code> for sub-group frequency counts.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">Counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Then we can use <code>mutate()</code> to operate on our summary table as if it were its own data frame.</p>
+<p>Within <code>mutate()</code>, we create a new variable with <code>NewVariable =</code>, and equate it to the following operation: <code>Counts / sum(Counts, na.rm = TRUE)</code> (sub-group counts divided by the sum of sub-group counts).</p>
+<p>__**Note__: <code>na.rm = TRUE</code> instructs the function to remove NA values from the sum of values in our sub-group.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">Counts</th>
+<th style="text-align: right;">Proportions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.1578947</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.2105263</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.6315789</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.6153846</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.2307692</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.1538462</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Also notice that we’re able to do this within one continuous pipe.</p>
+<h1 id="task-6-data-dictionary-table-2">Task 6: Data dictionary (Table 2)</h1>
+<p><strong>Table 2</strong> is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using <code>skim()</code> from the {skimr} package:</p>
 <ol type="a">
-<li>Fill in these columns in this table for the variables originally on the dataset.</li>
+<li>Fill in the columns in this table for the variables originally in the dataset.</li>
 <li>Add rows for the 7 new variables that you have created in both Labs 0 and 1.</li>
 </ol>
-<h2 id="task-7-short-answer">Task 7: Short answer</h2>
+<h1 id="task-7-short-answer">Task 7: Short answer</h1>
+<p><strong><em>Enter your response into your own RMarkdown file</em></strong></p>
 <p><strong>Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?</strong> <strong>(Response no longer than 250 words, please)</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

@@ -8,6 +8,9 @@ output: distill::distill_article
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(knitr)
 ```
 
 ### LAB MATERIALS: 
@@ -30,19 +33,20 @@ TODO: Set up answer entry on Sakai?
 
 # Task 1: Load libraries & packages
 
-Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}
+Use the dataset Lab_1_kenya.rds for this assignment. 
 
+You will also need packages {skimr} and {tidyverse}
 
-** To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
+** Reminder: To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
 
 
 # Task 2: Recode variables
 
 Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command. 
 
-[Help with pipes](TODO)
+[__Help with pipes__](TODO)
 
-[Help with factors](TODO)
+[__Help with factors__](TODO)
 
 __Task2a: bord5__
 
@@ -74,37 +78,119 @@ __`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (mete
 
 Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__.  Put meaningful axis labels and a title on each figure.
 
-[Help with histograms in ggplot2](TODO)
+[__Help with histograms in ggplot2__](TODO)
 
 
 # Task 4: Boxplots
 
 Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
 
-[Help with boxplots in ggplot2](TODO)
+[__Help with boxplots in ggplot2__](TODO)
 
 
 
 # Task 5: Frequency table (Table 1)
 
-Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
+Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__.
 
+We would like you to use a pipe (`%>%`) with `group_by()` and `summarize()` to generate summary statistics. 
+
+`group_by()` works by grouping rows by categorical variables. It then allows a function like `summarize()` to calculate summary statistics on those sub-groups, including percentages and frequency counts. 
+
+As an example, we can use the `mtcars` dataset available within RStudio:
+
+```{r echo = TRUE, eval = FALSE}
+head(mtcars)
+```
+
+```{r layout="l-body-outset"}
+kable(head(mtcars))
+```
+
+Say we want to know the frequency counts of cars with 4, 6, and 8 cylinders (variable: `cyl`) based on whether or not a car has an automatic or manual transmission (variable `am`, 0 = automatic, 1 = manual).
+
+We can use `group_by()` to create subgroups according to `am` and `cyl`. Using `group_by()` by itself doesn't alter the appearance of our data frame, but our observations are now implicitly grouped according to transmission type and number of cylinders.
+
+```{r echo = TRUE, eval = FALSE}
+
+mtcars %>%
+  group_by(am, cyl)
+
+```
+
+```{r layout="l-body-outset"}
+
+kable(head(mtcars %>%
+             group_by(am, cyl)))
+```
+
+
+We might use `summarize()` to operate on these sub-groups. `summarize()` works with the following syntax:
+
+```{r echo = TRUE, eval = FALSE}
+
+mtcars %>%
+  group_by(am, cyl) %>%
+  summarize(columnName = Function(variable), 
+            anotherColumnName = anotherFunction(variable),
+            etc., etc....)
+
+```
+
+Depending on whether our variable is categorical or continuous, we can use summary statistic functions like `n()` (for raw counts), `mean()`, `sd()`, `median()`, `IQR()`, `min()`, and `max()` within our `summarize()` function. Except for `n()`, which doesn't take any arguments, the rest of these functions take a variable name. 
+
+We can start by using `n()` for sub-group frequency counts. 
+
+
+```{r echo = TRUE, eval = FALSE}
+mtcars %>%
+  group_by(am, cyl) %>%
+  summarize(Counts = n())
+```
+
+```{r}
+kable(mtcars %>%
+  group_by(am, cyl) %>%
+  summarize(Counts = n()))
+```
+
+Then we can use `mutate()` to operate on our summary table as if it were its own data frame.
+
+Within `mutate()`, we create a new variable with `NewVariable = `, and equate it to the following operation: `Counts / sum(Counts, na.rm = TRUE)` (sub-group counts divided by the sum of sub-group counts).
+
+__**Note__: `na.rm = TRUE` instructs the function to remove NA values from the sum of values in our sub-group.
+
+```{r echo = TRUE, eval = FALSE}
+mtcars %>%
+  group_by(am, cyl) %>%
+  summarize(Counts = n()) %>%
+  mutate(Proportions = Counts / sum(Counts, na.rm = TRUE))
+```
+
+```{r}
+kable(mtcars %>%
+  group_by(am, cyl) %>%
+  summarize(Counts = n()) %>%
+  mutate(Proportions = Counts / sum(Counts, na.rm = TRUE)))
+```
+
+Also notice that we're able to do this within one continuous pipe.
 
 
 # Task 6: Data dictionary (Table 2)
 
-__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics.
+__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using `skim()` from the {skimr} package:
 
-a.	Fill in these columns in this table for the variables originally on the dataset.
-b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
+  a.	Fill in the columns in this table for the variables originally in the dataset.
+  b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
 
 
 # Task 7: Short answer
 
+__*Enter your response into your own RMarkdown file*__
+
 __Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
 __(Response no longer than 250 words, please)__
-
-
 
 
 
