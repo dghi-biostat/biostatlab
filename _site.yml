@@ -22,8 +22,8 @@ navbar:
           href: help_packages.html
         - text: "R jargon"
           href: help_jargon.html
-        - text: "Visualize in R"
-          href: help_visualize.html
+        - text: "Visualize in R (ggplot2)"
+          href: help_ggplot2.html
     - text: "Lab Assignments"
       menu:
         - text: "705 Labs"
