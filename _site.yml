@@ -48,7 +48,7 @@ navbar:
         - text: "Lab 4"
           href: lab_4.html
     - text: "Submission Guidelines"
-      href: "submit.html"
+      href: submit.html
     - text: "Function Dictionary"
       href: fun_dict.html
     - text: "Data Dictionary"
