@@ -17,9 +17,9 @@ In R, we organize our work by projects. It is best practice to keep no more than
 If you haven't already, now would be a good time to: 
 
   1. Create a new folder on your computer called "705 Lab".
-  2. Within that folder, create a folder for this lab, called "Lab 0".
+  2. Within that folder, create a folder for whatever lab you're working on, "Lab X".
   3. Finally, within that folder, create a folder for your data, called "data"
-  4. Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called "data"
+  4. Save your dataset into the folder called "data". This helps keep things organized as the project grows.
 
 __Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep *you* happy.__
 
