@@ -86,30 +86,33 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>DGHI/Biostat Lab: Biostat Lab</title>
+  <title>DGHI/Biostat Lab: Creating a New Project</title>
 
-  <meta property="description" itemprop="description" content="The homepage for DGHI Biostat &amp; Epi lab assignments, help pages, and whirly gigs"/>
+  <meta property="description" itemprop="description" content="This page provides advice on establishing a workflow and creating new projects with RStudio"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-07-26"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-26"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="DGHI/Biostat Lab: Biostat Lab"/>
+  <meta property="og:title" content="DGHI/Biostat Lab: Creating a New Project"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="The homepage for DGHI Biostat &amp; Epi lab assignments, help pages, and whirly gigs"/>
+  <meta property="og:description" content="This page provides advice on establishing a workflow and creating new projects with RStudio"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DGHI/Biostat Lab"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="DGHI/Biostat Lab: Biostat Lab"/>
-  <meta property="twitter:description" content="The homepage for DGHI Biostat &amp; Epi lab assignments, help pages, and whirly gigs"/>
+  <meta property="twitter:title" content="DGHI/Biostat Lab: Creating a New Project"/>
+  <meta property="twitter:description" content="This page provides advice on establishing a workflow and creating new projects with RStudio"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["Biostat Lab"]},{"type":"character","attributes":{},"value":["The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating a New Project"]},{"type":"character","attributes":{},"value":["This page provides advice on establishing a workflow and creating new projects with RStudio\n"]},{"type":"character","attributes":{},"value":["2021-07-26"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2392,7 +2395,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Biostat Lab","description":"The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs","authors":[]}
+{"title":"Creating a New Project","description":"This page provides advice on establishing a workflow and creating new projects with RStudio","authors":[],"publishedDate":"2021-07-26T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2458,10 +2461,10 @@ Lab Assignments
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Biostat Lab</h1>
+<h1>Creating a New Project</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>The homepage for DGHI Biostat &amp; Epi lab assignments, help pages, and whirly gigs</p></p>
+<p><p>This page provides advice on establishing a workflow and creating new projects with RStudio</p></p>
 </div>
 
 
@@ -2470,18 +2473,29 @@ Lab Assignments
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#welcome">Welcome!</a></li>
-<li><a href="#a-quick-note-on-r-and-rstudio">A quick note on R and RStudio:</a></li>
-<li><a href="#a-reminder">A reminder</a></li>
+<li><a href="#create-folders-to-store-your-work">Create folders to store your work</a></li>
+<li><a href="#create-a-new-project-in-rstudio">Create a New Project in RStudio</a></li>
 </ul>
 </nav>
 </div>
-<h1 id="welcome">Welcome!</h1>
-<p>This is the DGHI Biostatistics lab assignment homepage. Save this site’s link to your bookmark browser and return here to access lab materials. Navigate to the various labs and help documents using the bar at the top of the page.</p>
-<h1 id="a-quick-note-on-r-and-rstudio">A quick note on R and RStudio:</h1>
-<p>For this lab, you are going to need to download <a href="https://www.rstudio.com/products/rstudio/download/#download">R and RStudio</a>, a pair of free open-source softwares used for everything from data analysis to web design.</p>
-<h1 id="a-reminder">A reminder</h1>
-<p>Don’t hesitate to ask for help if you are having problems with software, code, etc.</p>
+<p>In R, we organize our work by projects. It is best practice to keep no more than one project in any single folder on your computer. First, we should establish the file folders from which we’ll be working.</p>
+<h2 id="create-folders-to-store-your-work">Create folders to store your work</h2>
+<p>If you haven’t already, now would be a good time to:</p>
+<ol type="1">
+<li>Create a new folder on your computer called “705 Lab”.</li>
+<li>Within that folder, create a folder for this lab, called “Lab 0”.</li>
+<li>Finally, within that folder, create a folder for your data, called “data”</li>
+<li>Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called “data”</li>
+</ol>
+<p><strong>Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep <em>you</em> happy.</strong></p>
+<h2 id="create-a-new-project-in-rstudio">Create a New Project in RStudio</h2>
+<p>Now open RStudio and take a deep breath. Don’t panic. This will all be very familiar in a few short months.</p>
+<p>Initiate a new project by going to <strong><em>File</em></strong> and clicking <strong><em>New Project</em></strong>.</p>
+<p>Select <strong><em>Existing Directory</em></strong>:</p>
+<figure>
+<img src="images/newproject.png" alt="Initiate a new project in an existing directory" /><figcaption aria-hidden="true">Initiate a new project in an existing directory</figcaption>
+</figure>
+<p>In the following window, hit <strong><em>Browse</em></strong>. Navigate to the folder where you’d like to house your new project (or create a new one if you haven’t already. Open it, then hit <strong><em>Open</em></strong>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
