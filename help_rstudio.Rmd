@@ -15,11 +15,40 @@ library(knitr)
 
 ### The R Environment
 
-TODO: Labelled RStudio screen
+```{r}
+include_graphics('images/Renviron.png')
+```
+
+<aside>
+**A:** File (New project, New file > R Markdown)  
+**B:** Pop-out window (also works in R Markdown)  
+**C:** Manage window panes  
+**D:** New file  
+**E:** Find packages, check for updates, manage environment options  
+**F:** Find cheatsheets (dplyr, ggplot2, R Markdown)  
+**G:** Current R Project  
+**H:** Console history  
+**I:** Plot viewer  
+**J:** File path  
+**K:** Browse help documentation  
+**L:** Click to return to working directory home  
+**M:** Click to expand or shrink window pane or...  
+**N:** Drag to manage window size
+</aside>
 
 ### Managing window panes
 
+Did you lose track of one of your window panes? Use the *View* tab in the top bar to return to a view with all panes
+
+[![Show All Panes](images/show_windows.png)](images/show_windows.png)
+
 ### Change RStudio color theme
+
+Is the white RStudio background burning your retnas? Need a change of scenery? No need to go outside! 
+
+In the top bar, go to *Tools > Global Options*, and then select "Appearance":
+
+![Change appearance](images/change_theme.png)
 
 ### RMarkdown keyboard shortcuts
 
