@@ -12,17 +12,17 @@ navbar:
   right:
     - text: "Analysis Map"
       href: mind_map.html
-    - text: "How-to"
+    - text: "Help With"
       menu:
-        - text: "Use RStudio"
+        - text: "Using RStudio"
           href: help_rstudio.html
-        - text: "Start a new project"
+        - text: "Starting a new project"
           href: help_newproject.html
-        - text: "Work with packages"
+        - text: "Working with packages"
           href: help_packages.html
         - text: "R jargon"
           href: help_jargon.html
-        - text: "Visualize in R (ggplot2)"
+        - text: "Visualizing in R (ggplot2)"
           href: help_ggplot2.html
     - text: "Lab Assignments"
       menu:
