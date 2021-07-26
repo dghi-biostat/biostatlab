@@ -1,7 +1,7 @@
 ---
 title: "Lab 2"
 description: |
-  Biostatistics & Epi, Lab 1 - GLHLTH 705. Create derived variables: size, belowavg, pnc, rural, education, death, time. Close cohort. Frequency histograms, boxplots, frequency counts, and data dictionary.
+  Biostatistics & Epi, Lab 2 - GLHLTH 705. Create derived variables: size, belowavg, pnc, rural, education, death, time. Close cohort. Frequency histograms, boxplots, frequency counts, and data dictionary.
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -15,10 +15,10 @@ library(knitr)
 
 ### LAB MATERIALS: 
 
-* [__R Markdown file for Lab 1.__](assignments/lab1_705_fall2021.Rmd)
-Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab1_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
+* [__R Markdown file for Lab 2.__](assignments/lab2_705_fall2021.Rmd)
+Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab2_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document for Tables 1 & 2__](assignments/Lab1_Tables.xlsx)
+* [__Excel document for Tables 1 & 2__](assignments/Lab2_Tables.xlsx)
 TODO: Set up answer entry on Sakai?
 
 * Lab_2_kenya.rds - data file available on Sakai

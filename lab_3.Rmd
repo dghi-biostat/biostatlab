@@ -1,0 +1,30 @@
+---
+title: "Lab 3"
+description: |
+  Biostatistics & Epi I, Lab 3 - GLHLTH 705
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### LAB MATERIALS: 
+
+* [__R Markdown file for Lab 3.__](assignments/lab3_705_fall2021.Rmd)
+Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab3_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
+
+* [__Excel document for Tables 1 & 2__](assignments/Lab3_Tables.xlsx)
+TODO: Set up answer entry on Sakai?
+
+* Lab_3_kenya.rds - data file available on Sakai
+
+### Lab 2 Goals:
+
+* Assess the bivariate relationships between outcome and covariables and the statistical association between the two variables
+
+* Estimate the epidemiologic measures of association (risk difference, risk ratio and odds ratio) between risk factors and outcome
+
+
+
