@@ -1,0 +1,246 @@
+---
+title: "Mapping Our Steps"
+description: |
+  This page gives a birds-eye view of our analysis, where we've come from and where we're headed.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(DiagrammeR)
+```
+
+
+```{r layout = '1-page', fig.height = 5}
+
+grViz("
+
+      digraph lab_0 {
+      
+      graph [rankdir = LR]
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab0 [label = 'Lab 0']
+      
+      Workflow
+      Explore
+      Transform
+      
+      node [shape = box]
+      
+      a [label = 'Create workspace']
+      b [label = 'Inspect dimensions']
+      c [label = 'Generate summary statistics']
+      d [label = 'Create derived variable for mothers age']
+      e [label = 'Create categorical variable for mothers age']
+      
+      
+      
+      # add definition using node IDs
+      
+      lab0 -> {a, b, c, d, e}
+      
+      a -> Workflow
+      b -> Explore
+      c -> Explore
+      d -> Transform
+      e -> Transform
+      
+      }
+
+    
+      
+      ")
+
+
+```
+
+
+
+```{r layout = '1-page', fig.height = 7}
+
+grViz("
+
+      digraph lab_1 {
+      
+      graph [rankdir = LR]
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab1 [label = 'Lab 1']
+      
+      Explore
+      Transform
+      Visualize
+      Workflow
+      Communicate
+
+      node [shape = box]
+
+      a [label = 'Construct derived variables\\nbord5, male, mweight, mbmi']
+      b [label = 'Visualize with\\nhistograms and boxplots']
+      c [label = 'Calculate frequency counts\\nand percentages']
+      d [label = 'Create data dictionary']
+      e [label = 'Consider implications of\\nmissing values']
+      
+      # edge definitions
+      
+      lab1 -> {a, b, c, d, e}
+      
+      a -> Transform
+      b -> Visualize
+      c -> Explore
+      d -> Workflow
+      e -> Communicate
+      
+      
+      }
+      
+      ")
+```
+
+
+
+```{r layout = '1-page', fig.height = 7}
+
+grViz("
+
+      digraph lab_2 {
+      
+      graph [rankdir = LR]
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab2 [label = 'Lab 2']
+      
+      Explore
+      Transform
+      Workflow
+      Visualize
+      Communicate
+
+      node [shape = box]
+      
+      a [label = 'Construct derived variables\\nsize, belowavg, pnc, rural\\neducation, death, and time']
+      b [label = 'Update data dictionary']
+      c [label = 'Exclude observations where child was alive\\nbut less than 60 months of age']
+      d [label = 'Generate frequency histograms and\\nboxplo1ts for death and time']
+      e [label = 'Calculate frequency counts\\nandpercentages']
+      f [label = 'Consider implications of\\nanomalous and missing data']
+      
+      # define edges
+      
+      lab2 -> {a, b, c, d, e, f}
+      
+      a -> Transform
+      b -> Workflow
+      c -> Visualize
+      d -> Explore
+      e -> Explore
+      f -> Communicate
+      
+      }
+      
+      ")
+```
+
+```{r layout = '1-page', fig.height = 5}
+
+grViz("
+
+      digraph lab_3 {
+      
+      graph [rankdir = LR]
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab3 [label = 'Lab 3']
+      
+      Explore
+      Workflow
+      Communicate
+      Model
+
+      node [shape = box]
+      
+      a [label = 'Define research question:\\nWhat are the factors that influence\\nthe outcome of child mortality by 5 years of age?']
+      b [label = 'Generate statistics\\nof continuous variables\\nmbmi and mage, by mortality status']
+      c [label = 'Generate stratified frequency counts and\\npercentages of categorical variables, by mortality status']
+      d [label = 'Calculate T-tests (continuous vars)\\nand Chi-square tests (categorical vars) across stratified levels']
+      e [label = 'Generate measures of association\\n(RD, RR, OR) of exposures and outcomes']
+      
+      f [label = 'Interpret results']
+      
+      # define edges
+      
+      lab3 -> {a, b, c, d, e, f}
+      
+      a -> Workflow
+      b -> Explore
+      c -> Explore
+      d -> Model
+      e -> Model
+      f -> Communicate
+      
+      }
+      
+      ")
+```
+
+
+```{r layout = '1-page', fig.height = 5}
+
+grViz("
+
+      digraph lab_4 {
+      
+      graph [rankdir = LR]
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab4 [label = 'Lab 4']
+      
+            
+      Explore
+      Communicate
+      Model
+
+      node [shape = box]
+      
+      a [label = 'Calculate measures of association (RD, RR) between\\nbirth order and child mortality by 5 years\\nwithin strata of other variables']
+      b [label = 'Test for confounding and effect measure modification\\ndue to stratifying variables']
+      c [label = 'Interpret results']
+
+      
+      # define edges
+      
+      lab4 -> {a, b, c}
+      
+      a -> Explore
+      b -> Model
+      c -> Communicate
+      
+      }
+      
+      ")
+```
+
+
+###################################
+
+
+
+
