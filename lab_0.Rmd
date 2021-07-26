@@ -14,7 +14,7 @@ library(tidyverse)
 library(skimr)
 ```
 
-__*Note: This lab is no graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
+__*Note: This lab is not graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
 
 ### LAB MATERIALS: 
 

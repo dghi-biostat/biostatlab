@@ -1,7 +1,7 @@
 ---
 title: "Lab 1"
 description: |
-  Biostatistics & Epi, Lab 1 - GLHLTH 705
+  Biostatistics & Epi, Lab 1 - GLHLTH 705. Create derived variables for birth order (bord5), sex (male), mheight, mweight, mbmi. Frequency histograms, boxplots, frequency table, and data dictionary.
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -23,7 +23,7 @@ TODO: Set up answer entry on Sakai?
 
 * Lab_1_kenya.rds - data file available on Sakai
 
-# Lab 1 Goals:
+### Lab 1 Goals:
 
 * Generate derived variables
 * Identify and recode special values 
@@ -31,7 +31,7 @@ TODO: Set up answer entry on Sakai?
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
-# Task 1: Load libraries & packages
+## Task 1: Load libraries & packages
 
 Use the dataset Lab_1_kenya.rds for this assignment. 
 
@@ -40,7 +40,7 @@ You will also need packages {skimr} and {tidyverse}
 ** Reminder: To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
 
 
-# Task 2: Recode variables
+## Task 2: Recode variables
 
 Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command. 
 
@@ -48,40 +48,40 @@ Construct the following derived variables using a pipe and `mutate()`. For each,
 
 [__Help with factors__](TODO)
 
-__Task2a: bord5__
+### __Task2a: bord5__
 
 __`bord5`__: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
 
 
-__Task 2b: male__
+### __Task 2b: male__
 
 __`male`__: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
 
 
-__Task 2c: mweight__
+### __Task 2c: mweight__
 
 __`mweight:`__ Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
 
 
-__Task 2d: mheight__
+### __Task 2d: mheight__
 
 __`mheight`__:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
 
 
-__Task 2e: mbmi__
+### __Task 2e: mbmi__
 
 __`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
 
 
 
-# Task 3: Frequency histograms
+## Task 3: Frequency histograms
 
 Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__.  Put meaningful axis labels and a title on each figure.
 
 [__Help with histograms in ggplot2__](TODO)
 
 
-# Task 4: Boxplots
+## Task 4: Boxplots
 
 Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
 
@@ -89,7 +89,7 @@ Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put mea
 
 
 
-# Task 5: Frequency table (Table 1)
+## Task 5: Frequency table (Table 1)
 
 Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__.
 
@@ -177,15 +177,15 @@ kable(mtcars %>%
 Also notice that we're able to do this within one continuous pipe.
 
 
-# Task 6: Data dictionary (Table 2)
+## Task 6: Data dictionary (Table 2)
 
-__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using `skim()` from the {skimr} package:
+__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from `skim()`:
 
   a.	Fill in the columns in this table for the variables originally in the dataset.
   b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
 
 
-# Task 7: Short answer
+## Task 7: Short answer
 
 __*Enter your response into your own RMarkdown file*__
 

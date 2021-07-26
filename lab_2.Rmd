@@ -1,7 +1,7 @@
 ---
 title: "Lab 2"
 description: |
-  Biostatistics & Epi, Lab 1 - GLHLTH 705.
+  Biostatistics & Epi, Lab 1 - GLHLTH 705. Create derived variables: size, belowavg, pnc, rural, education, death, time. Close cohort. Frequency histograms, boxplots, frequency counts, and data dictionary.
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -23,7 +23,7 @@ TODO: Set up answer entry on Sakai?
 
 * Lab_2_kenya.rds - data file available on Sakai
 
-# Lab 2 Goals:
+### Lab 2 Goals:
 
 * Generate derived variables
 * Identify and recode special values 
@@ -31,24 +31,9 @@ TODO: Set up answer entry on Sakai?
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
-
-# Lab 2 {.tabset}
-
 ## Task 1: Load libraries and data
 
 For this assignment, use the dataset that I have supplied you – lab_2_kenya.rds. You will need the {tidyverse} package as well.
-
-
-```{r}
-# load tidyverse library
-
-```
-
-
-```{r}
-# import dataset and assign a name
-
-```
 
 
 ## Task 2: Code derived variables
@@ -60,73 +45,34 @@ Construct the following derived variables.  For each, examine the component vari
 
 size: Categorical variable describing size of child at birth (subjectively described by mother). Note that greater values indicate smaller size: [1=very large, 2=larger than average, 3=average, 4=smaller than average, 5=very small]. Based on variable m18.
 
-```{r}
-
-
-```
-
 
 
 ### Task 2b: belowavg 
 
 belowavg: Dichotomous variable indicating if the child’s size was below average [0= average, larger than average or very large, 1=smaller than average, very small]
 
-```{r}
-
-```
-
-```{r}
-
-```
-
 
 ### Task 2c: pnc 
 
 pnc: Dichotomous categorical variable for any prenatal care [0 = the referent category; no prenatal care; 1 = the index category; received prenatal care]. Based on variable m2n.
-
-```{r}
-
-```
-
-
 
 
 ### Task 2d: rural 
 
 rural: Dichotomous indicator of rural residence [0=urban, 1=rural]. Based on variable v025.
 
-```{r}
-
-```
-
-
-
 
 ### Task 2e: education 
 
 education: Categorical educational level obtained by mother [create values for 0=did not attend school, 1=primary school only, 2=post-primary education]. Based on variable s109.
 
-```{r}
-
-```
-
-```{r}
-
-```
-
 
 
 ### Task 2f: death 
 
-death: Dichotomous categorical variable for death within the first 5 years of life [0 = child alive at 5th birthday (the referent category); 1 = child died before 5th birthday (the index category)].  Based on the variable b5 (death indicator). 
+death: Dichotomous categorical variable for death within the first 5 years of life [0 = child alive at 5th birthday (the referent category); 1 = child died before 5th birthday (the index category)]. Based on the variables b5 (death indicator) and b7. 
 
-```{r}
-
-```
-
-```{r}
-
-```
+__*Note*__: When creating this new variable, we want our conditional statement to account for two factors: Whether a child died, and if they did, whether or not that death occurred before their 5th birthday. 
 
 
 
@@ -134,154 +80,77 @@ death: Dichotomous categorical variable for death within the first 5 years of li
 
 time: Continuous variable for the age at death OR age at interview for children still alive. Based on b7 (age at death for children dead at interview); for children alive at time of interview, calculate their age using v008 (date of interview) and b3 (date of birth). Note that times are given in months.
 
-```{r}
-
-```
-
-
-
-
-```{r}
-
-```
-
-
 
 ## Task 3: Close the cohort
 
-Create the equivalent of a closed cohort for the analysis of 5-year childhood mortality from this dataset  . In a closed cohort, everyone must be at risk of the outcome at entry into the cohort, and all members of the cohort must remain at risk until they experience the outcome or complete the entire risk period for the outcome. A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If you’re adventurous, I recommend trying other ways to code this; you’ll learn a lot from that exercise.
+Create the equivalent of a __*closed cohort*__ for the analysis of 5-year childhood mortality from this dataset  . In a closed cohort, everyone must be at risk of the outcome at entry into the cohort, and all members of the cohort must remain at risk until they experience the outcome or complete the entire risk period for the outcome. 
+
+A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If you’re adventurous, I recommend trying other ways to code this; you’ll learn a lot from that exercise.
 
 *__NOTE:__* Complete task 3 before completing the remaining tasks.
 
 ### Task 3a: Exclude irrelevant observations
 
-
-Exclude those observations from the dataset where the child was alive (death=0) and  follow-up time (time) was less than 60 months (think about which boolean operator you’ll need to exclude those children). You should end up with 16,828 subjects in the dataset. In this step, you should also use an assignment operator (<-) to assign this closed cohort to a different object name. That way, you will be able to work with this dataset separately in the coming steps.
-
-
-```{r}
-
-```
+Exclude those observations from the dataset where the child was alive (__death__=0) and  follow-up time (__time__) was less than 60 months (think about which Boolean operator you’ll need to exclude those children). You should end up with __*16,828 subjects*__ in the dataset. In this step, you should also use an assignment operator (<-) to assign this closed cohort to a different object name. That way, you will be able to work with this dataset separately in the coming steps.
 
 
-Task 3b: 
+### Task 3b: 
 
-Finally, recode the time variable to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on time should now be 1 month – 61 months. 
-
-```{r}
-
-```
+Also, if a child was still alive by their 5th birthday, we need to recode their __time__ to 60 (we are censoring these observations). These children were alive at 5 years of age and so should not be counted as deaths in our analysis.  
 
 
+### Task 3c: Recode time to (time + 1)
+
+Finally, recode the __time__ variable to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on time should now be 1 month – 61 months. 
 
 
-Task 3c: Recode time +1
-
-Finally, recode the time variable to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on time should now be 1 month – 61 months. 
-
-```{r}
-
-```
-
-
-### Task 3e: Save new dataset
+### Task 3d: Save new dataset
 
 Save this new dataset containing 16828 subjects (make sure to give it a new name).
-
-```{r}
-
-```
 
 
 ## Task 4: Frequency histograms
 
-Generate frequency histograms of time, overall and separately for levels of death.  Put meaningful axis labels and a title on each figure.
+Generate frequency histograms of __time__, overall and separately for levels of __death__.  Put meaningful axis labels and a title on each figure.
 
-```{r}
-
-```
-
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-
-```{r}
-
-```
-
-
+TODO: [Help with histograms in ggplot2](TODO)
 
 ## Task 5: Boxplots of time
 
-Generate boxplots of time, overall and separately for levels of death.  Put meaningful axis labels and a title on each figure.
+Generate boxplots of __time__, overall and separately for levels of __death__.  Put meaningful axis labels and a title on each figure.
 
-```{r}
+TODO: [Help with boxplots in ggplot2](TODO)
 
-```
+## Task 6: Frequency counts and percentages (Table 1)
 
+Fill in Table 1 with the frequency counts and percentages for the levels of the new categorical variables you have generated.  Calculate percentages only for the non-missing values.  __*Round percentages to 1 decimal place*__. 
 
-```{r}
+__Refer to [the previous lab](https://dghi-biostat.github.io/biostatlab/lab_1.html#task-5-frequency-table-table-1) for help on frequency counts and percentages.__
 
-```
+#### Variables:
 
-```{r}
+* Size at birth (size)
 
-```
+* Size at birth categorical (belowavg)
 
+* Prenatal care (pnc)
 
-## Task 6: Frequency counts and percentages
+* Residence type (rural)
 
-Fill in Table 1 with the frequency counts and percentages for the levels of the new categorical variables you have generated.  Calculate percentages only for the non-missing values.  Round percentages to 1 decimal place. 
+* Mother's education (education)
 
-### Size at birth (size)
-
-```{r}
-
-```
-
-### Size at birth categorical (belowavg)
-```{r}
-
-```
-
-### Prenatal care (pnc)
-```{r}
-
-```
-
-### Residence type (rural)
-```{r}
-
-```
-### Mother's education (education)
-```{r}
-
-```
-
-### Death by 5 years (death)
-
-```{r}
-
-```
+* Death by 5 years (death)
 
 
-## Task 7: Update data dictionary 
+## Task 7: Update data dictionary (Table 2)
 
 Update your data dictionary for the Kenya dataset, adding the newly created variables.
-
-```{r}
-
-```
 
 
 ## Task 8: Short Answer
 
 __Examine the range and proportion of missing for each of the variables 7 you have created in this lab.  Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)?  In contemplating analysis of these data, what do you think should be done with anomalous information?  What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
+
+*Provide your answer to this question within your own RMarkdown file*
 
 
