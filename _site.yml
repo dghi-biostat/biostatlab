@@ -17,9 +17,9 @@ navbar:
         - text: "Using RStudio"
           href: help_rstudio.html
         - text: "Starting a new project"
-          href: help_newproject.html
+          href: help_projects.html
         - text: "Working with packages"
-          href: help_packages.html#installing-packages
+          href: help_packages.html
         - text: "R jargon"
           href: help_jargon.html
         - text: "Visualizing in R (ggplot2)"

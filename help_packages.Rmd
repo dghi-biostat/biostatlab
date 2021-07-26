@@ -1,0 +1,57 @@
+---
+title: "Packages"
+description: |
+  Help with installing and understanding packages, at home and in the wild.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Terminology
+
+#### Packages and libraries
+
+#### CRAN
+
+#### Functions, arguments, and objects
+
+#### Documentation
+
+## Installing packages
+
+Packages are collections of functions. As we'll see shortly, we use functions as code to view, manipulate, and analyze our data. 
+
+There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.
+
+Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
+
+Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from your console to download the packages that we'll be needing for Fall Semester. __You only need to do this once__:
+
+
+```{r install packages, eval = FALSE, echo = TRUE}
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("epiR")
+install.packages("devtools")
+devtools::install_github("potato-nathan/epiAssist")
+```
+
+
+## Loading libraries
+
+To enable R to use a package's functions in our current project environment, we need to load the packages using the `library()` function.
+
+In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
+
+```{r load libraries, eval = FALSE, echo = TRUE}
+library(tidyverse)
+library(skimr)
+```
+
+__Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using `library()`, R recognizes them as package objects automatically, and so don't need quotes. You can surround them with quotes and it will load all the same.__
+
+

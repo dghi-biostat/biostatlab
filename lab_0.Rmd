@@ -90,7 +90,7 @@ There are packages that come built-in with R. These have names like {base}, {uti
 
 Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
 
-Lucky for us, packages are easily retrieved from the command line. If you haven't already, run the following code from your console to download the packages that we'll be needing for this semester:
+Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from your console to download the packages that we'll be needing for this semester:
 
 
 ```{r install packages, eval = FALSE, echo = TRUE}
