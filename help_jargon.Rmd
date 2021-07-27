@@ -39,7 +39,7 @@ head(mtcars$cyl)
 #> [1] 6 6 4 6 8 6
 ```
 
-### # 
+### \# 
 
 In a chunk of code, `#` is used to comment out text. This tells the R console to ignore that line. This is useful for making comments in your code.
 
