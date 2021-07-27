@@ -75,7 +75,7 @@ For each lab, we will provide you with a skeleton Markdown file on Sakai. If you
 
 Now open the file in RStudio. You can just double-click on it from the file folder. It will appear, but might feel a little pinched. Luckily, RStudio allows Markdowns to pop-out. 
 
-Click the white square at the top of the file that I've circled in the photo below to do just that:
+Click the white square at the top of the file that (circled in red in the photo below) to do just that:
 
 ![Pop-out](images/popout.png)
 

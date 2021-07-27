@@ -1,0 +1,276 @@
+---
+title: "R Jargon"
+description: |
+  How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier.  
+author:
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+Does a pesky word keep popping up that's giving you the sneaking suspicion that you have no idea what you're doing? 
+
+I've got some good news, but also some bad news. 
+
+__The bad:__ The person writing this probably has no idea what *they're* doing either. And unless you study computer engineering, there's a good chance you will never really "know" what you are "doing".
+
+__The good:__ A quick vocabulary lesson will help do away with that sneaking suspicion, at least temporarily. 
+
+
+## R Vocabulary List
+
+Search this document using ctrl+f for a brief definition of that word or symbol and external links for further reading. Can't find the word here? Try R Documentation or Google.
+
+### tibble:
+
+Like a data.frame object, but with enhanced "printing". 
+
+Read [this section on tibbles](https://r4ds.had.co.nz/tibbles.html#tibbles-vs.-data.frame) from R for Data Science to learn more.
+
+### $: 
+
+Used to specify a specific variable within a list-like object (like a data.frame, a tibble, a model, an actual list created with `list()`)
+
+Example:
+
+```{r echo = TRUE, eval = FALSE}
+# this code uses head() to view the first six observations for the variable "cyl" in dataset "mtcars"
+
+head(mtcars$cyl)
+#> [1] 6 6 4 6 8 6
+```
+
+### vector:
+
+A vector is a list of values, all of the same type.
+
+We use `c()` to create a vector, separating items with commas when we specify them individually.
+
+The following are all valid vectors:
+
+```{r echo = TRUE, eval = FALSE}
+# a vector of numbers 1, 2, 3:
+c(1, 2, 3)
+#> [1] 1 2 3
+
+# a vector of numbers 1 through 12, and then 20:
+c(1:12, 20)
+#> [1]  1  2  3  4  5  6  7  8  9 10 11 12 20
+
+# a vector of logical values:
+c(TRUE, FALSE, NA, TRUE)
+#> [1] "TRUE"  "FALSE" "TRUE" 
+
+# a vector of 5 values randomly drawn from a uniform distribution with min 0 and max 1:
+runif(5)
+#> [1] 0.97420369 0.04387835 0.68818071 0.13420150 0.30322080
+```
+
+Most operations on vectors apply to each value individually:
+
+```{r echo = TRUE, eval = FALSE}
+x <- c(1:5)
+
+x + 2
+#> [1] 3 4 5 6 7
+
+x * 2
+#> [1]  2  4  6  8  10
+```
+As such, a data frame is just a __*list of vectors*__ of all the same length. That __*list*__ is what's known formally as a "recursive vector". Lists can contain other lists. 
+
+This is a somewhat complex topic. If you're really hungry for more info, [this chapter](https://r4ds.had.co.nz/vectors.html) in R for Data Science is highly informative, but may be confusing at first for those without any programming background. 
+
+### string/character:
+
+Strings are created with either single quotes or double quotes. It indicates that a value is meant to be read as-is, rather than transformed according to R's computational rules for numbers and logical values.
+
+For example, writing the logical value, TRUE as a string makes it unrecognizable to R as logical:
+
+```{r eval = FALSE, echo = TRUE}
+a <- TRUE
+isTRUE(a)
+#> [1] TRUE
+
+b <- "TRUE"
+isTRUE(b)
+#> [1] FALSE
+```
+
+As simple as it sounds, strings are a topic of mind-numbing complexity, as the underlying encoding of text strings governs the way that code is able to interact with data as well as other code. 
+
+R for Data Science gives [a nice introduction to the mechanics of strings here](https://r4ds.had.co.nz/strings.html#strings), but hints at their wider implications in [its chapter on data importation](https://r4ds.had.co.nz/data-import.html).
+
+Regular expressions (not to be confused with reproducible expressions), or regex, are their own beast, [and may help you understand how databases and search engines work](https://www.regular-expressions.info/)
+
+### factor:
+
+A data type that is the preferred way to store categorical variables in R.
+
+Using `factor()`, you can convert:
+
+* __a character to a factor__: This takes all unique values of a character variable and assigns them an underlying number, or "levels".
+
+For example: 
+
+```{r echo = TRUE, eval = FALSE}
+dumplings <- c("momos", "pop tarts", "raviolis", "momos", "empanadas", "pierogis")
+
+factor(dumplings)
+#> [1] momos     pop tarts raviolis  momos     empanadas pierogis 
+#> Levels: empanadas momos pierogis pop tarts raviolis
+```
+
+* __an integer to a factor__: This takes integers and makes the lowest number the base level, and the next highest 1, the next highest 2, etc. You can assign a "label" to each respective level with "labels = c()", with a vector, c(), with the same length as the number of levels.
+
+```{r echo = TRUE, eval = FALSE}
+integers <- c(1, 2, 3, 2, 3, 2, 1)
+
+factor(integers,
+       labels = c("chicken", "egg", "rooster"))
+#> [1] chicken egg     rooster egg     rooster egg     chicken
+#> Levels: chicken egg rooster
+```
+Understanding factors mostly takes time. If you want to speed that up, [here's the R for Data Science chapter on factors](https://r4ds.had.co.nz/factors.html)
+
+In it, they reference a few articles for further reading:
+
+* [Wrangling categorical data in R](https://peerj.com/preprints/3163/)
+* [stringsAsFActors: An unauthorized biography](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/)
+* [stringsAsFactors = <sigh>](https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh) -- this one is kinda funny
+
+
+### library/packages:
+
+I'll quote from [an answer in StackOverflow](https://stackoverflow.com/questions/26900228/what-is-the-difference-between-a-library-and-a-package-in-r) for this one:
+
+"In R, a package is a collection of R functions, data and compiled code. The location where the packages are stored is called the library."
+
+### directory:
+
+["The working directory of a process is a directory of a hierarchical file system"](https://en.wikipedia.org/wiki/Working_directory)
+
+A __directory__ is any file folder on your computer.
+
+Your __root directory__ is the top-most directory on your computer (in Windows, this is the folder calls "C:", for Mac users, it's usually labelled as "Macintosh HD")
+
+In R, your __working directory__ is typically the folder that contains whatever [R Project](https://dghi-biostat.github.io/biostatlab/help_projects.html) you have open.
+
+Say you have a dataset called "data.rds" in your main working directory. You can import it using any number of functions by referring to its file path as simply "data.rds". 
+
+But say you have that dataset in a series of folders within your working directory. The folders are organized like this, which each subsequent folder inside the last, and the data file in the folder titled "data": 
+
+__*working directory* > try1 > fullAnalysis > data__
+
+The "file path" for referring to your data file from your working directory would be this:
+
+"try1/fullAnalysis/data/data.rds"
+
+### tribble:
+
+Short for "transposed tibble", it's a function that allows you to create a tibble by hand, with the syntax and subsequent output:
+
+```{r echo = TRUE, eval = FALSE}
+tribble(
+  ~colA, ~colB, ~colC, ~colD,
+  "a",   1, "Square", "orange",
+  "b",   2, "Circle", "maracuya",
+  "c",   3, "Rhombus", "cashew"
+)
+```
+
+```{r}
+x <- tribble(
+  ~colA, ~colB, ~colC, ~colD,
+  "a",   1, "Square", "orange",
+  "b",   2, "Circle", "maracuya",
+  "c",   3, "Rhombus", "cashew"
+)
+
+kable(x)
+```
+
+?tribble in the R Console for more details
+
+
+### ggplot2:
+
+The "gg" in ggplot2 stands for __"grammar of graphics"__. 
+
+To get a high-level overview of ggplot2 basics, I highly recommend [this introduction](https://r4ds.had.co.nz/data-visualisation.html) to data visualization.
+
+If you're really trying to nerd out, you can access the free full text of [__*ggplot2: Elegant Graphics for Data Analysis*__](https://www.springer.com/gp/book/9780387981413) by Hadley Wickham by looking it up using [the Duke Library search engine](https://quicksearch.library.duke.edu/?q=ggplot2) and logging in with your Duke credentials
+
+### magrittr/pipe/%>%:
+
+Chapter from [R for Data Science](https://r4ds.had.co.nz/pipes.html) gives a nice intro. 
+
+For you nerds, [here's a history of the pipe operator in R](http://adolfoalvarez.cl/plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/)
+
+### dplyr:
+
+A package that contains a set of functions that help solve "the most common data manipulation challenges". Main functions include:
+
+* `mutate()`
+* `select()`
+* `filter()`
+* `summarize()` (or `summarise()`)
+* `arrange()`
+
+[Here's the chapter](https://r4ds.had.co.nz/transform.html) from R for Data Science
+
+You may also find [this vignette](https://dplyr.tidyverse.org/articles/dplyr.html) helpful
+
+### base R:
+
+These are functions that are a part of the original R programming language, and so do not require a call to a package using `library()`.
+
+[Go here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html) to see a complete list of functions that come with the R Base Package
+
+### vignette: 
+
+A vignette is a long-form guide to a package. It highlights a package's main functions and their usage. Learning from vignettes is one of the best ways to self-teach yourself a skill in R.
+
+### #: 
+
+
+
+### YAML:
+
+### index:
+
+### tidy:
+
+### tidyverse:
+
+### knit:
+
+### console:
+
+### git:
+
+### code chunk:
+
+### traceback:
+
+### html:
+
+### debug:
+
+### function:
+
+### argument:
+
+### parameter:
+
+### reproducible expressions (reprex):
+
+### Hadley Wickham:
+
+### runif/qunif/punif/dunif
+

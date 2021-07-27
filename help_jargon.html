@@ -86,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>DGHI/Biostat Lab: Help with RStudio</title>
+  <title>DGHI/Biostat Lab: R Jargon</title>
 
-  <meta property="description" itemprop="description" content="This page provides links to introduce you to the RStudio environment."/>
+  <meta property="description" itemprop="description" content="How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
@@ -97,22 +97,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="article:created" itemprop="dateCreated" content="2021-07-27"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="DGHI/Biostat Lab: Help with RStudio"/>
+  <meta property="og:title" content="DGHI/Biostat Lab: R Jargon"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="This page provides links to introduce you to the RStudio environment."/>
+  <meta property="og:description" content="How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DGHI/Biostat Lab"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="DGHI/Biostat Lab: Help with RStudio"/>
-  <meta property="twitter:description" content="This page provides links to introduce you to the RStudio environment."/>
+  <meta property="twitter:title" content="DGHI/Biostat Lab: R Jargon"/>
+  <meta property="twitter:description" content="How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Help with RStudio"]},{"type":"character","attributes":{},"value":["This page provides links to introduce you to the RStudio environment.\n"]},{"type":"character","attributes":{},"value":["2021-07-27"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["R Jargon"]},{"type":"character","attributes":{},"value":["How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier.  \n"]},{"type":"character","attributes":{},"value":["2021-07-27"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2395,7 +2395,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Help with RStudio","description":"This page provides links to introduce you to the RStudio environment.","authors":[],"publishedDate":"2021-07-27T00:00:00.000-04:00"}
+{"title":"R Jargon","description":"How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier.","authors":[],"publishedDate":"2021-07-27T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2461,10 +2461,10 @@ Lab Assignments
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Help with RStudio</h1>
+<h1>R Jargon</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>This page provides links to introduce you to the RStudio environment.</p></p>
+<p><p>How to talk like an R nerd. Here, we detail various R-related vocabulary that will make your life a lot easier.</p></p>
 </div>
 
 
@@ -2473,141 +2473,259 @@ Lab Assignments
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#rstudio-basics">RStudio Basics</a>
+<li><a href="#r-vocabulary-list">R Vocabulary List</a>
 <ul>
-<li><a href="#the-r-environment">The R Environment</a></li>
-<li><a href="#managing-window-panes">Managing window panes</a></li>
-<li><a href="#change-rstudio-color-theme">Change RStudio color theme</a></li>
-<li><a href="#rmarkdown-keyboard-shortcuts">RMarkdown keyboard shortcuts</a></li>
-<li><a href="#session-information-and-help-documentation">Session information and help documentation</a></li>
+<li><a href="#tibble">tibble:</a></li>
+<li><a href="#section">$:</a></li>
+<li><a href="#vector">vector:</a></li>
+<li><a href="#stringcharacter">string/character:</a></li>
+<li><a href="#factor">factor:</a></li>
+<li><a href="#librarypackages">library/packages:</a></li>
+<li><a href="#directory">directory:</a></li>
+<li><a href="#tribble">tribble:</a></li>
+<li><a href="#ggplot2">ggplot2:</a></li>
+<li><a href="#magrittrpipe">magrittr/pipe/%&gt;%:</a></li>
+<li><a href="#dplyr">dplyr:</a></li>
+<li><a href="#base-r">base R:</a></li>
+<li><a href="#vignette">vignette:</a></li>
+<li><a href="#section-1">#:</a></li>
+<li><a href="#yaml">YAML:</a></li>
+<li><a href="#index">index:</a></li>
+<li><a href="#tidy">tidy:</a></li>
+<li><a href="#tidyverse">tidyverse:</a></li>
+<li><a href="#knit">knit:</a></li>
+<li><a href="#console">console:</a></li>
+<li><a href="#git">git:</a></li>
+<li><a href="#code-chunk">code chunk:</a></li>
+<li><a href="#traceback">traceback:</a></li>
+<li><a href="#html">html:</a></li>
+<li><a href="#debug">debug:</a></li>
+<li><a href="#function">function:</a></li>
+<li><a href="#argument">argument:</a></li>
+<li><a href="#parameter">parameter:</a></li>
+<li><a href="#reproducible-expressions-reprex">reproducible expressions (reprex):</a></li>
+<li><a href="#hadley-wickham">Hadley Wickham:</a></li>
+<li><a href="#runifqunifpunifdunif">runif/qunif/punif/dunif</a></li>
 </ul></li>
-<li><a href="#extended-resource-guide-to-rstudio">Extended resource guide to RStudio</a></li>
 </ul>
 </nav>
 </div>
-<h2 id="rstudio-basics">RStudio Basics</h2>
-<h3 id="the-r-environment">The R Environment</h3>
+<p>Does a pesky word keep popping up that’s giving you the sneaking suspicion that you have no idea what you’re doing?</p>
+<p>I’ve got some good news, but also some bad news.</p>
+<p><strong>The bad:</strong> The person writing this probably has no idea what <em>they’re</em> doing either. And unless you study computer engineering, there’s a good chance you will never really “know” what you are “doing”.</p>
+<p><strong>The good:</strong> A quick vocabulary lesson will help do away with that sneaking suspicion, at least temporarily.</p>
+<h2 id="r-vocabulary-list">R Vocabulary List</h2>
+<p>Search this document using ctrl+f for a brief definition of that word or symbol and external links for further reading. Can’t find the word here? Try R Documentation or Google.</p>
+<h3 id="tibble">tibble:</h3>
+<p>Like a data.frame object, but with enhanced “printing”.</p>
+<p>Read <a href="https://r4ds.had.co.nz/tibbles.html#tibbles-vs.-data.frame">this section on tibbles</a> from R for Data Science to learn more.</p>
+<h3 id="section">$:</h3>
+<p>Used to specify a specific variable within a list-like object (like a data.frame, a tibble, a model, an actual list created with <code>list()</code>)</p>
+<p>Example:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Renviron.png" width="959" /></p>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># this code uses head() to view the first six observations for the variable "cyl" in dataset "mtcars"</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>cyl</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] 6 6 4 6 8 6</span>
+</code></pre>
 </div>
-<aside>
-<strong>A:</strong> File (New project, New file &gt; R Markdown)<br />
-<strong>B:</strong> Pop-out window (also works in R Markdown)<br />
-<strong>C:</strong> Manage window panes<br />
-<strong>D:</strong> New file<br />
-<strong>E:</strong> Find packages, check for updates, manage environment options<br />
-<strong>F:</strong> Find cheatsheets (dplyr, ggplot2, R Markdown)<br />
-<strong>G:</strong> Current R Project<br />
-<strong>H:</strong> Console history<br />
-<strong>I:</strong> Plot viewer<br />
-<strong>J:</strong> File path<br />
-<strong>K:</strong> Browse help documentation<br />
-<strong>L:</strong> Click to return to working directory home<br />
-<strong>M:</strong> Click to expand or shrink window pane or…<br />
-<strong>N:</strong> Drag to manage window size
-</aside>
-<h3 id="managing-window-panes">Managing window panes</h3>
-<p>Did you lose track of one of your window panes? Use the <em>View</em> tab in the top bar to return to a view with all panes</p>
-<p><a href="images/show_windows.png"><img src="images/show_windows.png" alt="Show All Panes" /></a></p>
-<h3 id="change-rstudio-color-theme">Change RStudio color theme</h3>
-<p>Is the white RStudio background burning your retnas? Need a change of scenery? No need to go outside!</p>
-<p>In the top bar, go to <em>Tools &gt; Global Options</em>, and then select “Appearance”:</p>
-<figure>
-<img src="images/change_theme.png" alt="Change appearance" /><figcaption aria-hidden="true">Change appearance</figcaption>
-</figure>
-<h3 id="rmarkdown-keyboard-shortcuts">RMarkdown keyboard shortcuts</h3>
-<p>You can find me mashing the following keys in <strong>Windows</strong>:</p>
+</div>
+<h3 id="vector">vector:</h3>
+<p>A vector is a list of values, all of the same type.</p>
+<p>We use <code>c()</code> to create a vector, separating items with commas when we specify them individually.</p>
+<p>The following are all valid vectors:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># a vector of numbers 1, 2, 3:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] 1 2 3</span>
+
+<span class='co'># a vector of numbers 1 through 12, and then 20:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>20</span><span class='op'>)</span>
+<span class='co'>#&gt; [1]  1  2  3  4  5  6  7  8  9 10 11 12 20</span>
+
+<span class='co'># a vector of logical values:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>NA</span>, <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] "TRUE"  "FALSE" "TRUE" </span>
+
+<span class='co'># a vector of 5 values randomly drawn from a uniform distribution with min 0 and max 1:</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] 0.97420369 0.04387835 0.68818071 0.13420150 0.30322080</span>
+</code></pre>
+</div>
+</div>
+<p>Most operations on vectors apply to each value individually:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
+
+<span class='va'>x</span> <span class='op'>+</span> <span class='fl'>2</span>
+<span class='co'>#&gt; [1] 3 4 5 6 7</span>
+
+<span class='va'>x</span> <span class='op'>*</span> <span class='fl'>2</span>
+<span class='co'>#&gt; [1]  2  4  6  8  10</span>
+</code></pre>
+</div>
+</div>
+<p>As such, a data frame is just a <strong><em>list of vectors</em></strong> of all the same length. That <strong><em>list</em></strong> is what’s known formally as a “recursive vector”. Lists can contain other lists.</p>
+<p>This is a somewhat complex topic. If you’re really hungry for more info, <a href="https://r4ds.had.co.nz/vectors.html">this chapter</a> in R for Data Science is highly informative, but may be confusing at first for those without any programming background.</p>
+<h3 id="stringcharacter">string/character:</h3>
+<p>Strings are created with either single quotes or double quotes. It indicates that a value is meant to be read as-is, rather than transformed according to R’s computational rules for numbers and logical values.</p>
+<p>For example, writing the logical value, TRUE as a string makes it unrecognizable to R as logical:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] TRUE</span>
+
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='st'>"TRUE"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] FALSE</span>
+</code></pre>
+</div>
+</div>
+<p>As simple as it sounds, strings are a topic of mind-numbing complexity, as the underlying encoding of text strings governs the way that code is able to interact with data as well as other code.</p>
+<p>R for Data Science gives <a href="https://r4ds.had.co.nz/strings.html#strings">a nice introduction to the mechanics of strings here</a>, but hints at their wider implications in <a href="https://r4ds.had.co.nz/data-import.html">its chapter on data importation</a>.</p>
+<p>Regular expressions (not to be confused with reproducible expressions), or regex, are their own beast, <a href="https://www.regular-expressions.info/">and may help you understand how databases and search engines work</a></p>
+<h3 id="factor">factor:</h3>
+<p>A data type that is the preferred way to store categorical variables in R.</p>
+<p>Using <code>factor()</code>, you can convert:</p>
+<ul>
+<li><strong>a character to a factor</strong>: This takes all unique values of a character variable and assigns them an underlying number, or “levels”.</li>
+</ul>
+<p>For example:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dumplings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"momos"</span>, <span class='st'>"pop tarts"</span>, <span class='st'>"raviolis"</span>, <span class='st'>"momos"</span>, <span class='st'>"empanadas"</span>, <span class='st'>"pierogis"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>dumplings</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] momos     pop tarts raviolis  momos     empanadas pierogis </span>
+<span class='co'>#&gt; Levels: empanadas momos pierogis pop tarts raviolis</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>an integer to a factor</strong>: This takes integers and makes the lowest number the base level, and the next highest 1, the next highest 2, etc. You can assign a “label” to each respective level with “labels = c()”, with a vector, c(), with the same length as the number of levels.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>integers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>integers</span>,
+       labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"chicken"</span>, <span class='st'>"egg"</span>, <span class='st'>"rooster"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] chicken egg     rooster egg     rooster egg     chicken</span>
+<span class='co'>#&gt; Levels: chicken egg rooster</span>
+</code></pre>
+</div>
+</div>
+<p>Understanding factors mostly takes time. If you want to speed that up, <a href="https://r4ds.had.co.nz/factors.html">here’s the R for Data Science chapter on factors</a></p>
+<p>In it, they reference a few articles for further reading:</p>
+<ul>
+<li><a href="https://peerj.com/preprints/3163/">Wrangling categorical data in R</a></li>
+<li><a href="https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/">stringsAsFActors: An unauthorized biography</a></li>
+<li><a href="https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh">stringsAsFactors = <sigh></a> – this one is kinda funny</li>
+</ul>
+<h3 id="librarypackages">library/packages:</h3>
+<p>I’ll quote from <a href="https://stackoverflow.com/questions/26900228/what-is-the-difference-between-a-library-and-a-package-in-r">an answer in StackOverflow</a> for this one:</p>
+<p>“In R, a package is a collection of R functions, data and compiled code. The location where the packages are stored is called the library.”</p>
+<h3 id="directory">directory:</h3>
+<p><a href="https://en.wikipedia.org/wiki/Working_directory">“The working directory of a process is a directory of a hierarchical file system”</a></p>
+<p>A <strong>directory</strong> is any file folder on your computer.</p>
+<p>Your <strong>root directory</strong> is the top-most directory on your computer (in Windows, this is the folder calls “C:”, for Mac users, it’s usually labelled as “Macintosh HD”)</p>
+<p>In R, your <strong>working directory</strong> is typically the folder that contains whatever <a href="https://dghi-biostat.github.io/biostatlab/help_projects.html">R Project</a> you have open.</p>
+<p>Say you have a dataset called “data.rds” in your main working directory. You can import it using any number of functions by referring to its file path as simply “data.rds”.</p>
+<p>But say you have that dataset in a series of folders within your working directory. The folders are organized like this, which each subsequent folder inside the last, and the data file in the folder titled “data”:</p>
+<p><strong><em>working directory</em> &gt; try1 &gt; fullAnalysis &gt; data</strong></p>
+<p>The “file path” for referring to your data file from your working directory would be this:</p>
+<p>“try1/fullAnalysis/data/data.rds”</p>
+<h3 id="tribble">tribble:</h3>
+<p>Short for “transposed tibble”, it’s a function that allows you to create a tibble by hand, with the syntax and subsequent output:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>colA</span>, <span class='op'>~</span><span class='va'>colB</span>, <span class='op'>~</span><span class='va'>colC</span>, <span class='op'>~</span><span class='va'>colD</span>,
+  <span class='st'>"a"</span>,   <span class='fl'>1</span>, <span class='st'>"Square"</span>, <span class='st'>"orange"</span>,
+  <span class='st'>"b"</span>,   <span class='fl'>2</span>, <span class='st'>"Circle"</span>, <span class='st'>"maracuya"</span>,
+  <span class='st'>"c"</span>,   <span class='fl'>3</span>, <span class='st'>"Rhombus"</span>, <span class='st'>"cashew"</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
 <table>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 37%" />
-<col style="width: 32%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Shortcut</th>
-<th style="text-align: center;">Keys (Windows)</th>
-<th style="text-align: center;">Keys (MacOS)</th>
+<th style="text-align: left;">colA</th>
+<th style="text-align: right;">colB</th>
+<th style="text-align: left;">colC</th>
+<th style="text-align: left;">colD</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Run a line of code</td>
-<td style="text-align: center;">(With typing cursor on line) <em>ctrl + enter</em></td>
-<td style="text-align: center;">(With typing cursor on line) <em>cmd + enter</em></td>
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Square</td>
+<td style="text-align: left;">orange</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Run a chunk of code</td>
-<td style="text-align: center;">(With typing cursor in chunk) <em>ctrl + shift + enter</em></td>
-<td style="text-align: center;">(With typing cursor in chunk) <em>cmd + shift + enter</em></td>
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Circle</td>
+<td style="text-align: left;">maracuya</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Create a new chunk</td>
-<td style="text-align: center;"><em>ctrl + alt + i</em></td>
-<td style="text-align: center;"><em>cmd + option + i</em></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Type a pipe</td>
-<td style="text-align: center;"><em>ctrl + shift + m</em></td>
-<td style="text-align: center;"><em>cmd + shift + m</em></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Type an assignment operator</td>
-<td style="text-align: center;"><em>alt + -</em></td>
-<td style="text-align: center;"><em>option + -</em></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Stop running</td>
-<td style="text-align: center;">(In Console) <em>esc</em></td>
-<td style="text-align: center;">(In Console) <em>esc</em></td>
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Rhombus</td>
+<td style="text-align: left;">cashew</td>
 </tr>
 </tbody>
 </table>
-<h3 id="session-information-and-help-documentation">Session information and help documentation</h3>
-<p>If for some reason your code is hitting an error, here are some useful commands you might run in your RStudio Console to help troubleshoot:</p>
-<h4 id="function-documentation">Function Documentation</h4>
-<p><strong>Command:</strong> <code>?functionName</code></p>
-<p><strong>What it does:</strong> Pulls up the documentation for whatever you type in place of <code>functionName</code>, and displays it in the Help window. A function’s documentation is often (but not always) the final word on how a function is meant to behave in R. It will provide information on the <a href="TODO:%20link%20to%20other%20help%20page">function’s arguments</a> (and their default values), the resulting output (“Values”), and will give you examples of how to implement that function.</p>
-<h4 id="session-information">Session information</h4>
-<p><strong>Command:</strong> <code>sessionInfo()</code></p>
-<p><strong>What it does:</strong> If you’re experiencing issues with a certain package, maybe it’s time for an update. You can check your current version of R using this command. Find information on specific packages by using the argument ‘package = packageName’.</p>
-<p>You can also find which version of RStudio you have by running <code>RStudio.Version()</code></p>
-<h4 id="view-traceback">View Traceback</h4>
-<p><strong>Command:</strong> <code>traceback()</code></p>
-<p><strong>What it does:</strong> If your code keeps hanging up on an error, you can often find clues as to why it’s happening by viewing the underlying code that’s causing your code to halt. Traceback will print the list of functions that were called before the error occurred. It’s literally “tracing your steps” right before the error happened. The language itself in the traceback is usually pretty cryptic and hard to read at first. Don’t let that stop you from looking at it when you encounter problems.</p>
-<h4 id="memory-storage-information">Memory storage information</h4>
-<p><strong>Command:</strong> <code>object_size()</code></p>
-<p><strong>What it does:</strong> For the purposes of this lab, you most likely won’t need to worry about your computer’s RAM. Nevertheless, the nerds among us might find it interesting to inspect the size of an object that we’ve saved to our R Environment. Use <code>object_size(objectName)</code> to inspect a given object. Alternatively, inspect overall RAM usage and limitations with <code>memory.size()</code> and <code>memory.limit()</code>.</p>
-<h2 id="extended-resource-guide-to-rstudio">Extended resource guide to RStudio</h2>
-<p>R Studio will be the launching pad for all of our lab assignments in this course.</p>
-<p>The RStudio environment itself can feel overwhelming at first. Luckily, there are excellent resources already available to help get you acquainted:</p>
+</div>
+<p>?tribble in the R Console for more details</p>
+<h3 id="ggplot2">ggplot2:</h3>
+<p>The “gg” in ggplot2 stands for <strong>“grammar of graphics”</strong>.</p>
+<p>To get a high-level overview of ggplot2 basics, I highly recommend <a href="https://r4ds.had.co.nz/data-visualisation.html">this introduction</a> to data visualization.</p>
+<p>If you’re really trying to nerd out, you can access the free full text of <a href="https://www.springer.com/gp/book/9780387981413"><strong><em>ggplot2: Elegant Graphics for Data Analysis</em></strong></a> by Hadley Wickham by looking it up using <a href="https://quicksearch.library.duke.edu/?q=ggplot2">the Duke Library search engine</a> and logging in with your Duke credentials</p>
+<h3 id="magrittrpipe">magrittr/pipe/%&gt;%:</h3>
+<p>Chapter from <a href="https://r4ds.had.co.nz/pipes.html">R for Data Science</a> gives a nice intro.</p>
+<p>For you nerds, <a href="http://adolfoalvarez.cl/plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/">here’s a history of the pipe operator in R</a></p>
+<h3 id="dplyr">dplyr:</h3>
+<p>A package that contains a set of functions that help solve “the most common data manipulation challenges”. Main functions include:</p>
 <ul>
-<li><p>For those of you who prefer to learn by reading, <a href="https://aosmith.shinyapps.io/part1_rbasics_getting_started/#section-introduction"><strong>this website’s first tutorial</strong></a>, “Getting started with R/RStudio”, is a good place to start.</p></li>
-<li><p>Dr. Eric Green used to run a summer workshop called “I Eat Data Science for Breakfast”. He gives a stellar tutorial to the RStudio environment <a href="https://youtu.be/fntu_jMsWWE?t=649"><strong>starting at 10:49 in his Week 1 video</strong></a>.</p></li>
+<li><code>mutate()</code></li>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>summarize()</code> (or <code>summarise()</code>)</li>
+<li><code>arrange()</code></li>
 </ul>
-<aside>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="images/ieat_covid.png" alt="I Eat Data Science for Breakfast" width="10%" />
-<p class="caption">
-Figure 1: I Eat Data Science for Breakfast
-</p>
-</div>
-</div>
-</aside>
-<ul>
-<li>If you were checking your email at all over the summer, you may also already be familiar with Duke Librarian, John Little, and his series called RFun. Feel free to review <a href="https://www.youtube.com/watch?v=Wmozk2qEsL0&amp;t=38s"><strong>his video introducing the RStudio environment</strong></a></li>
-</ul>
-<aside>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="images/rfun.png" alt="[RFun with John Little](https://rfun.library.duke.edu/)" width="90%" />
-<p class="caption">
-Figure 2: <a href="https://rfun.library.duke.edu/">RFun with John Little</a>
-</p>
-</div>
-</div>
-</aside>
+<p><a href="https://r4ds.had.co.nz/transform.html">Here’s the chapter</a> from R for Data Science</p>
+<p>You may also find <a href="https://dplyr.tidyverse.org/articles/dplyr.html">this vignette</a> helpful</p>
+<h3 id="base-r">base R:</h3>
+<p>These are functions that are a part of the original R programming language, and so do not require a call to a package using <code>library()</code>.</p>
+<p><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">Go here</a> to see a complete list of functions that come with the R Base Package</p>
+<h3 id="vignette">vignette:</h3>
+<p>A vignette is a long-form guide to a package. It highlights a package’s main functions and their usage. Learning from vignettes is one of the best ways to self-teach yourself a skill in R.</p>
+<h3 id="section-1">#:</h3>
+<h3 id="yaml">YAML:</h3>
+<h3 id="index">index:</h3>
+<h3 id="tidy">tidy:</h3>
+<h3 id="tidyverse">tidyverse:</h3>
+<h3 id="knit">knit:</h3>
+<h3 id="console">console:</h3>
+<h3 id="git">git:</h3>
+<h3 id="code-chunk">code chunk:</h3>
+<h3 id="traceback">traceback:</h3>
+<h3 id="html">html:</h3>
+<h3 id="debug">debug:</h3>
+<h3 id="function">function:</h3>
+<h3 id="argument">argument:</h3>
+<h3 id="parameter">parameter:</h3>
+<h3 id="reproducible-expressions-reprex">reproducible expressions (reprex):</h3>
+<h3 id="hadley-wickham">Hadley Wickham:</h3>
+<h3 id="runifqunifpunifdunif">runif/qunif/punif/dunif</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
