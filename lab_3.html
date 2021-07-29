@@ -2491,7 +2491,7 @@ Lab Assignments
 <li><a href="#print-table">Print table</a></li>
 <li><a href="#fishers-exact-test-of-significance">Fisher’s exact test of significance</a></li>
 </ul></li>
-<li><a href="#task-5-table-3">Task 5: Table 3</a>
+<li><a href="#task-5-table-3---rds-rrs-and-ors">Task 5: Table 3 - RDs, RRs, and ORs</a>
 <ul>
 <li><a href="#take-a-deep-breath.">Take a deep breath.</a></li>
 <li><a href="#frequency-counts">Frequency counts</a></li>
@@ -2547,17 +2547,116 @@ Formulas: In R, formulas, indicated with <code>~</code> in place of an equals si
 <h4 id="example-of-t-tests-and-kruskal-wallis">Example of T-tests and Kruskal-Wallis</h4>
 <p>As an example, we might use the <code>starwars</code> dataset, available in the {dplyr} package, to inspect the body mass of different characters by species:</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code># A tibble: 6 x 14
-  name   height  mass hair_color skin_color eye_color birth_year sex  
-  &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;
-1 Luke ~    172    77 blond      fair       blue            19   male 
-2 C-3PO     167    75 &lt;NA&gt;       gold       yellow         112   none 
-3 R2-D2      96    32 &lt;NA&gt;       white, bl~ red             33   none 
-4 Darth~    202   136 none       white      yellow          41.9 male 
-5 Leia ~    150    49 brown      light      brown           19   fema~
-6 Owen ~    178   120 brown, gr~ light      blue            52   male 
-# ... with 6 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;,
-#   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 6%" />
+<col style="width: 4%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">height</th>
+<th style="text-align: right;">mass</th>
+<th style="text-align: left;">hair_color</th>
+<th style="text-align: left;">skin_color</th>
+<th style="text-align: left;">eye_color</th>
+<th style="text-align: right;">birth_year</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: left;">gender</th>
+<th style="text-align: left;">homeworld</th>
+<th style="text-align: left;">species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>Our formal question we’d like to answer might be: “Does mean character height differ by a character’s gender?”</p>
 <p>We can calculate summary statistics for sub-group frequency counts and means:</p>
@@ -2569,34 +2668,59 @@ Formulas: In R, formulas, indicated with <code>~</code> in place of an equals si
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>, mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>height</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 2 x 3
-  gender        n  mean
-  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;
-1 feminine     17  165.
-2 masculine    66  177.</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gender</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">feminine</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">164.6875</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">masculine</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">176.5161</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>Our T test would effectively tell us whether or not those means are statistically different from each other given the available data:</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-    Welch Two Sample t-test
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span><span class='va'>height</span> <span class='op'>~</span> <span class='va'>gender</span>, data <span class='op'>=</span> <span class='va'>starwars</span><span class='op'>)</span>
 
-data:  height by gender
-t = -1.5596, df = 37.315, p-value = 0.1273
-alternative hypothesis: true difference in means between group feminine and group masculine is not equal to 0
-95 percent confidence interval:
- -27.191682   3.534423
-sample estimates:
- mean in group feminine mean in group masculine 
-               164.6875                176.5161 </code></pre>
+<span class='co'>#&gt;  Welch Two Sample t-test</span>
+<span class='co'>#&gt;</span>
+<span class='co'>#&gt; data:  height by gender</span>
+<span class='co'>#&gt; t = -1.5596, df = 37.315, p-value = 0.1273</span>
+<span class='co'>#&gt; alternative hypothesis: true difference in means between group feminine and group masculine #&gt; is not equal to 0</span>
+<span class='co'>#&gt; 95 percent confidence interval:</span>
+<span class='co'>#&gt;  -27.191682   3.534423</span>
+<span class='co'>#&gt; sample estimates:</span>
+<span class='co'>#&gt;  mean in group feminine mean in group masculine </span>
+<span class='co'>#&gt;                164.6875                176.5161 </span>
+</code></pre>
+</div>
 </div>
 <p>However, since our group for <code>gender == feminine</code> only contains 17 observations, so we might decide that a nonparametric test (one that doesn’t assume a normal distribution), might be more appropriate for the small sample size. In this case we can use the Kruskal-Wallis test:</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-    Kruskal-Wallis rank sum test
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/kruskal.test.html'>kruskal.test</a></span><span class='op'>(</span><span class='va'>height</span> <span class='op'>~</span> <span class='va'>gender</span>, data <span class='op'>=</span> <span class='va'>starwars</span><span class='op'>)</span>
 
-data:  height by gender
-Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
-0.003209</code></pre>
+<span class='co'>#&gt; Kruskal-Wallis rank sum test</span>
+<span class='co'>#&gt; </span>
+<span class='co'>#&gt; data:  height by gender</span>
+<span class='co'>#&gt; Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value = 0.003209</span>
+</code></pre>
+</div>
 </div>
 <p>Notice the difference in the conclusion you would draw from either test. For the T-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups.</p>
 <h2 id="task-4-table-2---tabular-analysis-of-cat.-variable-by-death">Task 4: Table 2 - Tabular analysis of cat. variable by death</h2>
@@ -2606,7 +2730,7 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 <aside>
 <strong>More on {tableone}:</strong> I’ve used this package a LOT for generating data reports. It is a super convenient tool for compiling baseline data. It’s also easy to copy/paste into excel using the <code>print()</code> argument <code>quote = TRUE</code>, which creates character-delineation between values, that excel recognizes as columns. <a href="https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html">Find a tutorial on all of that here</a>
 </aside>
-<p>A <code>tableone</code> object will generate mean and standard deviation for continuous variables, and frequency counts and percentages for variables that we designate as “factorVars” (categorical).</p>
+<p>A {tableone} object will generate mean and standard deviation for continuous variables, and frequency counts and percentages for variables that we designate as “factorVars” (categorical).</p>
 <p>The primary function in this package is called <code>CreateTableOne()</code>, which has several arguments of central importance for it to run:</p>
 <p>1.) <code>vars =</code> - a vector of variable names, written as strings<br />
 2.) <code>strata =</code> - a categorical variable for stratifying (if desired)<br />
@@ -2617,7 +2741,7 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 </aside>
 <h3 id="create-a-vector-of-variables">Create a vector of variables</h3>
 <p>For starters, we’ll need a vectorized list of our variables of interest, written as strings (in quotes).</p>
-<p>As an example, we might use the derived variables in our kenya dataset for <code>size</code> and <code>pnc</code>. We need to put the variable names in quotes, separating them by commas within a vector. Then we need to assign the vector a name so that we can call it later. Here, we’ve named the vector <code>variables</code>.</p>
+<p>As an example, we might use the derived variables in our kenya dataset for <code>size</code> and <code>pnc</code>. To make our code more readable, we will create a vector object that contains both variable names. To do this, we put both variable names in quotes, separating them by commas within a vector, <code>c()</code>. Then we need to assign the vector a name so that we can call it later. Here, we’ve named the vector <code>variables</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>variables</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'size'</span>, <span class='st'>'pnc'</span><span class='op'>)</span>
@@ -2635,19 +2759,7 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 </div>
 </div>
 <h4 id="stratified-table">Stratified table</h4>
-<p>We may also want to stratify our results by a second variable, like <code>bord5</code>. If we inspect gender, we notice that it’s a <em>character</em> type variable. This means we’ll need to convert it to a factor using <code>factorVars=</code></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>kenya</span><span class='op'>)</span>
-
-<span class='co'>#&gt; [1] "caseid"    "v008"      "v011"      "v025"      "v437"      "v438"      "v463z"    </span>
-<span class='co'>#&gt; [8] "bord"      "b3"        "b4"        "b5"        "b7"        "m2n"       "m18"      </span>
-<span class='co'>#&gt; [15] "m19"       "s109"      "mage"      "magec"     "bord5"     "male"      "mweight"  </span>
-<span class='co'>#&gt; [22] "mheight"   "mbmi"      "size"      "belowavg"  "pnc"       "rural"     "education"</span>
-<span class='co'>#&gt; [29] "death"     "time"</span>
-</code></pre>
-</div>
-</div>
+<p>We may also want to stratify our results by a second variable, like <code>bord5</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>stratified_tab</span> <span class='op'>&lt;-</span> <span class='fu'>CreateTableOne</span><span class='op'>(</span>vars <span class='op'>=</span> <span class='va'>variables</span>, 
@@ -2676,8 +2788,8 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 </code></pre>
 </div>
 </div>
-<h4 id="stratified-table-with-chi-square-test">Stratified table with Chi-square test</h4>
-<p>Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-square test to for differences between the various groups:</p>
+<h4 id="stratified-table-with-chi-squared-test">Stratified table with Chi-squared test</h4>
+<p>Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-squared test to for differences between the various groups:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -2696,10 +2808,10 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 </div>
 </div>
 <p>Note that each row of the stratified results sum to the same result as given by the column for “Overall” in our <code>simple_tab</code>.</p>
-<p>As the default for categorical variables, the {tableone} <code>print()</code> function performs a chi-square test on the difference of proportions between the different strata for <code>bord5</code>.</p>
+<p>As the default for categorical variables, the {tableone} <code>print()</code> function performs a chi-squared test on the difference of proportions between the different strata for <code>bord5</code>.</p>
 <p>There’s one glaring issue here, however: neither of our stratified variables meet the assumption of normality! Each contains at least one cross-tabulation with counts that are less than 5.</p>
 <h3 id="fishers-exact-test-of-significance">Fisher’s exact test of significance</h3>
-<p>When we look at our <a href="TODO">decision tree for hypothesis testing</a>, we notice that we need to use a Fisher’s Exact test when our data doesn’t meet the assumption of normality necessary for a Chi-square test of significance.</p>
+<p>When we look at our <a href="TODO">decision tree for hypothesis testing</a>, we notice that we need to use a Fisher’s Exact test when our data doesn’t meet the assumption of normality necessary for a Chi-squared test of significance.</p>
 <p>To do this in a {tableone} object, we just need to include <code>exact = TRUE</code> in our <code>print()</code> function to calculate a Fisher’s Exact test, the nonparametric equivalent of the Chi-square test.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2719,7 +2831,7 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 </div>
 </div>
 <p>Although in this particualr interest we draw the same conclusions from the Fisher’s exact test as we do from the Chi-square test, assuming normality when the evidence doesn’t exist in the data can lead to misleading results further down the line.</p>
-<h2 id="task-5-table-3">Task 5: Table 3</h2>
+<h2 id="task-5-table-3---rds-rrs-and-ors">Task 5: Table 3 - RDs, RRs, and ORs</h2>
 <p>Fill in Table 3 with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death, the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group. The reference group for each variable is noted. For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group. Round risks to 3 decimal places and ratios to 2 decimal places. The STATA cs command provides a convenient way to produce the data for this table.</p>
 <h3 id="take-a-deep-breath.">Take a deep breath.</h3>
 <p>Don’t let this table overwhelm you. We’re going to break it down step-by-step</p>
@@ -2737,7 +2849,9 @@ Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value =
 <h3 id="massoc-for-measures-of-association"><code>mAssoc()</code> for Measures of Association</h3>
 <p>For this task, we will use <code>mAssoc()</code>, which generates all three measures of association in a singular output.</p>
 <p>To use <code>mAssoc()</code>, we need to take several steps to ensure that our data is in the proper shape for our measures to be calculated appropriately:</p>
-<p>1.) Create a table object using <code>table()</code> 2.) Rearrange the table with <code>flipTable()</code> to put it in the appropriate alignment for use by <code>mAssoc()</code> 3.) Submit our rearranged table to <code>mAssoc()</code>.</p>
+<p>1.) Create a table object using <code>table()</code><br />
+2.) Rearrange the table with <code>flipTable()</code> to put it in the appropriate alignment for use by <code>mAssoc()</code><br />
+3.) Submit our rearranged table to <code>mAssoc()</code>.</p>
 <p>As a way of demonstrating, we will use the variable <code>bord5</code>, stratified by <code>death</code> to calculate our measures of association.</p>
 <h4 id="create-a-table-object-with-table">Create a table object with <code>table()</code></h4>
 <p>The first step is fairly straightforward. We need to generate a table object and assign it a name. Keep in mind that we want our exposure variable (in this case, <code>bord5</code>) along the left side of the table and our outcome variable (<code>death</code>) at the top of the table.</p>
@@ -2818,7 +2932,9 @@ The function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2(
 </div>
 <h4 id="reading-the-output">Reading the output:</h4>
 <p>Here is a quick guide to the components of the output relevant to this activity:</p>
-<p><strong><em>Inc risk ratio</em></strong>: Our basic risk ratio <strong><em>Odds ratio</em></strong>: Our basic odds ratio <strong><em>Attrib risk in the exposed</em></strong>: The risk difference. <code>mAssoc()</code> takes another argument, <code>units =</code>, which by default is set to 1.</p>
+<p><strong><em>Inc risk ratio</em></strong>: Our basic risk ratio<br />
+<strong><em>Odds ratio</em></strong>: Our basic odds ratio<br />
+<strong><em>Attrib risk in the exposed</em></strong>: The risk difference. <code>mAssoc()</code> takes another argument, <code>units =</code>, which by default is set to 1. This regulates our output for the measure of risk difference.</p>
 <aside>
 If we set <code>units = 100</code>, our attributable risk in the expose (risk difference) would be interpretable as a difference of <em>x</em> number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual’s risk difference of experiencing the outcome if they are in the index level for the exposure.
 </aside>
@@ -2836,14 +2952,21 @@ If we set <code>units = 100</code>, our attributable risk in the expose (risk di
 <aside>
 Within your call to <code>geom_boxplot()</code>, you can also change the color with <code>fill = "colorname"</code>. Find a list of color names <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>
 </aside>
-<p>Here’s an example of what we are looking for, using the <code>starwars</code> dataset. We’ve adjusted the dimensions a bit to accomodate our lone outlier. Care to guess who it is?</p>
+<p>Here’s an example of what we are looking for, using the <code>starwars</code> dataset. We’ve adjusted the dimensions a bit to accommodate our lone outlier. Care to guess who it is?</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="lab_3_files/figure-html5/unnamed-chunk-18-1.png" width="576" /></p>
 </div>
 <aside>
-<img src="images/TODOjabba.png" title="fig:" alt="Jabba" />
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-19"></span>
+<img src="images/jabba.png" alt="[A heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/)" width="300" />
+<p class="caption">
+Figure 1: <a href="https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/">A heavy slug</a>
+</p>
+</div>
+</div>
 </aside>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

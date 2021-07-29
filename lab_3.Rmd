@@ -10,6 +10,7 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
+library(knitr)
 ```
 
 
@@ -90,7 +91,7 @@ What this means is that when we're building our formula, the "y"/dependent varia
 As an example, we might use the `starwars` dataset, available in the {dplyr} package, to inspect the body mass of different characters by species:
 
 ```{r}
-head(starwars)
+kable(head(starwars[1:11]))
 ```
 
 
@@ -100,23 +101,48 @@ Our formal question we'd like to answer might be: "Does mean character height di
 
 We can calculate summary statistics for sub-group frequency counts and means:
 
-```{r echo = TRUE}
+```{r echo = TRUE, eval = FALSE}
 starwars %>%
   filter(!is.na(gender)) %>%
   group_by(gender) %>%
   summarize(n = n(), mean = mean(height, na.rm = TRUE))
 ```
 
+```{r}
+kable(starwars %>%
+  filter(!is.na(gender)) %>%
+  group_by(gender) %>%
+  summarize(n = n(), mean = mean(height, na.rm = TRUE)))
+```
+
+
+
 Our T test would effectively tell us whether or not those means are statistically different from each other given the available data:
 
-```{r}
+```{r echo = TRUE, eval = FALSE}
 t.test(height ~ gender, data = starwars)
+
+#>	Welch Two Sample t-test
+#>
+#> data:  height by gender
+#> t = -1.5596, df = 37.315, p-value = 0.1273
+#> alternative hypothesis: true difference in means between group feminine and group masculine #> is not equal to 0
+#> 95 percent confidence interval:
+#>  -27.191682   3.534423
+#> sample estimates:
+#>  mean in group feminine mean in group masculine 
+#>                164.6875                176.5161 
 ```
 
 However, since our group for `gender == feminine` only contains 17 observations, so we might decide that a nonparametric test (one that doesn't assume a normal distribution), might be more appropriate for the small sample size. In this case we can use the Kruskal-Wallis test:
 
-```{r}
+```{r echo = TRUE, eval = FALSE}
 kruskal.test(height ~ gender, data = starwars)
+
+#> Kruskal-Wallis rank sum test
+#> 
+#> data:  height by gender
+#> Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value = 0.003209
 ```
 
 Notice the difference in the conclusion you would draw from either test. For the T-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups. 
@@ -134,7 +160,7 @@ We will complete this task by first using the package called {tableone}, a power
 
 <aside> __More on {tableone}:__ I've used this package a LOT for generating data reports. It is a super convenient tool for compiling baseline data. It's also easy to copy/paste into excel using the `print()` argument `quote = TRUE`, which creates character-delineation between values, that excel recognizes as columns. [Find a tutorial on all of that here](https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html) </aside>
 
-A `tableone` object will generate mean and standard deviation for continuous variables, and frequency counts and percentages for variables that we designate as "factorVars" (categorical).
+A {tableone} object will generate mean and standard deviation for continuous variables, and frequency counts and percentages for variables that we designate as "factorVars" (categorical).
 
 The primary function in this package is called `CreateTableOne()`, which has several arguments of central importance for it to run:
 
@@ -150,7 +176,7 @@ The primary function in this package is called `CreateTableOne()`, which has sev
 
 For starters, we'll need a vectorized list of our variables of interest, written as strings (in quotes). 
 
-As an example, we might use the derived variables in our kenya dataset for `size` and `pnc`. We need to put the variable names in quotes, separating them by commas within a vector. Then we need to assign the vector a name so that we can call it later. Here, we've named the vector `variables`. 
+As an example, we might use the derived variables in our kenya dataset for `size` and `pnc`. To make our code more readable, we will create a vector object that contains both variable names. To do this, we put both variable names in quotes, separating them by commas within a vector, `c()`. Then we need to assign the vector a name so that we can call it later. Here, we've named the vector `variables`. 
 
 ```{r eval = FALSE, echo = TRUE}
 variables <- c('size', 'pnc')
@@ -169,17 +195,7 @@ simple_tab <- CreateTableOne(vars = variables,
 
 #### Stratified table
 
-We may also want to stratify our results by a second variable, like `bord5`. If we inspect gender, we notice that it's a *character* type variable. This means we'll need to convert it to a factor using `factorVars= `
-
-```{r eval = FALSE, echo = TRUE}
-names(kenya)
-
-#> [1] "caseid"    "v008"      "v011"      "v025"      "v437"      "v438"      "v463z"    
-#> [8] "bord"      "b3"        "b4"        "b5"        "b7"        "m2n"       "m18"      
-#> [15] "m19"       "s109"      "mage"      "magec"     "bord5"     "male"      "mweight"  
-#> [22] "mheight"   "mbmi"      "size"      "belowavg"  "pnc"       "rural"     "education"
-#> [29] "death"     "time"
-```
+We may also want to stratify our results by a second variable, like `bord5`.
 
 
 ```{r eval = FALSE, echo = TRUE}
@@ -213,9 +229,9 @@ print(simple_tab, showAllLevels = TRUE)
 ```
 
 
-#### Stratified table with Chi-square test
+#### Stratified table with Chi-squared test
 
-Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-square test to for differences between the various groups:
+Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-squared test to for differences between the various groups:
 
 ```{r echo = TRUE, eval = FALSE}
 
@@ -236,13 +252,13 @@ print(stratified_tab, showAllLevels = TRUE)
 
 Note that each row of the stratified results sum to the same result as given by the column for "Overall" in our `simple_tab`. 
 
-As the default for categorical variables, the {tableone} `print()` function performs a chi-square test on the difference of proportions between the different strata for `bord5`. 
+As the default for categorical variables, the {tableone} `print()` function performs a chi-squared test on the difference of proportions between the different strata for `bord5`. 
 
 There's one glaring issue here, however: neither of our stratified variables meet the assumption of normality! Each contains at least one cross-tabulation with counts that are less than 5. 
 
 ### Fisher's exact test of significance
 
-When we look at our [decision tree for hypothesis testing](TODO), we notice that we need to use a Fisher's Exact test when our data doesn't meet the assumption of normality necessary for a Chi-square test of significance. 
+When we look at our [decision tree for hypothesis testing](TODO), we notice that we need to use a Fisher's Exact test when our data doesn't meet the assumption of normality necessary for a Chi-squared test of significance. 
 
 To do this in a {tableone} object, we just need to include `exact = TRUE` in our `print()` function to calculate a Fisher's Exact test, the nonparametric equivalent of the Chi-square test.
 
@@ -267,7 +283,7 @@ Although in this particualr interest we draw the same conclusions from the
 Fisher's exact test as we do from the Chi-square test, assuming normality when the evidence doesn't exist in the data can lead to misleading results further down the line.
 
 
-## Task 5: Table 3
+## Task 5: Table 3 - RDs, RRs, and ORs
 
 Fill in Table 3 with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death, the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group.  The reference group for each variable is noted.  For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group.  Round risks to 3 decimal places and ratios to 2 decimal places.  The STATA cs command provides a convenient way to produce the data for this table.
 
@@ -299,9 +315,9 @@ For this task, we will use `mAssoc()`, which generates all three measures of ass
 
 To use `mAssoc()`, we need to take several steps to ensure that our data is in the proper shape for our measures to be calculated appropriately:
 
-  1.) Create a table object using `table()` 
-  2.) Rearrange the table with `flipTable()` to put it in the appropriate alignment for use by `mAssoc()`
-  3.) Submit our rearranged table to `mAssoc()`.
+  1.) Create a table object using `table()`  
+  2.) Rearrange the table with `flipTable()` to put it in the appropriate alignment for use by `mAssoc()`  
+  3.) Submit our rearranged table to `mAssoc()`.  
   
 As a way of demonstrating, we will use the variable `bord5`, stratified by `death` to calculate our measures of association.
 
@@ -386,9 +402,9 @@ mAssoc(tab_bord5, method = "cohort.count", conf.level = 0.95)
 
 Here is a quick guide to the components of the output relevant to this activity:
 
-__*Inc risk ratio*__: Our basic risk ratio
-__*Odds ratio*__: Our basic odds ratio
-__*Attrib risk in the exposed*__: The risk difference. `mAssoc()` takes another argument, `units = `, which by default is set to 1. 
+__*Inc risk ratio*__: Our basic risk ratio  
+__*Odds ratio*__: Our basic odds ratio  
+__*Attrib risk in the exposed*__: The risk difference. `mAssoc()` takes another argument, `units = `, which by default is set to 1. This regulates our output for the measure of risk difference. 
 
 <aside> If we set `units = 100`, our attributable risk in the expose (risk difference) would be interpretable as a difference of *x* number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual's risk difference of experiencing the outcome if they are in the index level for the exposure.</aside>
 
@@ -413,7 +429,7 @@ Additionally, don't forget to label your axes, give the plot a title, and save i
 
 <aside> Within your call to `geom_boxplot()`, you can also change the color with `fill = "colorname"`. Find a list of color names [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) </aside>
 
-Here's an example of what we are looking for, using the `starwars` dataset. We've adjusted the dimensions a bit to accomodate our lone outlier. Care to guess who it is?
+Here's an example of what we are looking for, using the `starwars` dataset. We've adjusted the dimensions a bit to accommodate our lone outlier. Care to guess who it is?
 
 ```{r fig.height = 15, fig.width = 6}
 starwars %>%
@@ -423,7 +439,12 @@ ggplot(aes(x = gender, y = mass)) +
 ```
 
 
-<aside> ![Jabba](images/TODOjabba.png) </aside>
+<aside> 
+```{r out.widht = "50%", fig.cap = "[A heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/)"}
+include_graphics('images/jabba.png')
+```
+
+</aside>
 
 
 
