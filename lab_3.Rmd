@@ -42,9 +42,9 @@ For your data, you will use the dataset 'Lab_3_kenya.rds'.  This has all of the 
 #### Just think on this for a moment. Internalize it. Come back to it:
 
 For this and subsequent labs, we are considering 
-  1) Child mortality within 5 years as our outcome (response) variable
-  2) Birth order >= 5 as the main risk factor variable and 
-  3) Other variables as potential confounders or modifiers of the relationship between mortality and birth order. 
+  1) Child mortality within 5 years as our outcome (response) variable  
+  2) Birth order >= 5 as the main risk factor variable and  
+  3) Other variables as potential confounders or modifiers of the relationship between mortality and birth order.   
 
 
 ## Task 3: Table 1 - Tabular analysis of continuous variables by mortality status
@@ -57,7 +57,7 @@ The skim() function provided by {skimr} makes this task a simple one. However, u
 
 We can use [a pipe](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe) with skimr() to call specific variables, like this:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 data %>%
   skim(variable)
 

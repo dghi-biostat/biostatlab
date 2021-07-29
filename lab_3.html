@@ -2519,14 +2519,20 @@ Lab Assignments
 <p>For your data, you will use the dataset ‘Lab_3_kenya.rds’. This has all of the variables accumulated through Lab 2.</p>
 <h2 id="task-2-big-picture">Task 2: BIG PICTURE</h2>
 <h4 id="just-think-on-this-for-a-moment.-internalize-it.-come-back-to-it">Just think on this for a moment. Internalize it. Come back to it:</h4>
-<p>For this and subsequent labs, we are considering 1) Child mortality within 5 years as our outcome (response) variable 2) Birth order &gt;= 5 as the main risk factor variable and 3) Other variables as potential confounders or modifiers of the relationship between mortality and birth order.</p>
+<p>For this and subsequent labs, we are considering 1) Child mortality within 5 years as our outcome (response) variable<br />
+2) Birth order &gt;= 5 as the main risk factor variable and<br />
+3) Other variables as potential confounders or modifiers of the relationship between mortality and birth order.</p>
 <h2 id="task-3-table-1---tabular-analysis-of-continuous-variables-by-mortality-status">Task 3: Table 1 - Tabular analysis of continuous variables by mortality status</h2>
 <p>Fill in Table 1 with the descriptive statistics for maternal BMI and maternal age, overall and by levels of child mortality within 5 years. This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between outcome and maternal BMI and age (i.e., comparing the distribution of maternal BMI for the children who died and those who were alive). Round p-values to 3 decimal places.</p>
 <h3 id="summary-statistics-by-variable">Summary statistics by variable</h3>
 <p>The skim() function provided by {skimr} makes this task a simple one. However, unlike previous labs where we ran a summary on the entire dataset, in this task we want individual variables.</p>
 <p>We can use <a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe">a pipe</a> with skimr() to call specific variables, like this:</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skim</a></span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="stratified-summary-statistics">Stratified summary statistics</h3>
 <p>Since we’re already doing things in a pipe, we can use the filter function to retrieve summary statistics based on mortality status. To stratify by the variable <code>death</code>, we should add the <code>group_by()</code> function to our pipeline, specifying that we want to “group by death, then skim the variable mbmi”.</p>
