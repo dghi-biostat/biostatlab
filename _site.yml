@@ -20,7 +20,7 @@ navbar:
           href: help_projects.html
         - text: "Working with packages"
           href: help_packages.html
-        - text: "R jargon"
+        - text: "jaRgon"
           href: help_jargon.html
         - text: "Visualizing in R (ggplot2)"
           href: help_ggplot2.html

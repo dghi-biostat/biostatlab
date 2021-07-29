@@ -1,0 +1,249 @@
+---
+title: "Kenya - Lab3"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    df_print: paged
+---
+
+
+# Lab 3 {.tabset}
+
+## Task 1: Load libraries and dataset
+
+For this assignment, use the dataset 'Lab_3_kenya.rds'.  This has all of the variables accumulated through Lab 2.
+
+```{r}
+# load in the {tidyverse}, {tableone}, {epiR}, and {epiAssist} packages
+
+```
+
+```{r}
+# load in the dataset
+
+```
+
+## Task 2: BIG PICTURE 
+
+#### Just think on this for a moment. Internalize it. Come back to it:
+
+For this and subsequent labs, we are considering 1) child mortality within 5 years as our outcome (response) variable, 2) birth order >= 5 as the main risk factor variable and 3) other variables as potential confounders or modifiers of the relationship between mortality and birth order. 
+
+
+## Task 3: Table 1 - Tabular analysis of cont. variable by death
+
+Fill in Table 1 with the descriptive statistics for maternal BMI and maternal age, overall and by levels of child mortality within 5 years.  This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between outcome and maternal BMI and age (i.e., comparing the distribution of maternal BMI for the children who died and those who were alive).  Round p-values to 3 decimal places.
+
+### Task 3a: Maternal BMI by death
+
+```{r}
+# use a pipe and summarize to get maternal BMI overall
+
+```
+
+```{r}
+# use pipes with filter and then summarize to get maternal BMI for cases where death == 'Dead'
+
+
+```
+
+
+```{r}
+# use pipes with filter and then summarize to get maternal BMI for cases where death == 'Alive'
+
+
+```
+
+
+```{r}
+# T-test for maternal bmi and death using t.test()
+
+```
+
+```{r}
+# Kruskal-Wallis test for maternal bmi and death using kruskal.test()
+
+
+```
+
+
+### Task 3b: Maternal age (continuous) by death
+
+```{r}
+# use a pipe and summarize to get maternal age overall
+
+```
+
+```{r}
+# use pipes with filter and then summarize to get maternal age for cases where death == 'Dead'
+
+
+```
+
+
+```{r}
+# use pipes with filter and then summarize to get maternal age for cases where death == 'Alive'
+
+
+```
+
+
+```{r}
+# T-test for maternal age and death using t.test()
+
+```
+
+```{r}
+# Kruskal-Wallis test for maternal age and death using kruskal.test()
+
+
+```
+
+
+
+## Task 4: Table 2 - Tabular analysis of categorical variables by death
+
+Fill in Table 2 with the frequency counts and COLUMN percentages for All Subjects and ROW percentages for the proportions alive and dead for the levels of the categorical variables listed in the table, again overall and by levels of child mortality within 5 years.  Calculate percentages only for the non-missing values.  Round percentages to 1 decimal place. This table also includes statistical measures (Chi-Sq and Fisher’s exact test) of the association between child dead/alive and the variables in the table.  Round p-values to 3 decimal places.
+
+
+```{r}
+# create a tableone object with CreateTableOne() for overall counts
+
+```
+
+```{r}
+# create a tableone object, this time specifying a value for "strata = "
+```
+
+```{r}
+# to perform a fisher's exact test, create one last tableone object, then submit it to its print() function, with the argument "exact = TRUE"
+
+
+
+```
+
+
+## Task 5: Table 3
+
+Fill in Table 3 with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death, the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group.  The reference group for each variable is noted.  For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group.  Round risks to 3 decimal places and ratios to 2 decimal places.  The STATA cs command provides a convenient way to produce the data for this table.
+
+### Variable: bord5
+
+```{r}
+# create 2x2 table object
+
+
+# flip table with flipTable()
+
+
+```
+
+
+```{r}
+# get measures of association with mAssoc()
+
+
+```
+
+### Variable: male
+
+```{r}
+# create 2x2 table object
+
+
+# flip table with flipTable()
+
+
+```
+
+
+```{r}
+# get measures of association with mAssoc()
+
+
+```
+
+
+### Variable: rural
+
+```{r}
+# create 2x2 table object
+
+
+# flip table with flipTable()
+
+
+```
+
+
+```{r}
+# get measures of association with mAssoc()
+
+
+```
+
+### Variable: magec
+
+```{r}
+# create 2x2 table object
+
+
+# flip table with flipTable()
+
+
+```
+
+
+```{r}
+# get measures of association with mAssoc()
+
+
+```
+
+
+
+### Variable: education
+
+```{r}
+# create 2x2 table object
+
+
+# flip table with flipTable()
+
+
+```
+
+
+```{r}
+# get measures of association with mAssoc()
+
+
+```
+
+## Task 6: Side-by-side boxplots
+
+### mbmi by death
+```{r}
+# use ggplot to stratify boxplots by using a categorical variable on either the x or y axis
+
+# save your plot with ggsave()
+
+```
+
+### mbmi by death
+```{r}
+# use ggplot to stratify boxplots by using a categorical variable on either the x or y axis
+
+# save your plot with ggsave()
+
+```
+
+
+
+## APPENDIX
+
+* {tableone} - I've used this package a LOT for generating data reports. It is a super convenient tool for compiling baseline data. It's also easy to copy/paste into excel using the argument quote = TRUE, which creates character-delineation between values, which excel recognizes as columns. [Find a tutorial on all of that here](https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html)
+
+
+

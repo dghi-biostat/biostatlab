@@ -28,7 +28,13 @@ b. Load libraries:
 
 For this lab, we need {skimr} and {tidyverse}
 
-```{r}
+
+In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:
+
+`library(tidyverse)`
+`library(skimr)`
+
+```{r libraries}
 # load library tidyverse
 
 # now load library skimr
@@ -36,26 +42,14 @@ For this lab, we need {skimr} and {tidyverse}
 ```
 
 
-In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:
-
-`library(tidyverse)`
-`library(skimr)`
-
-```{r}
-
-```
-
-
-
-
-
 ## Task 4: Load data
 
-You will use the dataset kenya_dhs_dataset_lab_0.rds for this lab. Save the kenya_dhs_dataset_lab_0.rds dataset from SAKAI into the same folder as your New Project.  Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:
+You will use the dataset kenya_dhs_dataset_lab_0.rds for this lab. Save the `Lab_0_kenya.rds` dataset from SAKAI into the same folder as your New Project.  Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:
 
 `kenya <- file name` 
 
 ```{r}
+# load dataset
 
 ```
 
