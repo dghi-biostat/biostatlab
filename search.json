@@ -2,11 +2,11 @@
   "articles": [
     {
       "path": "about.html",
-      "title": "About this site",
-      "description": "Contact your teaching team with questions",
+      "title": "Ask for Help",
+      "description": "Reach out to teaching team and peers with questions via Piazza(TODO).",
       "author": [],
-      "contents": "\r\nTODO: Names, links to websites, and contact information’\r\ncat PNG Designed By 699pic from https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&id=bef\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-07-29T17:10:21-04:00"
+      "contents": "\r\n\r\nContents\r\nA reminder on broken code\r\n\r\nA reminder on broken code\r\nDon’t hesitate to ask for help if you are having problems with software, code, etc. But be warned, your question should be specific and detailed, not just “Why won’t this line of code run?”\r\nIn my experience, unsent emails are sometimes better (and faster) than a TA. What looks like a hairy knot in your code is often quick to untangle when you start putting things in writing. This is why we ask that any email you send be both detailed and specific.\r\nHere are some other things that seem to help get your code to work:\r\nGo for a walk (seriously, maybe you’ve been sitting for too long)\r\nGoogle your error message – there’s almost always someone else who has encountered a similar problem\r\nDon’t delete and make changes to the same line of code. Copy/paste into a new chunk. Formulate a hypothesis. Make changes. Take notes on what changed. Revise your hypothesis. Repeat.\r\nLearn the R Debugger\r\nYou might also flip through this article on commmon problems in R Markdown, which might provide some answers.\r\ncat PNG Designed By 699pic from https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&id=bef\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-30T09:02:17-04:00"
     },
     {
       "path": "data_dict.html",
@@ -67,8 +67,8 @@
       "title": "Biostat Lab",
       "description": "The homepage for DGHI Biostat & Epi lab assignments, help pages, and whirly gigs\n",
       "author": [],
-      "contents": "\r\n\r\nContents\r\nWelcome!\r\nA quick note on R and RStudio:\r\nA reminder on broken code\r\n\r\nWelcome!\r\nThis is the DGHI Biostatistics lab assignment homepage. Save this site’s link to your bookmark browser and return here to access lab materials. Navigate to the various labs and help documents using the bar at the top of the page.\r\nA quick note on R and RStudio:\r\nFor this lab, you are going to need to download R and RStudio, a pair of free open-source softwares used for everything from data analysis to web design.\r\nA reminder on broken code\r\nDon’t hesitate to ask for help if you are having problems with software, code, etc. But be warned, your question should be specific and detailed, not just “Why won’t this line of code run?”\r\nIn my experience, unsent emails are sometimes better than (and faster) than a TA. What looks like a hairy knot in your code is often quick to untangle when you start putting things in writing. This is why we ask that any email you send be both detailed and specific.\r\nHere are some other things that seem to help get your code to work:\r\nGo for a walk (seriously, maybe you’ve been sitting for too long)\r\nGoogle your error message – there’s almost always someone else who has encountered a similar problem\r\nDon’t delete and make changes to the same line of code. Copy/paste into a new chunk. Formulate a hypothesis. Make changes. Take notes on what changed. Revise your hypothesis. Repeat.\r\nLearn the R Debugger\r\nYou might also flip through this article on commmon problems in R Markdown, which might provide some answers.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-07-29T17:10:35-04:00"
+      "contents": "\r\n\r\nContents\r\nWelcome!\r\n\r\nWelcome!\r\nThis is the DGHI Biostatistics lab assignment homepage. Save this site’s link to your bookmark browser and return here to access lab materials. Navigate to the various labs and help documents using the bar at the top of the page.\r\n(TODO: Video? Graphic? Flow diagram?)\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-30T09:01:27-04:00"
     },
     {
       "path": "lab_0.html",
