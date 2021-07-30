@@ -53,8 +53,10 @@ navbar:
       href: fun_dict.html
     - text: "Data Dictionary"
       href: data_dict.html
-    - text: "Ask For Help"
-      href: help.html
+    - text: "Piazza"
+      href: TODOlinktopiazza.html
+    - text: "About"
+      href: about.html
     - icon: fab fa-github
       href: https://github.com/dghi-biostat/biostatlab
 output: 
