@@ -79,7 +79,9 @@ d-appendix {
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
-.distill-site-header .logo img {
+
+/* following is custom settings to make the cat bigger, commented out bc Nour had problems with it */
+/*.distill-site-header .logo img {
     display: inline-block;
     width: 60px;
     height: 60px;
@@ -94,7 +96,7 @@ d-appendix {
 .distill-site-header .title {
 position: relative;
 transform: translateY(-30%);
-}
+} 
 
 .distill-site-header .nav-right {
     top: 10%;
@@ -103,4 +105,4 @@ transform: translateY(-30%);
 
 d-title{
   margin-top: 50px;
-}
+} */
