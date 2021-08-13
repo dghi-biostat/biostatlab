@@ -1,0 +1,212 @@
+---
+title: "Kenya - Lab4"
+author: "Nathan Ellermeier, DGHI Biostat Team"
+date: "7/15/2021"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Lab 4 {.tabset}
+
+## Task 1: Load libraries & data
+
+For this assignment, use the dataset 'Lab_4_kenya.rds'.
+
+```{r}
+# load libraries: {tidyverse}, {epiR}, {fmsb}, {skimr}, and {epiAssist}
+
+```
+
+
+```{r}
+# load in dataset 
+
+```
+
+## Task 2: Tables 1 & 2 {.tabset .tabset-pills}
+
+Fill in tables 1 and 2 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by:
+
+a)	Child’s gender (variable male)
+b)	Rural/urban residence (variable rural)
+c)	Maternal age (variable magec)
+d)	Maternal education (variable education)
+e)	Calculate the RD (Table 1) and RR (Table 2) for mortality in association with bord5 within each covariable stratum
+f)	Calculate a homogeneity test statistic and p-value for each covariate listed above
+g)	To get the stratified and pooled estimates and p-values, run the CS command, and you will need to use the estandard and pool and rd options for RD and the pool option for the RR.
+h)	For each covariable listed above, report the E. Standardized pooled estimate estimate for the RD and the Mantel-Haenszel pooled estimate (M-H combined) for the RR
+
+
+### Task 2.1: Frequency counts and risk
+
+#### 2.1.a: `male`
+
+```{r}
+# use dplyr functions to calculate sub-group frequency counts and risk of death by sex (male) and birth order (bord5)
+
+  
+```
+
+#### 2.1.b: `rural`
+
+```{r}
+# use dplyr functions to calculate sub-group frequency counts and risk of death by residence (rural) and birth order (bord5)
+
+  
+```
+
+#### 2.1.c: `magec`
+
+```{r}
+# use dplyr functions to calculate sub-group frequency counts and risk of death by mother's age (magec) and birth order (bord5)
+
+  
+```
+
+#### 2.1.d: `education`
+
+```{r}
+# use dplyr functions to calculate sub-group frequency counts and risk of death by mother's level of education (education) and birth order (bord5)
+
+  
+```
+
+### Task 2.2: Create `epi.2by2()` object (TODO: epi.2by2() or mAssoc()?)
+
+#### 2.2.a: Create table object with `table()`
+
+```{r}
+# male table
+
+# rural table
+
+# magec table
+
+# education table
+```
+
+
+#### 2.2.b: Flip table with `flipTable()`
+
+```{r}
+# flip male
+
+# flip rural
+
+# flip magec
+
+# flip education
+
+```
+
+
+#### 2.2.c: Create epi.2by2 object with `epi.2by2()`
+
+```{r}
+# epi.2by2() for male
+
+# epi.2by2() for rural
+
+# epi.2by2() for magec
+
+# epi.2by2() for education
+
+```
+
+### Task 2.3: Risk differences and test of homogeneity (TODO: how to get risk difference? seems borken at the moment in epi.2by2())
+
+#### 2.3.a: Extract risk differences from within epi.2by2() object
+
+```{r}
+# Risk difference:
+
+## male
+
+## rural
+
+## magec
+
+## education
+
+```
+
+#### 2.3.b: Extract homogeneity test statistics
+
+```{r}
+# Homogeneity test statistic and p value
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+#### 2.3.b: Report standardized pooled estimate
+
+```{r}
+# standardized pooled estimate
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+
+### Task 2.4: Risk ratios and test of homogeneity
+
+#### 2.4.a: Extract risk ratios from within epi.2by2() object
+
+```{r}
+# Risk difference:
+
+## male
+
+## rural
+
+## magec
+
+## education
+
+```
+
+#### 2.4.b: Extract homogeneity test statistics
+
+```{r}
+# Homogeneity test statistic and p value
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+#### 2.4.c: Report Mantel-Haenszel pooled estimate (M-H combined)
+
+```{r}
+# Mantel-Haenszel pooled estimate
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+
+
+
+
+

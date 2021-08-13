@@ -8,6 +8,8 @@ output: distill::distill_article
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(dplyr)
 ```
 
 ### LAB MATERIALS: 
@@ -15,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * [__R Markdown file for Lab 4.__](assignments/lab4_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab4_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document for Tables 1 & 2__](assignments/Lab4_Tables.xlsx)
+* [__Excel document with Table for Task 2__](assignments/Lab4_Tables.xlsx)
 TODO: Set up answer entry on Sakai?
 
 * Lab_4_kenya.rds - data file available on Sakai
@@ -25,6 +27,218 @@ TODO: Set up answer entry on Sakai?
 * Calculate measures of association between birth order and child mortality by 5 years within strata of other variables
 
 * Assess potential for confounding and effect modification (mediation) by those other variables.
+
+
+
+
+# Lab 4 {.tabset}
+
+## Task 1: Load libraries & data
+
+__For this assignment, use the dataset 'Lab_4_kenya.rds'.__
+
+Hopefully at this point in the semester, you have a pretty good grasp on how to load libraries and data, but if not:
+
+[Help loading libraries](https://dghi-biostat.github.io/biostatlab/lab_0.html#load-libraries)
+[Help loading data](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-4-load-data)
+
+## Task 2: Tabular analysis of stratifying variables
+
+The table in Task 2 is an example of a stratified analysis of exposure and outcome variables. Essentially, we want to know if the four variables listed in the first part of Task 2 are confounders or effect measure modifiers. Is the difference in mortality status of children of various birth orders at all different between boys and girls? What about rural and urban families? Mothers of different age categories? And so on...
+
+Below, we present the full set of steps needed to complete the tabular analysis. We then break down each step with instruction on how to complete it in R.
+
+So, to complete the table, you must take the following steps:
+
+__1.) Fill in the table with the numbers of deaths (`death`, the outcome) and the 60-month risk of death according to birth order (`bord5`, the exposure), stratified by:__
+
+  a)	Child’s gender (variable `male`)  
+  b)	Rural/urban residence (variable `rural`)  
+  c)	Maternal age (variable `magec`)  
+  d)	Maternal education (variable `education`)  
+
+__2.) Create an epi.2by2()/mAssoc() (TODO: decide which one to use) for each of the coviarables in part 1 of task 2 by:__
+  
+  a) Create a table object with `table()`, similar to [the one you created in lab 3](TODO: add link), where your outcome of interest is mortality (`death`) and your exposure of interest is child birth order (`bord5`). Except this time, include a third stratifying variable.
+  b) Flip the table using `flipTable()` so that the index level of the exposure and outcome of interest is in the top-left corner of the table. 
+  c) Create your `epi.2by2()` object by using the flipped table object. 
+  
+__3.) Calculate the Risk Difference for mortality in association with `bord5` within each covariable stratum__  
+
+  a)  Extract risk differences and confidence intervals from epi.2by2 (TODO) object
+  b)	Extract the homogeneity test statistic and p-value for each covariate listed in part 1a-1d
+  To get the stratified and pooled estimates and p-values, run the epi.2by2() command. For pooled and crude estimates for risk difference, you will need to access the following values within your epi.2by2 object:   
+  *  value 1
+  *  value 2
+  *  value 3
+  
+  c)	For each covariable listed above, report the standardized pooled estimate for the risk difference and the Mantel-Haenszel pooled estimate (M-H combined) for the RR  
+  
+__4.) Calculate the Risk Ratio for mortality in association with `bord5` within each covariable stratum__  
+
+  a)  Extract the risk ratios and confidence intervals from epi.2by2() (TODO) object
+  b)  Extract the homogeneity test statistic and p-value for each covariate listed in part 1a-1d
+  To get the stratified and pooled estimates and p-values, run the epi.2by2() command. For pooled and crude estimates for risk difference, you will need to access the following values within your epi.2by2 object:  
+  *  value 1  
+  *  value 2  
+  *  value 3  
+  c) For each covariable listed above, report the Mantel-Haenszel pooled estimate (M-H combined) for the RR 
+
+
+### Task 2.1: Frequency counts and risk
+
+We've been using `dplyr` commands like `filter()`, `group_by()`, `summarize()`, and `count()` to generate strata-specific frequency counts [since Lab 1](https://dghi-biostat.github.io/biostatlab/lab_1.html#task-5-frequency-table-table-1). 
+
+Since this lab has us dealing with 3 different stratifying variables at a time, `group_by()` is especially useful, since we can list all stratifying variables in `group_by()`, then count the variables with `count()`. 
+
+As a quick example, we could use the `mtcars` dataset to see how many cars in the dataset have each individual combination of number of cylinders (`cyl`), gears (`gear`), and transmission types (`am`): 
+
+```{r echo = TRUE, eval = FALSE}
+mtcars %>%
+  group_by(am, cyl, gear) %>%
+  count()
+```
+
+```{r eval = TRUE}
+kable(mtcars %>%
+  group_by(am, cyl, gear) %>%
+  count())
+```
+
+To take within-group proportions (read: RISK), we can add a pipe (`%>%`) and `mutate()` function to the end of the last chunk of code. Since our observations are still implicitly in groups from our call to `group_by()`, we need to re-group, this time only by the first two variable levels, `am` and `cyl`. Taking the sum, `sum()` of `n` will then give us the within-group sum. Dividing `n` by `sum(n)` thus gives us within group proportions. For example, this will tell us the proportion of automatic (`am == 1`), 4-cylinder (`cyl == 4`) vehicles that have either 3 gears and 4 gears. When we run that code below, we see that a third of the vehicles in that particular grouping have 3 gears, and two-thirds have 4 gears:
+
+```{r echo = TRUE, eval = FALSE}
+mtcars %>%
+  group_by(am, cyl, gear) %>%
+  count() %>% 
+  group_by(am, cyl) %>%
+  mutate(proportion = n/sum(n))
+```
+
+```{r eval = TRUE}
+kable(mtcars %>%
+  group_by(am, cyl, gear) %>%
+  count() %>% 
+  group_by(am, cyl) %>%
+  mutate(proportion = n/sum(n)))
+```
+
+
+
+### Task 2.2: Create `epi.2by2()` (TODO) object with `table()` and `flipTable()`
+
+Remember `mAssoc()` from lab 3? Well, surprise! `mAssoc()` is what we call a "wrapper" function for `epi.2by2()`. It means exactly what it sounds like-- `mAssoc()` wraps around `epi.2by2()`, using its functionality for a different purpose. 
+
+In the previous lab(TODO: Add link), we used `mAssoc()` to generate measures of association for a single two-way tabulation with multiple index levels in the exposure of interest.
+
+For this lab, `epi.2by2()` satisfies most of our needs: when given a two-way `table()` object that is stratified by a third variable, it returns crude and adjusted pooled measures of association. What does that mean?
+
+You might think of a "pooled estimate" as essentially a weighted average of the individual strata's measures of assocation: a crude pooled risk difference is an average of risk differences across strata, weighted according to the `n` of each subgroup. (TODO: is it?)
+
+For this lab, we are only interested in the adjusted estimates ("M-H").
+
+Just like `mAssoc()`, `epi.2by2()` requires a table object with the cross-tabulation of the exposure and outcome of interest in the top left corner of the table. That being the case, you need to create a table object with `table()`, flip it with `flipTable()`, and then feed that flipped table object to the function `epi.2by2()`. 
+
+`epi.2by2()` requires a few more arguments. We should specify the following:
+
+```{r echo = TRUE, eval = FALSE} 
+
+epi.2by2(tableObject, # our table object
+         
+         method = "cohort.count", # specifies the type of study we're evaluating -- impacts the weighting of subgroups in the pooled estimates (TODO: does it?)
+         
+         unit = 1, # this allows our measures of risk (including risk difference) to be reported as "per person" rather than "per 100", which would be the default
+         
+         conf.level = .95 # this is the default, but it's always good to remind ourselves of our confidence level)
+         )
+
+```
+
+
+### Task 2.3: Risk differences, tests of homogeneity, and pooled estimates
+
+Once you've created your `epi.2by2` object, you can call it from the environment to print it. The printed output will give you M-H pooled estimates of risk difference with accompanying confidence intervals. 
+
+But we are interested in reporting risk differences to three decimals. We can dig into the object with `$` to locate the exact measures of risk difference.
+
+<aside> See [this link](TODO: insert link) if you are still uncertain about the functionality of `$`</aside>
+
+#### Risk difference
+
+To access the risk differences of individual strata, use the following path to refer to that exact component of your `epi.2by2` object:
+
+```{r eval = FALSE, echo = TRUE}
+
+object$massoc.detail$ARisk.strata.wald
+
+```
+
+You'll notice that this returns an estimate for each strata. Our table, however, asks for two estimates for each strata. What gives??
+
+Since we have pre-defined "referent" and "index" levels, with a risk difference defined as "the level of interest minus the referent level", what's the result when our referent level is also our level of interest? 
+
+#### Test of homogeneity
+
+Inconveniently, to test for homogeneity between the risk differences within our various substrata, we need to run a separate command. If your original `flipTable` object is properly oriented, it should suffice. Use your `flipTable` as an argument in the function `epiHomog()` to return the test statistic and p-value of for a test of homogeneity at a significance level of 0.05:
+
+```{r eval = FALSE, echo = TRUE}
+
+epiHomog(flippedTable)
+
+```
+
+#### Mantel-Haenszel pooled estimate of RD
+
+Finally, we want the pooled estimate of risk difference. Since we need to report it to three decimal points, as per [lab submission guidelines](TODO: insert link) on rounding, we need to reach into our `epi.2by2` object and find that Mantel-Haenszel pooled estimate. You can access it by calling the following path:
+
+```{r eval = FALSE, echo = TRUE}
+
+object$massoc.detail$ARisk.mh.wald
+
+```
+
+
+
+
+### Task 2.4: Risk ratios, tests of homogeneity, and pooled estimates
+
+The process for obtaining risk ratios, test statistic for homogeneity between strata, and pooled estimates is very similar to that of obtaining risk differences. Except this time, we don't need a separate function for finding the test of homogeneity -- `epi.2by2` generates the test statistic for homogeneity of risk ratios itself. Perhaps it's safe to understand this as meaning that testing for homogeneity on stratified risk ratios is a more common practice within the fields of epi and biostatistics. Nonetheless, it's helpful to see how significance tests might differ according to which measure of association is being used.
+
+<aside>(TODO: add link to article on weighted least squares equation for homogeneity test on risk differences) </aside>
+
+(TODO: is there also a reason pertaining to confounding/EMM for why we'd want to test for homogeneity across stratified risk differences?)
+
+#### Risk ratios
+
+To extract risk ratios from an `epi.2by2` object, you can use the following path:
+
+```{r eval = FALSE, echo = TRUE}
+
+object$massoc.detail$RR.strata.wald
+
+```
+
+Again, when you're finding these risk ratios, consider what we're asking for in the table when we request the risk ratio of the referent group as it pertains to the referent group. What does it amount to when we take the ratio of something on itself?
+
+#### Test of homogeneity
+
+The test of homogeneity for risk ratios is available in the following location within our `epi.2by2` object
+
+```{r eval = FALSE, echo = TRUE}
+
+object$massoc.detail$wRR.homog
+
+```
+
+#### Mantel-Haenszel pooled estimate of RR
+
+The the Mantel-Haenszel pooled estimate appears in the printed output when you call your `epi.2by2` object from the environment, and is titled "Inc risk ratio (M-H)". However, this is only reported to two decimals. To access the actual value instead of the rounded one, you can look for it in the following place within your `epi.2by2` object:
+
+```{r eval = FALSE, echo = TRUE}
+
+object$massoc.detail$RR.mh.wald
+
+```
 
 
 
