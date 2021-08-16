@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-13"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-13"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-08-16"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-16"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: Lab 0"/>
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Lab 0"]},{"type":"character","attributes":{},"value":["Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset. \n"]},{"type":"character","attributes":{},"value":["2021-08-13"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Lab 0"]},{"type":"character","attributes":{},"value":["Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset. \n"]},{"type":"character","attributes":{},"value":["2021-08-16"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2397,7 +2397,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Lab 0","description":"Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset.","authors":[],"publishedDate":"2021-08-13T00:00:00.000-04:00"}
+{"title":"Lab 0","description":"Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset.","authors":[],"publishedDate":"2021-08-16T00:00:00.000-05:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2479,7 +2479,7 @@ Lab Assignments
 <li><a href="#lab-materials">LAB MATERIALS:</a></li>
 <li><a href="#lab-0-goals">Lab 0 Goals:</a></li>
 <li><a href="#task-1-establish-a-workflow">Task 1: Establish a workflow</a></li>
-<li><a href="#create-folders-to-store-your-work">Create folders to store your work</a>
+<li><a href="#create-folders-directories-and-projects-to-store-your-work">Create folders (directories!) and projects to store your work</a>
 <ul>
 <li><a href="#create-a-new-project-in-rstudio">Create a New Project in RStudio</a></li>
 </ul></li>
@@ -2492,8 +2492,8 @@ Lab Assignments
 <li><a href="#task-4-load-data">Task 4: Load data</a></li>
 <li><a href="#task-5-explore-the-dataframe">Task 5: Explore the dataframe</a></li>
 <li><a href="#task-6-create-variable-mage">Task 6: Create variable mage</a></li>
-<li><a href="#task-7-frequency-distributions-of-mage">Task 7: Frequency distributions of mage</a></li>
-<li><a href="#task-8-create-variable-magec">Task 8: Create variable magec</a></li>
+<li><a href="#task-7-frequency-distributions-of-mage">Task 7: Frequency distributions of <code>mage</code></a></li>
+<li><a href="#task-8-create-variable-magec">Task 8: Create variable <code>magec</code></a></li>
 <li><a href="#task-9-cross-tab-of-mage-and-magec">Task 9: Cross-tab of <code>mage</code> and <code>magec</code></a>
 <ul>
 <li><a href="#method-1">Method 1:</a></li>
@@ -2506,7 +2506,7 @@ Lab Assignments
 <p><strong><em>Note: This lab is not graded</em></strong> (i.e. does not contribute to your course evaluation, so don’t fret)</p>
 <h3 id="lab-materials">LAB MATERIALS:</h3>
 <ul>
-<li><p><a href="assignments/lab0_705_fall2021.Rmd">R Markdown file for Lab 0.__</a> Click link to download. Fill it in with your answers to the following lab tasks. Once you’re finished, rename it as <code>firsInitial_YourLastName_Lab0.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
+<li><p><a href="assignments/lab0_705_fall2021.Rmd"><strong>R Markdown file for Lab 0.</strong></a> Click link to download. Fill it in with your answers to the following lab tasks. Once you’re finished, rename it as <code>firsInitial_YourLastName_Lab0.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
 <li><p>Lab_0_kenya.rds - data file available on Sakai</p></li>
 </ul>
 <h3 id="lab-0-goals">Lab 0 Goals:</h3>
@@ -2515,48 +2515,52 @@ Lab Assignments
 <li>Start a new project and import data</li>
 <li>Understand useful R terminology</li>
 <li>Use summary statistics to describe the Kenya dataset</li>
-<li>Create a categorical variable using a continuous one</li>
+<li>Derive a categorical variable using a continuous one</li>
 <li>Generate histograms and boxplots using ggplot2</li>
 <li>Create a simple cross-tabulation of two variables</li>
 </ul>
 <h2 id="task-1-establish-a-workflow">Task 1: Establish a workflow</h2>
-<p>In R, we organize our work by projects. It is best practice to keep no more than one project in any single folder on your computer. First, we should establish the file folders from which we’ll be working.</p>
-<h2 id="create-folders-to-store-your-work">Create folders to store your work</h2>
+<p>In R, we organize our work by projects. It is best practice to keep no more than one project in any single folder on your computer. First, we should establish the file folders from which we’ll be working. <strong>This should always be your first step when beginning an analysis.</strong></p>
+<h2 id="create-folders-directories-and-projects-to-store-your-work">Create folders (directories!) and projects to store your work</h2>
 <p>If you haven’t already, now would be a good time to:</p>
 <ol type="1">
-<li>Create a new folder on your computer called “705 Lab”.</li>
+<li>Create a new folder on your computer, calling it “705 Lab”.</li>
 <li>Within that folder, create a folder for this lab, called “Lab 0”.</li>
 <li>Finally, within that folder, create a folder for your data, called “data”</li>
-<li>Save the dataset titled Lab_0_kenya.rds (from Sakai) into the folder called “data”</li>
+<li>Save the dataset titled <code>Lab_0_kenya.rds</code> (downloaded from Sakai) into the folder called “data”</li>
 </ol>
+<aside>
+<p>The resulting file path for your data file should look like this:</p>
+<strong>“/705 Lab/Lab 0/data/Lab_0_kenya.rds”</strong>
+</aside>
 <p><strong>Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep <em>you</em> happy.</strong></p>
 <h3 id="create-a-new-project-in-rstudio">Create a New Project in RStudio</h3>
 <p>Now open RStudio and take a deep breath. Don’t panic. This will all be very familiar in a few short months.</p>
 <p>Initiate a new project by going to <strong><em>File</em></strong> and clicking <strong><em>New Project</em></strong>.</p>
-<p>TODO: INSERT SCREENSHOT</p>
-<p>Then select <strong><em>Existing Directory</em></strong> and hit <strong><em>Browse</em></strong>. Navigate to the folder titled <strong>Lab 0</strong>. Open it, then hit <strong><em>Open</em></strong>.</p>
+<p><img src="images/newproject.png" alt="Creating a new project" /> Then select <strong><em>Existing Directory</em></strong> and hit <strong><em>Browse</em></strong>. Navigate to the folder titled <strong>Lab 0</strong>. Open it, then hit <strong><em>Open</em></strong>.</p>
+<p>If you’ve done this correctly, you</p>
 <h2 id="task-2-familiarize-yourself-with-r-markdown">Task 2: Familiarize yourself with R Markdown</h2>
-<p>Now, you will open a special kind of document known as “R Markdown”. This is a text editor (like Word or Google Docs), but with a twist. You can run code <em>within the document</em>. This makes data analysis an interactive, iterative (and therefore fun?) process that usually looks like this:</p>
+<p>Now, you will open a special kind of document known as “R Markdown”. This is a text editor (like Word or Google Docs), but with a twist. You can run code <em>within the document</em>. This makes data analysis an interactive, iterative (and therefore fun?) process that usually proceeds as follows:</p>
 <ol type="1">
-<li>Write some code intended to transform your data</li>
+<li>Write some code to transform your data</li>
 <li>Run the code</li>
 <li>Observe how your dataset behaved</li>
-<li>(Optional) Take a few notes</li>
+<li>Take a few notes (because Science)</li>
 <li>Tweak code</li>
 <li>Repeat</li>
 </ol>
-<p>For each lab, we will provide you with a skeleton Markdown file on Sakai. If you haven’t already, download that file (“lab0_705_fall2021.Rmd”) and save it to your folder called “Lab 0”.</p>
-<p>Now open the file in RStudio. You can just double-click on it from the file folder. It will appear, but might feel a little pinched. Luckily, RStudio allows Markdowns to pop-out.</p>
-<p>Click the white square at the top of the file that (circled in red in the photo below) to do just that:</p>
+<p>For each lab, we will provide you with a skeleton Markdown file on Sakai. If you haven’t already, download that file (“lab0_705_fall2021.Rmd”, available at the top of this page) and save it to your folder named “Lab 0”.</p>
+<p>Now open the file in RStudio. You can just double-click on it from the file folder. It will appear in the RStudio window pane, but might feel a little pinched. Luckily, RStudio allows Markdowns to pop-out.</p>
+<p>Click the white square at the top of the Lab 0 document (circled in red in the photo below) to do just that:</p>
 <figure>
 <img src="images/popout.png" alt="Pop-out" /><figcaption aria-hidden="true">Pop-out</figcaption>
 </figure>
 <h2 id="task-3-load-packages-and-data">Task 3: Load packages and data</h2>
 <h3 id="installing-packages">Installing packages</h3>
-<p>Packages are collections of functions. As we’ll see shortly, we use functions as code to view, manipulate, and analyze our data.</p>
+<p>Packages are collections of functions. As we’ll see shortly, we use functions as code to inspect, manipulate, and analyze our data. They are the verbs of the R language.</p>
 <p>There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.</p>
 <p>Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like <a href="https://cran.r-project.org/web/packages/">the Comprehensive R Archive Network (CRAN for short)</a> and <a href="https://github.com/">GitHub</a>.</p>
-<p>Lucky for us, packages are easily retrieved from the R Console. If you haven’t already, run the following code from your console to download the packages that we’ll be needing for this semester:</p>
+<p>Lucky for us, packages are easily retrieved from the R Console. If you haven’t already, run the following code from your console to download the packages that we’ll be needing for this semester. You should only ever have to do this once:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span><span class='op'>)</span>
@@ -2568,7 +2572,7 @@ Lab Assignments
 </div>
 </div>
 <h3 id="load-libraries">Load libraries</h3>
-<p>To enable R to use a package’s functions in our current project environment, we need to load the packages using the <code>library()</code> function.</p>
+<p>Unlike installing packages, every time we open R, we need to enable a package’s use in the R environment. To enable R to use a specific package’s functions in our current environment, we can load the packages using the <code>library()</code> function.</p>
 <p>In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2577,11 +2581,11 @@ Lab Assignments
 </code></pre>
 </div>
 </div>
-<p><strong>Notice that when we install packages, we need to specify their names using quotes, but when we load them into R using <code>library()</code>, R recognizes them as package objects automatically, and so don’t need quotes. You can surround them with quotes and it will load all the same.</strong></p>
+<p><strong>Notice that when we install packages, we need to specify their names using quotes, but when we load them into the R environment using <code>library()</code>, R recognizes them as package objects automatically, and so don’t require quotes.</strong></p>
 <h2 id="task-4-load-data">Task 4: Load data</h2>
-<p>You will use the dataset Lab_0_kenya.rds for this lab. You’ve hopefully already saved this lab’s dataset to the folder Lab 0 &gt; data. You will use the function readRDS() to import the data file from your computer’s folder.</p>
-<p>Since our project is located within the folder called “Lab 0”, our computer will automatically look within that folder for the data.</p>
-<p>All we need to do is specify that it’s in the folder called “data”.</p>
+<p>You will use the dataset Lab_0_kenya.rds for this lab. You’ve hopefully already saved this lab’s dataset to the folder <strong>Lab 0 &gt; data</strong>. You will use the function <code>readRDS()</code> to import the data file from your computer’s folder.</p>
+<p>Since our project is located within the folder called <strong>“Lab 0”</strong>, our computer will automatically look within that folder for the data.</p>
+<p>Within our function, all we need to do is specify the file name, and that it’s in the folder called <strong>“data”</strong>.</p>
 <p>Use the following code to load your data into R and give it the name <code>kenya</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2605,19 +2609,15 @@ Lab Assignments
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>fruit</span>, <span class='st'>"are orange"</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] "oranges are orange"  "papayas are orange"  "apricots are orange"</span>
+
+<span class='va'>number</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='co'>#&gt; [1] 100</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span><span class='op'>(</span><span class='va'>logical</span><span class='op'>)</span>
+<span class='co'>#&gt; [1] FALSE</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;oranges are orange&quot;  &quot;papayas are orange&quot;  &quot;apricots are orange&quot;</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>number</span> <span class='op'>+</span> <span class='fl'>1</span>
-</code></pre>
-</div>
-<pre><code>[1] 100</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span><span class='op'>(</span><span class='va'>logical</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] FALSE</code></pre>
 </div>
 <p>We’ve done the same thing with our dataset, giving it the name <code>kenya</code>. Use the function <code>head()</code> to view the first six rows in the dataset:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2633,51 +2633,59 @@ Lab Assignments
 <li><strong>Are there any variable or value labels?</strong></li>
 <li><strong>Do any variables have notes?</strong></li>
 </ul>
-<p>Similar to the function <code>head()</code>, we can feed our <code>kenya</code> data frame to various functions that tell us other useful information about it.</p>
+<p>Similar to the function <code>head()</code>, we can feed our <code>kenya</code> data frame to various functions that tell us other useful information about it. You can use <code>$</code> in the format <code>[datasetName]$[variableName]</code> to refer to a specific variable/column within a dataset.</p>
 <p>Use <code>ncol()</code> to print the number of columns in our data frame</p>
 <p>Use <code>nrow()</code> to print the number of rows</p>
-<p>Use <code>class()</code> to view each variable’s “type”</p>
 <p>Use <code>names()</code> to view each variable’s name.</p>
+<p>Use <code>class()</code> to view each variable’s “type”</p>
 <p>Use <code>skim()</code> to print summary statistics for each variable in the data frame</p>
 <h2 id="task-6-create-variable-mage">Task 6: Create variable mage</h2>
-<p>Using a pipe and the <code>mutate()</code> function, create a new variable, <code>mage</code> for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). This is calculated from variables b3 (month code of child’s birth) and v011 (month code of mother’s birth). The difference between the values of these variables is months, so divide by 12 to get years. See the data dictionary for a more detailed description of month codes and how to use them. Use the <code>as.integer()</code> function within your <code>mutate()</code> operation to truncate the calculated values for mage to integers.</p>
+<p>Using a pipe and the <code>mutate()</code> function, create a new variable, <code>mage</code> for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children).</p>
+<p>This is calculated from variables <code>b3</code> (month code of child’s birth) and <code>v011</code> (month code of mother’s birth). The difference between the values of these variables is months, so <strong>divide by 12 to get years</strong>. See the data dictionary for a more detailed description of month codes and how to use them. Use the <code>as.integer()</code> function within your <code>mutate()</code> operation to truncate the calculated values for <code>mage</code> to integers.</p>
 <p>The <code>mutate()</code> function works with the following syntax.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># don't forget to write over your old dataframe with the new "mutated" one</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># don't forget to write over your old dataframe with the new "mutated" one with `&lt;-`</span>
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>newVariableName <span class='op'>=</span> <span class='op'>(</span><span class='va'>Variable1</span> <span class='op'>-</span> <span class='va'>Variable2</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<h2 id="task-7-frequency-distributions-of-mage">Task 7: Frequency distributions of mage</h2>
+<h2 id="task-7-frequency-distributions-of-mage">Task 7: Frequency distributions of <code>mage</code></h2>
 <p>Suppose you want to break down <code>mage</code> into three categories. First, look at the frequency distribution (one-way frequency table) for <code>mage</code> to see where you might draw lines for your categories using the <code>table()</code> command.</p>
 <p><code>table()</code> works by identifying unique values within a variable, and then counts them.</p>
 <p>It works on character variables, categorical (factor) variables, and even numbers.</p>
-<p>We can tell R to look at specific variables inside our dataframe with the <code>$</code> sign. The syntax looks like this: <code>dataframeName$variableName</code></p>
+<p>As was mentioned earlier, we can tell R to look at specific variables inside our dataframe with the <code>$</code> sign. The syntax looks like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dataframeName</span><span class='op'>$</span><span class='va'>variableName</span>
+</code></pre>
+</div>
+</div>
 <p>We must also provide the argument <code>useNA = 'always'</code> to our <code>table()</code> function in order to include NA values in the tabulation.</p>
 <p>Use <code>table()</code> to look at <code>mage</code>, then consider the following questions:</p>
 <ul>
 <li>Are there any missing values for age? If so, how many?</li>
-<li>Which range of ages appear the most frequently in mage?</li>
+<li>Which range of ages appear the most frequently in <code>mage</code>?</li>
 </ul>
-<h2 id="task-8-create-variable-magec">Task 8: Create variable magec</h2>
-<p>Using <code>mage</code>, generate a new variable with three categories: &lt;18, 18-39, and ≥ 40, naming the new variable <code>magec</code> (__m__other’s <strong>age</strong> __c__ategorical). Set the values for <code>magec</code> to be 0,1,2, where 0 corresponds to the youngest age group (&lt;18). Recommended steps:</p>
-<ul>
-<li>First, don’t forget to use the assignment operator to save your changes to the <code>kenya</code> data frame.</li>
-<li>Then, use a pipe (%&gt;%) and then <code>mutate()</code> to create a new variable, magec,</li>
-<li>within your <code>mutate()</code> command, use <code>case_when()</code> to create a series of conditional statements that assign numbers 0, 1, and 2 to each category</li>
-<li>on a new line of code, use <code>factor()</code> to assign labels to each level of your new variable</li>
-<li>Values:</li>
-<li>0: &lt;18</li>
-<li>1: 18-39</li>
-<li>2: ≥ 40</li>
-</ul>
+<h2 id="task-8-create-variable-magec">Task 8: Create variable <code>magec</code></h2>
+<p>Using <code>mage</code>, generate a new variable with three categories: “&lt;18”, “18-39”, and “≥ 40”, naming the new variable <code>magec</code> ( {m}other’s {age} {c}ategorical). Set the values for <code>magec</code> to be 0,1,2, where 0 corresponds to the youngest age group (&lt;18).</p>
+<p>We recommend you do this in the following steps steps:</p>
+<ol type="1">
+<li>First, don’t forget to use the assignment operator to save your changes to the <code>kenya</code> data frame.<br />
+</li>
+<li>Then, use a pipe (%&gt;%) and then <code>mutate()</code> to create a new variable, magec,<br />
+</li>
+<li>within your <code>mutate()</code> command, use <code>case_when()</code> to create a series of conditional statements that assign numbers 0, 1, and 2 to each category<br />
+</li>
+<li>On a new line of code, use <code>factor()</code> to assign labels to each level of your new variable</li>
+</ol>
+<p>Values: + 0: &lt;18 + 1: 18-39 + 2: ≥ 40</p>
 <p>Convert a variable to a factor with the following syntax:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dataframe</span><span class='op'>$</span><span class='va'>variableYouWantToFactor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>dataframe</span><span class='op'>$</span><span class='va'>variableYouWantToFactor</span>,
-                                            labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Label for 0"</span>, <span class='st'>"Label for 1"</span>, <span class='st'>"Label for 2"</span><span class='op'>)</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span><span class='op'>$</span><span class='va'>variableYouWantToFactor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>variableYouWantToFactor</span>,
+                                       labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Label for 0"</span>, <span class='st'>"Label for 1"</span>, <span class='st'>"Label for 2"</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2711,7 +2719,7 @@ Lab Assignments
 <p>“Take dataset, <code>data</code>, <strong>and then</strong> <code>group_by</code> by variable <code>x</code>, then within those groups, group by variable <code>y</code>, <strong>and then</strong> <code>count</code> the values in each of our groups.”</p>
 <p><a href="https://cfss.uchicago.edu/notes/pipes/">Here’s a link</a> to learning more about pipes. Or just take a look at this tweet:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_0_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+<p><img src="lab_0_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
 <h2 id="task-10-save-new-dataset">Task 10: Save new dataset</h2>
 <p>Using function <code>saveRDS()</code>, save the new dataset in the same directory as our original data, using the following format: “firstInitial_YourLastName_lab0.rds”</p>
@@ -2725,7 +2733,7 @@ Lab Assignments
 <li>The file locations should be in quotes, so that R knows to read it as a character string</li>
 <li>Your file should be saved in your local Lab 0 folder, <code>data/</code></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

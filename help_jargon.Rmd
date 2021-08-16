@@ -85,6 +85,34 @@ As another example, the function `head()` takes two main arguments, an object, `
 
 Go to the help documentation for `head()` (?head) and find what its default is. Or maybe you already have noticed its default when you've run `head()` in your labs.
 
+### assignment operator
+
+The `<-` is called the __*Assignment Operator*__. We can use it to assign names to objects in our coding environment:
+
+We can use our assignment operator for characters, numbers, logical operators, etc.:
+
+```{r create var, echo = TRUE, eval = FALSE}
+fruit <- c("oranges", "papayas", "apricots")
+
+number <- 99
+
+logical <- FALSE
+```
+
+Now that the above values are stored in our environment, we can use them in other functions or operations:
+
+```{r operate var, echo = TRUE, eval = FALSE}
+paste(fruit, "are orange", sep = " ")
+#> [1] "oranges are orange"  "papayas are orange"  "apricots are orange"
+
+number + 1
+#> [1] 100
+
+isTRUE(logical)
+#> [1] FALSE
+
+```
+
 ### base R
 
 These are functions that are a part of the original R programming language, and so do not require a call to a package using `library()`.
