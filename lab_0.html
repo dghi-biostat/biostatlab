@@ -93,8 +93,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-16"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-16"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-08-24"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-24"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: Lab 0"/>
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Lab 0"]},{"type":"character","attributes":{},"value":["Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset. \n"]},{"type":"character","attributes":{},"value":["2021-08-16"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Lab 0"]},{"type":"character","attributes":{},"value":["Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset. \n"]},{"type":"character","attributes":{},"value":["2021-08-24"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2186,18 +2186,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       #12BBAC;
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #616c6b;
   }
 
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
 
+  /* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
+
+  code {
+    font-family: 'Fira Code', monospace;
+  color: #AC12BB; 
+  background: #F4F3EE; 
+    font-weight: 600;
+    font-size: 0.8em;
+  }
 
   /* following is custom settings to make the cat bigger, commented out bc Nour had problems with it */
-  /*.distill-site-header .logo img {
+  *.distill-site-header .logo img {
       display: inline-block;
       width: 60px;
       height: 60px;
@@ -2397,7 +2406,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Lab 0","description":"Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset.","authors":[],"publishedDate":"2021-08-16T00:00:00.000-05:00"}
+{"title":"Lab 0","description":"Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset.","authors":[],"publishedDate":"2021-08-24T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2450,7 +2459,7 @@ Lab Assignments
 <a href="submit.html">Submission Guidelines</a>
 <a href="fun_dict.html">Function Dictionary</a>
 <a href="data_dict.html">Data Dictionary</a>
-<a href="TODOlinktopiazza.html">Piazza</a>
+<a href="broken.html">Broken Code</a>
 <a href="about.html">About</a>
 <a href="https://github.com/dghi-biostat/biostatlab">
 <i class="fab fa-github" aria-hidden="true"></i>
@@ -2507,7 +2516,7 @@ Lab Assignments
 <h3 id="lab-materials">LAB MATERIALS:</h3>
 <ul>
 <li><p><a href="assignments/lab0_705_fall2021.Rmd"><strong>R Markdown file for Lab 0.</strong></a> Click link to download. Fill it in with your answers to the following lab tasks. Once you’re finished, rename it as <code>firsInitial_YourLastName_Lab0.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
-<li><p>Lab_0_kenya.rds - data file available on Sakai</p></li>
+<li><p>“Lab_0_kenya.rds” - data file available on Sakai</p></li>
 </ul>
 <h3 id="lab-0-goals">Lab 0 Goals:</h3>
 <p>By the end of this lab, you will have demonstrated a basic familiarity with the R coding environment and R Markdown files. You will be able to:</p>
@@ -2717,7 +2726,7 @@ Lab Assignments
 </div>
 <p>A translation of the above code to written instructions would go as follows, where bolded words represent the grammatical equivalent of our pipe, <code>%&gt;%</code>:</p>
 <p>“Take dataset, <code>data</code>, <strong>and then</strong> <code>group_by</code> by variable <code>x</code>, then within those groups, group by variable <code>y</code>, <strong>and then</strong> <code>count</code> the values in each of our groups.”</p>
-<p><a href="https://cfss.uchicago.edu/notes/pipes/">Here’s a link</a> to learning more about pipes. Or just take a look at this tweet:</p>
+<p><a href="https://cfss.uchicago.edu/notes/pipes/">Here’s a link</a> if you’re interested in learning more about pipes. Or just take a look at this tweet:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="lab_0_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
@@ -2748,7 +2757,13 @@ Lab Assignments
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>GLHLTH 705 lab materials adapted to R from original labs written by Dr. Larry Park</p>
+<p>Materials and website built using R version 4.1.0 and R Studio v1.4.1717</p>
+<p>Cat icon designed by 699pic at <a href="https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&amp;id=bef">pngtree.com</a></p>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

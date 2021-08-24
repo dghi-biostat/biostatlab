@@ -9,7 +9,21 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-(TODO: Names and bios?)
+### Larry
+
+```{r fig.link = 'https://chirpforbirds.com/wild-bird-resources/celebrate-independence-with-americas-bird-the-bald-eagle/'}
+knitr::include_graphics('images/larry.png')
+```
+
+Larry has been growing out his hair.
+
+### Nour
+
+```{r out.width = '60%', fig.link = 'https://www.southernliving.com/news/monarch-butterfly-migration-texas-2019'}
+knitr::include_graphics('images/nour.png')
+```
+
+Nour, in cosplay as a butterfly. Pretty spot on, eh?
 
 ### Nathan
 
@@ -18,3 +32,11 @@ knitr::include_graphics('images/potato.png')
 ```
 
 Nathan is a professional potato.
+
+### The Catscot
+
+```{r out.width = '45%'}
+knitr::include_graphics('images/logo.png')
+```
+
+Our little mascot in the upper-left hand corner was Designed courtesy of 699pic at [pngtree.com](https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&id=bef)

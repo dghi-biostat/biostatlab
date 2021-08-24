@@ -1,0 +1,36 @@
+---
+title: "Broken Code"
+output: 
+  distill::distill_article:
+    toc: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Some tips for code that won't run
+
+`Don't hesitate` to ask for help if you are having problems with software, code, etc. But be warned, your question should be specific and detailed, not just "Why won't this line of code run?"
+
+```{r echo = TRUE}
+1 + 1
+```
+
+
+In my experience, unsent emails are sometimes better (and faster) than a TA. What looks like a hairy knot in your code is often quick to untangle when you start putting things in writing. This is why we ask that any email you send be both detailed and  specific. 
+
+Here are some other things that may help in getting your code to work:
+
+* Check that you haven't mixed up `==` and `=`  
+* Go for a walk (seriously, maybe you've been sitting for too long)  
+* Google your error message -- there's almost always someone else who has encountered a similar problem  
+* Don't delete and make changes to the same line of code. Copy/paste into a new chunk. Formulate a hypothesis. Make changes. Take notes on what changed. Revise your hypothesis. Repeat.  
+* Learn the [R Debugger](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE#debugging-in-r-markdown-documents)  (The code for 705's lab probably won't need the debugger, but if you're getting deep into things, ask Nathan about it)
+
+You might also flip through [this article on commmon problems in R Markdown](https://rmd4sci.njtierney.com/common-problems-with-rmarkdown-and-some-solutions.html), which might provide some answers. 
+
+
+
+
+

@@ -2183,18 +2183,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       #12BBAC;
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #616c6b;
   }
 
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
 
+  /* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
+
+  code {
+    font-family: 'Fira Code', monospace;
+  color: #AC12BB; 
+  background: #F4F3EE; 
+    font-weight: 600;
+    font-size: 0.8em;
+  }
 
   /* following is custom settings to make the cat bigger, commented out bc Nour had problems with it */
-  /*.distill-site-header .logo img {
+  *.distill-site-header .logo img {
       display: inline-block;
       width: 60px;
       height: 60px;
@@ -2447,7 +2456,7 @@ Lab Assignments
 <a href="submit.html">Submission Guidelines</a>
 <a href="fun_dict.html">Function Dictionary</a>
 <a href="data_dict.html">Data Dictionary</a>
-<a href="TODOlinktopiazza.html">Piazza</a>
+<a href="broken.html">Broken Code</a>
 <a href="about.html">About</a>
 <a href="https://github.com/dghi-biostat/biostatlab">
 <i class="fab fa-github" aria-hidden="true"></i>
@@ -2473,16 +2482,33 @@ Lab Assignments
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#larry">Larry</a></li>
+<li><a href="#nour">Nour</a></li>
 <li><a href="#nathan">Nathan</a></li>
+<li><a href="#the-catscot">The Catscot</a></li>
 </ul>
 </nav>
 </div>
-<p>(TODO: Names and bios?)</p>
+<h3 id="larry">Larry</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://chirpforbirds.com/wild-bird-resources/celebrate-independence-with-americas-bird-the-bald-eagle/" target="_blank"><img src="images/larry.png" width="356" /></a></p>
+</div>
+<p>Larry has been growing out his hair.</p>
+<h3 id="nour">Nour</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://www.southernliving.com/news/monarch-butterfly-migration-texas-2019" target="_blank"><img src="images/nour.png" width="60%" /></a></p>
+</div>
+<p>Nour, in cosplay as a butterfly. Pretty spot on, eh?</p>
 <h3 id="nathan">Nathan</h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/potato.png" width="155" /></p>
 </div>
 <p>Nathan is a professional potato.</p>
+<h3 id="the-catscot">The Catscot</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/logo.png" width="45%" /></p>
+</div>
+<p>Our little mascot in the upper-left hand corner was Designed courtesy of 699pic at <a href="https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&amp;id=bef">pngtree.com</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2498,7 +2524,13 @@ Lab Assignments
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>GLHLTH 705 lab materials adapted to R from original labs written by Dr. Larry Park</p>
+<p>Materials and website built using R version 4.1.0 and R Studio v1.4.1717</p>
+<p>Cat icon designed by 699pic at <a href="https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&amp;id=bef">pngtree.com</a></p>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

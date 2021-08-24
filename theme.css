@@ -70,18 +70,27 @@ d-appendix {
 
 
 .distill-site-footer {
-  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-color:       #12BBAC;
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #0F2E3D;
+  --bkgd-color:       #616c6b;
 }
 
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
+/* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
+
+code {
+  font-family: 'Fira Code', monospace;
+color: #AC12BB; 
+background: #F4F3EE; 
+  font-weight: 600;
+  font-size: 0.8em;
+}
 
 /* following is custom settings to make the cat bigger, commented out bc Nour had problems with it */
-/*.distill-site-header .logo img {
+*.distill-site-header .logo img {
     display: inline-block;
     width: 60px;
     height: 60px;

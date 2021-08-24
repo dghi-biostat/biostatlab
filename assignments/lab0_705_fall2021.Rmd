@@ -1,13 +1,14 @@
 ---
-title: 'Lab 0 - Kenya, Due: (TODO)____'
-author: "YOUR NAME HERE"
-date: "'r Sys.Date()'"
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday Setpember 17, 2021"
+author: "[YOUR NAME HERE"
+date: "8/22/2021"
 output: html_document
 ---
 
 # Lab 0 {.tabset}
 
-## Task 1: Establsih a workflow
+## Task 1: Establish a workflow
 
 Open RStudio. Click File > New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.
 
@@ -18,10 +19,10 @@ Open RStudio. Click File > New Project. Hit “Existing Directory” and then �
 
 a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3b directly.
 
-`install.packages("tidyverse")`
-`install.packages("skimr")`
-`install.packages("epiR")`
-`install.packages("devtools")`
+`install.packages("tidyverse")`  
+`install.packages("skimr")` 
+`install.packages("epiR")`  
+`install.packages("devtools")`  
 `devtools::install_github("potato-nathan/epiAssist")`
 
 b. Load libraries:
@@ -36,6 +37,7 @@ In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the fo
 
 ```{r load libraries}
 # load library {tidyverse}
+
 
 # now load library {skimr}
 
@@ -133,10 +135,16 @@ Recommended steps:
 
 Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.
 
-```{r cross-tab mage and magec}
+```{r table cross-tab}
 # create a cross-tabulation of your new variables with table()
 
 ```
+
+```{r tidyverse cross-tab}
+# generate cross-tabulated numbers with a pipe, group_by(), and count()
+
+```
+
 
 
 

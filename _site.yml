@@ -53,8 +53,8 @@ navbar:
       href: fun_dict.html
     - text: "Data Dictionary"
       href: data_dict.html
-    - text: "Piazza"
-      href: TODOlinktopiazza.html
+    - text: "Broken Code"
+      href: broken.html
     - text: "About"
       href: about.html
     - icon: fab fa-github
