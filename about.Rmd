@@ -17,6 +17,8 @@ knitr::include_graphics('images/larry.png')
 
 Larry has been growing out his hair.
 
+OH: 
+
 ### Nour
 
 ```{r out.width = '60%', fig.link = 'https://www.southernliving.com/news/monarch-butterfly-migration-texas-2019'}
@@ -25,6 +27,8 @@ knitr::include_graphics('images/nour.png')
 
 Nour, in cosplay as a butterfly. Pretty spot on, eh?
 
+OH: Thursday, 9am - 10am
+
 ### Nathan
 
 ```{r}
@@ -32,6 +36,8 @@ knitr::include_graphics('images/potato.png')
 ```
 
 Nathan is a professional potato.
+
+OH: Tuesday, 11am - 12pm
 
 ### The Catscot
 

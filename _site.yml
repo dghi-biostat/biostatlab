@@ -62,3 +62,4 @@ navbar:
 output: 
   distill::distill_article:
     toc: true
+    highlight: rstudio
