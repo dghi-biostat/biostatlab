@@ -29,24 +29,24 @@ navbar:
         - text: "705 Labs"
         - text: "Lab 0"
           href: lab_0.html
-        - text: "Lab 1"
-          href: lab_1.html
-        - text: "Lab 2"
-          href: lab_2.html
-        - text: "Lab 3"
-          href: lab_3.html
-        - text: "Lab 4"
-          href: lab_4.html
-        - text: '---------'
-        - text: '707 Labs'
-        - text: "Lab 1"
-          href: lab_01.html
-        - text: "Lab 2"
-          href: lab_02.html
-        - text: "Lab 3"
-          href: lab_03.html
-        - text: "Lab 4"
-          href: lab_4.html
+        #- text: "Lab 1"
+        #  href: lab_1.html
+        #- text: "Lab 2"
+        #  href: lab_2.html
+        #- text: "Lab 3"
+        #  href: lab_3.html
+        #- text: "Lab 4"
+        #  href: lab_4.html
+        #- text: '---------'
+        #- text: '707 Labs'
+        #- text: "Lab 1"
+        #  href: lab_01.html
+        #- text: "Lab 2"
+        #  href: lab_02.html
+        #- text: "Lab 3"
+        #  href: lab_03.html
+        #- text: "Lab 4"
+        #  href: lab_4.html
     - text: "Submission Guidelines"
       href: submit.html
     - text: "Function Dictionary"

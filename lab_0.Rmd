@@ -12,7 +12,15 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tweetrmd)
 library(tidyverse)
 library(skimr)
+
+# devtools::install_github("gadenbuie/xaringanExtra")
+library(xaringanExtra)
 ```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
 
 __*Note: This lab is not graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
 
@@ -85,17 +93,17 @@ Click the white square at the top of the Lab 0 document (circled in red in the p
 ![Pop-out](images/popout.png)
 
 
-## Task 3: Load packages and data
+## Task 3: Install packages and load libraries
 
 ### Installing packages
 
-Packages are collections of functions. As we'll see shortly, we use functions as code to inspect, manipulate, and analyze our data. They are the verbs of the R language.
+Packages are collections of functions. As we'll see shortly, we use functions as code to inspect, manipulate, and analyze our data. They are the __verbs__ of the R language.
 
 There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.
 
 Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
 
-Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from your console to download the packages that we'll be needing for this semester. You should only ever have to do this once:
+Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
 
 
 ```{r install packages, eval = FALSE, echo = TRUE}
@@ -109,7 +117,7 @@ devtools::install_github("potato-nathan/epiAssist")
 
 ### Load libraries
 
-Unlike installing packages, every time we open R, we need to enable a package's use in the R environment. To enable R to use a specific package's functions in our current environment, we can load the packages using the `library()` function.
+Unlike installing packages, every time we open a new R session, we need to enable a package's use in the R environment. To enable R to use a specific package and its functions, we can load them using the `library()` function.
 
 In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
 
@@ -118,14 +126,14 @@ library(tidyverse)
 library(skimr)
 ```
 
-__Notice that when we install packages, we need to specify their names using quotes, but when we load them into the R environment using `library()`, R recognizes them as package objects automatically, and so don't require quotes.__
+__Notice that when we install packages, we need to specify their names using quotes because the package name is not yet known to your own copy of RStudio. On the other hand, when we load them into the R environment using `library()`, R recognizes them as package objects automatically, so they don't require quotes.__
 
 
 ## Task 4: Load data
 
-You will use the dataset Lab_0_kenya.rds for this lab. You've hopefully already saved this lab's dataset to the folder __Lab 0 > data__. You will use the function `readRDS()` to import the data file from your computer's folder. 
+You will use the dataset `Lab_0_kenya.rds` for this lab. You've hopefully already saved it to the folder __Lab 0 > data__. You will use the function `readRDS()` to import the data file from your computer's folder. 
 
-Since our project is located within the folder called __"Lab 0"__, our computer will automatically look within that folder for the data.
+Since our *project* has been created within the __"Lab 0"__ folder, it is thus our "Working Directory", and RStudio will automatically start from that folder when we give it a function that asks it to look in our file directory.
 
 Within our function, all we need to do is specify the file name, and that it's in the folder called __"data"__. 
 
@@ -137,7 +145,9 @@ kenya <- readRDS('data/Lab_0_kenya.rds')
 
 ```
 
-The `<-` is called the __*Assignment Operator*__. We can use it to assign names to objects in our coding environment:
+The `<-` is called the __*Assignment Operator*__. We use it to assign names to objects in our coding environment:
+
+### The assignment operator, explained
 
 We can use our assignment operator for characters, numbers, logical operators, etc.:
 
@@ -149,7 +159,7 @@ number <- 99
 logical <- FALSE
 ```
 
-Now that the above values are stored in our environment, we can use them in other functions or operations:
+Now that the above values are stored in our environment, we can use them in other functions or operations as predefined variables:
 
 ```{r operate var, echo = TRUE, eval = FALSE}
 paste(fruit, "are orange", sep = " ")
@@ -163,14 +173,13 @@ isTRUE(logical)
 
 ```
 
-We've done the same thing with our dataset, giving it the name `kenya`. Use the function `head()` to view the first six rows in the dataset:
+We've done the same thing with our dataset, giving it the name `kenya`. We might use the function `head()` to view the first six rows in the dataset. This is a quick and easy way to glance at our dataset and its accompanying variables:
 
 ```{r head, echo = TRUE, eval = FALSE}
 
 head(kenya)
 
 ```
-
 
 
 ## Task 5: Explore the dataframe
@@ -181,7 +190,7 @@ __Familiarize yourself with the data by using the commands `ncol()`, `nrow()`, `
   * __Are there any variable or value labels?__ 
   * __Do any variables have notes?__ 
 
-Similar to the function `head()`, we can feed our `kenya` data frame to various functions that tell us other useful information about it. You can use `$` in the format `[datasetName]$[variableName]` to refer to a specific variable/column within a dataset.
+Similar to `head()`, we can feed our `kenya` data frame to various functions that tell us other useful information about it. As a tip, you can use `$` in the format `[datasetName]$[variableName]` to refer to a specific variable/column within a dataset.
 
 Use `ncol()` to print the number of columns in our data frame
 
@@ -194,27 +203,28 @@ Use `class()` to view each variable's "type"
 Use `skim()` to print summary statistics for each variable in the data frame
 
 
-## Task 6: Create variable mage
+## Task 6: Create variable `mage`
 
 Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
 
-This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is months, so __divide by 12 to get years__. See the data dictionary for a more detailed description of month codes and how to use them. Use the `as.integer()` function within your `mutate()` operation to truncate the calculated values for `mage` to integers.
+This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
 
 The `mutate()` function works with the following syntax.
 
 ```{r mutate, echo = TRUE, eval = FALSE}
-# don't forget to write over your old dataframe with the new "mutated" one with `<-`
+# don't forget to write over your old dataframe using `kenya <-`
+
 data <- data %>%
-  mutate(newVariableName = (Variable1 - Variable2))
+  mutate(newVariableName = (oldVariable1 - oldVariable2))
 
 ```
 
 
 ## Task 7: Frequency distributions of `mage`
 
-Suppose you want to break down `mage` into three categories. First, look at the frequency distribution (one-way frequency table) for `mage` to see where you might draw lines for your categories using the `table()` command. 
+Suppose you want to break down `mage` into an ordinal categorical variable with three categories. First, we might inspect the frequency distribution (in one-way frequency table) for `mage`. Do this using `table()`. 
 
-`table()` works by identifying unique values within a variable, and then counts them. 
+`table()` works by identifying unique values within a variable, and then counts their occurence. 
 
 It works on character variables, categorical (factor) variables, and even numbers.
 
@@ -224,29 +234,73 @@ As was mentioned earlier, we can tell R to look at specific variables inside our
 dataframeName$variableName
 ```
 
-We must also provide the argument `useNA = 'always'` to our `table()` function in order to include NA values in the tabulation.
+If we want to include a count of NA values in our table, we can also use the argument `useNA = 'always'` within `table()`.
 
-Use `table()` to look at `mage`, then consider the following questions:
+Use `table()` to look at `kenya$mage`, then consider the following questions:
 
-  * Are there any missing values for age? If so, how many?
+  * Are there any missing values for `mage`? If so, how many?
   * Which range of ages appear the most frequently in `mage`?
 
 
 ## Task 8: Create variable `magec`
 
-Using `mage`, generate a new variable with three categories: "<18", "18-39", and "≥ 40", naming the new variable `magec` ( {m}other’s {age} {c}ategorical). Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).
+Using `mage`, generate a new variable with three categories: "<18", "18-39", and "≥ 40", naming the new variable `magec` 
+
+<aside>`magec` stands for: 
+{m}other’s  
+{age}   
+{c}ategorical </aside> 
+
+Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).
 
 We recommend you do this in the following steps steps:
 
- 1) First, don't forget to use the assignment operator to save your changes to the `kenya` data frame.  
- 2) Then, use a pipe (%>%) and then `mutate()`  to create a new variable, magec,  
- 3) within your `mutate()` command, use `case_when()` to create a series of conditional statements that assign numbers 0, 1, and 2 to each category  
- 4) On a new line of code, use `factor()` to assign labels to each level of your new variable  
+ 1) Use a pipe (`%>%`) and then `mutate()`  to create a new variable, `magec`,  
+ 2) Within your `mutate()` command, use `case_when()` to create a series of conditional statements that assign numbers 0, 1, and 2 to each category  
+ 3) On a new line of code, use `factor()` to assign labels to each level of your new variable  
+ 4) Finally, once you get it to work, don't forget to use the assignment operator to save your changes to the `kenya` data frame. 
 
-Values: 
-  + 0:  <18 
-  + 1:	18-39
-  + 2:  ≥ 40
+<aside>
+Values:  
+  0:  <18   
+  1:	18-39  
+  2:  ≥ 40  
+</aside>
+
+### `case_when()`
+
+This function is used to create conditional rules when creating new variables with `mutate()`. It allows you to create a series of if-then (conditional) statements based on variables within your data. At first, the syntax for `case_when()` might strike you as a little overly complicated, especially for coding binary variables. But as your variables become more complex, `case_when()` really shines as a highly efficient way to create new variables on a series of complex conditions.
+
+An example of the syntax is as follows:
+
+```{r eval = FALSE}
+case_when(size == 'small' ~ 0, 
+          size == 'medium' ~ 1,
+          size == 'large' ~ 2,
+          TRUE ~ NA)
+```
+
+Here, the tildes represents a __formula__. To the left of the formula is a logical operation that can evaluate to either `TRUE` or `FALSE`
+
+<aside> Click [here](https://www.statmethods.net/management/operators.html) for a list of logical operators available in the R language </aside>
+
+To the right of the tilde, we put the value that we want to return __if the logical operation evaluates to `TRUE`__. If it is `FALSE` or `NULL`, `case_when()` behaves by moving on and testing the next conditional statement.
+
+If it were run on a dataset containing a variable called `size`, the literal translation of the above code would go something like this:
+
+For each row in the dataset,  
+* if `size` equals 'small', then return 0
+* if `size` equals 'medium', then return 1
+* if `size` equals 'large', then return 2
+* if `size` is any other real value, then return `NA`
+
+When we do this within a `mutate()` function, the returned values get assigned to the new variable for each row of the dataset as they're evaluated.
+
+The right side of the formula needs to always produce a value of the same variable __*type*__, but otherwise you have a high degree of freedom in what can be returned when the conditional statement is `TRUE`, including mathematical operations on other variables.
+
+See the [documentation for `case_when()`](https://rdrr.io/cran/dplyr/man/case_when.html#heading-4) for more examples of this function's capabilities 
+
+### Convert a character variable to a factor
 
 Convert a variable to a factor with the following syntax:
 
@@ -285,9 +339,9 @@ data %>%
   count()
 ```
 
-A translation of the above code to written instructions would go as follows, where bolded words represent the grammatical equivalent of our pipe, `%>%`:
+A translation of the above code to written instructions would go as follows, where __and then__ represents the grammatical equivalent of our pipe, `%>%`:
 
-"Take dataset, `data`, __and then__ `group_by` by variable `x`, then within those groups, group by variable `y`, __and then__ `count` the values in each of our groups."
+"Take dataset, `data`, __and then__ `group_by` variable `x`, and within those groups, `group_by` variable `y`, __and then__ `count` the values in each of our groups."
 
 [Here's a link](https://cfss.uchicago.edu/notes/pipes/) if you're interested in learning more about pipes. Or just take a look at this tweet:
 

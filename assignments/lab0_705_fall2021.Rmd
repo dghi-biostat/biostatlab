@@ -8,16 +8,9 @@ output: html_document
 
 # Lab 0 {.tabset}
 
-## Task 1: Establish a workflow
-
-Open RStudio. Click File > New Project. Hit “Existing Directory” and then “Browse”. By now, you should have created a folder for this course’s lab, and a subsequent folder within for Lab 0. Open the Lab 0 folder and hit “Open”. Then hit “Create Project”.
-
-## Task 2: Familiarize yourself with R Markdown
-
-
 ## Task 3: Install packages and load libraries
 
-a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to 3b directly.
+a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to task 3b directly.
 
 `install.packages("tidyverse")`  
 `install.packages("skimr")` 
@@ -30,7 +23,7 @@ b. Load libraries:
 For this lab, we need {skimr} and {tidyverse}
 
 
-In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following codes:
+In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
 
 `library(tidyverse)`
 `library(skimr)`
@@ -86,12 +79,12 @@ Familiarize yourself with the data by using the commands `head()`, `skim()`, `nc
 
 
 
-## Task 6: Create variable mage
+## Task 6: Create variable `mage`
 
-Create a variable mage for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children) using the `mutate()` function. This is calculated from variables b3 (month code of child’s birth) and v011 (month code of mother’s birth). The difference between the values of these variables is months, so divide by 12 to get years. See the data dictionary for a more detailed description of month codes and how to use them. Use the `as.integer()` function within your `mutate()` function to truncate the calculated value to an integer.
+Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
 
-REMINDER: For your mutate function to work, you have to merge the changes into your dataset. As an example, use this before the mutate function:
-`kenya <- kenya %>%` 
+This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
+
 
 ```{r mage}
 # create variable mage with a pipe (%>%) and mutate()
@@ -101,14 +94,17 @@ REMINDER: For your mutate function to work, you have to merge the changes into y
 
 ## Task 7: Frequency distributions of mage
 
-Suppose you want to break down `mage` into three categories. First, look at the frequency distribution (one-way frequency table) for `mage` to see where you might draw lines for your categories using the table() command.
+Suppose you want to break down `mage` into an ordinal categorical variable with three categories. First, we might inspect the frequency distribution (in one-way frequency table) for `mage`. Do this using `table()`. 
 
-* Are there any missing values for age? If so, how many?
-* Which range of ages appear the most frequently in mage?
+Use `table()` to look at `kenya$mage`, then consider the following questions:
+
+* Are there any missing values for `mage`? If so, how many?  
+* Which range of ages appear the most frequently in `mage`?  
 
 ```{r mage table}
 # generate a table of mage's frequency distribution with table()
-# don't forget to include NA values with the argument useNA = "always"
+# don't forget to include counts of NA values with the argument useNA = "always"
+
 
 ```
 
@@ -120,6 +116,21 @@ Recommended steps:
 
 ```{r create magec}
 # create magec with a pipe (%>%) and mutate()
+# since this is your first time encountering case_when(), we've provided a layman's translation of how our code is communicating with the dataset. You just need to specify x, y, and z accordingly:
+
+
+kenya %>%
+  mutate(magec = 
+           case_when(mage < 18 ~ x, 
+                     # "if mage is less than 18, then magec is x"
+                     mage >= 18 & mage < 40 ~ y, 
+                     # "if mage is greater than or equal to 18 AND if it is less than 40, then magec is y
+                     mage >= 40 ~ z) 
+                     # " if mage is greater than or equal to 40, then magec is z 
+
+  ) # don't forget the closing parenthesis for mutate()
+
+# finally, notice that each new condition is separated from the last by a comma
 
 ```
 
@@ -135,10 +146,14 @@ Recommended steps:
 
 Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.
 
+### Method 1:
+
 ```{r table cross-tab}
 # create a cross-tabulation of your new variables with table()
 
 ```
+
+### Method 2: 
 
 ```{r tidyverse cross-tab}
 # generate cross-tabulated numbers with a pipe, group_by(), and count()
@@ -155,6 +170,7 @@ Save the new dataset in the same directory using a different file name with the 
 ```{r save data}
 # save the datset with saveRDS()
 
+saveRDS(datasetName, file = "data/filename.rds")
 ```
 
 
