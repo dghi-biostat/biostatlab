@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-25"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-25"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-08-26"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-26"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: Packages"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages"]},{"type":"character","attributes":{},"value":["Help with installing and understanding packages, at home and in the wild.\n"]},{"type":"character","attributes":{},"value":["2021-08-25"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages"]},{"type":"character","attributes":{},"value":["Help with installing and understanding packages, at home and in the wild.\n"]},{"type":"character","attributes":{},"value":["2021-08-26"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2403,7 +2403,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages","description":"Help with installing and understanding packages, at home and in the wild.","authors":[],"publishedDate":"2021-08-25T00:00:00.000-04:00"}
+{"title":"Packages","description":"Help with installing and understanding packages, at home and in the wild.","authors":[],"publishedDate":"2021-08-26T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2480,9 +2480,41 @@ Lab Assignments
 </div>
 <h2 id="terminology">Terminology</h2>
 <h4 id="packages-and-libraries">Packages and libraries</h4>
+<p>Packages are a collection of R functions, data, and compiled code.</p>
+<p>A library is the location where the packages are stored on your computer.</p>
+<p>Usage: “Install the {tidyverse} package from CRAN. It will automatically save to your R library.”</p>
 <h4 id="cran">CRAN</h4>
-<h4 id="functions-arguments-and-objects">Functions, arguments, and objects</h4>
+<p>CRAN stands for the Comprehensive R Archive Network. Along with providing downloads and updates to the base R computing software, CRAN is the main source for stable, published versions of packages. The function <code>install.packages()</code> automatically looks in CRAN for whatever package you name inside the function.</p>
+<aside>
+Using other installation functions, it’s also possible to download packages from various other sources, like GitHub. But most of the time, those packages are still in development, which means various features could become inoperable over time (as opposed to making defunct code backwards-compatible). Getting packages from CRAN is the best way to ensure that your code will still run months and sometimes years into the future
+</aside>
+<h4 id="objects-functions-and-arguments">Objects, functions, and arguments</h4>
+<p><strong>Object</strong> refers to any data structure in R, with special attributes and methods according to the object type. Most objects are open to exploration and transformation.</p>
+<p><em><strong>Examples of objects:</strong></em> Data frames, linear models, vectors, tables, variables, ggplot objects, matrices, etc.</p>
+<p><strong>Functions</strong> are the verbs of the R language. They operate on objects in your R environment, and behave according to their arguments. On this website, functions are written in <code>monospace font</code> and followed by a pair of parentheses, <code>()</code></p>
+<p><em><strong>Examples of functions:</strong></em> <code>mean()</code>, <code>summary()</code>, <code>factor()</code>, <code>exp()</code></p>
+<p><strong>Arguments</strong> are the settings and information supplied to a given function. Each new argument should be separated from the rest with a comma.</p>
+<p>Some functions don’t require any arguments, like <code>R.Version()</code> and <code>sessionInfo()</code>. These functions, when run, supply information about the R environment, but don’t operate on an object.</p>
+<p>Other functions only require a single argument: an object. For example, the function <code>head()</code> takes many different types of objects, and supplies the first 6 observations within a given object.</p>
+<p>But say you want a different number of observations. <code>head()</code> allows you to manually set those observations with <code>n =</code>.</p>
+<p>Typing <code>head(object, n = 10)</code> will return the first 10 observations in a given object.</p>
+<p>Most functions come with default arguments that are submitted to the function implicitly. In the case of <code>head()</code>, the default method for <code>n =</code> is <code>6</code>.</p>
+<p>ALL arguments can be specified with the syntax <code>argumentName = value</code>. But most functions are written to recognize certain types of values as belonging to a specific argument, and operate on them accordingly.</p>
+<p>So <code>head(object, 10)</code> will also give the first 10 observations of <code>object</code>, since <code>head()</code> knows to recognize an object of type integer as belonging to <code>n =</code>.</p>
+<p>You can view any function’s arguments by going to its documentation. In the R console, run <code>?functionName</code>, and it will appear in the help window. Under the “Usage” section, you will find information on the function’s syntax and arguments. If an argument is alone, without an equals sign, <code>=</code>, that argument doesn’t have default and must be submitted by the user to run. However, if a given argument contains an equals sign and a value to the right of the equals sign, that value is the argument’s default.</p>
 <h4 id="documentation">Documentation</h4>
+<p>Any function or package’s documentation is the primary authority on the appropriate usage of that function. Typically, a function’s documentation will contain:</p>
+<ul>
+<li>A brief description of the function</li>
+<li>An overview of the functin’s usage</li>
+<li>A detailed description of each argument needed for the function to run</li>
+<li>Further function details</li>
+<li>Value, which indicates what gets returned when the function is run</li>
+<li>Examples of the function in use</li>
+</ul>
+<p>The documentation for any function is available via the R console by running <code>?functionName</code>.</p>
+<p>Sometimes, you can find documentation that goes into greater detail by searching the function’s documentation online.</p>
+<p>When you are having problems with your code, it’s smart to check the function’s documentation before looking elsewhere. With practice and a little persistence, you will become more comfortable with reading and interpreting help documentation.</p>
 <h2 id="installing-packages">Installing packages</h2>
 <p>Packages are collections of functions. As we’ll see shortly, we use functions as code to view, manipulate, and analyze our data.</p>
 <p>There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.</p>
