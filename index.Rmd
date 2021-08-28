@@ -6,15 +6,15 @@ site: distill::distill_website
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.cap = "[xkcd.com - 'Box Plot'](https://www.explainxkcd.com/wiki/index.php/1798:_Box_Plot)")
+knitr::opts_chunk$set(echo = FALSE)
 
 # Learn more about creating websites with Distill at:
 # https://rstudio.github.io/distill/website.html
 
 ```
 
-```{r echo = FALSE}
-knitr::include_graphics("https://imgs.xkcd.com/comics/box_plot.png")
+```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Base Rate'](https://www.explainxkcd.com/wiki/index.php/2476:_Base_Rate)"}
+knitr::include_graphics("images/base_rate.png")
 
 ```
 

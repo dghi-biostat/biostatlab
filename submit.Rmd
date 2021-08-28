@@ -22,7 +22,7 @@ __*Submit your documents electronically via the SAKAI DropBox by 14:00 ET on the
 
 * .html file - must have run without error
 
-* Excel (.xls/.xlsx) file with tables (TODO: Sakai entry for table answers?)
+* Excel (.xls/.xlsx) file with tables (labs 2, 3, and 4)
 
 
 # __Notes:__ 

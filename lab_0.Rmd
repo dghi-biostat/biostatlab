@@ -1,7 +1,7 @@
 ---
-title: "Lab 0"
+title: "GLHLTH 705 Lab 0"
 description: |
-  Biostatistics & Epi, Lab 0 - GLHLTH 705: Install packages, create new R project, explore a data frame, generate summary statistics, create derived variables mage and magec with mutate(), one-way and two-way frequency counts/tabulation, save a dataset. 
+    __Due:__ September 17, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -29,7 +29,7 @@ __*Note: This lab is not graded*__ (i.e. does not contribute to your course eval
 * [__R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `firsInitial_YourLastName_Lab0.Rmd`, and submit it using the Sakai dropbox.
 
-* "Lab_0_kenya.rds" - data file available on Sakai
+* "Lab_0_kenya.rds" - data file available in the Resources folder of the Sakai course webpage
 
 ### Lab 0 Goals:
 
@@ -38,7 +38,7 @@ By the end of this lab, you will have demonstrated a basic familiarity with the 
   * Start a new project and import data
   * Understand useful R terminology
   * Use summary statistics to describe the Kenya dataset
-  * Derive a categorical variable using a continuous one
+  * Derive an ordinal categorical variable from a continuous one
   * Generate histograms and boxplots using ggplot2
   * Create a simple cross-tabulation of two variables
     
@@ -71,20 +71,27 @@ Initiate a new project by going to __*File*__ and clicking __*New Project*__.
 ![Creating a new project](images/newproject.png)
 Then select __*Existing Directory*__ and hit __*Browse*__. Navigate to the folder titled __Lab 0__. Open it, then hit __*Open*__. 
 
-If you've done this correctly, you 
+If you've done this correctly, your new folder, "Lab 0" should appear in the bottom-right R Studio window pane, under the tab "Files" Likewise, the folder name, "Lab 0" should appear in the upper-right hand corner, indicating the current project's name. 
+
+<aside>Current project indicator is marked as "G" in [this helpful screenshot](https://dghi-biostat.github.io/biostatlab/help_rstudio.html#the-r-environment) of the R Studio environment</aside>
 
 ## Task 2: Familiarize yourself with R Markdown
 
-Now, you will open a special kind of document known as "R Markdown". This is a text editor (like Word or Google Docs), but with a twist. You can run code *within the document*. This makes data analysis an interactive, iterative (and therefore fun?) process that usually proceeds as follows:
+Now, you will open a special kind of document known as "R Markdown". This is a text editor (like Word or Google Docs), but with a twist. You can implement the instructions you have written in the R programming language directly *within the document*. That is, you can "run code" directly *within the document*. This makes data analysis an interactive, iterative (and therefore fun?) process that usually proceeds as follows:
 
-  1. Write some code to transform your data
+<aside>[The word "run"](https://www.nytimes.com/2011/05/29/opinion/29winchester.html?_r=1) can have [*__so__* many meanings](https://english.stackexchange.com/a/80992). So exactly what do we mean when we say "run code"? 
+
+It's a term meant to describe the process of allowing a computing program or software to *operate upon* something you've created in your computing environment. In R, you can "run code directly in the R console by typing your code and hitting *enter*. R Markdown can also run chunks of code, which we'll see in a moment.</aside>
+
+
+  1. Write some code to generate new variables and perform statistical analysis
   2. Run the code
   3. Observe how your dataset behaved
-  4. Take a few notes (because Science)
+  4. Take a few notes (for Science)
   5. Tweak code
   6. Repeat
   
-For each lab, we will provide you with a skeleton Markdown file on Sakai. If you haven't already, download that file ("lab0_705_fall2021.Rmd", available at the top of this page) and save it to your folder named "Lab 0".
+For each lab, we will provide you with a skeleton Markdown file. If you haven't already, download that file ("lab0_705_fall2021.Rmd", available at the top of this page) and save it to your folder named "Lab 0".
 
 Now open the file in RStudio. You can just double-click on it from the file folder. It will appear in the RStudio window pane, but might feel a little pinched. Luckily, RStudio allows Markdowns to pop-out. 
 
@@ -126,7 +133,7 @@ library(tidyverse)
 library(skimr)
 ```
 
-__Notice that when we install packages, we need to specify their names using quotes because the package name is not yet known to your own copy of RStudio. On the other hand, when we load them into the R environment using `library()`, R recognizes them as package objects automatically, so they don't require quotes.__
+__Notice that when we install packages, we need to specify their names using quotes because the package name is not yet known to your own copy of RStudio. On the other hand, when we load them into the R environment using `library()`, R automatically recognizes them as the names of packages, so they don't require quotations.__
 
 
 ## Task 4: Load data
@@ -145,9 +152,21 @@ kenya <- readRDS('data/Lab_0_kenya.rds')
 
 ```
 
-The `<-` is called the __*Assignment Operator*__. We use it to assign names to objects in our coding environment:
+When we load our data into R, it becomes what, in R, is called a __*data frame*__, which is the R term used for a dataset object. Without going into too much detail, it's like having a spreadsheet of data with rows (i.e. different individual records) and columns (i.e. variables). For those of you familiar with mathematical terminology, it's like a matrix."
 
-### The assignment operator, explained
+### Objects 
+
+If functions are the verbs of the R language, objects are the nouns. Just like nouns, there are many different *types* of objects, which we will learn about throughout the semester. For now, you just need to understand that an object is anything in your R environment that is able to be explored, transformed, or analyzed by R functions. Objects also have unique names. In the code above, `kenya` is a data frame object. 
+
+To further illustrate, in the chunk of code below, `fruit` becomes a character vector object of length 3, `number` becomes a numeric vector object of length 1, and `logical` becomes a logical vector object of length 1. 
+
+You can use `class()` to inspect an object's type, and `object.size()` to inspect an object's size. We will learn more about [vectors](https://dghi-biostat.github.io/biostatlab/help_jargon.html#vector) in a later assignment.
+
+Most functions require specific types of objects. 
+
+### The assignment operator (`<-`)
+
+The `<-` is called the __*Assignment Operator*__. We use it to assign names to objects in our coding environment:
 
 We can use our assignment operator for characters, numbers, logical operators, etc.:
 
@@ -182,7 +201,7 @@ head(kenya)
 ```
 
 
-## Task 5: Explore the dataframe
+## Task 5: Explore the data
 
 __Familiarize yourself with the data by using the commands `ncol()`, `nrow()`, `class()`, `names()` and `skim()`.__
 
@@ -205,11 +224,13 @@ Use `skim()` to print summary statistics for each variable in the data frame
 
 ## Task 6: Create variable `mage`
 
-Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
+Using a pipe (`%>%`) and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
 
-This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
+This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See [the data dictionary](https://dghi-biostat.github.io/biostatlab/data_dict.html#century-month-code) for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
 
-The `mutate()` function works with the following syntax.
+<aside>Most datasets are accompanied by documentation or data dictionaries, which are a description of the variables in the data set and other relevant pieces of information. Be sure to read through [these guidelines](https://www.mc.vanderbilt.edu/crc/workshop_files/2012-09-07.pdf) if you haven't already.</aside>
+
+For this task, the `mutate()` function will work with the following syntax. 
 
 ```{r mutate, echo = TRUE, eval = FALSE}
 # don't forget to write over your old dataframe using `kenya <-`
@@ -218,6 +239,33 @@ data <- data %>%
   mutate(newVariableName = (oldVariable1 - oldVariable2))
 
 ```
+
+### Pipes (`%>%`)
+
+One of the most useful tools in the `tidyverse` package is a little thing called a [__*pipe*__](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe). It's represented with the symbol `%>%`, and allows us to express a series of operations in a continuous string of code, rather than using the assignment operator over and over. 
+
+As an example, let's pretend we have a dataset that is a record of birds struck by aircraft in the United Sates over the past few decades. We want to know the frequency distribution of sky conditions for birds struck over 5,000 feet in the air in planes flying over North Carolina. 
+
+In base R, we might code it like this:
+
+```{r eval = FALSE}
+birds_NC <- subset(birds, state == "NC")
+
+birds_NC <- subset(birds_NC, height > 5000)
+
+table(birds_NC$sky)
+```
+
+With a pipe, `%>%`, both our code and output becomes more tidy and readable:
+
+```{r eval = FALSE}
+birds %>%
+  filter(state == "NC", height > 5000) %>%
+  group_by(sky) %>%
+  count()
+```
+
+They pipe can be interpeted as signifying __"and then"__. In the above example, the pipe tells the R console to take the dataset `birds`, __and then__ filter by `state` and `height`, __and then__ group by `sky`, __and then__ count the observations in each group.
 
 
 ## Task 7: Frequency distributions of `mage`
@@ -253,7 +301,7 @@ Using `mage`, generate a new variable with three categories: "<18", "18-39", and
 
 Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).
 
-We recommend you do this in the following steps steps:
+We recommend you do this in the following steps:
 
  1) Use a pipe (`%>%`) and then `mutate()`  to create a new variable, `magec`,  
  2) Within your `mutate()` command, use `case_when()` to create a series of conditional statements that assign numbers 0, 1, and 2 to each category  
@@ -273,7 +321,7 @@ This function is used to create conditional rules when creating new variables wi
 
 An example of the syntax is as follows:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 case_when(size == 'small' ~ 0, 
           size == 'medium' ~ 1,
           size == 'large' ~ 2,
@@ -288,11 +336,15 @@ To the right of the tilde, we put the value that we want to return __if the logi
 
 If it were run on a dataset containing a variable called `size`, the literal translation of the above code would go something like this:
 
+```{r eval = FALSE, echo = TRUE}
 For each row in the dataset,  
-* if `size` equals 'small', then return 0
-* if `size` equals 'medium', then return 1
-* if `size` equals 'large', then return 2
-* if `size` is any other real value, then return `NA`
+    * if `size` equals 'small', then return 0
+    * if `size` equals 'medium', then return 1
+    * if `size` equals 'large', then return 2
+    * if `size` is any other real value, then return `NA`
+```
+
+<aside>This sort of literal translation of a programming language into readable English is what's known as ["pseudo-code"](https://xkcd.com/1185/)</aside>
 
 When we do this within a `mutate()` function, the returned values get assigned to the new variable for each row of the dataset as they're evaluated.
 
@@ -315,7 +367,8 @@ data$variableYouWantToFactor <- factor(data$variableYouWantToFactor,
 
 Look at a cross-tabulation (two-way table) of `mage` and `magec` to ensure that `magec` was created correctly. Be sure missing values were handled properly (all observations that have a missing value for `mage` should be assigned the R missing value “NA” for `magec`). Try the two separate methods for cross-tabulation, as we will be using both for separate purposes later in the semester:
 
-### Method 1: 
+### Method 1
+
 Type “?table” in the console for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns. Experiment to make your table readable.
 
 ```{r 2x2table, eval = FALSE, echo = TRUE}
@@ -325,7 +378,8 @@ table(data$x, data$y, useNA = 'always')
 
 ```
 
-### Method 2: 
+### Method 2
+
 We can also use `tidyverse` functions to accomplish a two-way tabulation of our variables of interest. These functions will become increasingly relevant and useful, and are a big reason why R is such a popular platform for data science. We will use a pipe (`%>%`), `group_by()`, another pipe, and `count()` to get the same output given by `table()`.
 
 

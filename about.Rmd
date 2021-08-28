@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### Larry
 
-```{r fig.link = 'https://chirpforbirds.com/wild-bird-resources/celebrate-independence-with-americas-bird-the-bald-eagle/'}
+```{r fig.link = 'https://chirpforbirds.com/wild-bird-resources/celebrate-independence-with-americas-bird-the-bald-eagle/', out.extra="class=external"}
 knitr::include_graphics('images/larry.png')
 ```
 
@@ -21,7 +21,7 @@ OH:
 
 ### Nour
 
-```{r out.width = '60%', fig.link = 'https://www.southernliving.com/news/monarch-butterfly-migration-texas-2019'}
+```{r out.width = '60%', fig.link = 'https://www.southernliving.com/news/monarch-butterfly-migration-texas-2019', out.extra="class=external"}
 knitr::include_graphics('images/nour.png')
 ```
 
@@ -31,7 +31,7 @@ OH: Thursday, 9am - 10am
 
 ### Nathan
 
-```{r}
+```{r out.extra="class=external"}
 knitr::include_graphics('images/potato.png')
 ```
 
