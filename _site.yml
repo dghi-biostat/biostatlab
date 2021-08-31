@@ -24,6 +24,8 @@ navbar:
           href: help_jargon.html
         - text: "Visualizing in R (ggplot2)"
           href: help_ggplot2.html
+        - text: "Broken Code"
+          href: broken.html
     - text: "Lab Assignments"
       menu:
         - text: "705 Labs"
@@ -53,8 +55,6 @@ navbar:
       href: fun_dict.html
     - text: "Data Dictionary"
       href: data_dict.html
-    - text: "Broken Code"
-      href: broken.html
     - text: "About"
       href: about.html
     - icon: fab fa-github

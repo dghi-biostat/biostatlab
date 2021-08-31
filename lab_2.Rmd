@@ -1,7 +1,7 @@
 ---
-title: "Lab 2"
+title: "GLHLTH 705 Lab 2"
 description: |
-  Biostatistics & Epi, Lab 2 - GLHLTH 705. Create derived variables: size, belowavg, pnc, rural, education, death, time. Close cohort. Frequency histograms, boxplots, frequency counts, and data dictionary.
+    __Due:__ October 22, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---

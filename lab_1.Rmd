@@ -1,7 +1,7 @@
 ---
-title: "Lab 1"
+title: "GLHLTH 705 Lab 1"
 description: |
-  Biostatistics & Epi, Lab 1 - GLHLTH 705. Create derived variables for birth order (bord5), sex (male), mheight, mweight, mbmi. Frequency histograms, boxplots, frequency table, and data dictionary.
+    __Due:__ October 1, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---

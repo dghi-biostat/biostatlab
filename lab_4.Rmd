@@ -1,7 +1,7 @@
 ---
-title: "Lab 4"
+title: "GLHLTH 705 Lab 4"
 description: |
-  Biostatistics & Epi I, Lab 4 - GLHLTH 705
+    __Due:__ November 23, 2021 by 22:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
