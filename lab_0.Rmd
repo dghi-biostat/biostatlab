@@ -244,11 +244,11 @@ data <- data %>%
 
 One of the most useful tools in the `tidyverse` package is a little thing called a [__*pipe*__](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe). It's represented with the symbol `%>%`, and allows us to express a series of operations in a continuous string of code, rather than using the assignment operator over and over. 
 
-As an example, let's pretend we have a dataset that is a record of birds struck by aircraft in the United Sates over the past few decades. We want to know the frequency distribution of sky conditions for birds struck over 5,000 feet in the air in planes flying over North Carolina. 
+As an example, let's pretend we have a dataset that is a record of birds struck by aircraft in the United Sates over the past few decades. We want to know the frequency distribution of sky conditions for birds struck over 5,000 feet within the borders of North Carolina. 
 
 In base R, we might code it like this:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 birds_NC <- subset(birds, state == "NC")
 
 birds_NC <- subset(birds_NC, height > 5000)
@@ -256,16 +256,16 @@ birds_NC <- subset(birds_NC, height > 5000)
 table(birds_NC$sky)
 ```
 
-With a pipe, `%>%`, both our code and output becomes more tidy and readable:
+With a pipe, `%>%`, both our code and output becomes more tidy. More importantly, it's easy to read:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 birds %>%
   filter(state == "NC", height > 5000) %>%
   group_by(sky) %>%
   count()
 ```
 
-They pipe can be interpeted as signifying __"and then"__. In the above example, the pipe tells the R console to take the dataset `birds`, __and then__ filter by `state` and `height`, __and then__ group by `sky`, __and then__ count the observations in each group.
+The pipe can be interpeted as signifying __"and then"__. In the above example, the pipe tells the R console to take the dataset `birds`, __and then__ filter by `state` and `height`, __and then__ group by `sky`, __and then__ count the observations in each group.
 
 
 ## Task 7: Frequency distributions of `mage`
