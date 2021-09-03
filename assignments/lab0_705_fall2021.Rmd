@@ -10,7 +10,7 @@ output: html_document
 
 ## Task 3: Install packages and load libraries
 
-a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to task 3b directly.
+__a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to task 3b directly.__
 
 `install.packages("tidyverse")`  
 `install.packages("skimr")` 
@@ -20,10 +20,10 @@ a. Note that for this step, you should first install three packages using the fo
 
 b. Load libraries:
 
-For this lab, we need {skimr} and {tidyverse}
+__For this lab, we need {skimr} and {tidyverse}__
 
 
-In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
+__In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:__
 
 `library(tidyverse)`
 `library(skimr)`
@@ -39,7 +39,7 @@ In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the fo
 
 ## Task 4: Load data
 
-Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:
+__Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:__
 
 `kenya <- readRDS('data/filename.rds')` 
 
@@ -53,7 +53,7 @@ Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget t
 
 ## Task 5: Explore the dataframe
 
-Familiarize yourself with the data by using the commands `head()`, `skim()`, `ncol()`, and `nrow()`.
+__Familiarize yourself with the data by using the commands `head()`, `skim()`, `ncol()`, and `nrow()`.__
 
 * Are there any string/character variables?
 * Are there any variable or value labels? 
@@ -81,9 +81,9 @@ Familiarize yourself with the data by using the commands `head()`, `skim()`, `nc
 
 ## Task 6: Create variable `mage`
 
-Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
+__Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). __
 
-This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
+__This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, `so divide by 12 to get years`. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.__
 
 
 ```{r mage}
@@ -94,9 +94,9 @@ This is calculated from variables `b3` (month code of child’s birth) and `v011
 
 ## Task 7: Frequency distributions of mage
 
-Suppose you want to break down `mage` into an ordinal categorical variable with three categories. First, we might inspect the frequency distribution (in one-way frequency table) for `mage`. Do this using `table()`. 
+__Suppose you want to break down `mage` into an ordinal categorical variable with three categories. First, we might inspect the frequency distribution (in one-way frequency table) for `mage`. Do this using `table()`.__
 
-Use `table()` to look at `kenya$mage`, then consider the following questions:
+__Use `table()` to look at `kenya$mage`, then consider the following questions:__
 
 * Are there any missing values for `mage`? If so, how many?  
 * Which range of ages appear the most frequently in `mage`?  
@@ -111,8 +111,8 @@ Use `table()` to look at `kenya$mage`, then consider the following questions:
 
 ## Task 8: Create variable magec
 
-Using `mage`, generate a new variable with three categories: <18, 18-39, and ≥ 40, naming the new variable "magec” (mother’s age categorical). Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).
-Recommended steps:
+__Using `mage`, generate a new variable with three categories: <18, 18-39, and ≥ 40, naming the new variable "magec” (mother’s age categorical). Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).__
+__Recommended steps:__
 
 ```{r create magec}
 # create magec with a pipe (%>%) and mutate()
@@ -144,7 +144,7 @@ kenya %>%
 
 ## Task 9: Cross-tab of mage and magec
 
-Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.
+__Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.__
 
 ### Method 1:
 
@@ -165,7 +165,7 @@ Look at a cross-tabulation (two-way table) of mage and magec to ensure that mage
 
 ## Task 10: Save new dataset
 
-Save the new dataset in the same directory using a different file name with the form shown in the instructions on page 1 using the saveRDS() command.
+__Save the new dataset in the same directory using a different file name with the form shown in the instructions on page 1 using the saveRDS() command.__
 
 ```{r save data}
 # save the datset with saveRDS()
