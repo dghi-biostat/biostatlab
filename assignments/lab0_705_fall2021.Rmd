@@ -1,9 +1,11 @@
 ---
 title: "GLHLTH 705 Lab"
 subtitle: "Due: Friday Setpember 17, 2021"
-author: "[YOUR NAME HERE"
-date: "8/22/2021"
-output: html_document
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    df_print: paged
 ---
 
 # Lab 0 {.tabset}
@@ -119,7 +121,7 @@ __Recommended steps:__
 # since this is your first time encountering case_when(), we've provided a layman's translation of how our code is communicating with the dataset. You just need to specify x, y, and z accordingly:
 
 
-kenya %>%
+kenya <- kenya %>%
   mutate(magec = 
            case_when(mage < 18 ~ x, 
                      # "if mage is less than 18, then magec is x"

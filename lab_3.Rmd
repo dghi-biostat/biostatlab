@@ -11,6 +11,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
 library(knitr)
+library(xaringanExtra)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
 ```
 
 

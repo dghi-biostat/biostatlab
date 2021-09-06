@@ -1,8 +1,11 @@
 ---
-title: "Lab 1 - Kenya"
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday October 1, 2021"
 author: "YOUR NAME HERE"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
+    df_print: paged
 ---
 
 # Lab 1: {.tabset}
@@ -15,90 +18,94 @@ output: html_document
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
-## Task 1: Load libraries & packages
+## Task 1: Load packages and data
 
 Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}
 
 ```{r}
-# load libraries
+# load packages from library
 
-Sys.
+
 ```
 
 ```{r}
-# load data
+# load in data
+
 
 ```
 
 
 ## Task 2: Recode variables
 
-Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (e.g., missing, unknown) and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command.
+### Task2a: `bord5`
 
-### Task2a: bord5
+`bord5`: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
 
-bord5: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
 
+```{r}
+# create derived variable using %>% and mutate()
+dataName <- dataName %>%
+  mutate(bord5 = case_when(bord < 5 ~ 0,
+                           bord >= 5 ~ 1
+  ))
+
+# convert derived variable to a factor with factor()
+
+kenya$bord5 <- factor(kenya$bord5, 
+                      labels = c('1-4 in Birth Order', '5+ in Birth Order'))
+
+```
+
+
+### Task 2b: `male`
+
+`male`: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
 
 ```{r}
 # create derived variable using %>% and mutate()
 
 
-# label derived variable with factor()
+# convert derived variable to a factor with factor()
+
+
+```
+
+### Task 2c: `mweight`
+
+`mweight`: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
+
+```{r}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+### Task 2d: `mheight`
+
+`mheight`:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
+
+```{r}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
 
 
 ```
 
 
-### Task 2b: male
+### Task 2e: `mbmi`
 
-male: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
-
-```{r}
-# create derived variable using %>% and mutate()
-
-
-# label derived variable with factor()
-
-
-```
-
-### Task 2c: mweight
-
-mweight: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
+`mbmi`: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
 
 ```{r}
 # create derived variable using %>% and mutate()
 
 
-# label derived variable with factor()
-
-
-```
-
-### Task 2d: mheight
-
-mheight:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
-
-```{r}
-# create derived variable using %>% and mutate()
-
-
-# label derived variable with factor()
-
-
-```
-
-
-### Task 2e: mbmi
-
-mbmi: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
-
-```{r}
-# create derived variable using %>% and mutate()
-
-
-# label derived variable with factor()
+# convert derived variable to a factor with factor()
 
 
 ```
@@ -106,27 +113,23 @@ mbmi: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters).
 
 ## Task 3: Frequency histograms
 
-Generate frequency histograms of mweight, mheight and mbmi.  Put meaningful axis labels and a title on each figure.
+Generate frequency histograms of `mweight`, `mheight` and `mbmi.`  Put meaningful axis labels and a title on each figure.
 
 
-### Task 3a: mweight
-
-```{r}
-
-```
-
+### Task 3a: `mweight`
 
 ```{r}
 
 ```
 
-### Task 3b: mheight
+
+### Task 3b: `mheight`
 
 ```{r}
 
 ```
 
-### Task 3c: mbmi
+### Task 3c: `mbmi`
 
 ```{r}
 
@@ -134,23 +137,26 @@ Generate frequency histograms of mweight, mheight and mbmi.  Put meaningful axis
 
 ## Task 4: Boxplots
 
-Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
+Generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of magec. Put meaningful axis labels and a title on each figure.
 
 ### Task 4a: mweight
 
 ```{r}
+# boxplot of mweight
 
 ```
 
 ### Task 4b: mheight
 
 ```{r}
+# boxplot of mheight
 
 ```
 
 ### Task 4c: mbmi
 
 ```{r}
+# boxplot of mbmi
 
 ```
 
@@ -163,7 +169,6 @@ Fill in Table 1 with the frequency counts and percentages for the levels of the 
 
 ```{r}
 # frequency counts
-
 
 # frequency percentages
 

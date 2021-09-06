@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-02"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-02"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-09-06"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-09-06"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: GLHLTH 705 Lab 1"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 1"]},{"type":"character","attributes":{},"value":["__Due:__ October 1, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-09-02"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 1"]},{"type":"character","attributes":{},"value":["__Due:__ October 1, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-09-06"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2384,6 +2384,10 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+  <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+  <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+  <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2403,7 +2407,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"GLHLTH 705 Lab 1","description":"__Due:__ October 1, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-09-02T00:00:00.000-04:00"}
+{"title":"GLHLTH 705 Lab 1","description":"__Due:__ October 1, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-09-06T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2486,19 +2490,28 @@ Dictionaries
 <li><a href="#task-1-load-libraries-packages">Task 1: Load libraries &amp; packages</a></li>
 <li><a href="#task-2-recode-variables">Task 2: Recode variables</a>
 <ul>
-<li><a href="#task2a-bord5"><strong>Task2a: bord5</strong></a></li>
-<li><a href="#task-2b-male"><strong>Task 2b: male</strong></a></li>
-<li><a href="#task-2c-mweight"><strong>Task 2c: mweight</strong></a></li>
-<li><a href="#task-2d-mheight"><strong>Task 2d: mheight</strong></a></li>
-<li><a href="#task-2e-mbmi"><strong>Task 2e: mbmi</strong></a></li>
+<li><a href="#task2a-bord5"><strong>Task2a: <code>bord5</code></strong></a></li>
+<li><a href="#task-2b-male"><strong>Task 2b: <code>male</code></strong></a></li>
+<li><a href="#task-2c-mweight"><strong>Task 2c: <code>mweight</code></strong></a></li>
+<li><a href="#task-2d-mheight"><strong>Task 2d: <code>mheight</code></strong></a></li>
+<li><a href="#task-2e-mbmi"><strong>Task 2e: <code>mbmi</code></strong></a></li>
 </ul></li>
-<li><a href="#task-3-frequency-histograms">Task 3: Frequency histograms</a></li>
+<li><a href="#task-3-frequency-histograms">Task 3: Frequency histograms</a>
+<ul>
+<li><a href="#creating-histograms-in-ggplot2">Creating histograms in {ggplot2}</a></li>
+</ul></li>
 <li><a href="#task-4-boxplots">Task 4: Boxplots</a></li>
-<li><a href="#task-5-frequency-table-table-1">Task 5: Frequency table (Table 1)</a></li>
+<li><a href="#task-5-frequency-table-table-1">Task 5: Frequency table (Table 1)</a>
+<ul>
+<li><a href="#cross-tabulation-with-group_by-and-summarize">Cross-tabulation with <code>group_by()</code> and <code>summarize()</code></a></li>
+</ul></li>
 <li><a href="#task-6-data-dictionary-table-2">Task 6: Data dictionary (Table 2)</a></li>
 <li><a href="#task-7-short-answer">Task 7: Short answer</a></li>
 </ul>
 </nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
 </div>
 <h3 id="lab-materials">LAB MATERIALS:</h3>
 <ul>
@@ -2517,32 +2530,208 @@ Dictionaries
 <h2 id="task-1-load-libraries-packages">Task 1: Load libraries &amp; packages</h2>
 <p>Use the dataset Lab_1_kenya.rds for this assignment.</p>
 <p>You will also need packages {skimr} and {tidyverse}</p>
-<p>** Reminder: To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)</p>
+<p><em><strong>Reminder:</strong></em> To run a line of code, use the shortcut <code>ctrl + enter</code> (Windows) / <code>cmd + enter</code> (Mac)</p>
 <h2 id="task-2-recode-variables">Task 2: Recode variables</h2>
-<p>Construct the following derived variables using a pipe and <code>mutate()</code>. For each, examine the component variables for coded special values (i.e. “NA”) and be sure to set derived variable values appropriately. Label all variables and the coded values for the categorical ones using the <code>factor()</code> command.</p>
-<p><a href="TODO"><strong>Help with pipes</strong></a></p>
-<p><a href="TODO"><strong>Help with factors</strong></a></p>
-<h3 id="task2a-bord5"><strong>Task2a: bord5</strong></h3>
+<p>Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (<code>%&gt;%</code>) and <code>mutate()</code>. For each, examine the component variables for coded special values (i.e. “NA”) and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use <code>case_when()</code> to create conditional clauses, just as you did in Lab 0 to derive <code>magec</code>. Label all variables and the coded values for the categorical ones using the <code>factor()</code> command.</p>
+<aside>
+<p><strong>Some helpful links:</strong></p>
+<p><a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#task-6-create-variable-mage">Using pipes and mutate() in the previous lab</a></p>
+<p><a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec">Using case_when() to derive <code>magec</code></a></p>
+<p><a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe">More on pipes</a></p>
+<p><a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#factor">More on factors</a></p>
+</aside>
+<p>In your own .Rmd file, we have provided you with an example of the correct coding of <code>bord5</code>. Please use this to assist you as you re-code the other variables that follow.</p>
+<h3 id="task2a-bord5"><strong>Task2a: <code>bord5</code></strong></h3>
 <p><strong><code>bord5</code></strong>: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable <code>bord</code> (birth order).</p>
-<h3 id="task-2b-male"><strong>Task 2b: male</strong></h3>
+<h3 id="task-2b-male"><strong>Task 2b: <code>male</code></strong></h3>
 <p><strong><code>male</code></strong>: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable <code>b4</code>.</p>
-<h3 id="task-2c-mweight"><strong>Task 2c: mweight</strong></h3>
+<h3 id="task-2c-mweight"><strong>Task 2c: <code>mweight</code></strong></h3>
 <p><strong><code>mweight:</code></strong> Continuous variable for maternal weight at time of interview (in kilograms). Based on variable <code>v437</code>. Note that <code>v437</code> contains 1 implied decimal place. Divide by 10 to get kilograms.</p>
-<h3 id="task-2d-mheight"><strong>Task 2d: mheight</strong></h3>
+<h3 id="task-2d-mheight"><strong>Task 2d: <code>mheight</code></strong></h3>
 <p><strong><code>mheight</code></strong>: Continuous maternal height at time of interview (in meters). Based on variable <code>v438</code>. Note that this variable is in centimeters and also contains 1 implied decimal place.</p>
-<h3 id="task-2e-mbmi"><strong>Task 2e: mbmi</strong></h3>
+<h3 id="task-2e-mbmi"><strong>Task 2e: <code>mbmi</code></strong></h3>
 <p><strong><code>mbmi</code></strong>: maternal body mass index (BMI). Weight (kilograms) / height^2 (meters).</p>
 <h2 id="task-3-frequency-histograms">Task 3: Frequency histograms</h2>
-<p>Generate frequency histograms of <strong><code>mweight</code></strong>, <strong><code>mheight</code></strong> and <strong><code>mbmi</code></strong>. Put meaningful axis labels and a title on each figure.</p>
-<p><a href="TODO"><strong>Help with histograms in ggplot2</strong></a></p>
+<p>Generate frequency histograms of <strong><code>mweight</code></strong>, <strong><code>mheight</code></strong> and <strong><code>mbmi</code></strong> using {ggplot2}. Put meaningful axis labels and a title on each figure.</p>
+<h3 id="creating-histograms-in-ggplot2">Creating histograms in {ggplot2}</h3>
+<p>The code for creating histograms using <code>ggplot</code> is fairly straightforward, and we will demonstrate using the <code>starwars</code> dataset that is available to you anytime you load <code>tidyverse</code>. It is a list of Star Wars characters, with details on their height, weight, gender, home world, and so on:</p>
+<div class="layout-chunk" data-layout="l-body">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 1%" />
+<col style="width: 1%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 2%" />
+<col style="width: 3%" />
+<col style="width: 1%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 47%" />
+<col style="width: 12%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">height</th>
+<th style="text-align: right;">mass</th>
+<th style="text-align: left;">hair_color</th>
+<th style="text-align: left;">skin_color</th>
+<th style="text-align: left;">eye_color</th>
+<th style="text-align: right;">birth_year</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: left;">gender</th>
+<th style="text-align: left;">homeworld</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">films</th>
+<th style="text-align: left;">vehicles</th>
+<th style="text-align: left;">starships</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
+<td style="text-align: left;">Snowspeeder , Imperial Speeder Bike</td>
+<td style="text-align: left;">X-wing , Imperial shuttle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Naboo</td>
+<td style="text-align: left;">Droid</td>
+<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">yellow</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">TIE Advanced x1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: left;">feminine</td>
+<td style="text-align: left;">Alderaan</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
+<td style="text-align: left;">Imperial Speeder Bike</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owen Lars</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">brown, grey</td>
+<td style="text-align: left;">light</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: left;">masculine</td>
+<td style="text-align: left;">Tatooine</td>
+<td style="text-align: left;">Human</td>
+<td style="text-align: left;">Attack of the Clones, Revenge of the Sith , A New Hope</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Say we want to use <code>ggplot</code> to create a histogram of character height. Where do we start?</p>
+<p>“gg” stands for <strong>Grammar of graphics</strong>. {ggplot2} allows us to follow simple rules, a “grammar”, to construct visually appealing graphics and plots.</p>
+<p>Regardless of what kind of visualization we want to create, the first step will always be to initialize a graphical field using the command <code>ggplot()</code>. We supply this function with our dataset using the argument <code>data =</code>.</p>
+<p>We can also supply it with universal “mapping aesthetics”. What does <em>that</em> mean? Generally speaking, “aesthetics” are the different variables we want to use in our plot. Eventually, we are going to add “layers” to the plot. A <em>universal</em> aesthetic just means that we want the variable to apply to ALL layers. In the case of our histogram, <code>height</code> will always be on the x-axis. So we will designate <code>height</code> as a universal aesthetic. We designate aesthetics by putting them inside the aesthetic function, <code>aes()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>starwars</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>height</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="lab_1_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>Notice how the above plotting field is initialized, with character height <em><strong>mapped</strong></em> to the x axis. Luckily, histograms only take an x aesthetic, so we can generate our histogram by simply adding a layer using <code>geom_histogram()</code>. {ggplot2} uses a plus sign, <code>+</code> to <em><strong>add</strong></em> layers to a plot. Here, we will add a histogram layer and a labels layer (<code>labs()</code>)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>starwars</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>height</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Height (cm)"</span>, y <span class='op'>=</span> <span class='st'>"Count"</span>, title <span class='op'>=</span> <span class='st'>"Histogram of Star Wars Character Height (cm)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="lab_1_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<aside>
+<p>Navigate to <a href="https://dghi-biostat.github.io/biostatlab/help_ggplot2.html">this page</a> for {ggplot2} resources. The page also includes <a href="https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#core-competencies-for-705-lab">our own tutorial</a> that details the concepts specifically required to complete these labs.</p>
+</aside>
+<p>Please pay special attention to how you label your visualizations, and be specific! Statisticians and others reviewing your research tend to be quite persnickety when it comes to titles and axis labels. And with good reason! What use is a visualization without proper labels?</p>
+<aside>
+<p>Find many an anecdotal answer on <a href="https://www.reddit.com/r/dataisugly/">r/dataisugly</a></p>
+</aside>
+<p>As time permits, we encourage you to take advantage of the external resources provided in the sidebar in order to gain a better understanding of plotting using {ggplot2}</p>
 <h2 id="task-4-boxplots">Task 4: Boxplots</h2>
-<p>Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.</p>
-<p><a href="TODO"><strong>Help with boxplots in ggplot2</strong></a></p>
+<p>Now you’re going to generate boxplots of <code>mweight</code>, <code>mheight</code>, and <code>mbmi</code> for the levels of <code>magec</code>. Put meaningful axis labels and a title on each figure.</p>
+<p>The steps to creating a boxplot are the same as those for creating a histogram, except we will create a layer using <code>geom_boxplot()</code>. Additionally, in order to stratify our plot, we will need to provide the plotting space with an additional y aesthetic, <code>magec</code>.</p>
+<p>If you need a little more guidance, learn to create a boxplot <a href="https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#create-a-boxplot-with-geom_boxplot">here</a></p>
+<p>And learn how to create a stratified boxplot <a href="https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic">here</a></p>
 <h2 id="task-5-frequency-table-table-1">Task 5: Frequency table (Table 1)</h2>
+<p>If you haven’t already, download the Excel file that’s linked <a href="https://dghi-biostat.github.io/biostatlab/lab_1.html#lab-materials">at the top of this webpage</a>. Then open the file, <code>Lab1_Tables.xlsx</code>.</p>
 <p>Fill in <strong>Table 1</strong> with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. <strong><em>Round percentages to 1 decimal place</em></strong>.</p>
 <p>We would like you to use a pipe (<code>%&gt;%</code>) with <code>group_by()</code> and <code>summarize()</code> to generate summary statistics.</p>
-<p><code>group_by()</code> works by grouping rows by categorical variables. It then allows a function like <code>summarize()</code> to calculate summary statistics on those sub-groups, including percentages and frequency counts.</p>
-<p>As an example, we can use the <code>mtcars</code> dataset available within RStudio:</p>
+<h3 id="cross-tabulation-with-group_by-and-summarize">Cross-tabulation with <code>group_by()</code> and <code>summarize()</code></h3>
+<p><code>group_by()</code> works by grouping rows into discrete categories. It then allows a function like <code>summarize()</code> to calculate summary statistics on those sub-groups, including percentages and frequency counts.</p>
+<p>As an example, we can use the <code>mtcars</code> dataset, which is always available from within R:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>
@@ -2655,12 +2844,15 @@ Dictionaries
 </tbody>
 </table>
 </div>
+<aside>
+Find out what other datasets are available within R with the command <code>library(help = "datasets")</code>
+</aside>
 <p>Say we want to know the frequency counts of cars with 4, 6, and 8 cylinders (variable: <code>cyl</code>) based on whether or not a car has an automatic or manual transmission (variable <code>am</code>, 0 = automatic, 1 = manual).</p>
-<p>We can use <code>group_by()</code> to create subgroups according to <code>am</code> and <code>cyl</code>. Using <code>group_by()</code> by itself doesn’t alter the appearance of our data frame, but our observations are now implicitly grouped according to transmission type and number of cylinders.</p>
+<p>We can use <code>group_by()</code> to create subgroups according to <code>am</code> and <code>cyl</code>. Using <code>group_by()</code> by itself doesn’t alter the appearance of our data frame, but our observations will now be grouped implicitly according to transmission type and number of cylinders.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2767,8 +2959,8 @@ Dictionaries
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
             anotherColumnName <span class='op'>=</span> <span class='fu'>anotherFunction</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>,
             <span class='va'>etc.</span>, <span class='va'>etc....</span><span class='op'>)</span>
 </code></pre>
@@ -2779,8 +2971,8 @@ Dictionaries
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2833,9 +3025,9 @@ Dictionaries
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2891,7 +3083,7 @@ Dictionaries
 </div>
 <p>Also notice that we’re able to do this within one continuous pipe.</p>
 <h2 id="task-6-data-dictionary-table-2">Task 6: Data dictionary (Table 2)</h2>
-<p><strong>Table 2</strong> is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from <code>skim()</code>:</p>
+<p>In your Excel spreadsheet, the sheet titled <strong>Table 2</strong> is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from <code>skim()</code>:</p>
 <ol type="a">
 <li>Fill in the columns in this table for the variables originally in the dataset.</li>
 <li>Add rows for the 7 new variables that you have created in both Labs 0 and 1.</li>

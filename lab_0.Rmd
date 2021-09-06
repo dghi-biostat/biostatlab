@@ -27,7 +27,7 @@ __*Note: This lab is not graded*__ (i.e. does not contribute to your course eval
 ### LAB MATERIALS: 
 
 * [__R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
-Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `firsInitial_YourLastName_Lab0.Rmd`, and submit it using the Sakai dropbox.
+Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `Lab0_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * "Lab_0_kenya.rds" - data file available in the Resources folder of the Sakai course webpage
 
@@ -110,14 +110,30 @@ There are packages that come built-in with R. These have names like {base}, {uti
 
 Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
 
-Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
+Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console, one line at a time, to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
 
 
-```{r install packages, eval = FALSE, echo = TRUE}
+```{r install packages 1, eval = FALSE, echo = TRUE}
 install.packages("tidyverse")
+```
+
+
+```{r install packages 2, eval = FALSE, echo = TRUE}
 install.packages("skimr")
+```
+
+
+```{r install packages 3, eval = FALSE, echo = TRUE}
 install.packages("epiR")
+```
+
+
+```{r install packages 4, eval = FALSE, echo = TRUE}
 install.packages("devtools")
+```
+
+
+```{r install packages 5, eval = FALSE, echo = TRUE}
 devtools::install_github("potato-nathan/epiAssist")
 ```
 

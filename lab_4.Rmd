@@ -10,6 +10,11 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 library(dplyr)
+library(xaringanExtra)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
 ```
 
 ### LAB MATERIALS: 

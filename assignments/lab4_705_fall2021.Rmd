@@ -1,7 +1,8 @@
 ---
-title: "Kenya - Lab4"
-author: "Nathan Ellermeier, DGHI Biostat Team"
-date: "7/15/2021"
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday November 23, 2021"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
 output: 
   html_document:
     df_print: paged

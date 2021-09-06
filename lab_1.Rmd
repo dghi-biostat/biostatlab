@@ -11,6 +11,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
 library(knitr)
+library(xaringanExtra)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
 ```
 
 ### LAB MATERIALS: 
@@ -37,38 +42,50 @@ Use the dataset Lab_1_kenya.rds for this assignment.
 
 You will also need packages {skimr} and {tidyverse}
 
-** Reminder: To run a line of code, use the shortcut ctrl + enter (Windows)/cmd + enter (Mac)
+*__Reminder:__* To run a line of code, use the shortcut `ctrl + enter` (Windows) / `cmd + enter` (Mac)
 
 
 ## Task 2: Recode variables
 
-Construct the following derived variables using a pipe and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately.  Label all variables and the coded values for the categorical ones using the `factor()` command. 
+Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (`%>%`) and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use `case_when()` to create conditional clauses, just as you did in Lab 0 to derive `magec`. Label all variables and the coded values for the categorical ones using the `factor()` command. 
 
-[__Help with pipes__](TODO)
+<aside>
 
-[__Help with factors__](TODO)
+__Some helpful links:__
 
-### __Task2a: bord5__
+[Using pipes and mutate() in the previous lab](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-6-create-variable-mage)
+
+[Using case_when() to derive `magec`](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec)
+
+[More on pipes](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe)
+
+[More on factors](https://dghi-biostat.github.io/biostatlab/help_jargon.html#factor)
+
+</aside>
+
+In your own .Rmd file, we have provided you with an example of the correct coding of `bord5`. Please use this to assist you as you re-code the other variables that follow.
+
+### __Task2a: `bord5`__
 
 __`bord5`__: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
 
 
-### __Task 2b: male__
+### __Task 2b: `male`__
 
 __`male`__: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
 
 
-### __Task 2c: mweight__
+### __Task 2c: `mweight`__
 
 __`mweight:`__ Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
 
 
-### __Task 2d: mheight__
+### __Task 2d: `mheight`__
 
 __`mheight`__:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
 
 
-### __Task 2e: mbmi__
+### __Task 2e: `mbmi`__
 
 __`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
 
@@ -76,28 +93,75 @@ __`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (mete
 
 ## Task 3: Frequency histograms
 
-Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__.  Put meaningful axis labels and a title on each figure.
+Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__ using {ggplot2}. Put meaningful axis labels and a title on each figure.
 
-[__Help with histograms in ggplot2__](TODO)
+### Creating histograms in {ggplot2}
 
+The code for creating histograms using `ggplot` is fairly straightforward, and we will demonstrate using the `starwars` dataset that is available to you anytime you load `tidyverse`. It is a list of Star Wars characters, with details on their height, weight, gender, home world, and so on:
+
+```{r}
+kable(head(starwars[,1:11]))
+```
+
+Say we want to use `ggplot` to create a histogram of character height. Where do we start?
+
+"gg" stands for __Grammar of graphics__. {ggplot2} allows us to follow simple rules, a "grammar", to construct visually appealing graphics and plots. 
+
+Regardless of what kind of visualization we want to create, the first step will always be to initialize a graphical field using the command `ggplot()`. We supply this function with our dataset using the argument `data =`. 
+
+We can also supply it with universal "mapping aesthetics". What does *that* mean? Generally speaking, "aesthetics" are the different variables we want to use in our plot. Eventually, we are going to add "layers" to the plot. A *universal* aesthetic just means that we want the variable to apply to ALL layers. In the case of our histogram, `height` will always be on the x-axis. So we will designate `height` as a universal aesthetic. We designate aesthetics by putting them inside the aesthetic function, `aes()`: 
+
+```{r echo = TRUE}
+ggplot(data = starwars, mapping = aes(x = height))
+```
+
+Notice how the above plotting field is initialized, with character height *__mapped__* to the x axis. Luckily, histograms only take an x aesthetic, so we can generate our histogram by simply adding a layer using `geom_histogram()`. {ggplot2} uses a plus sign, `+` to *__add__* layers to a plot. Here, we will add a histogram layer and a labels layer (`labs()`)
+
+```{r echo = TRUE, message = FALSE, warning = FALSE}
+ggplot(data = starwars, mapping = aes(x = height)) +
+  geom_histogram() +
+  labs(x = "Height (cm)", y = "Count", title = "Histogram of Star Wars Character Height (cm)")
+```
+
+<aside>
+
+Navigate to [this page](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html) for {ggplot2} resources. The page also includes [our own tutorial](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#core-competencies-for-705-lab) that details the concepts specifically required to complete these labs.
+
+</aside>
+
+Please pay special attention to how you label your visualizations, and be specific! Statisticians and others reviewing your research tend to be quite persnickety when it comes to titles and axis labels. And with good reason! What use is a visualization without proper labels?
+
+<aside>
+
+Find many an anecdotal answer on [r/dataisugly](https://www.reddit.com/r/dataisugly/)
+
+</aside>
+
+As time permits, we encourage you to take advantage of the external resources provided in the sidebar in order to gain a better understanding of plotting using {ggplot2}
 
 ## Task 4: Boxplots
 
-Generate boxplots of mweight, mheight, and mbmi for the levels of magec. Put meaningful axis labels and a title on each figure.
+Now you're going to generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`. Put meaningful axis labels and a title on each figure.
 
-[__Help with boxplots in ggplot2__](TODO)
+The steps to creating a boxplot are the same as those for creating a histogram, except we will create a layer using `geom_boxplot()`. Additionally, in order to stratify our plot, we will need to provide the plotting space with an additional y aesthetic, `magec`.
 
+If you need a little more guidance, learn to create a boxplot [here](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#create-a-boxplot-with-geom_boxplot)
 
+And learn how to create a stratified boxplot [here](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic)
 
 ## Task 5: Frequency table (Table 1)
+
+If you haven't already, download the Excel file that's linked [at the top of this webpage](https://dghi-biostat.github.io/biostatlab/lab_1.html#lab-materials). Then open the file, `Lab1_Tables.xlsx`. 
 
 Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__.
 
 We would like you to use a pipe (`%>%`) with `group_by()` and `summarize()` to generate summary statistics. 
 
-`group_by()` works by grouping rows by categorical variables. It then allows a function like `summarize()` to calculate summary statistics on those sub-groups, including percentages and frequency counts. 
+### Cross-tabulation with `group_by()` and `summarize()`
 
-As an example, we can use the `mtcars` dataset available within RStudio:
+`group_by()` works by grouping rows into discrete categories. It then allows a function like `summarize()` to calculate summary statistics on those sub-groups, including percentages and frequency counts. 
+
+As an example, we can use the `mtcars` dataset, which is always available from within R:
 
 ```{r echo = TRUE, eval = FALSE}
 head(mtcars)
@@ -107,9 +171,13 @@ head(mtcars)
 kable(head(mtcars))
 ```
 
+<aside>
+Find out what other datasets are available within R by running the command `library(help = "datasets")`
+</aside>
+
 Say we want to know the frequency counts of cars with 4, 6, and 8 cylinders (variable: `cyl`) based on whether or not a car has an automatic or manual transmission (variable `am`, 0 = automatic, 1 = manual).
 
-We can use `group_by()` to create subgroups according to `am` and `cyl`. Using `group_by()` by itself doesn't alter the appearance of our data frame, but our observations are now implicitly grouped according to transmission type and number of cylinders.
+We can use `group_by()` to create subgroups according to `am` and `cyl`. Using `group_by()` by itself doesn't alter the appearance of our data frame, but our observations will now be grouped implicitly according to transmission type and number of cylinders.
 
 ```{r echo = TRUE, eval = FALSE}
 
@@ -179,7 +247,7 @@ Also notice that we're able to do this within one continuous pipe.
 
 ## Task 6: Data dictionary (Table 2)
 
-__Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from `skim()`:
+In your Excel spreadsheet, the sheet titled __Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from `skim()`:
 
   a.	Fill in the columns in this table for the variables originally in the dataset.
   b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.

@@ -30,7 +30,7 @@ __*Submit your documents electronically via the SAKAI DropBox by 14:00 ET on the
 ## Submitting
 
 * The Rmarkdown file should run from start to finish with no errors, including calling in the analysis dataset, and should produce all of the results and graphs to complete this assignment.
-* Please name your files with the paradigm LabX_FirstinitialYourlastname.* (e.g. Lab1_LPark.Rmd), so that your lab instructor can identify each Rmarkdown-file.
+* Please name your files with the paradigm LabX_FirstinitialYourlastname.Rmd (e.g. Lab1_LPark.Rmd), so that your lab instructor can identify each Rmarkdown-file.
 * Late policy: 5 point deduction per 24 hour period past due date and time.
 
 

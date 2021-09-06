@@ -1,5 +1,6 @@
 ---
-title: "Kenya - Lab3"
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday November 12, 2021"
 author: "YOUR NAME HERE"
 date: "`r Sys.Date()`"
 output: 
