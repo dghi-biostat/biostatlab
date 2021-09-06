@@ -2556,22 +2556,19 @@ Dictionaries
 <h3 id="creating-histograms-in-ggplot2">Creating histograms in {ggplot2}</h3>
 <p>The code for creating histograms using <code>ggplot</code> is fairly straightforward, and we will demonstrate using the <code>starwars</code> dataset that is available to you anytime you load <code>tidyverse</code>. It is a list of Star Wars characters, with details on their height, weight, gender, home world, and so on:</p>
 <div class="layout-chunk" data-layout="l-body">
-<table style="width:100%;">
+<table>
 <colgroup>
+<col style="width: 14%" />
+<col style="width: 6%" />
 <col style="width: 4%" />
-<col style="width: 1%" />
-<col style="width: 1%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 1%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 47%" />
-<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
 <col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2586,9 +2583,6 @@ Dictionaries
 <th style="text-align: left;">gender</th>
 <th style="text-align: left;">homeworld</th>
 <th style="text-align: left;">species</th>
-<th style="text-align: left;">films</th>
-<th style="text-align: left;">vehicles</th>
-<th style="text-align: left;">starships</th>
 </tr>
 </thead>
 <tbody>
@@ -2604,9 +2598,6 @@ Dictionaries
 <td style="text-align: left;">masculine</td>
 <td style="text-align: left;">Tatooine</td>
 <td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">Snowspeeder , Imperial Speeder Bike</td>
-<td style="text-align: left;">X-wing , Imperial shuttle</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C-3PO</td>
@@ -2620,9 +2611,6 @@ Dictionaries
 <td style="text-align: left;">masculine</td>
 <td style="text-align: left;">Tatooine</td>
 <td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">R2-D2</td>
@@ -2636,9 +2624,6 @@ Dictionaries
 <td style="text-align: left;">masculine</td>
 <td style="text-align: left;">Naboo</td>
 <td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Darth Vader</td>
@@ -2652,9 +2637,6 @@ Dictionaries
 <td style="text-align: left;">masculine</td>
 <td style="text-align: left;">Tatooine</td>
 <td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">TIE Advanced x1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Leia Organa</td>
@@ -2668,9 +2650,6 @@ Dictionaries
 <td style="text-align: left;">feminine</td>
 <td style="text-align: left;">Alderaan</td>
 <td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">Imperial Speeder Bike</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Owen Lars</td>
@@ -2684,9 +2663,6 @@ Dictionaries
 <td style="text-align: left;">masculine</td>
 <td style="text-align: left;">Tatooine</td>
 <td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -2845,14 +2821,14 @@ Dictionaries
 </table>
 </div>
 <aside>
-Find out what other datasets are available within R with the command <code>library(help = "datasets")</code>
+Find out what other datasets are available within R by running the command <code>library(help = "datasets")</code>
 </aside>
 <p>Say we want to know the frequency counts of cars with 4, 6, and 8 cylinders (variable: <code>cyl</code>) based on whether or not a car has an automatic or manual transmission (variable <code>am</code>, 0 = automatic, 1 = manual).</p>
 <p>We can use <code>group_by()</code> to create subgroups according to <code>am</code> and <code>cyl</code>. Using <code>group_by()</code> by itself doesn’t alter the appearance of our data frame, but our observations will now be grouped implicitly according to transmission type and number of cylinders.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2959,8 +2935,8 @@ Find out what other datasets are available within R with the command <code>libra
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
             anotherColumnName <span class='op'>=</span> <span class='fu'>anotherFunction</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>,
             <span class='va'>etc.</span>, <span class='va'>etc....</span><span class='op'>)</span>
 </code></pre>
@@ -2971,8 +2947,8 @@ Find out what other datasets are available within R with the command <code>libra
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -3025,9 +3001,9 @@ Find out what other datasets are available within R with the command <code>libra
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
