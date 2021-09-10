@@ -34,6 +34,13 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 * "Lab_0_kenya.rds" - data file available in the Resources folder of the Sakai course webpage
 
+
+### Slides
+
+```{r embed-xaringan, echo=FALSE, fig.cap="[Slides](slides/index.html)"}
+xaringanExtra::embed_xaringan(url = "files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
+```
+
 ### Lab 0 Goals:
 
 By the end of this lab, you will have demonstrated a basic familiarity with the R coding environment and R Markdown files. You will be able to:
@@ -44,12 +51,6 @@ By the end of this lab, you will have demonstrated a basic familiarity with the 
   * Derive an ordinal categorical variable from a continuous one
   * Generate histograms and boxplots using ggplot2
   * Create a simple cross-tabulation of two variables
-
-### Slides
-
-```{r embed-xaringan, echo=FALSE, fig.cap="[Slides](slides/index.html)"}
-xaringanExtra::embed_xaringan(url = "files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
-```
     
 
 ## Task 1: Establish a workflow
