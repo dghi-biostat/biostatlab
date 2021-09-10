@@ -30,6 +30,10 @@ style_solarized_light()
 #style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
 ```
 
+```{r xaringanExtra-share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
+
 ---
 # Review
 
