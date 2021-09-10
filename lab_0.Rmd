@@ -21,6 +21,9 @@ library(xaringanExtra)
 xaringanExtra::use_clipboard()
 ```
 
+```{r share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
 
 __*Note: This lab is not graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
 
@@ -41,6 +44,12 @@ By the end of this lab, you will have demonstrated a basic familiarity with the 
   * Derive an ordinal categorical variable from a continuous one
   * Generate histograms and boxplots using ggplot2
   * Create a simple cross-tabulation of two variables
+
+### Slides
+
+```{r embed-xaringan, echo=FALSE, fig.cap="[Slides](slides/index.html)"}
+xaringanExtra::embed_xaringan(url = "files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
+```
     
 
 ## Task 1: Establish a workflow
