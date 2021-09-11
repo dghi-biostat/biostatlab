@@ -2880,7 +2880,7 @@ Find out what other datasets are available within R by running the command <code
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2987,8 +2987,8 @@ Find out what other datasets are available within R by running the command <code
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>columnName <span class='op'>=</span> <span class='fu'>Function</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>, 
             anotherColumnName <span class='op'>=</span> <span class='fu'>anotherFunction</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>,
             <span class='va'>etc.</span>, <span class='va'>etc....</span><span class='op'>)</span>
 </code></pre>
@@ -3002,8 +3002,8 @@ If you prefer the British English spelling of “summarise”, R also recognizes
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -3053,14 +3053,14 @@ If you prefer the British English spelling of “summarise”, R also recognizes
 <p>We can also use <code>mutate()</code> to operate on our summary table as if it were its own data frame.</p>
 <p>Within <code>mutate()</code>, we create a new variable with <code>NewVariable =</code>, and equate it to the following operation: <code>Counts / sum(Counts, na.rm = TRUE)</code> (sub-group counts divided by the sum of sub-group counts).</p>
 <aside>
-__**Note__: <code>na.rm = TRUE</code> instructs the function to remove NA values from the sum of values in our sub-group.
+<strong>Note</strong>: <code>na.rm = TRUE</code> instructs the function to remove NA values from the sum of values in our sub-group.
 </aside>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>am</span>, <span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Counts <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Proportions <span class='op'>=</span> <span class='va'>Counts</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Counts</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
