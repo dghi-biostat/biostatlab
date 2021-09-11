@@ -20,15 +20,14 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS: 
 
-* [R Markdown file for Lab 1.__](assignments/lab1_705_fall2021.Rmd)
+* [__R Markdown file for Lab 1.__](assignments/lab1_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab1_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [Excel document for Tables 1 & 2](assignments/Lab1_Tables.xlsx)
-TODO: Set up answer entry on Sakai?
+* [__Excel document for Tables 1 & 2__](assignments/Lab1_Tables.xlsx)
 
 * Lab_1_kenya.rds - data file available on Sakai
 
-### Lab 1 Goals:
+### Lab 1 Goals
 
 * Generate derived variables
 * Identify and recode special values 
@@ -36,18 +35,24 @@ TODO: Set up answer entry on Sakai?
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
-## Task 1: Load libraries & packages
+## Task 1: Load packages and data
 
-Use the dataset Lab_1_kenya.rds for this assignment. 
+In the chunk of code named `load packages`, use the function `library()` to load packages {skimr} and {tidyverse}.
 
-You will also need packages {skimr} and {tidyverse}
+In the following chunk, named `load data`, use the function `readRDS()` to load in the dataset named `Lab_1_kenya.rds`. Use the assignment operator, `<-` to give it the name `kenya`.   
 
-*__Reminder:__* To run a line of code, use the shortcut `ctrl + enter` (Windows) / `cmd + enter` (Mac)
+*__Reminder:__* To run a line of code from within a code chunk in R Markdown, use the keyboard shortcut `ctrl + enter` (Windows) / `cmd + enter` (Mac) 
+
+<aside>
+Find more useful keyboard shortcuts [here](https://dghi-biostat.github.io/biostatlab/help_rstudio.html#rmarkdown-keyboard-shortcuts)
+</aside>
 
 
 ## Task 2: Recode variables
 
-Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (`%>%`) and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use `case_when()` to create conditional clauses, just as you did in Lab 0 to derive `magec`. Label all variables and the coded values for the categorical ones using the `factor()` command. 
+Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (`%>%`) and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use `case_when()` to create conditional clauses, just as you did [in Lab 0](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec) to derive `magec`. 
+
+Label all variables and the coded values for the categorical ones using the `factor()` command. That is, add meaningful labels to both the variable name itself and to the levels (i.e. categories) of the categorical variable to make printed output more readable".
 
 <aside>
 
@@ -63,16 +68,26 @@ __Some helpful links:__
 
 </aside>
 
-In your own .Rmd file, we have provided you with an example of the correct coding of `bord5`. Please use this to assist you as you re-code the other variables that follow.
+In the .Rmd named lab1_705_fall2021.Rmd, we have provided you with an example of the correct coding of `bord5`. Please use this to assist you as you re-code the other variables that follow. Please code each new variable within the code chunk named after that variable.
 
 ### __Task2a: `bord5`__
 
-__`bord5`__: Dichotomous variable indicating birth order of the child. [0=current child was 1st through 4th in the birth order, 1=current child was later than 4th in the birth order]. Based on variable `bord` (birth order).
+__`bord5`__: A dichotomous categorical (i.e. binary) variable indicating birth order of the child. You will use the variable `bord` (birth order). Create the categories for `bord5` according to the following levels and labels:
+
+|   Level      |   Label   |
+|:------------:|:------------:|
+|     0        |  birth order 1 through 4  |
+|     1        |  birth order 5+ | 
 
 
 ### __Task 2b: `male`__
 
-__`male`__: Dichotomous categorical variable indicating that the child is male [0=female, 1=male]. Based on variable `b4`.
+__`male`__: A dichotomous categorical (i.e. binary) variable indicating that the child is male. Based on variable `b4`. Create the categories for `male` according to the following levels and labels: 
+
+|   Level   |   Label   |
+|:---------:|:---------:|
+|     0     |   female  |
+|     1     |    male   | 
 
 
 ### __Task 2c: `mweight`__
@@ -82,22 +97,28 @@ __`mweight:`__ Continuous variable for maternal weight at time of interview (in 
 
 ### __Task 2d: `mheight`__
 
-__`mheight`__:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place.
+__`mheight`__:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place. Divide by 10 to get meters. 
 
 
 ### __Task 2e: `mbmi`__
 
-__`mbmi`__: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
+__`mbmi`__: maternal body mass index (BMI). `mweight / mheight^2`.
 
 
 
 ## Task 3: Frequency histograms
 
-Generate frequency histograms of __`mweight`__, __`mheight`__ and __`mbmi`__ using {ggplot2}. Put meaningful axis labels and a title on each figure.
+Generate frequency histograms of the continuous variables __`mweight`__, __`mheight`__ and __`mbmi`__ using {ggplot2}. Put meaningful axis labels and a title on each figure. Note that since we look at histograms of each of the variables individually, these are univariable visualizations (i.e. one variable at a time).
+
+Please read the description below on how to generate histograms in {ggplot}, then use the code chunks named `mweight hist`, `mheight hist`, and `mbmi hist` to generate each plot in its own designated chunk. 
 
 ### Creating histograms in {ggplot2}
 
-The code for creating histograms using `ggplot` is fairly straightforward, and we will demonstrate using the `starwars` dataset that is available to you anytime you load `tidyverse`. It is a list of Star Wars characters, with details on their height, weight, gender, home world, and so on:
+The code for creating histograms using `ggplot` is fairly straightforward, and we will demonstrate using the `starwars` dataset. It provides a list of Star Wars characters, with details on their height, weight, gender, home world, and so on:
+
+<aside>
+`starwars` is loaded into R every time you load the rest of the tidyverse package.
+</aside>
 
 ```{r}
 kable(head(starwars[,1:11]))
@@ -109,7 +130,7 @@ Say we want to use `ggplot` to create a histogram of character height. Where do 
 
 Regardless of what kind of visualization we want to create, the first step will always be to initialize a graphical field using the command `ggplot()`. We supply this function with our dataset using the argument `data =`. 
 
-We can also supply it with universal "mapping aesthetics". What does *that* mean? Generally speaking, "aesthetics" are the different variables we want to use in our plot. Eventually, we are going to add "layers" to the plot. A *universal* aesthetic just means that we want the variable to apply to ALL layers. In the case of our histogram, `height` will always be on the x-axis. So we will designate `height` as a universal aesthetic. We designate aesthetics by putting them inside the aesthetic function, `aes()`: 
+We can also supply it with universal "mapping aesthetics". What does *that* mean? Generally speaking, "aesthetics" are the different variables we want to use in our plot. Eventually, we are going to add "layers" to the plot. A *universal* aesthetic just means that we want the variable to apply to ALL layers. In the case of our histogram, we want `height` to always be on the x-axis. So we will designate `height` as a universal aesthetic. We designate aesthetics by putting them inside the aesthetic function, `aes()`. 
 
 ```{r echo = TRUE}
 ggplot(data = starwars, mapping = aes(x = height))
@@ -137,13 +158,17 @@ Find many an anecdotal answer on [r/dataisugly](https://www.reddit.com/r/dataisu
 
 </aside>
 
-As time permits, we encourage you to take advantage of the external resources provided in the sidebar in order to gain a better understanding of plotting using {ggplot2}
+As time permits, we encourage you to take advantage of the external resources provided in the sidebar in order to gain a better understanding of plotting with {ggplot2}
 
 ## Task 4: Boxplots
 
-Now you're going to generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`. Put meaningful axis labels and a title on each figure.
+Now you're going to generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`. Put meaningful axis labels and a title on each figure. Note that since we look at boxplots of each of the  variables according to the levels of `magec`, these are bivariable visualizations (i.e. showing two variables at a time).
 
-The steps to creating a boxplot are the same as those for creating a histogram, except we will create a layer using `geom_boxplot()`. Additionally, in order to stratify our plot, we will need to provide the plotting space with an additional y aesthetic, `magec`.
+Please use the appropriately labelled code chunks provided in your R Markdown assignment document (labelled `mweight box`, `mheight box`, etc.) to generate your boxplots.
+
+### Creating a boxplot in {ggplot2}
+
+The steps to creating a boxplot are the same as those for creating a histogram, except we will create the boxplot layer using `geom_boxplot()` instead of `geom_histogram()`. Additionally, in order to stratify our plot, we will need to provide the plotting space with a y aesthetic, `magec`.
 
 If you need a little more guidance, learn to create a boxplot [here](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#create-a-boxplot-with-geom_boxplot)
 
@@ -151,15 +176,19 @@ And learn how to create a stratified boxplot [here](https://dghi-biostat.github.
 
 ## Task 5: Frequency table (Table 1)
 
-If you haven't already, download the Excel file that's linked [at the top of this webpage](https://dghi-biostat.github.io/biostatlab/lab_1.html#lab-materials). Then open the file, `Lab1_Tables.xlsx`. 
+If you haven't already, download the Excel file that's linked [at the top of this webpage](https://dghi-biostat.github.io/biostatlab/lab_1.html#lab-materials). Then open the file, which is named `Lab1_Tables.xlsx`. 
 
-Fill in __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__.
+Fill in the sheet called __Table 1__ with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__.
 
-We would like you to use a pipe (`%>%`) with `group_by()` and `summarize()` to generate summary statistics. 
+In the code chunks named `bord5 freq`, etc., we would like you to use a pipe (`%>%`) with `group_by()`, `summarize()`, and `mutate()` to generate summary statistics. Please read the tutorial below to gain a better understanding of `group_by()` and `summarize()`.
+
+<aside>
+__Hint:__ To generate percentages based on sub-group frequency counts, you will need to use `mutate()` to create another column on your summary data frame that divides each frequency count by the `sum()` of each subgroup's total count. 
+</aside>
 
 ### Cross-tabulation with `group_by()` and `summarize()`
 
-`group_by()` works by grouping rows into discrete categories. It then allows a function like `summarize()` to calculate summary statistics on those sub-groups, including percentages and frequency counts. 
+`group_by()` works by grouping rows into discrete categories based on categorical variables in the data frame. It then allows a function like `summarize()` to calculate summary statistics on those sub-groups, including percentages and frequency counts. 
 
 As an example, we can use the `mtcars` dataset, which is always available from within R:
 
@@ -205,9 +234,13 @@ mtcars %>%
 
 ```
 
-Depending on whether our variable is categorical or continuous, we can use summary statistic functions like `n()` (for raw counts), `mean()`, `sd()`, `median()`, `IQR()`, `min()`, and `max()` within our `summarize()` function. Except for `n()`, which doesn't take any arguments, the rest of these functions take a variable name. 
+<aside>
+If you prefer the British English spelling of "summarise", R also recognizes `summarise()`. 
+</aside>
 
-We can start by using `n()` for sub-group frequency counts. 
+Depending on whether our variable of interest is categorical or continuous, we can use summary statistic functions like `n()` (for raw counts), `mean()`, `sd()`, `median()`, `IQR()`, `min()`, and `max()` within our `summarize()` function. Except for certain functions like `n()`, which doesn't take any arguments, the rest of these functions take a variable name specifying which variable should be used in the calculation.
+
+We can start by using `n()` for sub-group frequency counts. Notice that, similar to the syntax used with `mutate()`, we name the summary statistic to the left of the equals sign, and specify the function to the right.
 
 
 ```{r echo = TRUE, eval = FALSE}
@@ -222,11 +255,13 @@ kable(mtcars %>%
   summarize(Counts = n()))
 ```
 
-Then we can use `mutate()` to operate on our summary table as if it were its own data frame.
+We can also use `mutate()` to operate on our summary table as if it were its own data frame.
 
 Within `mutate()`, we create a new variable with `NewVariable = `, and equate it to the following operation: `Counts / sum(Counts, na.rm = TRUE)` (sub-group counts divided by the sum of sub-group counts).
 
-__**Note__: `na.rm = TRUE` instructs the function to remove NA values from the sum of values in our sub-group.
+<aside>
+__Note__: `na.rm = TRUE` instructs the function to remove NA values from the sum of values in our sub-group.
+</aside>
 
 ```{r echo = TRUE, eval = FALSE}
 mtcars %>%
@@ -242,12 +277,11 @@ kable(mtcars %>%
   mutate(Proportions = Counts / sum(Counts, na.rm = TRUE)))
 ```
 
-Also notice that we're able to do this within one continuous pipe.
-
+Also notice that we're able to do this all within a single string of code using `%>%`!
 
 ## Task 6: Data dictionary (Table 2)
 
-In your Excel spreadsheet, the sheet titled __Table 2__ is the data dictionary for the Kenya dataset, with columns added to annotate the variables and provide summary statistics. Using output from `skim()`:
+In your Excel spreadsheet, the sheet titled __Table 2__ is our own data dictionary for the Kenya DHS dataset, with columns added to annotate the variables and provide summary statistics. Using output from `skim()`:
 
   a.	Fill in the columns in this table for the variables originally in the dataset.
   b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
@@ -255,11 +289,8 @@ In your Excel spreadsheet, the sheet titled __Table 2__ is the data dictionary f
 
 ## Task 7: Short answer
 
-__*Enter your response into your own RMarkdown file*__
+__*Enter your response into your own RMarkdown file, under the heading called "Task 7: Short answer"*__
 
-__Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
-__(Response no longer than 250 words, please)__
-
-
-
+__Prompt:__ Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
+__(Response no longer than 250 words, please)
 
