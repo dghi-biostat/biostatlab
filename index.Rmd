@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Base Rate'](https://www.explainxkcd.com/wiki/index.php/2476:_Base_Rate)"}
-knitr::include_graphics("images/base_rate.png")
+```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Cohort and Age Effects'](https://www.explainxkcd.com/wiki/index.php/2080:_Cohort_and_Age_Effects)"}
+knitr::include_graphics("https://imgs.xkcd.com/comics/cohort_and_age_effects.png")
 
 ```
 
