@@ -52,8 +52,6 @@ Find more useful keyboard shortcuts [here](https://dghi-biostat.github.io/biosta
 
 Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (`%>%`) and `mutate()`. For each, examine the component variables for coded special values (i.e. "NA") and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use `case_when()` to create conditional clauses, just as you did [in Lab 0](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec) to derive `magec`. 
 
-Label all variables and the coded values for the categorical ones using the `factor()` command. That is, add meaningful labels to both the variable name itself and to the levels (i.e. categories) of the categorical variable to make printed output more readable".
-
 <aside>
 
 __Some helpful links:__
@@ -67,6 +65,8 @@ __Some helpful links:__
 [More on factors](https://dghi-biostat.github.io/biostatlab/help_jargon.html#factor)
 
 </aside>
+
+__For the categorical variables:__ Label all variables and the coded values for the categorical ones using the `factor()` command. That is, add meaningful labels to both the variable name itself and to the levels (i.e. categories) of the categorical variable to make printed output more readable.
 
 In the .Rmd named lab1_705_fall2021.Rmd, we have provided you with an example of the correct coding of `bord5`. Please use this to assist you as you re-code the other variables that follow. Please code each new variable within the code chunk named after that variable.
 

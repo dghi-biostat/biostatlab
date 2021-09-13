@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-11"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-11"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-09-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-09-13"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: GLHLTH 705 Lab 1"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 1"]},{"type":"character","attributes":{},"value":["__Due:__ October 1, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-09-11"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 1"]},{"type":"character","attributes":{},"value":["__Due:__ October 1, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-09-13"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2407,7 +2407,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"GLHLTH 705 Lab 1","description":"__Due:__ October 1, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-09-11T00:00:00.000-04:00"}
+{"title":"GLHLTH 705 Lab 1","description":"__Due:__ October 1, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-09-13T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2540,7 +2540,6 @@ Find more useful keyboard shortcuts <a href="https://dghi-biostat.github.io/bios
 </aside>
 <h2 id="task-2-recode-variables">Task 2: Recode variables</h2>
 <p>Similar to Lab 0, construct the following derived variables (Tasks 2a - 2e) using a pipe (<code>%&gt;%</code>) and <code>mutate()</code>. For each, examine the component variables for coded special values (i.e. “NA”) and be sure to set derived variable values appropriately. For categorical variables, you will be expected to use <code>case_when()</code> to create conditional clauses, just as you did <a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec">in Lab 0</a> to derive <code>magec</code>.</p>
-<p>Label all variables and the coded values for the categorical ones using the <code>factor()</code> command. That is, add meaningful labels to both the variable name itself and to the levels (i.e. categories) of the categorical variable to make printed output more readable".</p>
 <aside>
 <p><strong>Some helpful links:</strong></p>
 <p><a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#task-6-create-variable-mage">Using pipes and mutate() in the previous lab</a></p>
@@ -2548,6 +2547,7 @@ Find more useful keyboard shortcuts <a href="https://dghi-biostat.github.io/bios
 <p><a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe">More on pipes</a></p>
 <p><a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#factor">More on factors</a></p>
 </aside>
+<p><strong>For the categorical variables:</strong> Label all variables and the coded values for the categorical ones using the <code>factor()</code> command. That is, add meaningful labels to both the variable name itself and to the levels (i.e. categories) of the categorical variable to make printed output more readable.</p>
 <p>In the .Rmd named lab1_705_fall2021.Rmd, we have provided you with an example of the correct coding of <code>bord5</code>. Please use this to assist you as you re-code the other variables that follow. Please code each new variable within the code chunk named after that variable.</p>
 <h3 id="task2a-bord5"><strong>Task2a: <code>bord5</code></strong></h3>
 <p><strong><code>bord5</code></strong>: A dichotomous categorical (i.e. binary) variable indicating birth order of the child. You will use the variable <code>bord</code> (birth order). Create the categories for <code>bord5</code> according to the following levels and labels:</p>

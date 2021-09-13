@@ -78,9 +78,6 @@ kenya$bord5 <- factor(kenya$bord5,
 # create derived variable using %>% and mutate()
 
 
-# convert derived variable to a factor with factor()
-
-
 ```
 
 ### Task 2d: `mheight`
@@ -89,9 +86,6 @@ kenya$bord5 <- factor(kenya$bord5,
 
 ```{r mheight}
 # create derived variable using %>% and mutate()
-
-
-# convert derived variable to a factor with factor()
 
 
 ```
@@ -103,9 +97,6 @@ kenya$bord5 <- factor(kenya$bord5,
 
 ```{r mbmi}
 # create derived variable using %>% and mutate()
-
-
-# convert derived variable to a factor with factor()
 
 
 ```
