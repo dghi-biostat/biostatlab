@@ -125,7 +125,7 @@ Generate frequency histograms of `mweight`, `mheight` and `mbmi.`  Put meaningfu
 ### Task 3c: `mbmi`
 
 ```{r mbmi hist}
-# histogram of mweight
+# histogram of mbmi
 
 ```
 
@@ -133,21 +133,21 @@ Generate frequency histograms of `mweight`, `mheight` and `mbmi.`  Put meaningfu
 
 Generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`. Put meaningful axis labels and a title on each figure.
 
-### Task 4a: mweight
+### Task 4a: `mweight`
 
 ```{r mweight box}
 # boxplot of mweight
 
 ```
 
-### Task 4b: mheight
+### Task 4b: `mheight`
 
 ```{r mheight box}
 # boxplot of mheight
 
 ```
 
-### Task 4c: mbmi
+### Task 4c: `mbmi`
 
 ```{r mbmi box}
 # boxplot of mbmi
@@ -159,31 +159,28 @@ Generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`.
 
 Fill in the sheet labelled Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
 
-### Task 5a: bord5
+### Task 5a: `bord5`
 
 ```{r bord5 freq}
-# frequency counts
+# create a summary table with %>% to generate frequency counts and percentages
 
-# frequency percentages
 
 ```
 
-### Task 5b: magec
+### Task 5b: `magec`
+
 ```{r magec freq}
-# frequency counts
+# create a summary table with %>% to generate frequency counts and percentages
 
-
-# frequency percentages
 
 ```
 
-### Task 5c: male
+### Task 5c: `male`
 
 ```{r male freq}
-# frequency counts
+# create a summary table with %>% to generate frequency counts and percentages
 
 
-# frequency percentages
 
 ```
 
