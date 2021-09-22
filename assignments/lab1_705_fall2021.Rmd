@@ -82,7 +82,7 @@ kenya$bord5 <- factor(kenya$bord5,
 
 ### Task 2d: `mheight`
 
-`mheight`:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that this variable is in centimeters and also contains 1 implied decimal place. Divide by 10 to get meters. 
+`mheight`:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that according to the Data Dictionary, this variable is in centimeters and also contains 1 implied decimal place. Divide by 1000 to get meters. 
 
 ```{r mheight}
 # create derived variable using %>% and mutate()

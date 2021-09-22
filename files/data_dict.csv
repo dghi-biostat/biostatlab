@@ -7,7 +7,8 @@ b4,Sex of child.,"1.   male;
 b5,Whether child was alive or dead at the time of interview.,0.   dead; 1. alive
 b7,Age at death of the child in completed months gives a calculated age at death from the reported information. This variable occupies three digits. BASE: Dead children (B5 = 0).,Integer
 m2n,Indicator of no prenatal care.,"0.   some prenatal care; 
-1. no prenatal care"
+1. no prenatal care;
+2. missing"
 m18,Size of child as reported subjectively by the mother.,"1.   very large; 
 2. large; 
 3. average; 
