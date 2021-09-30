@@ -155,9 +155,11 @@ If a child was alive at the time of interview, calculate their age using using `
 
 ## Task 3: Close the cohort
 
-__Note:__ "Closed cohorts" is a topic that we will cover in more detail in Module 7 (week 11, the first week of November), so please don't worry if this feels unfamiliar. The steps needed to complete this task are described in detail below. We hope that performing the actual task of closing a cohort before we learn about it formally in Module 7 will help to crystallize concepts around Populations, Time, Measures of Disease Frequency and Association. 
-
 Create the equivalent of a __*closed cohort*__ for the analysis of 5-year childhood mortality from this dataset. 
+
+__Note:__ "Closed cohorts" is a topic that we will cover in more detail in Module 7 (week 11, the first week of November), so please don't worry if this feels unfamiliar. The steps needed to complete this task are described in detail below. We hope that performing the actual task of closing a cohort before we learn about it formally in Module 7 will help to crystallize concepts around Populations, Time, Measures of Disease Frequency and Association.
+
+For now, we will stick with the following description:
 
 In a closed cohort, everyone must be at risk of the outcome at entry into the cohort, and all members of the cohort must remain at risk until they experience the outcome or complete the entire risk period for the outcome. 
 
@@ -167,7 +169,7 @@ Here is an example of the various logical outcomes around which we will be closi
 
 A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If you’re adventurous, we recommend trying other ways to code this; you’ll learn a lot from that exercise.
 
-*__NOTE:__* Complete all of task 3 before completing the remaining tasks.
+*__ANOTHER NOTE:__* Complete all of task 3 before completing the remaining tasks.
 
 ### Task 3a: Exclude irrelevant observations
 
@@ -268,7 +270,7 @@ __Refer to [the previous lab](https://dghi-biostat.github.io/biostatlab/lab_1.ht
 * Death by 5 years (`death`)
 
 
-## Task 7: Update data dictionary
+## Task 7: Update data dictionary (using FULL COHORT)
 
 Using the second sheet in the Excel file, which has been named __Table 2__, update your data dictionary for the Kenya dataset by adding the newly created variables. 
 

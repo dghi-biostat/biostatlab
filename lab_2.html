@@ -2447,6 +2447,7 @@ Lab Assignments
 <span class="nav-dropdown-header">705 Labs</span>
 <a href="lab_0.html">Lab 0</a>
 <a href="lab_1.html">Lab 1</a>
+<a href="lab_2.html">Lab 2</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>
@@ -2510,7 +2511,7 @@ Dictionaries
 <li><a href="#task-4-frequency-histograms-using-closed-cohort">Task 4: Frequency histograms (using CLOSED COHORT)</a></li>
 <li><a href="#task-5-boxplots-of-time-using-closed-cohort">Task 5: Boxplots of time (using CLOSED COHORT)</a></li>
 <li><a href="#task-6-frequency-counts-and-percentages-using-closed-cohort">Task 6: Frequency counts and percentages (using CLOSED COHORT)</a></li>
-<li><a href="#task-7-update-data-dictionary">Task 7: Update data dictionary</a></li>
+<li><a href="#task-7-update-data-dictionary-using-full-cohort">Task 7: Update data dictionary (using FULL COHORT)</a></li>
 <li><a href="#task-8-short-answer">Task 8: Short Answer</a></li>
 </ul>
 </nav>
@@ -2745,15 +2746,16 @@ Find it under Resources &gt; Lab &gt; Datasets &gt; Lab_2_kenya.rds
 <p>If a child was dead at the time of interview, assign it the value in variable <code>b7</code> (child’s age at death).</p>
 <p>If a child was alive at the time of interview, calculate their age using using <code>v008</code> (date of interview) and <code>b3</code> (date of birth). Be sure to note that times are given in months.</p>
 <h2 id="task-3-close-the-cohort">Task 3: Close the cohort</h2>
-<p><strong>Note:</strong> “Closed cohorts” is a topic that we will cover in more detail in Module 7 (week 11, the first week of November), so please don’t worry if this feels unfamiliar. The steps needed to complete this task are described in detail below. We hope that performing the actual task of closing a cohort before we learn about it formally in Module 7 will help to crystallize concepts around Populations, Time, Measures of Disease Frequency and Association.</p>
 <p>Create the equivalent of a <strong><em>closed cohort</em></strong> for the analysis of 5-year childhood mortality from this dataset.</p>
+<p><strong>Note:</strong> “Closed cohorts” is a topic that we will cover in more detail in Module 7 (week 11, the first week of November), so please don’t worry if this feels unfamiliar. The steps needed to complete this task are described in detail below. We hope that performing the actual task of closing a cohort before we learn about it formally in Module 7 will help to crystallize concepts around Populations, Time, Measures of Disease Frequency and Association.</p>
+<p>For now, we will stick with the following description:</p>
 <p>In a closed cohort, everyone must be at risk of the outcome at entry into the cohort, and all members of the cohort must remain at risk until they experience the outcome or complete the entire risk period for the outcome.</p>
 <p>Here is an example of the various logical outcomes around which we will be closing the cohort:</p>
 <figure>
 <img src="images/closed_cohort.png" alt="Closed cohort" /><figcaption aria-hidden="true">Closed cohort</figcaption>
 </figure>
 <p>A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If you’re adventurous, we recommend trying other ways to code this; you’ll learn a lot from that exercise.</p>
-<p><em><strong>NOTE:</strong></em> Complete all of task 3 before completing the remaining tasks.</p>
+<p><em><strong>ANOTHER NOTE:</strong></em> Complete all of task 3 before completing the remaining tasks.</p>
 <h3 id="task-3a-exclude-irrelevant-observations">Task 3a: Exclude irrelevant observations</h3>
 <p>For this task, you will use <code>%&gt;%</code> and <code>filter()</code> to exclude those observations from the dataset where the child was alive (<code>death == 0</code>) and follow-up time was less than 60 months (<code>time &lt; 60</code>) Think about which Boolean operator you’ll need to use to exclude those children on both of those conditions. You should end up with <strong><em>16,828 records</em></strong> (i.e. rows) in the new data frame.</p>
 <p>In this step, you should also use an assignment operator (<code>&lt;-</code>) to assign this closed cohort to a different object name (effectively creating a “new” data frame). That way, you will be able to work with this data frame separately, while maintaining access to the original cohort of n = 22,534.</p>
@@ -2823,7 +2825,7 @@ Please note that in the <code>ggplot()</code> command, we do not need to supply 
 <li><p>Mother’s education (<code>education</code>)</p></li>
 <li><p>Death by 5 years (<code>death</code>)</p></li>
 </ul>
-<h2 id="task-7-update-data-dictionary">Task 7: Update data dictionary</h2>
+<h2 id="task-7-update-data-dictionary-using-full-cohort">Task 7: Update data dictionary (using FULL COHORT)</h2>
 <p>Using the second sheet in the Excel file, which has been named <strong>Table 2</strong>, update your data dictionary for the Kenya dataset by adding the newly created variables.</p>
 <h2 id="task-8-short-answer">Task 8: Short Answer</h2>
 <p>Examine the range and proportion of missing for each of the variables 7 you have created in this lab. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?</p>

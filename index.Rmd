@@ -13,8 +13,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Cohort and Age Effects'](https://www.explainxkcd.com/wiki/index.php/2080:_Cohort_and_Age_Effects)"}
-knitr::include_graphics("https://imgs.xkcd.com/comics/cohort_and_age_effects.png")
+![[Null Hypothesis](https://www.explainxkcd.com/wiki/index.php/892:_Null_Hypothesis)](images/null_hypothesis.png)
+
+```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Cohort and Age Effects'](https://www.explainxkcd.com/wiki/index.php/892:_Null_Hypothesis)", out.width = "50%", eval = FALSE}
+#knitr::include_graphics("https://imgs.xkcd.com/comics/null_hypothesis.png")
 
 ```
 

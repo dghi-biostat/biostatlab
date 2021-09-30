@@ -155,7 +155,7 @@ Task 3c: Recode `time` to `time` +1
 ```
 
 
-### Task 3e: Save new dataset
+### Task 3d: Save new dataset
 
 Save this new dataset containing 16828 subjects (make sure to give it a new name).
 
