@@ -184,7 +184,7 @@ If a child was still alive by their 5th birthday, we need to re-code their varia
 
 You will do this in your newly closed cohort data frame using `mutate()` to re-generate `time` according to the following conditions:
 
-If `time >= 60` and `death == 1`, then set `time` to 60
+If `time >= 60`, then set `time` to 60
 
 Otherwise, use the original coding for `time`.
 
@@ -209,7 +209,7 @@ Save this new dataset containing 16,828 records (make sure to give it a new name
 
 Just as in lab 0, use `saveRDS()` to complete this task, using the following syntax:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 saveRDS(dataName, file = "NewDatasetName.rds")
 ```
 

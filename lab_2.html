@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-30"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-30"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-01"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: GLHLTH 705 Lab 2"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 2"]},{"type":"character","attributes":{},"value":["__Due:__ October 22, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-09-30"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 2"]},{"type":"character","attributes":{},"value":["__Due:__ October 22, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-10-01"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2407,7 +2407,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"GLHLTH 705 Lab 2","description":"__Due:__ October 22, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-09-30T00:00:00.000-04:00"}
+{"title":"GLHLTH 705 Lab 2","description":"__Due:__ October 22, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-10-01T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2762,7 +2762,7 @@ Find it under Resources &gt; Lab &gt; Datasets &gt; Lab_2_kenya.rds
 <h3 id="task-3b-re-code-time">Task 3b: Re-code <code>time</code></h3>
 <p>If a child was still alive by their 5th birthday, we need to re-code their variable for <code>time</code> to 60 (we are effectively censoring these observations). These children were alive at 5 years of age and so should not be counted as deaths in our analysis.</p>
 <p>You will do this in your newly closed cohort data frame using <code>mutate()</code> to re-generate <code>time</code> according to the following conditions:</p>
-<p>If <code>time &gt;= 60</code> and <code>death == 1</code>, then set <code>time</code> to 60</p>
+<p>If <code>time &gt;= 60</code>, then set <code>time</code> to 60</p>
 <p>Otherwise, use the original coding for <code>time</code>.</p>
 <p><strong>Hint:</strong> In <code>case_when()</code> you can use the statement <code>TRUE ~ time</code> at the end of your list of conditional statements to express this sentiment of “otherwise, use <code>time</code>”.</p>
 <h3 id="task-3c-recode-time-to-time-1">Task 3c: Recode <code>time</code> to [<code>time</code> + 1]</h3>
@@ -2776,7 +2776,10 @@ Linking to our in-class learning, we would formally identify this as a type of �
 <p>Save this new dataset containing 16,828 records (make sure to give it a new name).</p>
 <p>Just as in lab 0, use <code>saveRDS()</code> to complete this task, using the following syntax:</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>dataName</span>, file <span class='op'>=</span> <span class='st'>"NewDatasetName.rds"</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h2 id="task-4-frequency-histograms-using-closed-cohort">Task 4: Frequency histograms (using CLOSED COHORT)</h2>
 <p>Generate frequency histograms of <code>time</code>, overall and separately for levels of <code>death</code>. Use <code>labs()</code> to put meaningful axis labels and a title on each figure.</p>
