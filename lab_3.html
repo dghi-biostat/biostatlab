@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-14"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-14"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-15"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-15"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: GLHLTH 705 Lab 3"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 3"]},{"type":"character","attributes":{},"value":["__Due:__ November 12, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-10-14"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 3"]},{"type":"character","attributes":{},"value":["__Due:__ November 12, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-10-15"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2407,7 +2407,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"GLHLTH 705 Lab 3","description":"__Due:__ November 12, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-10-14T00:00:00.000-04:00"}
+{"title":"GLHLTH 705 Lab 3","description":"__Due:__ November 12, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-10-15T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2487,8 +2487,9 @@ Dictionaries
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#lab-materials">LAB MATERIALS:</a></li>
-<li><a href="#lab-3-goals">Lab 3 Goals:</a></li>
+<li><a href="#lab-materials">LAB MATERIALS</a></li>
+<li><a href="#lab-3-goals">Lab 3 Goals</a></li>
+<li><a href="#lab-3-grading-scheme">Lab 3 Grading scheme</a></li>
 <li><a href="#task-1-load-libraries-and-dataset">Task 1: Load libraries and dataset</a></li>
 <li><a href="#task-2-big-picture">Task 2: BIG PICTURE</a></li>
 <li><a href="#task-3-table-1">Task 3: Table 1</a>
@@ -2517,26 +2518,89 @@ Dictionaries
 <li><a href="#massoc-for-measures-of-association"><code>mAssoc()</code> for Measures of Association</a></li>
 </ul></li>
 <li><a href="#task-6-side-by-side-boxplots">Task 6: Side-by-side boxplots</a></li>
+<li><a href="#task-7-short-answer">Task 7: Short answer</a></li>
+<li><a href="#task-8-short-answer">Task 8: Short answer</a></li>
+<li><a href="#task-9-short-answer">Task 9: Short answer</a></li>
+<li><a href="#task-10-short-answer">Task 10: Short answer</a></li>
+<li><a href="#task-11-short-answer">Task 11: Short answer</a></li>
 </ul>
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h3 id="lab-materials">LAB MATERIALS:</h3>
+<h3 id="lab-materials">LAB MATERIALS</h3>
 <ul>
 <li><p><a href="assignments/lab3_705_fall2021.Rmd"><strong>R Markdown file for Lab 3.</strong></a> Click link to download. Fill it in with your answers to the following lab tasks. When you’re ready to submit, name it as <code>Lab3_FirstinitialYourlastname.Rmd</code>, and submit it using the Sakai dropbox.</p></li>
-<li><p><a href="assignments/Lab3_Tables.xlsx"><strong>Excel document for Tables 1 &amp; 2</strong></a></p></li>
+<li><p><a href="assignments/Lab3_Tables.xlsx"><strong>Excel document with Tables 1, 2, and 3</strong></a></p></li>
 <li><p>Lab_3_kenya.rds - data file available on Sakai</p></li>
 </ul>
-<h3 id="lab-3-goals">Lab 3 Goals:</h3>
+<h3 id="lab-3-goals">Lab 3 Goals</h3>
 <ul>
 <li><p>Assess the bivariate relationships between outcome and covariables and the statistical association between each of the two variables</p></li>
 <li><p>Estimate the epidemiologic measures of association (risk difference, risk ratio and odds ratio) between risk factors and outcome</p></li>
 </ul>
+<h3 id="lab-3-grading-scheme">Lab 3 Grading scheme</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Competency</th>
+<th style="text-align: center;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">.Rmd file runs without error</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task 3 (Table 1)</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task 4 (Table 2)</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task 5 (Table 3)</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task 6 (stratified boxplots)</td>
+<td style="text-align: center;">10 (5 each)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task 7 (short answer)</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task 8 (short answer)</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task 9 (short answer)</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task 10 (short answer)</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task 11 (short answer)</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<aside>
+Late policy: 5 point deduction per 24 hour period past due date and time
+</aside>
 <h2 id="task-1-load-libraries-and-dataset">Task 1: Load libraries and dataset</h2>
 <p>For this assignment, we’ll need packages {tidyverse}, {skimr}, {epiR}, {tableone}, and {epiAssist}</p>
-<p>For your data, you will use the dataset <code>Lab_3_kenya.rds</code>. This has all of the variables that we’ve created in labs 0, 1, and 2, and only contains those observations from our closed cohort.</p>
+<p>For your data, you will use the dataset <code>Lab_3_kenya.rds</code>, located in the Sakai Resources folder for this course. This has all of the variables that we’ve created in labs 0, 1, and 2, and only contains those observations in our closed cohort (n = 16,828).</p>
 <h2 id="task-2-big-picture">Task 2: BIG PICTURE</h2>
 <h4 id="just-think-on-this-for-a-moment.-internalize-it.-come-back-to-it">Just think on this for a moment. Internalize it. Come back to it:</h4>
 <p>For this and subsequent labs, we are considering</p>
@@ -2549,8 +2613,8 @@ Dictionaries
 </ol>
 <h2 id="task-3-table-1">Task 3: Table 1</h2>
 <h3 id="tabular-analysis-of-continuous-variables-by-mortality-status">Tabular analysis of continuous variables by mortality status</h3>
-<p>Fill in Table 1 with the descriptive statistics for maternal BMI and maternal age, overall and by levels of child mortality within 5 years.</p>
-<p>This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between the outcome (<code>death</code>) and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).</p>
+<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 1</code> with the descriptive statistics for maternal BMI (<code>mbmi</code>) and maternal age (<code>mage</code>), overall and by levels of child mortality within 5 years (<code>death</code>).</p>
+<p>This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between the outcome, <code>death</code>, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).</p>
 <p>Round p-values to 3 decimal places.</p>
 <p>Read on for advice on how to generate overall and stratified summary statistics, as well as instructions for how to perform the two statistical tests.</p>
 <h3 id="overall-summary-statistics-by-variable">Overall summary statistics by variable</h3>
@@ -2569,18 +2633,17 @@ Dictionaries
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>%&gt;%</span>
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>death</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
+  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>mbmi</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>As a final note, you’ll notice that <code>skim()</code> doesn’t provide raw counts when we stratify by <code>death</code>.</p>
 <p><strong>Note</strong>: Table 1 asks for stratified counts of <code>death</code> as they apply to <code>mbmi</code> and <code>mage</code>. If you look closely, this means that we need counts of <code>death</code> that exclude missing values for our two continuous variables. <code>skim()</code> does not give you raw counts of the variable <code>death</code> that account for those missing values.</p>
-<p>Use <code>table()</code> or a pipeline with <code>group_by()</code> and <code>count()</code> to get the counts of children in each group of <code>death</code>. Then use the column of your skim output <code>n_missing</code> to subtract missing values from groups</p>
+<p>Use <code>table()</code> or a pipe, <code>group_by()</code> and <code>count()</code> to get the counts of children in each group of <code>death</code>. Then use the column of your skim output, <code>n_missing</code>, to subtract missing values from groups</p>
 <h3 id="t-tests-and-kruskal-wallis-tests">T-tests and Kruskal-Wallis tests</h3>
 <p>T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to compare means between sub-populations, with the null hypothesis (H0) being that all means are equal.</p>
 <p>There are a few simple functions from the {stats} package that we can use to manually run these tests. To implement, we use functions <code>t.test()</code> and <code>kruskal.test()</code>. Both take the same arguments:</p>
 <aside>
-There are many functions in R that perform a specific task like generating tables, while computing a p-value as a matter of course by applying the appropriate statistical test of significance (see (Task 4)[<a href="https://dghi-biostat.github.io/biostatlab/lab_3.html#task-4-table-2" class="uri">https://dghi-biostat.github.io/biostatlab/lab_3.html#task-4-table-2</a>] below).
+Many functions in R can perform a task like generating tables, while computing a p-value as a matter of course (see <a href="https://dghi-biostat.github.io/biostatlab/lab_3.html#task-4-table-2%5D%20below">Task 4</a>.
 </aside>
 <ol type="1">
 <li>A formula: <code>depVar ~ indepVar</code></li>
@@ -2740,9 +2803,8 @@ Formulas: In R, “formulas” follow different rules depending on the function.
 </table>
 </div>
 <p>[<span class="citation" data-cites="Liz">[@Liz Feel free to cut this next part with the density plots if it's not helpful. Just trying to think of ways to get students to understand how these tests apply to real data]</span>]</p>
-We can also visualize the respective distributions of <code>height</code> by <code>gender</code> using density plots.
+<p>We can also visualize the respective distributions of <code>height</code> by <code>gender</code> using density plots.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>[1] 164.6875 176.5161</code></pre>
 <p><img src="lab_3_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <aside>
@@ -2757,7 +2819,8 @@ The T-test asks: assuming the two curves are normally distributed and given our 
 <span class='co'>#&gt;</span>
 <span class='co'>#&gt; data:  height by gender</span>
 <span class='co'>#&gt; t = -1.5596, df = 37.315, p-value = 0.1273</span>
-<span class='co'>#&gt; alternative hypothesis: true difference in means between group feminine and group masculine #&gt; is not equal to 0</span>
+<span class='co'>#&gt; alternative hypothesis: true difference in means between group feminine and group masculine </span>
+<span class='co'>#&gt; is not equal to 0</span>
 <span class='co'>#&gt; 95 percent confidence interval:</span>
 <span class='co'>#&gt;  -27.191682   3.534423</span>
 <span class='co'>#&gt; sample estimates:</span>
@@ -2783,11 +2846,11 @@ Function output is indicated by lines that start with <code>#&gt;</code>
 </div>
 <p>Notice the difference in the conclusion you would draw from either test. For the T-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups.</p>
 <h2 id="task-4-table-2">Task 4: Table 2</h2>
-<p>[[<span class="citation" data-cites="Liz">@Liz</span> I made the decision to include this part because {tableone} is an extremely useful tool for tabular analysis and generating Table 1 summary statistics (hence the name). I found it immensely useful in my work this summer.</p>
+<p>[[<span class="citation" data-cites="Liz">@Liz</span> I made the decision to use {tableone} for this task because it is an extremely useful tool for tabular analysis and generating Table 1 summary statistics (hence the name). I found it immensely useful in my work this summer.</p>
 <p>It’s also efficient. Students will have to take time to learn how to use this very convenient and powerful tool, but the trade-off is that they will avoid the tedious work of computing the stratified frequency counts, percentages, and tests of significance for each variable individually.</p>
 <p>Alternatively, we could cut this part and opt for simpler instructions that simply tell students to do 2x2 tables for each variable, and then run chisq.test() and fisher.exact() for each variable individually. But I thought shaking things up and giving them a useful skill might be nice. Your call! ]]</p>
 <h3 id="tabular-analysis-of-categorical-variables-by-death">Tabular analysis of categorical variables by <code>death</code></h3>
-<p>Table 2 contains three distinct columns for frequency counts and percentages.</p>
+<p><strong>INSTRUCTIONS:</strong> <code>Table 2</code> contains three distinct columns for frequency counts and percentages.</p>
 <p>The first, “All subjects” requires the <strong>overall</strong> frequency counts and percentages by the categorical variables of interest. These are the same values that you generated for Table 1 in both labs 1 and 2.</p>
 <p>The next two columns, “Dead” and “Alive”, require frequency counts and percentages of each of the variables of interest, stratified by mortality status at 5 years, <code>death</code>. Be sure to calculate percentages only for the non-missing values and round percentages to 1 decimal place.</p>
 <p>This table also includes statistical measures (Chi-Sq and Fisher’s exact test) of the association between mortality status and the variables in the table.</p>
@@ -2795,7 +2858,7 @@ Function output is indicated by lines that start with <code>#&gt;</code>
 <h3 id="tableone-package">{tableone} package</h3>
 <p>We will complete this task by first using the package {tableone}, a powerful tool for tabular analysis, especially for stratified analyses like this one.</p>
 <aside>
-<strong>More on {tableone}:</strong> I’ve used this package a LOT for generating data reports. It is a super convenient tool for compiling baseline data. It’s also easy to copy/paste into excel using the <code>print()</code> argument <code>quote = TRUE</code>, which creates character-delineation between values, that excel recognizes as columns. You can essentially copy/paste your output into an excel file. <a href="https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html">Find a tutorial on all of that here</a>
+<strong>More on {tableone}:</strong> Find a full tutorial of {tableone} <a href="https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html">here</a>
 </aside>
 <p>The function <code>CreateTableOne()</code> will create a {tableone} object that generates mean and standard deviation for continuous variables, and frequency counts and percentages for factor variables.</p>
 <p><code>CreateTableOne()</code> requires several arguments of central importance for it to run:</p>
@@ -2902,35 +2965,64 @@ Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the refe
 </code></pre>
 </div>
 </div>
+<p>Although in this particular example we draw the same conclusions from the Fisher’s exact test as we do from the Chi-square test, assuming normality with insufficient data can lead to misleading results.</p>
 <aside>
 There are other arguments for {tableone} that allow you to specify exactly which variables are nonnormal, and therefore perform the nonparametric test on only those variables. Similar steps apply for analysis of continuous variables (you could even try using the continuous variables from Task 3!)
 </aside>
-<p>Although in this particular example we draw the same conclusions from the Fisher’s exact test as we do from the Chi-square test, assuming normality with insufficient data can lead to misleading results.</p>
 <h2 id="task-5-table-3">Task 5: Table 3</h2>
 <h3 id="risk-differences-risk-ratios-and-odds-ratios">Risk Differences, Risk Ratios, and Odds Ratios</h3>
-<p>Fill in Table 3 with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death, the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group. The reference group for each variable is noted. For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group. Round risks to 3 decimal places and ratios to 2 decimal places. The STATA cs command provides a convenient way to produce the data for this table.</p>
+<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 3</code> with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, <em>N</em>, as in Table 2). Then use <code>epi.2by2()</code> to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group.</p>
+<figure>
+<img src="images/lab3_table3.png" alt="Table 3" /><figcaption aria-hidden="true">Table 3</figcaption>
+</figure>
+<aside>
+We will use <code>mAssoc()</code> in the package {epiAssist} to generate these values. This function is a helper function, and runs using functions available in {epiR}`
+</aside>
+<p>The reference group for each variable is noted in the spreadsheet (“REF”). For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group.</p>
+<p>Round risks to 3 decimal places and ratios to 2 decimal places.</p>
 <h3 id="take-a-deep-breath.">Take a deep breath.</h3>
 <p>Don’t let this table overwhelm you. We’re going to break it down step-by-step</p>
 <h3 id="frequency-counts">Frequency counts</h3>
-<p>The frequency counts in this table align with those generated for Table 2.</p>
+<p>The frequency counts in this table align with those generated for Table 2. Feel free to use Excel equations to transfer data from sheet 2 to sheet 3.</p>
+<figure>
+<img src="images/lab3_tab3_freq.png" alt="Frequency counts" /><figcaption aria-hidden="true">Frequency counts</figcaption>
+</figure>
 <h3 id="risk">Risk</h3>
 <p>The value for risk also aligns with that generated in the previous task, except that in Table 2 you reported it as a percentage. Risk should be reported as a proportion, rounding to the third decimal.</p>
+<figure>
+<img src="images/lab3_tab3_risk.png" alt="Risk" /><figcaption aria-hidden="true">Risk</figcaption>
+</figure>
 <h3 id="risk-difference-rd-risk-ratio-rr-and-odds-ratio-or">Risk difference (RD), Risk Ratio (RR), and Odds Ratio (OR)</h3>
-<p>RD, RR, and OR are what are known as “measures of association” because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline variable as the “Referent variable” and the comparator variable as the “Index variable”.</p>
+<figure>
+<img src="images/lab3_tab3_massoc.png" alt="Measures of association" /><figcaption aria-hidden="true">Measures of association</figcaption>
+</figure>
+<p>RD, RR, and OR are what are known as “measures of association” because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline variable as the “Reference variable” and the comparator variable as the “Index variable”.</p>
 <p>In practical terms, for things like RRs and ORs, the index variable goes in the numerator and the referent variable goes in the denominator.</p>
 <aside>
-<span class="math display">\[\frac{index\ \ variable}{referent\ \ variable}\]</span>
+<span class="math display">\[\frac{index\ \ variable}{reference\ \ variable}\]</span>
 </aside>
-<p>We can use our underlying knowledge of these measures of association to calculate our answers by hand and confirm the results that we’ll obtain using the functions that follow.</p>
+<p>You can use your underlying knowledge of these measures of association to calculate our answers by hand and confirm the results that we’ll obtain using the functions that follow.</p>
 <h3 id="massoc-for-measures-of-association"><code>mAssoc()</code> for Measures of Association</h3>
-<p>For this task, we will use <code>mAssoc()</code>, which generates all three measures of association in a singular output.</p>
-<p>To use <code>mAssoc()</code>, we need to take several steps to ensure that our data is in the proper shape for our measures to be calculated appropriately:</p>
+<p>For this task, we will use <code>mAssoc()</code> to generate all three measures of association (RD, RR, and OR) in a singular output.</p>
+<p>To use <code>mAssoc()</code>, we must take several steps to ensure that our data is in the proper shape for our measures to be calculated appropriately:</p>
 <p>1.) Create a table object using <code>table()</code><br />
 2.) Rearrange the table with <code>flipTable()</code> to put it in the appropriate alignment for use by <code>mAssoc()</code><br />
 3.) Submit our rearranged table to <code>mAssoc()</code>.</p>
+<code>mAssoc()</code>’s main input is a table object arranged in the following format:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#   -----------  ----------  ----------</span>
+<span class='co'>#                Outcome +   Outcome -</span>
+<span class='co'>#   -----------  ----------  ----------</span>
+<span class='co'>#     Expose +   cell 1      cell 3          </span>
+<span class='co'>#     Expose -   cell 2      cell 4</span>
+<span class='co'>#   -----------  ----------  ----------</span>
+</code></pre>
+</div>
+</div>
 <p>As a way of demonstrating, we will use the variable <code>bord5</code>, stratified by <code>death</code> to calculate our measures of association.</p>
-<h4 id="create-a-table-object-with-table">Create a table object with <code>table()</code></h4>
-<p>The first step is fairly straightforward. We need to generate a table object and assign it a name. Keep in mind that we want our exposure variable (in this case, <code>bord5</code>) along the left side of the table and our outcome variable (<code>death</code>) at the top of the table.</p>
+<h4 id="step-1-create-a-table-object-with-table">Step 1: Create a table object with <code>table()</code></h4>
+<p>First, we need to generate a table object and assign it a name. Keep in mind that we want our exposure variable (in this case, <code>bord5</code>) along the left side of the table and our outcome variable (<code>death</code>) at the top of the table.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tab_bord5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>kenya</span><span class='op'>$</span><span class='va'>bord5</span>, <span class='va'>kenya</span><span class='op'>$</span><span class='va'>death</span><span class='op'>)</span>
@@ -2942,10 +3034,10 @@ There are other arguments for {tableone} that allow you to specify exactly which
 </code></pre>
 </div>
 </div>
-<h4 id="rearrange-table-with-fliptable">Rearrange table with <code>flipTable()</code></h4>
-<p><code>mAssoc()</code> comes from the package {epiAssist}. The main argument it takes is a 2x2 table object (or a stratified 2x2 table object) in the following format, with the cross-tabulation of outcome of interest (Outcome +) and exposure of interest (Expose +) in the top-left cell:</p>
+<h4 id="step-2-rearrange-table-with-fliptable">Step 2: Rearrange table with <code>flipTable()</code></h4>
+<p>Notice that <code>mAssoc()</code> takes a <code>table</code> object with the cross-tabulation of outcome of interest (Outcome +) and exposure of interest (Expose +) in the top-left cell:</p>
 <aside>
-The function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2()</code> function from package {epiR}.
+Reminder that the function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2()</code> function from package {epiR}.
 </aside>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2958,7 +3050,7 @@ The function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2(
 </code></pre>
 </div>
 </div>
-<p>If we refer back to our table for bord5 and death, we’ll notice that it currently displays the inverse:</p>
+<p>If we refer to our tableof bord5 and death, we’ll notice that it currently displays the inverse of the arrangement required by <code>mAssoc()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tab_bord5</span>
@@ -2969,7 +3061,19 @@ The function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2(
 </code></pre>
 </div>
 </div>
-<p>To fix this, we can use <code>flipTable()</code>, and assign it back to the same name for the table object:</p>
+<p>That is, our tabulation of bord5 currently takes the following form, with “Outcome-” and “Expose-” in the top-left corner. We need “Outcome+” and “Expose+” in that corner:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#   -----------  ----------  ----------</span>
+<span class='co'>#                Outcome -   Outcome +</span>
+<span class='co'>#   -----------  ----------  ----------</span>
+<span class='co'>#     Expose -   cell 1      cell 3          </span>
+<span class='co'>#     Expose +   cell 2      cell 4</span>
+<span class='co'>#   -----------  ----------  ----------</span>
+</code></pre>
+</div>
+</div>
+<p>To fix this, we can use <code>flipTable()</code>, assigning it back to the same name for the table object:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tab_bord5</span> <span class='op'>&lt;-</span> <span class='fu'>flipTable</span><span class='op'>(</span><span class='va'>tab_bord5</span><span class='op'>)</span>
@@ -3006,35 +3110,37 @@ The function <code>mAssoc()</code> is a wrapper function for the <code>epi.2by2(
 </code></pre>
 </div>
 </div>
-<h4 id="reading-the-output">Reading the output:</h4>
+<h4 id="reading-massoc-output">Reading <code>mAssoc()</code> output:</h4>
+<p>The output of interest from <code>mAssoc()</code> will be printed to the console. You can find it by clicking on the area with a red square around it in this screenshot:</p>
+<img src="images/lab3_massoc.png" />
+<aside>
+If we set <code>units = 100</code>, our attributable risk in the exposed (risk difference) would be interpretable as a difference of <em>x</em> number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual’s risk difference of experiencing the outcome if they are in the index category of the exposure.
+</aside>
 <p>Here is a quick guide to the components of the output relevant to this activity:</p>
 <p><strong><em>Inc risk ratio</em></strong>: Our basic risk ratio<br />
 <strong><em>Odds ratio</em></strong>: Our basic odds ratio<br />
 <strong><em>Attrib risk in the exposed</em></strong>: The risk difference. <code>mAssoc()</code> takes another argument, <code>units =</code>, which by default is set to 1. This regulates our output for the measure of risk difference.</p>
-<aside>
-If we set <code>units = 100</code>, our attributable risk in the expose (risk difference) would be interpretable as a difference of <em>x</em> number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual’s risk difference of experiencing the outcome if they are in the index level for the exposure.
-</aside>
 <h4 id="massoc-when-exposure-variable-has-3-levels"><code>mAssoc()</code> when exposure variable has 3+ levels</h4>
-<p>Now that you’ve seen the code for <code>bord5</code> as an example, if you’re paying close attention, you may have started to wonder, “But what about for variables like <code>education</code>, when there’s more than one index variable?”</p>
-<p>Good news: <code>flipTable()</code> and <code>mAssoc()</code> are designed to handle exposure variables with any number of levels. This means that the steps you take for <code>bord5</code>, <code>male</code>, and <code>rural</code> will also apply to <code>magec</code> and <code>education</code>, simple as that.</p>
+<p>Now that you’ve seen the code for <code>bord5</code> as an example, if you’re paying close attention, you may have started to wonder, “But what about variables like <code>education</code>, when there’s more than one index category?”</p>
+<p>Good news: <code>flipTable()</code> and <code>mAssoc()</code> are designed to handle exposure variables with any number of levels. This means that the steps you take for <code>bord5</code>, <code>male</code>, and <code>rural</code> will also apply to <code>magec</code> and <code>education</code>; simple as that.</p>
 <p>Running <code>mAssoc()</code> when your exposure variable has 2+ levels will render multiple outputs for each respective index variable. The person who wrote this function was even nice enough to label each of those levels and whether or not they are the index or the referent level.</p>
 <h2 id="task-6-side-by-side-boxplots">Task 6: Side-by-side boxplots</h2>
-<p>Generate side-by-side boxplots of maternal BMI (<code>mbmi</code>) and maternal age (<code>magec</code>) by levels of child mortality (<code>death</code>).</p>
+<p><strong>INSTRUCTIONS:</strong> Generate boxplots of maternal BMI (<code>mbmi</code>) and maternal age (<code>magec</code>), stratified by levels of child mortality (<code>death</code>).</p>
 <aside>
-<a href="TODO">Click here</a> for help with boxplots using {ggplot2}
+<a href="https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic">Click here</a> for more help with boxplots using {ggplot2}
 </aside>
-<p>For this activity, we need boxplots that plot continuous variables based on child mortality. In ggplot2, we can stratify boxplots by using a second categorical variable when we specify our aesthetics (<code>aes()</code>). In other words, if you put <code>mbmi</code> on the y-axis, you can put <code>death</code> as the variable on the x-axis.</p>
+<p>For this activity, we need boxplots that plot continuous variables based on child mortality. In ggplot2, we can stratify boxplots by using a second categorical variable when we specify our aesthetics (<code>aes()</code>). In other words, if you set <code>mbmi</code> to the y-axis, you can use a categorical variable, like <code>death</code> as the variable on the x-axis.</p>
 <p>Additionally, don’t forget to label your axes, give the plot a title, and save it using <code>ggsave()</code></p>
 <aside>
 Within your call to <code>geom_boxplot()</code>, you can also change the color with <code>fill = "colorname"</code>. Find a list of color names <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>
 </aside>
-<p>Here’s an example of what we are looking for, using the <code>starwars</code> dataset. We’ve adjusted the dimensions a bit to accommodate our lone outlier. Care to guess who it is?</p>
+<p>Here’s an example of what we are looking for, using the <code>starwars</code> dataset. We’ve adjusted the dimensions a bit to accommodate one lone outlier. Care to guess who it is?</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_3_files/figure-html5/unnamed-chunk-20-1.png" width="576" /></p>
+<p><img src="lab_3_files/figure-html5/unnamed-chunk-22-1.png" width="576" /></p>
 </div>
 <aside>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-21"></span>
+<div class="figure"><span id="fig:unnamed-chunk-23"></span>
 <img src="images/jabba.png" alt="[A heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/)" width="300" />
 <p class="caption">
 Figure 1: <a href="https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/">A heavy slug</a>
@@ -3042,7 +3148,18 @@ Figure 1: <a href="https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-dra
 </div>
 </div>
 </aside>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="task-7-short-answer">Task 7: Short answer</h2>
+<p>For <strong>Table 1</strong>, what is the null hypothesis being tested for each the two variables. Do the two statistical tests agree? Is there a statistically significant difference in the distributions of either BMI or age by child mortality? Are there substantively/clinically significant differences in these distributions? If statistical and substantive differences disagree, why might that be the case?</p>
+<h2 id="task-8-short-answer">Task 8: Short answer</h2>
+<p>For <strong>Table 2</strong>, what is the null hypothesis being tested for the variables. Do the two statistical tests agree? Is there a statistically significant difference in any of these bivariate distributions? Are there substantively/clinically significant differences in these distributions?</p>
+<h2 id="task-9-short-answer">Task 9: Short answer</h2>
+<p>Age has been evaluated both as a continuous and categorical variable. Do the tests of association for these 2 parameterizations of age agree? If not, why not?</p>
+<h2 id="task-10-short-answer">Task 10: Short answer</h2>
+<p>For <strong>Table 3</strong>, which risk factor has the strongest association with mortality? Provide a rationale for this assessment. Which factors are protective and which are harmful?</p>
+<h2 id="task-11-short-answer">Task 11: Short answer</h2>
+<p>Prepare a brief paragraph describing and interpreting risk, RD and RR estimates (from <strong>Table 3</strong>) for the 60 month risk of death in association with birth order and maternal age.</p>
+<p>Begin the paragraph by reporting the overall risk or proportion of deaths in the study population. Don’t just repeat numbers that are already shown in the table; note the values of effect estimates you feel should be highlighted, but otherwise describe the results in words. Write this paragraph as if you were including it in the results section of a manuscript. (175 words maximum).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

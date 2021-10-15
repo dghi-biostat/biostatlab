@@ -232,10 +232,25 @@ Fill in Table 3 with frequency counts overall and by levels of child mortality w
 ```
 
 
+## Task 7: Short answer
 
-## APPENDIX
+For __Table 1__, what is the null hypothesis being tested for each the two variables.  Do the two statistical tests agree?  Is there a statistically significant difference in the distributions of either BMI or age by child mortality?  Are there substantively/clinically significant differences in these distributions?  If statistical and substantive differences disagree, why might that be the case?
 
-* {tableone} - I've used this package a LOT for generating data reports. It is a super convenient tool for compiling baseline data. It's also easy to copy/paste into excel using the argument quote = TRUE, which creates character-delineation between values, which excel recognizes as columns. [Find a tutorial on all of that here](https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html)
 
+## Task 8: Short answer
+For __Table 2__, what is the null hypothesis being tested for the variables.  Do the two statistical tests agree?  Is there a statistically significant difference in any of these bivariate distributions?  Are there substantively/clinically significant differences in these distributions?  
+
+## Task 9: Short answer
+Age has been evaluated both as a continuous and categorical variable.  Do the tests of association for these 2 parameterizations of age agree?  If not, why not?
+
+
+## Task 10: Short answer
+For __Table 3__, which risk factor has the strongest association with mortality?  Provide a rationale for this assessment.  Which factors are protective and which are harmful?
+
+
+## Task 11: Short answer
+Prepare a brief paragraph describing and interpreting risk, RD and RR estimates (from __Table 3__) for the 60 month risk of death in association with birth order and maternal age. 
+
+Begin the paragraph by reporting the overall risk or proportion of deaths in the study population. Don’t just repeat numbers that are already shown in the table; note the values of effect estimates you feel should be highlighted, but otherwise describe the results in words. Write this paragraph as if you were including it in the results section of a manuscript. (175 words maximum).
 
 
