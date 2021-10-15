@@ -13,10 +13,8 @@ output:
 
 ## Task 1: Load libraries and dataset
 
-For this assignment, use the dataset 'Lab_3_kenya.rds'.  This has all of the variables accumulated through Lab 2.
-
 ```{r}
-# load in the {tidyverse}, {tableone}, {epiR}, and {epiAssist} packages
+# load the {tidyverse}, {tableone}, {epiR}, and {epiAssist} packages
 
 ```
 
@@ -32,26 +30,28 @@ For this assignment, use the dataset 'Lab_3_kenya.rds'.  This has all of the var
 For this and subsequent labs, we are considering 1) child mortality within 5 years as our outcome (response) variable, 2) birth order >= 5 as the main risk factor variable and 3) other variables as potential confounders or modifiers of the relationship between mortality and birth order. 
 
 
-## Task 3: Table 1 - Tabular analysis of cont. variable by death
+## Task 3: Table 1 
 
-Fill in Table 1 with the descriptive statistics for maternal BMI and maternal age, overall and by levels of child mortality within 5 years.  This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between outcome and maternal BMI and age (i.e., comparing the distribution of maternal BMI for the children who died and those who were alive).  Round p-values to 3 decimal places.
+### Tabular analysis of continuous variables by death
 
-### Task 3a: Maternal BMI by death
 
-```{r}
-# use a pipe and summarize to get maternal BMI overall
-
-```
+### Maternal BMI by death
 
 ```{r}
-# use pipes with filter and then summarize to get maternal BMI for cases where death == 'Dead'
-
+# use a pipe and skim() to get maternal BMI overall
 
 ```
 
 
 ```{r}
-# use pipes with filter and then summarize to get maternal BMI for cases where death == 'Alive'
+# use a pipe with group_by() and then skim() to get summary stats of mage, stratified by `death`
+
+
+```
+
+
+```{r}
+# use a pipe with group_by() and then count() to get frequency counts for `death`
 
 
 ```
@@ -69,26 +69,18 @@ Fill in Table 1 with the descriptive statistics for maternal BMI and maternal ag
 ```
 
 
-### Task 3b: Maternal age (continuous) by death
+### Maternal age (continuous) by death
 
 ```{r}
-# use a pipe and summarize to get maternal age overall
+# use a pipe and skim() to get maternal age overall
 
 ```
 
 ```{r}
-# use pipes with filter and then summarize to get maternal age for cases where death == 'Dead'
+# use a pipe with group_by() and then skim() to get summary stats of mage, stratified by `death`
 
 
 ```
-
-
-```{r}
-# use pipes with filter and then summarize to get maternal age for cases where death == 'Alive'
-
-
-```
-
 
 ```{r}
 # T-test for maternal age and death using t.test()
@@ -103,9 +95,9 @@ Fill in Table 1 with the descriptive statistics for maternal BMI and maternal ag
 
 
 
-## Task 4: Table 2 - Tabular analysis of categorical variables by death
+## Task 4: Table 2
 
-Fill in Table 2 with the frequency counts and COLUMN percentages for All Subjects and ROW percentages for the proportions alive and dead for the levels of the categorical variables listed in the table, again overall and by levels of child mortality within 5 years.  Calculate percentages only for the non-missing values.  Round percentages to 1 decimal place. This table also includes statistical measures (Chi-Sq and Fisher’s exact test) of the association between child dead/alive and the variables in the table.  Round p-values to 3 decimal places.
+### Tabular analysis of categorical variables by death
 
 
 ```{r}
@@ -119,7 +111,6 @@ Fill in Table 2 with the frequency counts and COLUMN percentages for All Subject
 
 ```{r}
 # to perform a fisher's exact test, create one last tableone object, then submit it to its print() function, with the argument "exact = TRUE"
-
 
 
 ```
