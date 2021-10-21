@@ -67,22 +67,24 @@ For this and subsequent labs, we are considering
 
   1) Child mortality within 5 years as our outcome (response) variable  
   2) Birth order >= 5 as the main risk factor variable and  
-  3) Other variables as potential *__confounders__* or *__modifiers__* of the relationship between mortality and birth order.   
+  3) Other variables as potential *__confounders__* or *__modifiers__* of the relationship between mortality and birth order. 
+  
+![Causal diagram of birth order (E: "exposure") on childhood mortality (D: "disease")](images/lab3_causal_diagram.png)
 
 
 ## Task 3: Table 1 
 
 ### Tabular analysis of continuous variables by mortality status
 
-__INSTRUCTIONS:__ Fill in `Table 1` with the descriptive statistics for maternal BMI (`mbmi`) and maternal age (`mage`), overall and by levels of child mortality within 5 years (`death`).  
+__INSTRUCTIONS:__ Fill in `Table 1` with the descriptive statistics for maternal BMI (`mbmi`) and maternal age (`mage`), overall and by the two levels of child mortality within 5 years (`death`).  
 
-This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between the outcome, `death`, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).  
+This table also requires you to use R to calculate statistical tests (T-test and Kruskal-Wallis) of the association between the outcome, `death`, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).  
 
 Round p-values to 3 decimal places.
 
 Read on for advice on how to generate overall and stratified summary statistics, as well as instructions for how to perform the two statistical tests.
-
-### Overall summary statistics by variable
+ 
+### Overall summary statistics for each variable variable
 
 The skim() function provided by {skimr} makes this task a simple one. However, unlike previous labs where we ran a summary on the entire dataset, in this task we want individual variables. To keep your output clean, we recommend you generate your summary statistics only for the variables of interest.
 
@@ -106,14 +108,14 @@ data %>%
 
 ```
 
-__Note__: Table 1 asks for stratified counts of `death` as they apply to `mbmi` and `mage`. If you look closely, this means that we need counts of `death` that exclude missing values for our two continuous variables. `skim()` does not give you raw counts of the variable `death` that account for those missing values.
+__Note__: Table 1 asks for counts of records with mbmi and mage data available vs. those missing, both overall and by the 2 levels of `death` (i.e. dead and alive). If you look closely, this means that we need counts of counts of kids with data available on `mbmi` and `mage`, overall, within levels of death, and those missing values. `skim()` does not give you raw counts of the variable `death` that account for those missing values.
 
-Use `table()` or a pipe, `group_by()` and `count()` to get the counts of children in each group of `death`. Then use the column of your skim output, `n_missing`, to subtract missing values from groups 
+Use `table()` or a pipe, `group_by()` and `count()` to get the counts of children in each group  of `death` (i.e. by levels of `death`). Then use the column of your skim output, `n_missing`, to subtract missing values from groups 
 
 
 ### T-tests and Kruskal-Wallis tests
 
-T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to compare means between sub-populations, with the null hypothesis (H0) being that all means are equal.
+T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to compare means between between groups (i.e. between sub-populations), with the null hypothesis (H~0~) being that all means are equal.
 
 There are a few simple functions from the {stats} package that we can use to manually run these tests. To implement, we use functions `t.test()` and `kruskal.test()`. Both take the same arguments: 
 
@@ -139,7 +141,7 @@ kable(head(starwars[1:11]))
 
 
 
-Our formal question might look like this: "Does mean character height differ by a character's gender?"
+Our formal question might look like this: "Does mean character height differ by a character's gender?" (For the purposes of example, assume that the 83 characters are a sample from a large population of characters)
 
 We can calculate summary statistics for sub-group frequency counts and means:
 
@@ -156,9 +158,6 @@ kable(starwars %>%
   group_by(gender) %>%
   summarize(n = n(), mean = mean(height, na.rm = TRUE)))
 ```
-
-[[@Liz Feel free to cut this next part with the density plots if it's not helpful. Just trying to think of ways to get students to understand how these tests apply to real data]]
-
 
 We can also visualize the respective distributions of `height` by `gender` using density plots.
 
@@ -177,11 +176,10 @@ starwars %>%
   labs(x = 'Height', y = NULL, fill = "Gender")
 ```
 
-<aside>The T-test asks: assuming the two curves are normally distributed and given our sample size, is the distance between the two red lines (the means of each curve) sufficiently large to say that the two curves are *statistically* different? </aside>
+<aside>The hypotheses of the two-sample t-test ask whether the mean height of feminine and masculine are different. To address this question, data from the 17 feminine and 66 masculine characters are used as samples drawn from the larger population.</aside>
 
 
-
-Our T-test would effectively tell us whether or not those means are statistically different from each other given the available data:
+Our t-test would effectively tell us whether or not the observed difference in sample mean of height supports the conclusion that the population mean height is different between the two groups.
 
 ```{r echo = TRUE, eval = FALSE}
 t.test(height ~ gender, data = starwars)
@@ -212,24 +210,18 @@ kruskal.test(height ~ gender, data = starwars)
 #> Kruskal-Wallis chi-squared = 8.6845, df = 1, p-value = 0.003209
 ```
 
-Notice the difference in the conclusion you would draw from either test. For the T-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups. 
+<aside>Note that our decision tree for statistical tests of continuous outcome variables would get us to the Wilcoxon Rank Sum Test. In R, this is implemented the same as the Kruskal Wallis test, but uses the function `wilcox.test()`. We have used `kruskal.test()` because this is the test we will perform for Table 1. </aside>
 
+Notice the difference in the conclusion you would draw from either test. For the t-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups. 
 
 
 ## Task 4: Table 2
-
-[[@Liz I made the decision to use {tableone} for this task because it is an extremely useful tool for tabular analysis and generating Table 1 summary statistics (hence the name). I found it immensely useful in my work this summer.
-
-It's also efficient. Students will have to take time to learn how to use this very convenient and powerful tool, but the trade-off is that they will avoid the tedious work of computing the stratified frequency counts, percentages, and tests of significance for each variable individually. 
-
-Alternatively, we could cut this part and opt for simpler instructions that simply tell students to do 2x2 tables for each variable, and then run chisq.test() and fisher.exact() for each variable individually. But I thought shaking things up and giving them a useful skill might be nice. Your call!
-]]
 
 ### Tabular analysis of categorical variables by `death`
 
 __INSTRUCTIONS:__ `Table 2` contains three distinct columns for frequency counts and percentages. 
 
-The first, "All subjects" requires the __overall__ frequency counts and percentages by the categorical variables of interest. These are the same values that you generated for Table 1 in both labs 1 and 2.
+The first, "All Children" requires the __overall__ frequency counts and percentages by the categorical variables of interest. These are the same values that you generated for Table 1 in both labs 1 and 2.
 
 The next two columns, "Dead" and "Alive", require frequency counts and percentages of each of the variables of interest, stratified by mortality status at 5 years, `death`. 
 Be sure to calculate percentages only for the non-missing values and round percentages to 1 decimal place. 
@@ -270,7 +262,7 @@ variables <- c('size', 'pnc')
 
 First, we will construct two different {tableone} objects: a "simple" table with univariate frequency counts, and a "stratified" table, with bivariate counts.
 
-After that, we'll use `print()` to view the output generated by those two different object.
+After that, we'll use `print()` to view the output generated by those two different objects.
 
 #### Simple table
 
@@ -298,7 +290,7 @@ We can then use a `print()` function, with arguments specific to our {tableone} 
 
 With categorical variables, it's typically best to use the argument `showAllLevels = TRUE` so that we see every category. 
 
-<aside> Setting `showAllLevels` to `FALSE` will leave out the reference category for each variable. </aside>
+<aside> Setting `showAllLevels` to `FALSE` will leave out the reference level for each variable. </aside>
 
 #### Print simple table
 
@@ -319,9 +311,9 @@ print(simple_tab, showAllLevels = TRUE)
 ```
 
 
-#### Print stratified table with Chi-squared test
+#### Print stratified table with chi-square test of independence
 
-Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-squared test for differences between the various groups [[@Liz would it be good to add "when compared with the overall distributions of size and pnc"?]] :
+Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable (in the case of this example, `bord5`), and perform a chi-square test of independence for that stratifying variable and each of the variables of interest e.g. of `size` and `pnc`:
 
 ```{r echo = TRUE, eval = FALSE}
 
@@ -342,15 +334,25 @@ print(stratified_tab, showAllLevels = TRUE)
 
 Note that each row of the stratified results sum to the same result as given by the column for "Overall" in our `simple_tab`. 
 
-As the default for categorical variables, the {tableone} `print()` function performs a chi-squared test on the difference of proportions between the different strata for `bord5`. 
+As the default for categorical variables, the {tableone} `print()` function performs a chi-square test of independence between `bord5' and each of the variables of interest.
 
 There's one glaring issue here, however: neither of our stratified variables meet the assumption of normality! Each contains at least one cross-tabulation with counts that are less than 5. 
 
 ### Fisher's exact test of significance
 
-When we look at our [decision tree for hypothesis testing](TODO), we might notice that we need to use a Fisher's Exact test when our data doesn't meet the assumption of normality necessary for a Chi-squared test of significance. 
+When we look at our decision tree for hypothesis testing of categorical outcome variables, we might decide that we need to use a Fisher's Exact test when our data doesn't meet the assumption of all expected cell counts being at least 5 for a chi-square test of independence.
 
-To do this in a {tableone} object, we just need to include `exact = TRUE` in our `print()` function to calculate a Fisher's Exact test, the nonparametric equivalent of the Chi-square test.
+<aside>
+You can use the output from `chisq.test()` to find expected cell counts:
+```{r eval = FALSE, echo = TRUE}
+size_tab <- table(kenya$bord5, kenya$pnc)
+X2 <- chisq.test(size_tab)
+X2$expected
+```
+</aside>
+
+
+To do this in a {tableone} object, we just need to include `exact = TRUE` in our `print()` function to calculate a Fisher's Exact test, the nonparametric equivalent of the chi-square test of independence. 
 
 ```{r echo = TRUE, eval = FALSE}
 
@@ -369,24 +371,23 @@ print(stratified_tab, showAllLevels = TRUE, exact = TRUE)
 
 ```
 
-Although in this particular example we draw the same conclusions from the 
-Fisher's exact test as we do from the Chi-square test, assuming normality with insufficient data can lead to misleading results.
+Although in this particular example we draw the same conclusions from the Fisher's exact test as we do from the chi-square test of independence, this will not always be the case.
 
 <aside>
-There are other arguments for {tableone} that allow you to specify exactly which variables are nonnormal, and therefore perform the nonparametric test on only those variables. Similar steps apply for analysis of continuous variables (you could even try using the continuous variables from Task 3!)
+There are other arguments for {tableone} that allow you to specify exactly which variables do not meet the assumptions of the default parametric test (e.g. chi-square test of independence for categorical variables), and therefore perform the nonparametric test on only those variables. Similar steps apply for analysis of continuous variables (you could even try using the continuous variables from Task 3!)
 </aside>
 
 ## Task 5: Table 3 
 
 ### Risk Differences, Risk Ratios, and Odds Ratios
 
-__INSTRUCTIONS:__ Fill in `Table 3` with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, *N*, as in Table 2). Then use `epi.2by2()` to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group.  
+__INSTRUCTIONS:__ Fill in `Table 3` with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, *N*, as in Table 2). Then use `epi.2by2()` to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.  
 
 ![Table 3](images/lab3_table3.png)
 
 <aside> We will use `mAssoc()` in the package {epiAssist} to generate these values. This function is a helper function, and runs using functions available in {epiR}` </aside>
 
-The reference group for each variable is noted in the spreadsheet ("REF").  For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group.  
+The reference level for each variable is noted in the spreadsheet ("REF").  For the two 3-level variables, calculate risk differences and ratios for each non-reference level relative to the reference level.  
 
 Round risks to 3 decimal places and ratios to 2 decimal places.  
 
@@ -410,11 +411,11 @@ The value for risk also aligns with that generated in the previous task, except 
 
 ![Measures of association](images/lab3_tab3_massoc.png)
 
-RD, RR, and OR are what are known as "measures of association" because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline variable as the "Reference variable" and the comparator variable as the "Index variable". 
+RD, RR, and OR are what are known as "measures of association" because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline level as the "reference level" and the comparator level as the "index level".  
 
-In practical terms, for things like RRs and ORs, the index variable goes in the numerator and the referent variable goes in the denominator. 
+In practical terms, for things like RRs and ORs, the index level goes in the numerator and the reference level goes in the denominator. 
 
-<aside> \[\frac{index\ \ variable}{reference\ \ variable}\] </aside>
+<aside> \[\frac{index\ \ level}{reference\ \ level}\] </aside>
 
 You can use your underlying knowledge of these measures of association to calculate our answers by hand and confirm the results that we'll obtain using the functions that follow.
 
@@ -429,6 +430,7 @@ To use `mAssoc()`, we must take several steps to ensure that our data is in the 
   3.) Submit our rearranged table to `mAssoc()`. 
 
 `mAssoc()`'s main input is a table object arranged in the following format:
+
 ```{r echo = TRUE, eval = FALSE}
 #   -----------	----------	----------
 #                Outcome +	 Outcome -
@@ -533,7 +535,7 @@ mAssoc(tab_bord5, method = "cohort.count", conf.level = 0.95)
 The output of interest from `mAssoc()` will be printed to the console. You can find it by clicking on the area with a red square around it in this screenshot:
 
 ![](images/lab3_massoc.png)
-<aside> If we set `units = 100`, our attributable risk in the exposed (risk difference) would be interpretable as a difference of *x* number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual's risk difference of experiencing the outcome if they are in the index category of the exposure.</aside>
+<aside> If we set `units = 100`, our attributable risk in the exposed (risk difference) would be interpretable as a difference of *x* number of outcomes per 100 people in the index level when compared to the reference level. Since our population unit is set to 1, this number is simply interpreted as an individual's risk difference of experiencing the outcome if they are in the index level of the exposure.</aside>
 
 Here is a quick guide to the components of the output relevant to this activity:
 
@@ -544,11 +546,11 @@ __*Attrib risk in the exposed*__: The risk difference. `mAssoc()` takes another 
 
 #### `mAssoc()` when exposure variable has 3+ levels
 
-Now that you've seen the code for `bord5` as an example, if you're paying close attention, you may have started to wonder, "But what about variables like `education`, when there's more than one index category?"
+Now that you've seen the code for `bord5` as an example, if you're paying close attention, you may have started to wonder, "But what about variables like `education`, when there's more than one index level?"
 
 Good news: `flipTable()` and `mAssoc()` are designed to handle exposure variables with any number of levels. This means that the steps you take for `bord5`, `male`, and `rural` will also apply to `magec` and `education`; simple as that.
 
-Running `mAssoc()` when your exposure variable has 2+ levels will render multiple outputs for each respective index variable. The person who wrote this function was even nice enough to label each of those levels and whether or not they are the index or the referent level.
+Running `mAssoc()` when your exposure variable has 2+ levels will render multiple outputs for each respective index variable. The person who wrote this function was even nice enough to label each of those levels and whether or not they are the index or the reference level.
 
 
 ## Task 6: Side-by-side boxplots
@@ -574,7 +576,7 @@ ggplot(aes(x = gender, y = mass)) +
 
 
 <aside> 
-```{r out.widht = "50%", fig.cap = "[A heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/)"}
+```{r out.widht = "50%", fig.cap = "[A very heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/) indeed"}
 include_graphics('images/jabba.png')
 ```
 

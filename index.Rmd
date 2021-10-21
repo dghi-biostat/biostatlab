@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-![[Null Hypothesis](https://www.explainxkcd.com/wiki/index.php/892:_Null_Hypothesis)](images/null_hypothesis.png)
+![[Increased Risk](https://www.explainxkcd.com/wiki/index.php/1252:_Increased_Risk)](images/increased_risk.png)
 
 ```{r fig.align = "center", echo = FALSE, fig.cap = "[xkcd.com - 'Cohort and Age Effects'](https://www.explainxkcd.com/wiki/index.php/892:_Null_Hypothesis)", out.width = "50%", eval = FALSE}
 #knitr::include_graphics("https://imgs.xkcd.com/comics/null_hypothesis.png")

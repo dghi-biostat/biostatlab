@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-15"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-15"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-21"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-21"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: GLHLTH 705 Lab 3"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 3"]},{"type":"character","attributes":{},"value":["__Due:__ November 12, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-10-15"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["GLHLTH 705 Lab 3"]},{"type":"character","attributes":{},"value":["__Due:__ November 12, 2021 by 14:00 ET\n"]},{"type":"character","attributes":{},"value":["2021-10-21"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2407,7 +2407,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"GLHLTH 705 Lab 3","description":"__Due:__ November 12, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-10-15T00:00:00.000-04:00"}
+{"title":"GLHLTH 705 Lab 3","description":"__Due:__ November 12, 2021 by 14:00 ET","authors":[],"publishedDate":"2021-10-21T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2448,6 +2448,7 @@ Lab Assignments
 <a href="lab_0.html">Lab 0</a>
 <a href="lab_1.html">Lab 1</a>
 <a href="lab_2.html">Lab 2</a>
+<a href="lab_3.html">Lab 3</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>
@@ -2495,7 +2496,7 @@ Dictionaries
 <li><a href="#task-3-table-1">Task 3: Table 1</a>
 <ul>
 <li><a href="#tabular-analysis-of-continuous-variables-by-mortality-status">Tabular analysis of continuous variables by mortality status</a></li>
-<li><a href="#overall-summary-statistics-by-variable">Overall summary statistics by variable</a></li>
+<li><a href="#overall-summary-statistics-for-each-variable-variable">Overall summary statistics for each variable variable</a></li>
 <li><a href="#stratified-summary-statistics">Stratified summary statistics</a></li>
 <li><a href="#t-tests-and-kruskal-wallis-tests">T-tests and Kruskal-Wallis tests</a></li>
 </ul></li>
@@ -2611,19 +2612,22 @@ Late policy: 5 point deduction per 24 hour period past due date and time
 </li>
 <li>Other variables as potential <em><strong>confounders</strong></em> or <em><strong>modifiers</strong></em> of the relationship between mortality and birth order.</li>
 </ol>
+<figure>
+<img src="images/lab3_causal_diagram.png" alt="Causal diagram of birth order (E: “exposure”) on childhood mortality (D: “disease”)" /><figcaption aria-hidden="true">Causal diagram of birth order (E: “exposure”) on childhood mortality (D: “disease”)</figcaption>
+</figure>
 <h2 id="task-3-table-1">Task 3: Table 1</h2>
 <h3 id="tabular-analysis-of-continuous-variables-by-mortality-status">Tabular analysis of continuous variables by mortality status</h3>
-<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 1</code> with the descriptive statistics for maternal BMI (<code>mbmi</code>) and maternal age (<code>mage</code>), overall and by levels of child mortality within 5 years (<code>death</code>).</p>
-<p>This table also includes statistical measures (T-test and Kruskal-Wallis) of the association between the outcome, <code>death</code>, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).</p>
+<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 1</code> with the descriptive statistics for maternal BMI (<code>mbmi</code>) and maternal age (<code>mage</code>), overall and by the two levels of child mortality within 5 years (<code>death</code>).</p>
+<p>This table also requires you to use R to calculate statistical tests (T-test and Kruskal-Wallis) of the association between the outcome, <code>death</code>, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).</p>
 <p>Round p-values to 3 decimal places.</p>
 <p>Read on for advice on how to generate overall and stratified summary statistics, as well as instructions for how to perform the two statistical tests.</p>
-<h3 id="overall-summary-statistics-by-variable">Overall summary statistics by variable</h3>
+<h3 id="overall-summary-statistics-for-each-variable-variable">Overall summary statistics for each variable variable</h3>
 <p>The skim() function provided by {skimr} makes this task a simple one. However, unlike previous labs where we ran a summary on the entire dataset, in this task we want individual variables. To keep your output clean, we recommend you generate your summary statistics only for the variables of interest.</p>
 <p>We can use <a href="https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe">a pipe</a> with skimr() to call specific variables, like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
+  <span class='fu'><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skim</a></span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2632,15 +2636,15 @@ Late policy: 5 point deduction per 24 hour period past due date and time
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>death</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>mbmi</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>death</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skim</a></span><span class='op'>(</span><span class='va'>mbmi</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p><strong>Note</strong>: Table 1 asks for stratified counts of <code>death</code> as they apply to <code>mbmi</code> and <code>mage</code>. If you look closely, this means that we need counts of <code>death</code> that exclude missing values for our two continuous variables. <code>skim()</code> does not give you raw counts of the variable <code>death</code> that account for those missing values.</p>
-<p>Use <code>table()</code> or a pipe, <code>group_by()</code> and <code>count()</code> to get the counts of children in each group of <code>death</code>. Then use the column of your skim output, <code>n_missing</code>, to subtract missing values from groups</p>
+<p><strong>Note</strong>: Table 1 asks for counts of records with mbmi and mage data available vs. those missing, both overall and by the 2 levels of <code>death</code> (i.e. dead and alive). If you look closely, this means that we need counts of counts of kids with data available on <code>mbmi</code> and <code>mage</code>, overall, within levels of death, and those missing values. <code>skim()</code> does not give you raw counts of the variable <code>death</code> that account for those missing values.</p>
+<p>Use <code>table()</code> or a pipe, <code>group_by()</code> and <code>count()</code> to get the counts of children in each group of <code>death</code> (i.e. by levels of <code>death</code>). Then use the column of your skim output, <code>n_missing</code>, to subtract missing values from groups</p>
 <h3 id="t-tests-and-kruskal-wallis-tests">T-tests and Kruskal-Wallis tests</h3>
-<p>T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to compare means between sub-populations, with the null hypothesis (H0) being that all means are equal.</p>
+<p>T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to compare means between between groups (i.e. between sub-populations), with the null hypothesis (H<sub>0</sub>) being that all means are equal.</p>
 <p>There are a few simple functions from the {stats} package that we can use to manually run these tests. To implement, we use functions <code>t.test()</code> and <code>kruskal.test()</code>. Both take the same arguments:</p>
 <aside>
 Many functions in R can perform a task like generating tables, while computing a p-value as a matter of course (see <a href="https://dghi-biostat.github.io/biostatlab/lab_3.html#task-4-table-2%5D%20below">Task 4</a>.
@@ -2768,14 +2772,14 @@ Formulas: In R, “formulas” follow different rules depending on the function.
 </tbody>
 </table>
 </div>
-<p>Our formal question might look like this: “Does mean character height differ by a character’s gender?”</p>
+<p>Our formal question might look like this: “Does mean character height differ by a character’s gender?” (For the purposes of example, assume that the 83 characters are a sample from a large population of characters)</p>
 <p>We can calculate summary statistics for sub-group frequency counts and means:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>starwars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>summarize</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span>, mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>height</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>, mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>height</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2802,15 +2806,14 @@ Formulas: In R, “formulas” follow different rules depending on the function.
 </tbody>
 </table>
 </div>
-<p>[<span class="citation" data-cites="Liz">[@Liz Feel free to cut this next part with the density plots if it's not helpful. Just trying to think of ways to get students to understand how these tests apply to real data]</span>]</p>
 <p>We can also visualize the respective distributions of <code>height</code> by <code>gender</code> using density plots.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="lab_3_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <aside>
-The T-test asks: assuming the two curves are normally distributed and given our sample size, is the distance between the two red lines (the means of each curve) sufficiently large to say that the two curves are <em>statistically</em> different?
+The hypotheses of the two-sample t-test ask whether the mean height of feminine and masculine are different. To address this question, data from the 17 feminine and 66 masculine characters are used as samples drawn from the larger population.
 </aside>
-<p>Our T-test would effectively tell us whether or not those means are statistically different from each other given the available data:</p>
+<p>Our t-test would effectively tell us whether or not the observed difference in sample mean of height supports the conclusion that the population mean height is different between the two groups.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span><span class='va'>height</span> <span class='op'>~</span> <span class='va'>gender</span>, data <span class='op'>=</span> <span class='va'>starwars</span><span class='op'>)</span>
@@ -2844,14 +2847,14 @@ Function output is indicated by lines that start with <code>#&gt;</code>
 </code></pre>
 </div>
 </div>
-<p>Notice the difference in the conclusion you would draw from either test. For the T-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups.</p>
+<aside>
+Note that our decision tree for statistical tests of continuous outcome variables would get us to the Wilcoxon Rank Sum Test. In R, this is implemented the same as the Kruskal Wallis test, but uses the function <code>wilcox.test()</code>. We have used <code>kruskal.test()</code> because this is the test we will perform for Table 1.
+</aside>
+<p>Notice the difference in the conclusion you would draw from either test. For the t-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups.</p>
 <h2 id="task-4-table-2">Task 4: Table 2</h2>
-<p>[[<span class="citation" data-cites="Liz">@Liz</span> I made the decision to use {tableone} for this task because it is an extremely useful tool for tabular analysis and generating Table 1 summary statistics (hence the name). I found it immensely useful in my work this summer.</p>
-<p>It’s also efficient. Students will have to take time to learn how to use this very convenient and powerful tool, but the trade-off is that they will avoid the tedious work of computing the stratified frequency counts, percentages, and tests of significance for each variable individually.</p>
-<p>Alternatively, we could cut this part and opt for simpler instructions that simply tell students to do 2x2 tables for each variable, and then run chisq.test() and fisher.exact() for each variable individually. But I thought shaking things up and giving them a useful skill might be nice. Your call! ]]</p>
 <h3 id="tabular-analysis-of-categorical-variables-by-death">Tabular analysis of categorical variables by <code>death</code></h3>
 <p><strong>INSTRUCTIONS:</strong> <code>Table 2</code> contains three distinct columns for frequency counts and percentages.</p>
-<p>The first, “All subjects” requires the <strong>overall</strong> frequency counts and percentages by the categorical variables of interest. These are the same values that you generated for Table 1 in both labs 1 and 2.</p>
+<p>The first, “All Children” requires the <strong>overall</strong> frequency counts and percentages by the categorical variables of interest. These are the same values that you generated for Table 1 in both labs 1 and 2.</p>
 <p>The next two columns, “Dead” and “Alive”, require frequency counts and percentages of each of the variables of interest, stratified by mortality status at 5 years, <code>death</code>. Be sure to calculate percentages only for the non-missing values and round percentages to 1 decimal place.</p>
 <p>This table also includes statistical measures (Chi-Sq and Fisher’s exact test) of the association between mortality status and the variables in the table.</p>
 <p>Round p-values to 3 decimal places.</p>
@@ -2880,7 +2883,7 @@ Function output is indicated by lines that start with <code>#&gt;</code>
 </div>
 <h3 id="construct-tableone-objects">Construct {tableone} objects</h3>
 <p>First, we will construct two different {tableone} objects: a “simple” table with univariate frequency counts, and a “stratified” table, with bivariate counts.</p>
-<p>After that, we’ll use <code>print()</code> to view the output generated by those two different object.</p>
+<p>After that, we’ll use <code>print()</code> to view the output generated by those two different objects.</p>
 <h4 id="simple-table">Simple table</h4>
 <p>For a simple table of summary statistics, we only need to use arguments <code>vars =</code> and <code>data =</code>. It’s best practice to assign the {tableone} object to a name, so that we can use it in a <code>print()</code> function in a moment.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2904,12 +2907,12 @@ Function output is indicated by lines that start with <code>#&gt;</code>
 <p>We can then use a <code>print()</code> function, with arguments specific to our {tableone} object, to view our simple and stratified tables.</p>
 <p>With categorical variables, it’s typically best to use the argument <code>showAllLevels = TRUE</code> so that we see every category.</p>
 <aside>
-Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the reference category for each variable.
+Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the reference level for each variable.
 </aside>
 <h4 id="print-simple-table">Print simple table</h4>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>simple_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>simple_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;              level                  Overall      </span>
 <span class='co'>#&gt;  n                                   16828        </span>
@@ -2923,11 +2926,11 @@ Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the refe
 </code></pre>
 </div>
 </div>
-<h4 id="print-stratified-table-with-chi-squared-test">Print stratified table with Chi-squared test</h4>
-<p>Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable, and perform a chi-squared test for differences between the various groups [<span class="citation" data-cites="Liz">[@Liz would it be good to add "when compared with the overall distributions of size and pnc"?]</span>] :</p>
+<h4 id="print-stratified-table-with-chi-square-test-of-independence">Print stratified table with chi-square test of independence</h4>
+<p>Whereas the simple table prints overall frequency counts and percentages, our stratified table will take the stratifying variable (in the case of this example, <code>bord5</code>), and perform a chi-square test of independence for that stratifying variable and each of the variables of interest e.g. of <code>size</code> and <code>pnc</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;              Stratified by bord5</span>
 <span class='co'>#&gt;               level                  1-4 in Birth Order 5+ in Birth Order  p     test</span>
@@ -2943,14 +2946,25 @@ Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the refe
 </div>
 </div>
 <p>Note that each row of the stratified results sum to the same result as given by the column for “Overall” in our <code>simple_tab</code>.</p>
-<p>As the default for categorical variables, the {tableone} <code>print()</code> function performs a chi-squared test on the difference of proportions between the different strata for <code>bord5</code>.</p>
+<p>As the default for categorical variables, the {tableone} <code>print()</code> function performs a chi-square test of independence between `bord5’ and each of the variables of interest.</p>
 <p>There’s one glaring issue here, however: neither of our stratified variables meet the assumption of normality! Each contains at least one cross-tabulation with counts that are less than 5.</p>
 <h3 id="fishers-exact-test-of-significance">Fisher’s exact test of significance</h3>
-<p>When we look at our <a href="TODO">decision tree for hypothesis testing</a>, we might notice that we need to use a Fisher’s Exact test when our data doesn’t meet the assumption of normality necessary for a Chi-squared test of significance.</p>
-<p>To do this in a {tableone} object, we just need to include <code>exact = TRUE</code> in our <code>print()</code> function to calculate a Fisher’s Exact test, the nonparametric equivalent of the Chi-square test.</p>
+<p>When we look at our decision tree for hypothesis testing of categorical outcome variables, we might decide that we need to use a Fisher’s Exact test when our data doesn’t meet the assumption of all expected cell counts being at least 5 for a chi-square test of independence.</p>
+<aside>
+You can use the output from <code>chisq.test()</code> to find expected cell counts:
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span>, exact <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>size_tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>kenya</span><span class='op'>$</span><span class='va'>bord5</span>, <span class='va'>kenya</span><span class='op'>$</span><span class='va'>pnc</span><span class='op'>)</span>
+<span class='va'>X2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/chisq.test.html'>chisq.test</a></span><span class='op'>(</span><span class='va'>size_tab</span><span class='op'>)</span>
+<span class='va'>X2</span><span class='op'>$</span><span class='va'>expected</span>
+</code></pre>
+</div>
+</div>
+</aside>
+<p>To do this in a {tableone} object, we just need to include <code>exact = TRUE</code> in our <code>print()</code> function to calculate a Fisher’s Exact test, the nonparametric equivalent of the chi-square test of independence.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span>, exact <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;               Stratified by bord5</span>
 <span class='co'>#&gt;               level                  1-4 in Birth Order 5+ in Birth Order p      test </span>
@@ -2965,20 +2979,20 @@ Setting <code>showAllLevels</code> to <code>FALSE</code> will leave out the refe
 </code></pre>
 </div>
 </div>
-<p>Although in this particular example we draw the same conclusions from the Fisher’s exact test as we do from the Chi-square test, assuming normality with insufficient data can lead to misleading results.</p>
+<p>Although in this particular example we draw the same conclusions from the Fisher’s exact test as we do from the chi-square test of independence, this will not always be the case.</p>
 <aside>
-There are other arguments for {tableone} that allow you to specify exactly which variables are nonnormal, and therefore perform the nonparametric test on only those variables. Similar steps apply for analysis of continuous variables (you could even try using the continuous variables from Task 3!)
+There are other arguments for {tableone} that allow you to specify exactly which variables do not meet the assumptions of the default parametric test (e.g. chi-square test of independence for categorical variables), and therefore perform the nonparametric test on only those variables. Similar steps apply for analysis of continuous variables (you could even try using the continuous variables from Task 3!)
 </aside>
 <h2 id="task-5-table-3">Task 5: Table 3</h2>
 <h3 id="risk-differences-risk-ratios-and-odds-ratios">Risk Differences, Risk Ratios, and Odds Ratios</h3>
-<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 3</code> with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, <em>N</em>, as in Table 2). Then use <code>epi.2by2()</code> to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference group.</p>
+<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 3</code> with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, <em>N</em>, as in Table 2). Then use <code>epi.2by2()</code> to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.</p>
 <figure>
 <img src="images/lab3_table3.png" alt="Table 3" /><figcaption aria-hidden="true">Table 3</figcaption>
 </figure>
 <aside>
 We will use <code>mAssoc()</code> in the package {epiAssist} to generate these values. This function is a helper function, and runs using functions available in {epiR}`
 </aside>
-<p>The reference group for each variable is noted in the spreadsheet (“REF”). For the two 3-level variables, calculate risk differences and ratios for each non-referent level relative to the reference group.</p>
+<p>The reference level for each variable is noted in the spreadsheet (“REF”). For the two 3-level variables, calculate risk differences and ratios for each non-reference level relative to the reference level.</p>
 <p>Round risks to 3 decimal places and ratios to 2 decimal places.</p>
 <h3 id="take-a-deep-breath.">Take a deep breath.</h3>
 <p>Don’t let this table overwhelm you. We’re going to break it down step-by-step</p>
@@ -2996,10 +3010,10 @@ We will use <code>mAssoc()</code> in the package {epiAssist} to generate these v
 <figure>
 <img src="images/lab3_tab3_massoc.png" alt="Measures of association" /><figcaption aria-hidden="true">Measures of association</figcaption>
 </figure>
-<p>RD, RR, and OR are what are known as “measures of association” because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline variable as the “Reference variable” and the comparator variable as the “Index variable”.</p>
-<p>In practical terms, for things like RRs and ORs, the index variable goes in the numerator and the referent variable goes in the denominator.</p>
+<p>RD, RR, and OR are what are known as “measures of association” because they are used to compare outcomes between levels of a categorical variable. In epidemiology, we refer to the baseline level as the “reference level” and the comparator level as the “index level”.</p>
+<p>In practical terms, for things like RRs and ORs, the index level goes in the numerator and the reference level goes in the denominator.</p>
 <aside>
-<span class="math display">\[\frac{index\ \ variable}{reference\ \ variable}\]</span>
+<span class="math display">\[\frac{index\ \ level}{reference\ \ level}\]</span>
 </aside>
 <p>You can use your underlying knowledge of these measures of association to calculate our answers by hand and confirm the results that we’ll obtain using the functions that follow.</p>
 <h3 id="massoc-for-measures-of-association"><code>mAssoc()</code> for Measures of Association</h3>
@@ -3008,7 +3022,7 @@ We will use <code>mAssoc()</code> in the package {epiAssist} to generate these v
 <p>1.) Create a table object using <code>table()</code><br />
 2.) Rearrange the table with <code>flipTable()</code> to put it in the appropriate alignment for use by <code>mAssoc()</code><br />
 3.) Submit our rearranged table to <code>mAssoc()</code>.</p>
-<code>mAssoc()</code>’s main input is a table object arranged in the following format:
+<p><code>mAssoc()</code>’s main input is a table object arranged in the following format:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#   -----------  ----------  ----------</span>
@@ -3114,16 +3128,16 @@ Reminder that the function <code>mAssoc()</code> is a wrapper function for the <
 <p>The output of interest from <code>mAssoc()</code> will be printed to the console. You can find it by clicking on the area with a red square around it in this screenshot:</p>
 <img src="images/lab3_massoc.png" />
 <aside>
-If we set <code>units = 100</code>, our attributable risk in the exposed (risk difference) would be interpretable as a difference of <em>x</em> number of outcomes per 100 people in the index group when compared to the referent group. Since our population unit is set to 1, this number is simply interpreted as an individual’s risk difference of experiencing the outcome if they are in the index category of the exposure.
+If we set <code>units = 100</code>, our attributable risk in the exposed (risk difference) would be interpretable as a difference of <em>x</em> number of outcomes per 100 people in the index level when compared to the reference level. Since our population unit is set to 1, this number is simply interpreted as an individual’s risk difference of experiencing the outcome if they are in the index level of the exposure.
 </aside>
 <p>Here is a quick guide to the components of the output relevant to this activity:</p>
 <p><strong><em>Inc risk ratio</em></strong>: Our basic risk ratio<br />
 <strong><em>Odds ratio</em></strong>: Our basic odds ratio<br />
 <strong><em>Attrib risk in the exposed</em></strong>: The risk difference. <code>mAssoc()</code> takes another argument, <code>units =</code>, which by default is set to 1. This regulates our output for the measure of risk difference.</p>
 <h4 id="massoc-when-exposure-variable-has-3-levels"><code>mAssoc()</code> when exposure variable has 3+ levels</h4>
-<p>Now that you’ve seen the code for <code>bord5</code> as an example, if you’re paying close attention, you may have started to wonder, “But what about variables like <code>education</code>, when there’s more than one index category?”</p>
+<p>Now that you’ve seen the code for <code>bord5</code> as an example, if you’re paying close attention, you may have started to wonder, “But what about variables like <code>education</code>, when there’s more than one index level?”</p>
 <p>Good news: <code>flipTable()</code> and <code>mAssoc()</code> are designed to handle exposure variables with any number of levels. This means that the steps you take for <code>bord5</code>, <code>male</code>, and <code>rural</code> will also apply to <code>magec</code> and <code>education</code>; simple as that.</p>
-<p>Running <code>mAssoc()</code> when your exposure variable has 2+ levels will render multiple outputs for each respective index variable. The person who wrote this function was even nice enough to label each of those levels and whether or not they are the index or the referent level.</p>
+<p>Running <code>mAssoc()</code> when your exposure variable has 2+ levels will render multiple outputs for each respective index variable. The person who wrote this function was even nice enough to label each of those levels and whether or not they are the index or the reference level.</p>
 <h2 id="task-6-side-by-side-boxplots">Task 6: Side-by-side boxplots</h2>
 <p><strong>INSTRUCTIONS:</strong> Generate boxplots of maternal BMI (<code>mbmi</code>) and maternal age (<code>magec</code>), stratified by levels of child mortality (<code>death</code>).</p>
 <aside>
@@ -3136,14 +3150,14 @@ Within your call to <code>geom_boxplot()</code>, you can also change the color w
 </aside>
 <p>Here’s an example of what we are looking for, using the <code>starwars</code> dataset. We’ve adjusted the dimensions a bit to accommodate one lone outlier. Care to guess who it is?</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_3_files/figure-html5/unnamed-chunk-22-1.png" width="576" /></p>
+<p><img src="lab_3_files/figure-html5/unnamed-chunk-23-1.png" width="576" /></p>
 </div>
 <aside>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:unnamed-chunk-23"></span>
-<img src="images/jabba.png" alt="[A heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/)" width="300" />
+<div class="figure"><span id="fig:unnamed-chunk-24"></span>
+<img src="images/jabba.png" alt="[A very heavy slug](https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/) indeed" width="300" />
 <p class="caption">
-Figure 1: <a href="https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/">A heavy slug</a>
+Figure 1: <a href="https://mightyjabba.com/2011/02/21/cartoon-jabba-the-hutt-drawings-by-me-and-my-son/">A very heavy slug</a> indeed
 </p>
 </div>
 </div>
