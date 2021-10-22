@@ -555,7 +555,7 @@ Running `mAssoc()` when your exposure variable has 2+ levels will render multipl
 
 ## Task 6: Side-by-side boxplots
 
-__INSTRUCTIONS:__ Generate boxplots of maternal BMI (`mbmi`) and maternal age (`magec`), stratified by levels of child mortality (`death`).
+__INSTRUCTIONS:__ Generate boxplots of maternal BMI (`mbmi`) and maternal age (`mage`), stratified by levels of child mortality (`death`).
 
 <aside>[Click here](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic) for more help with boxplots using {ggplot2} </aside>
 
