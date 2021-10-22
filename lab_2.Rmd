@@ -38,7 +38,7 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 ## Task 1: Load libraries and data
 
-For this assignment, use the dataset that we have supplied you in the Sakai Resources tab – `Lab_2_kenya.rds`. 
+__INSTRUCTIONS:__ For this assignment, use the dataset that we have supplied you in the Sakai Resources tab – `Lab_2_kenya.rds`. 
 
 <aside>
 Find it under Resources > Lab > Datasets > Lab_2_kenya.rds
@@ -48,7 +48,7 @@ For packages, you will need {tidyverse} and {skimr}
 
 ## Task 2: Code derived variables
 
-Construct the 7 derived variables listed below using `%>%` and `mutate()`. Use `case_when()` when you need your new variable to assign values on a conditional basis. 
+__INSTRUCTIONS:__ Construct the 7 derived variables listed below using `%>%` and `mutate()`. Use `case_when()` when you need your new variable to assign values on a conditional basis. 
 
 For each new variable, be sure to examine the component variables for missing values (i.e. `NA`) and be sure to set derived variable values appropriately (e.g., check to make sure that your NA values have not been mistakenly added to another category). 
 
@@ -155,7 +155,7 @@ If a child was alive at the time of interview, calculate their age using using `
 
 ## Task 3: Close the cohort
 
-Create the equivalent of a __*closed cohort*__ for the analysis of 5-year childhood mortality from this dataset. 
+__INSTRUCTIONS:__ Create the equivalent of a __*closed cohort*__ for the analysis of 5-year childhood mortality from the dataset. 
 
 __Note:__ "Closed cohorts" is a topic that we will cover in more detail in Module 7 (week 11, the first week of November), so please don't worry if this feels unfamiliar. The steps needed to complete this task are described in detail below. We hope that performing the actual task of closing a cohort before we learn about it formally in Module 7 will help to crystallize concepts around Populations, Time, Measures of Disease Frequency and Association.
 
@@ -173,14 +173,14 @@ A closed cohort allows for estimation of absolute (unconditional) risks and asso
 
 ### Task 3a: Exclude irrelevant observations
 
-For this task, you will use `%>%` and `filter()` to exclude those observations from the dataset where the child was alive (`death == 0`) and follow-up time was less than 60 months (`time < 60`) Think about which Boolean operator you’ll need to use to exclude those children on both of those conditions. You should end up with __*16,828 records*__ (i.e. rows) in the new data frame. 
+__INSTRUCTIONS:__ For this task, you will use `%>%` and `filter()` to exclude those observations from the dataset where the child was alive (`death == 0`) and follow-up time was less than 60 months (`time < 60`) Think about which Boolean operator you’ll need to use to exclude those children on both of those conditions. You should end up with __*16,828 records*__ (i.e. rows) in the new data frame. 
 
 In this step, you should also use an assignment operator (`<-`) to assign this closed cohort to a different object name (effectively creating a "new" data frame). That way, you will be able to work with this data frame separately, while maintaining access to the original cohort of n = 22,534.
 
 
 ### Task 3b: Re-code `time`
 
-If a child was still alive by their 5th birthday, we need to re-code their variable for `time` to 60 (we are effectively censoring these observations). These children were alive at 5 years of age and so should not be counted as deaths in our analysis.
+__INSTRUCTIONS:__ If a child was still alive by their 5th birthday, we need to re-code their variable for `time` to 60 (we are effectively censoring these observations). These children were alive at 5 years of age and so should not be counted as deaths in our analysis.
 
 You will do this in your newly closed cohort data frame using `mutate()` to re-generate `time` according to the following conditions:
 
@@ -192,7 +192,7 @@ __Hint:__ In `case_when()` you can use the statement `TRUE ~ time` at the end of
 
 ### Task 3c: Recode `time` to [`time` + 1]
 
-For this task, re-code `time` to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on `time` should now be 1 month – 61 months. 
+__INSTRUCTIONS:__ For this task, re-code `time` to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on `time` should now be 1 month – 61 months. 
 
 To help understand why we might do this, imagine that the interview occurred in the same month that a child was born. For them, `time` is coded as 0. But for the purposes of analysis, that child's age should be considered as 1 month. Every observation for `time` contains this error, which is why we must add 1 to `time`.
 
@@ -202,8 +202,17 @@ Linking to our in-class learning, we would formally identify this as a type of "
 
 Just like in 3b, you will use `mutate()` to simply re-generate `time` with the equation `time + 1`. 
 
+### Task 3d: Recode `death`
 
-### Task 3d: Save new dataset
+Now that time is re-coded, we have some conflicting information between the variables `death` and `time`. Consider this question: since we are only considering the mortality status of children before the age of 5, should children who died *after* 60 months be coded as `dead` or `alive`?
+
+<aside>
+__The answer:__ They are technically `alive` within the time frame of our analysis
+</aside>
+
+__INSTRUCTIONS:__ Re-code `death` so that when `time >= 61`, `death == "alive"`. 
+
+### Task 3e: Save new dataset
 
 Save this new dataset containing 16,828 records (make sure to give it a new name).
 
