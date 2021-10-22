@@ -14,7 +14,7 @@ output:
 ## Task 1: Load libraries and dataset
 
 ```{r}
-# load the {tidyverse}, {tableone}, {epiR}, and {epiAssist} packages
+# load the {tidyverse}, {tableone}, {epiR}, {skimr}, and {epiAssist} packages
 
 ```
 
@@ -223,7 +223,7 @@ Fill in Table 3 with frequency counts overall and by levels of child mortality w
 
 ```
 
-### mbmi by death
+### mage by death
 ```{r}
 # use ggplot to stratify boxplots by using a categorical variable on either the x or y axis
 

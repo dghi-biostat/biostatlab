@@ -76,7 +76,9 @@ For this and subsequent labs, we are considering
 
 ### Tabular analysis of continuous variables by mortality status
 
-__INSTRUCTIONS:__ Fill in `Table 1` with the descriptive statistics for maternal BMI (`mbmi`) and maternal age (`mage`), overall and by the two levels of child mortality within 5 years (`death`).  
+__INSTRUCTIONS:__ Fill in `Table 1` with the descriptive statistics for maternal BMI (`mbmi`) and maternal age (`mage`), overall and by the two levels of child mortality within 5 years (`death`). 
+
+<aside>Reminder that you can find Tables 1-3 in the Excel file provided in the [Lab Materials](https://dghi-biostat.github.io/biostatlab/lab_3.html#lab-materials) for this lab </aside>
 
 This table also requires you to use R to calculate statistical tests (T-test and Kruskal-Wallis) of the association between the outcome, `death`, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).  
 
@@ -381,11 +383,11 @@ There are other arguments for {tableone} that allow you to specify exactly which
 
 ### Risk Differences, Risk Ratios, and Odds Ratios
 
-__INSTRUCTIONS:__ Fill in `Table 3` with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, *N*, as in Table 2). Then use `epi.2by2()` to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.  
+__INSTRUCTIONS:__ Fill in `Table 3` with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, *N*, as in Table 2). Then use `mAssoc()` to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.  
 
 ![Table 3](images/lab3_table3.png)
 
-<aside> We will use `mAssoc()` in the package {epiAssist} to generate these values. This function is a helper function, and runs using functions available in {epiR}` </aside>
+<aside> We use `mAssoc()` in the package {epiAssist} to generate these values. This function is a helper function for the original `epi.2by2()` function, which is available in the package {epiR}. `epi.2by2()` works the same as `mAssoc()`, except it only provides output for a single index/reference level pair. `mAssoc()` can do multiple index levels all at once. </aside>
 
 The reference level for each variable is noted in the spreadsheet ("REF").  For the two 3-level variables, calculate risk differences and ratios for each non-reference level relative to the reference level.  
 

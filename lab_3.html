@@ -2618,6 +2618,9 @@ Late policy: 5 point deduction per 24 hour period past due date and time
 <h2 id="task-3-table-1">Task 3: Table 1</h2>
 <h3 id="tabular-analysis-of-continuous-variables-by-mortality-status">Tabular analysis of continuous variables by mortality status</h3>
 <p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 1</code> with the descriptive statistics for maternal BMI (<code>mbmi</code>) and maternal age (<code>mage</code>), overall and by the two levels of child mortality within 5 years (<code>death</code>).</p>
+<aside>
+Reminder that you can find Tables 1-3 in the Excel file provided in the <a href="https://dghi-biostat.github.io/biostatlab/lab_3.html#lab-materials">Lab Materials</a> for this lab
+</aside>
 <p>This table also requires you to use R to calculate statistical tests (T-test and Kruskal-Wallis) of the association between the outcome, <code>death</code>, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).</p>
 <p>Round p-values to 3 decimal places.</p>
 <p>Read on for advice on how to generate overall and stratified summary statistics, as well as instructions for how to perform the two statistical tests.</p>
@@ -2985,12 +2988,12 @@ There are other arguments for {tableone} that allow you to specify exactly which
 </aside>
 <h2 id="task-5-table-3">Task 5: Table 3</h2>
 <h3 id="risk-differences-risk-ratios-and-odds-ratios">Risk Differences, Risk Ratios, and Odds Ratios</h3>
-<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 3</code> with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, <em>N</em>, as in Table 2). Then use <code>epi.2by2()</code> to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.</p>
+<p><strong>INSTRUCTIONS:</strong> Fill in <code>Table 3</code> with frequency counts overall and by levels of child mortality within 5 years and with the stratum-specific risk of death (these are the same frequency count values, <em>N</em>, as in Table 2). Then use <code>mAssoc()</code> to compute the risk difference, risk ratio and the odds ratio of death comparing levels for each of the 5 variables to the reference level.</p>
 <figure>
 <img src="images/lab3_table3.png" alt="Table 3" /><figcaption aria-hidden="true">Table 3</figcaption>
 </figure>
 <aside>
-We will use <code>mAssoc()</code> in the package {epiAssist} to generate these values. This function is a helper function, and runs using functions available in {epiR}`
+We use <code>mAssoc()</code> in the package {epiAssist} to generate these values. This function is a helper function for the original <code>epi.2by2()</code> function, which is available in the package {epiR}. <code>epi.2by2()</code> works the same as <code>mAssoc()</code>, except it only provides output for a single index/reference level pair. <code>mAssoc()</code> can do multiple index levels all at once.
 </aside>
 <p>The reference level for each variable is noted in the spreadsheet (“REF”). For the two 3-level variables, calculate risk differences and ratios for each non-reference level relative to the reference level.</p>
 <p>Round risks to 3 decimal places and ratios to 2 decimal places.</p>
