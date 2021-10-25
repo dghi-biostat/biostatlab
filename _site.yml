@@ -1,14 +1,16 @@
 name: "biostatlab"
 title: "DGHI/Biostat Lab"
-theme: theme.css
+theme: halloween.css
 favicon: images/favicon.ico
 description: |
   Biostat & Epi Lab
 output_dir: "."
 navbar:
   logo:
-    image: images/logo.png
-    href: https://pngtree.com/so/cat
+    #image: images/logo.png
+    #href: https://pngtree.com/so/cat
+    image: images/logo_halloween.png
+    href: https://pngtree.com/so/halloween
   right:
     - text: "Analysis Map"
       href: mind_map.html

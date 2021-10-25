@@ -36,6 +36,21 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 * Run descriptive statistics for continuous and categorical variables 
 * Generate a complete data dictionary
 
+### Lab 2 Grading scheme
+
+| Competency | Points |
+|:-----------|:------:|
+|   .Rmd file runs without error |   10 |
+|   Task 4 (Histograms) | 15 (5 each) |
+|   Task 5 (Boxplots) |   15 (5 each) |
+|   Task 6 (Table 1) |   20 |
+|   Task 7 (Data Dictionary - old variables) | 5 |
+|   Task 7 (Data Dictionary - new variables)    |   10   |
+|   Task 8 (short answer) |  25 |
+|   __Total__  |  __100__  |
+
+<aside> Late policy: 5 point deduction per 24 hour period past due date and time </aside>
+
 ## Task 1: Load libraries and data
 
 __INSTRUCTIONS:__ For this assignment, use the dataset that we have supplied you in the Sakai Resources tab – `Lab_2_kenya.rds`. 

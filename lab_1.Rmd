@@ -35,6 +35,19 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 * Generate graphics for continuous variables 
 * Generate a complete data dictionary
 
+### Lab 2 Grading scheme
+
+| Competency | Points |
+|:-----------|:------:|
+|   .Rmd file runs without error |   10 |
+|   Task 3 (Histograms) | 15 (5 each) |
+|   Task 4 (Boxplots) |   15 (5 each) |
+|   Task 5 (Table 1) |   10 |
+|   Task 6 (Data Dictionary - original variables) | 20 |
+|   Task 6 (Data Dictionary - new variables)    |   10   |
+|   Task 7 (short answer) |  20 |
+|   __Total__  |  __100__  |
+
 ## Task 1: Load packages and data
 
 In the chunk of code named `load packages`, use the function `library()` to load packages {skimr} and {tidyverse}.
