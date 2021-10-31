@@ -1,5 +1,5 @@
 ---
-title: "GLHLTH 705 Lab 0"
+title: "Lab 0 (705)"
 description: |
     __Due:__ September 17, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
@@ -27,12 +27,12 @@ xaringanExtra::use_share_again()
 
 __*Note: This lab is not graded*__ (i.e. does not contribute to your course evaluation, so don't fret)
 
-### LAB MATERIALS: 
+### LAB MATERIALS
 
-* [__R Markdown file for Lab 0.__](assignments/lab0_705_fall2021.Rmd)
+* [__R Markdown file for Lab 0__](assignments/lab0_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `Lab0_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* "Lab_0_kenya.rds" - data file available in the Resources folder of the Sakai course webpage
+* Lab_0_kenya.rds - data file available in the Resources folder of the Sakai course webpage
 
 
 ### Slides
@@ -41,7 +41,7 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 xaringanExtra::embed_xaringan(url = "files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
 ```
 
-### Lab 0 Goals:
+### Lab 0 Goals
 
 By the end of this lab, you will have demonstrated a basic familiarity with the R coding environment and R Markdown files. You will be able to:
 
@@ -132,18 +132,21 @@ install.packages("tidyverse")
 install.packages("skimr")
 ```
 
-
 ```{r install packages 3, eval = FALSE, echo = TRUE}
+install.packages("tableone")
+```
+
+```{r install packages 4, eval = FALSE, echo = TRUE}
 install.packages("epiR")
 ```
 
 
-```{r install packages 4, eval = FALSE, echo = TRUE}
+```{r install packages 5, eval = FALSE, echo = TRUE}
 install.packages("devtools")
 ```
 
 
-```{r install packages 5, eval = FALSE, echo = TRUE}
+```{r install packages 6, eval = FALSE, echo = TRUE}
 devtools::install_github("potato-nathan/epiAssist")
 ```
 

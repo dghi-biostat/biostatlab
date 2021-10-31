@@ -1,5 +1,5 @@
 ---
-title: "GLHLTH 705 Lab 2"
+title: "Lab 2 (705)"
 description: |
     __Due:__ October 22, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
@@ -18,16 +18,16 @@ library(xaringanExtra)
 xaringanExtra::use_clipboard()
 ```
 
-### LAB MATERIALS: 
+### LAB MATERIALS 
 
-* [__R Markdown file for Lab 2.__](assignments/lab2_705_fall2021.Rmd)
+* [__R Markdown file for Lab 2__](assignments/lab2_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab2_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * [__Excel document for Tables 1 & 2__](assignments/Lab2_Tables.xlsx)
 
 * Lab_2_kenya.rds - data file available on Sakai
 
-### Lab 2 Goals:
+### Lab 2 Goals
 
 * Generate derived variables
 * Identify and recode special values

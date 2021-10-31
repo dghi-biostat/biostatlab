@@ -11,34 +11,43 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-
 __*Submit your documents electronically via the SAKAI DropBox by 14:00 ET on the date given for each respective lab (SAKAI time-stamps DropBox submissions).*__
 
-# Materials to submit
+## Materials to submit
 
 * R Markdown (.Rmd) file with:
   + your name in the YAML header
   + requisite code under each task subheading
 
-* .html file - must have run without error
+* .html file - the file that results from hitting "Knit" on your R Markdown document
 
-* Excel (.xls/.xlsx) file with tables (labs 2, 3, and 4)
+* Excel (.xls/.xlsx) file with tables (except for Lab 0, where this doesn't apply)
 
+### File names
 
-# __Notes:__ 
+__Name all files so that the beginning of the file name is "LabX", where "X" is the number that corresponds with that lab assignment (no spaces between "Lab" and "X").__
 
-## Submitting
+__EXAMPLE:__
 
-* The Rmarkdown file should run from start to finish with no errors, including calling in the analysis dataset, and should produce all of the results and graphs to complete this assignment.
-* Please name your files with the paradigm LabX_FirstinitialYourlastname.Rmd (e.g. Lab1_LPark.Rmd), so that your lab instructor can identify each Rmarkdown-file.
+If Liz Turner is submitting her lab materials for Lab 2, her files might have the following names:
+* `Lab2_LTurner.Rmd`
+* `Lab2_LTurner.html`
+* `Lab2_LTurner.xlsx`
+
+## __Notes:__ 
+
+### Submitting
+
+* The Rmarkdown file should run from start to finish with no errors, including calling in the analysis dataset, and should produce all of the results and graphs to complete this assignment.  
+
 * Late policy: 5 point deduction per 24 hour period past due date and time.
 
 
-## Rounding
+### Rounding
 
 When completing tables, follow the rounding patterns specified below. This pattern will help in grading this assignment.
 
-* This should be obvious, but do not round intermediate values. Only round final answers for submission.
+* Do not round intermediate values. Only round final answers for submission.
 
 * If rounding for a given table is not specified or not clear, ask your lab instructor for clarification.
 
@@ -46,18 +55,18 @@ When completing tables, follow the rounding patterns specified below. This patte
 
 * To aid in our grading of these assignments, the last figure kept should be rounded UP when the first figure dropped is >= 5. For example, in rounding to 2 decimal places, 0.235 should be reported as 0.24 and 0.245 should be reported as 0.25. Note that this method will introduce a small bias to higher numbers, but another method, “rounding-to-even", confuses many users.
 
-# Grading:  
+### Grading:  
 
-* (TODO - change this grading guideline?) RMarkdown files will be graded on an all or nothing. If your markdown file runs from start to finish with no errors, you will receive full credit. If it hits an error message, you will receive NO credit (for the purposes of grading, if any “chunk” of code in your file contains special options, we will ask you to resubmit a file omitting them). 
+* RMarkdown files will be graded on an all or nothing. If your markdown file runs from start to finish with no errors, you will receive full credit. If it hits an error message, you will receive NO credit 
+<aside>(for the purposes of grading, if any “chunk” of code in your file contains special options, we will ask you to resubmit a file omitting them). </aside>
 
 * __R MARKDOWN FILE:__ Your markdown file MUST have the following components: 
   + an informative YAML header (see guide to Lab 0[TODO])
   + a set of commands calling in all relevant packages
   + a line of code calling in the analysis dataset
   + each task’s code performed under the appropriate subheading
-  + if a task requires plotting with ggplot2, a line of code saving said plot using `ggsave()`
 
-* __TABLES:__ a certain number of points are allocated for each item. Errors include but are not limited to: incorrect values, omissions, and inappropriate rounding. For ease of grading, please do not alter the dimensions of any table. If you are confused on which values go where, please reach out to us for clarification.
+* __TABLES:__ a certain number of points are allocated for each item. Errors include but are not limited to: incorrect values, omissions, and inappropriate rounding. For ease of grading, please do not alter the dimensions of any table. If you are confused on which values go where, please reach out to your instructors for clarification.
 
 * __SHORT ANSWER QUESTIONS:__ will generally be graded as follows: 
 20% of allocated points for some sign of sentience; 

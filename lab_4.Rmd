@@ -1,7 +1,7 @@
 ---
-title: "GLHLTH 705 Lab 4"
+title: "Lab 4 (705)"
 description: |
-    __Due:__ November 23, 2021 by 22:00 ET
+    __Due:__ November 23, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -17,26 +17,35 @@ library(xaringanExtra)
 xaringanExtra::use_clipboard()
 ```
 
-### LAB MATERIALS: 
+### LAB MATERIALS 
 
-* [__R Markdown file for Lab 4.__](assignments/lab4_705_fall2021.Rmd)
+* [__R Markdown file for Lab 4__](assignments/lab4_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab4_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * [__Excel document with Table for Task 2__](assignments/Lab4_Tables.xlsx)
-TODO: Set up answer entry on Sakai?
 
 * Lab_4_kenya.rds - data file available on Sakai
 
-### Lab 2 Goals:
+### Lab 2 Goals
 
 * Calculate measures of association between birth order and child mortality by 5 years within strata of other variables
 
 * Assess potential for confounding and effect modification (mediation) by those other variables.
 
+### Lab 4 Grading scheme
+
+| Competency | Points |
+|:-----------|:------:|
+|   .Rmd file runs without error |   10  |
+|   Table 1 - Frequency counts and Risk  |   20  |
+|   Table 1 - Risk difference  |   20   |
+|   Table 1 - Risk ratio  |   20  |
+|   Question 3 |   15  |
+|   Question 4 |   15  |
+|   __Total__  |  __100__  |
 
 
-
-# Lab 4 {.tabset}
+# Lab 4
 
 ## Task 1: Load libraries & data
 

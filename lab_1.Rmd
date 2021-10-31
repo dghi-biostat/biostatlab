@@ -1,5 +1,5 @@
 ---
-title: "GLHLTH 705 Lab 1"
+title: "Lab 1 (705)"
 description: |
     __Due:__ October 1, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
@@ -18,9 +18,9 @@ library(xaringanExtra)
 xaringanExtra::use_clipboard()
 ```
 
-### LAB MATERIALS: 
+### LAB MATERIALS
 
-* [__R Markdown file for Lab 1.__](assignments/lab1_705_fall2021.Rmd)
+* [__R Markdown file for Lab 1__](assignments/lab1_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab1_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * [__Excel document for Tables 1 & 2__](assignments/Lab1_Tables.xlsx)

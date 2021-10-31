@@ -1,5 +1,5 @@
 ---
-title: "GLHLTH 705 Lab 3"
+title: "Lab 3 (705)"
 description: |
     __Due:__ November 12, 2021 by 14:00 ET
 date: "`r Sys.Date()`"
@@ -21,7 +21,7 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS
 
-* [__R Markdown file for Lab 3.__](assignments/lab3_705_fall2021.Rmd)
+* [__R Markdown file for Lab 3__](assignments/lab3_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab3_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * [__Excel document with Tables 1, 2, and 3__](assignments/Lab3_Tables.xlsx)
