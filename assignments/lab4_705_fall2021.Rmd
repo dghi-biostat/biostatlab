@@ -43,52 +43,39 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 
 #### 2.1.a: `male`
 
-```{r}
-# use dplyr functions to calculate sub-group frequency counts and risk of death by sex (male) and birth order (bord5)
+```{r male risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by sex (male) and birth order (bord5)
 
   
 ```
 
 #### 2.1.b: `rural`
 
-```{r}
-# use dplyr functions to calculate sub-group frequency counts and risk of death by residence (rural) and birth order (bord5)
-
+```{r rural risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by residence (rural) and birth order (bord5)
   
 ```
 
 #### 2.1.c: `magec`
 
-```{r}
-# use dplyr functions to calculate sub-group frequency counts and risk of death by mother's age (magec) and birth order (bord5)
+```{r magec risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by mother's age (magec) and birth order (bord5)
 
   
 ```
 
 #### 2.1.d: `education`
 
-```{r}
-# use dplyr functions to calculate sub-group frequency counts and risk of death by mother's level of education (education) and birth order (bord5)
+```{r education risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by mother's education (education) and birth order (bord5)
 
   
 ```
 
-### Task 2.2: Create `epi.2by2()` object (TODO: epi.2by2() or mAssoc()?)
-
-#### 2.2.a: Create table object with `table()`
-
-```{r}
-# male table
-
-# rural table
-
-# magec table
-
-# education table
-```
+### Task 2.2: Create `epi.2by2()` object
 
 
-#### 2.2.b: Flip table with `flipTable()`
+#### 2.2.a: Flip tables with `flipTable()`
 
 ```{r}
 # flip male
@@ -102,7 +89,7 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 ```
 
 
-#### 2.2.c: Create epi.2by2 object with `epi.2by2()`
+#### 2.2.b: Create epi.2by2 object with `epi.2by2()`
 
 ```{r}
 # epi.2by2() for male
