@@ -14,32 +14,43 @@ output:
 
 For this assignment, use the dataset 'Lab_4_kenya.rds'.
 
-```{r}
-# load libraries: {tidyverse}, {epiR}, {fmsb}, {skimr}, and {epiAssist}
-
-```
-
 
 ```{r}
 # load in dataset 
 
 ```
 
-## Task 2: Tables 1 & 2 {.tabset .tabset-pills}
+```{r}
+# load libraries: {tidyverse}, {epiR}, {fmsb}, {skimr}, and {epiAssist}
 
-Fill in tables 1 and 2 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by:
-
-a)	Child’s gender (variable male)
-b)	Rural/urban residence (variable rural)
-c)	Maternal age (variable magec)
-d)	Maternal education (variable education)
-e)	Calculate the RD (Table 1) and RR (Table 2) for mortality in association with bord5 within each covariable stratum
-f)	Calculate a homogeneity test statistic and p-value for each covariate listed above
-g)	To get the stratified and pooled estimates and p-values, run the CS command, and you will need to use the estandard and pool and rd options for RD and the pool option for the RR.
-h)	For each covariable listed above, report the E. Standardized pooled estimate estimate for the RD and the Mantel-Haenszel pooled estimate (M-H combined) for the RR
+```
 
 
-### Task 2.1: Frequency counts and risk
+
+## Task 2: Table 1
+
+Instructions overview:
+
+1.) Fill in Table 1 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by the following covariables::
+  a)	Child’s gender (variable `male`)
+  b)	Rural/urban residence (variable `rural`)
+  c)	Maternal age (variable `magec`)
+  d)	Maternal education (variable `education`)
+
+2.) Generate measures of association with `epi.2by()`
+
+3.)	For each covariable, extract:
+  a) RD for mortality in association with bord5 within each covariable stratum
+  b) Generate test statistic of homogeneity and p-value 
+  c) Generate a standardized pooled estimate
+
+4.) For each covariable, extract:
+  a) RR for mortality in association with bord5 within each covariable stratum. 
+  b) Generate test statistic of homogeneity and p-value
+  c) Generate a Mantel-Haenszel pooled estimate.
+
+
+### Task 2.1: Stratified frequency counts and risk
 
 #### 2.1.a: `male`
 
@@ -102,9 +113,9 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 
 ```
 
-### Task 2.3: Risk differences and test of homogeneity (TODO: how to get risk difference? seems borken at the moment in epi.2by2())
+### Task 2.3: Risk differences and test of homogeneity
 
-#### 2.3.a: Extract risk differences from epi.2by2() objects
+#### 2.3.a: Extract risk differences and 95% CIs from epi.2by2() objects
 
 ```{r}
 # Risk difference:
@@ -133,7 +144,7 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 ## education
 ```
 
-#### 2.3.b: Report standardized pooled estimate
+#### 2.3.b: Report standardized pooled estimates
 
 ```{r}
 # standardized pooled estimate
@@ -150,7 +161,7 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 
 ### Task 2.4: Risk ratios and test of homogeneity
 
-#### 2.4.a: Extract risk ratios from within epi.2by2() object
+#### 2.4.a: Extract risk ratios and 95% CIs from epi.2by2() objects
 
 ```{r}
 # Risk difference:
@@ -179,7 +190,7 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 ## education
 ```
 
-#### 2.4.c: Report Mantel-Haenszel pooled estimate (M-H combined)
+#### 2.4.c: Report Mantel-Haenszel pooled estimates (M-H combined)
 
 ```{r}
 # Mantel-Haenszel pooled estimate
@@ -195,6 +206,14 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 
 
 
+## Task 3: Short Answer
+__Do you see evidence for confounding for any of the stratification variables (`male`, `rural`, `magec`, and `education`)?  Explain your response for each variable.__  
 
+__(Hint, you will need to refer back to the crude association estimates of risk difference and risk ratio that you generated for Table 3 of Lab 3).__
+
+
+## Task 4: Short Answer
+
+__For which covariables does it seem appropriate to report a single pooled adjusted estimate and for which does it seem necessary to report separate stratified estimates (i.e., do you see evidence of effect modification)?  Explain your rationale for each covariable.  Does your answer differ depending on whether you are considering the RD or RR as your measure of effect?__
 
 

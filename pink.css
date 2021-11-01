@@ -1,5 +1,5 @@
 
-/* base variables */
+/* base(d!) variables */
 
 /* Edit the CSS properties in this file to create a custom
    Distill theme. Only edit values in the right column
@@ -84,6 +84,29 @@ d-appendix {
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
+/*Spoiler alert text
+usage--
+text turns white:
+<span class="spoiler" >test</span>
+
+background turns transparent:
+<span class="spoiler2"> other test </span>
+
+*/
+
+.spoiler, .spoiler2{ 
+  color:              black; 
+  background-color:   black;
+}
+
+.spoiler:hover{
+  color: white;
+  }
+
+.spoiler2:hover { 
+  background-color:white; 
+  }
+
 /* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
 
 code {
@@ -131,4 +154,4 @@ transform: translateY(-30%);
 
 d-title{
   margin-top: 50px;
-} */
+}
