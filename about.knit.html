@@ -2121,6 +2121,10 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   /* Optional: embed custom fonts here with `@import`          */
 
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Amiri');
+  @import url('https://fonts.googleapis.com/css2?family=Bitter');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono');
+  @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab&display=swap');
   /* This must remain at the top of this file.                 */
 
 
@@ -2139,10 +2143,11 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    'Roboto Slab', serif;
-    --mono-font:       monospace;
-    --body-font:       'Lato', sans-serif;
-    --navbar-font:     'Roboto Slab', serif;  /* websites + blogs only */
+    --heading-font:    "Roboto Slab", serif;
+    --footer-font:     "Amiri", serif;
+    --mono-font:       "DM Mono", monospace;
+    --body-font:       "Bitter", sans-serif;
+    --navbar-font:     "Roboto Slab", serif;  /* websites + blogs only */
   }
 
   /*-- ARTICLE METADATA --*/
@@ -2171,19 +2176,19 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   /* These properties only apply to Distill sites and blogs  */
 
   .distill-site-header {
-    --title-size:       18px;
-    --text-color:       #FFFFFF;
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #12BBAC;
+    --title-size:       21px;    
+    --text-color:       #ff414b;
+    --text-size:        17px;
+    --hover-color:      #dd424c; 
+    --bkgd-color:       #ffd8db;
   }
 
 
   .distill-site-footer {
-    --text-color:       #12BBAC;
+    --text-color:       #ffd8db;
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #616c6b;
+    --bkgd-color:       #b0b0b0;
   }
 
   /*-- Additional custom styles --*/
@@ -2193,13 +2198,25 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   code {
     font-family: 'Fira Code', monospace;
-  color: #AC12BB; 
+  color: #ff414b; 
   background: #F4F3EE; 
     font-weight: 600;
     font-size: 1em;
   }
 
-  /* following is custom settings to make the cat bigger, commented out bc Nour had problems with it */
+  /* Change bullets */
+  ul > li::marker {
+    font-size: 1.125em;
+    color: #ff414b;
+  }
+
+  /* Change link appearance */
+  d-article a {
+    border-bottom: 2px solid #ffd8db;
+    text-decoration: none;
+  }
+
+  /* following are custom settings to make the cat image as tall as the navbar */
   *.distill-site-header .logo img {
       display: inline-block;
       width: 60px;
@@ -2401,7 +2418,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
 <a class="logo" href="https://pngtree.com/so/cat">
-<img src="images/logo.png" alt="Logo"/>
+<img src="images/logo_cat.png" alt="Logo"/>
 </a>
 <a href="index.html" class="title">DGHI/Biostat Lab</a>
 </div>
@@ -2431,6 +2448,9 @@ Lab Assignments
 <div class="nav-dropdown-content">
 <span class="nav-dropdown-header">705 Labs</span>
 <a href="lab_0.html">Lab 0</a>
+<a href="lab_1.html">Lab 1</a>
+<a href="lab_2.html">Lab 2</a>
+<a href="lab_3.html">Lab 3</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>
@@ -2518,7 +2538,7 @@ Dictionaries
 <div class="distill-site-nav distill-site-footer">
 <p>GLHLTH 705 lab materials adapted to R from original labs written by Dr. Larry Park, Dr. Brian Pence, and Dr. Daniel Westreich</p>
 <p>Materials and website built using R version 4.1.0 and R Studio v1.4.1717</p>
-<p>Cat icon designed by 699pic at <a href="https://pngtree.com/freepng/cute-cat_5644947.html?sol=downref&amp;id=bef">pngtree.com</a></p>
+<p>cat PNG Designed By Costa from <a href='https://pngtree.com/freepng/cat-silhouette-png_3715779.html?sol=downref&id=bef'>pngtree.com/</a></p>
 <p><a title="Real Time Web Analytics" href="http://clicky.com/101331126"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a> <script async src="//static.getclicky.com/101331126.js"></script> <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101331126ns.gif" /></p></noscript></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->

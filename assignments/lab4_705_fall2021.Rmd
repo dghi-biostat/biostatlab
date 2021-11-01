@@ -104,7 +104,7 @@ h)	For each covariable listed above, report the E. Standardized pooled estimate 
 
 ### Task 2.3: Risk differences and test of homogeneity (TODO: how to get risk difference? seems borken at the moment in epi.2by2())
 
-#### 2.3.a: Extract risk differences from within epi.2by2() object
+#### 2.3.a: Extract risk differences from epi.2by2() objects
 
 ```{r}
 # Risk difference:
