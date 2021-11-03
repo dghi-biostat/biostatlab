@@ -1,0 +1,173 @@
+---
+title: "question9e"
+author: "DGHI Biostat"
+date: "11/3/2021"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+library(epiAssist)
+```
+
+## Generate data
+
+
+Make according to these params:
+
+```{r eval = FALSE}
+education   DIVIDS2   n
+1.   1        1       35
+2.   1        0       310
+3.   2        1       408
+4.   2        0       530
+5.   3        1       288
+6.   3        0       276
+7.   4        1       81
+8.   4        0       51
+```
+
+Generate:
+```{r}
+education <- c('1. none', '1. none', '2. primary', '2. primary', '3. secondary', '3. secondary', '4. college or uni', '4. college or uni')
+
+DIVIDS2 <- c(1,0,1,0,1,0,1,0)
+
+n <- c(135, 310, 408, 530, 288, 276, 81, 51)
+
+## SECOND: iterate through vectors to generate n observations for each combination of education and DIVIDS2:
+
+for(i in 1:8){
+  
+  assign(letters[i], data.frame(education = rep(education[i], n[i]), DIVIDS2 = rep(DIVIDS2[i], n[i])))
+  
+}
+
+## THIRD: bind individual datasets
+data <- rbind(a,b,c,d,e,f,g,h)
+```
+
+
+Tabulate:
+```{r}
+
+divids_tab <- table(education, DIVIDS2)
+
+divids_tab
+```
+
+Collapse for 9e according to these params:
+```{r eval = FALSE}
+  education    DIVIDS2        n
+1.    1           1           777
+2.    1           0           857
+3.    0           1           135
+4.    0           0           310
+```
+
+Collapse:
+
+```{r}
+data_collapsed <- data %>%
+  mutate(education = ifelse(education == "1. none", "None", "Some"))
+```
+
+Tabulate collapsed:
+
+```{r}
+tab_collapse <- table(data_collapsed$education, data_collapsed$DIVIDS)
+
+addmargins(tab_collapse)
+```
+
+
+
+## TWo proportion z-test manual
+
+```{r}
+
+p1 <- 135 / 912
+p2 <- 310 / 1167
+
+p_diff <- p1 - p2
+
+
+p_pool = (135 + 310) / (912 + 1167)
+
+p_pool
+
+
+se_pool = sqrt(
+  (
+    (p_pool * (1 - p_pool))
+    / 912
+    ) + 
+    (
+      (p_pool * (1 - p_pool))
+      / 1167)
+  )
+
+se_pool               
+
+#test statistic:
+
+p_diff / se_pool
+
+```
+
+
+## Two proportion z-test function
+
+Test statistic is positive since the proportions are subtracted in the opposite order:
+
+```{r}
+prop_z_test(tab_collapse)
+```
+
+Rearrange table:
+
+```{r}
+flipTable(tab_collapse)
+
+# or do it manually
+
+tab_flipped <- tab_collapse[,2:1]
+tab_flipped
+
+proportions(tab_flipped, margin = 1)
+```
+
+```{r}
+prop_z_test(tab_flipped)
+```
+
+
+Or transpose table:
+
+```{r}
+tab_transpose <- t(tab_flipped)
+tab_transpose
+```
+
+```{r}
+
+prop_z_test(tab_transpose)
+
+```
+
+Finally, flip rows to make test statistic negative:
+
+```{r}
+tab_neg <- tab_transpose[2:1,]
+tab_neg
+```
+
+```{r}
+prop_z_test(tab_neg)
+```
+
+
+
+
+
