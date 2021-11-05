@@ -405,7 +405,7 @@ The frequency counts in this table align with those generated for Table 2. Feel 
 
 ### Risk
 
-The value for risk also aligns with that generated in the previous task, except that in Table 2 you reported it as a percentage. Risk should be reported as a proportion, rounding to the third decimal. 
+The value for risk should be calculated as the risk of the outcome of interest (`death == "Dead"`) according to each level of the exposure. Risk should be reported as a proportion, rounding to the third decimal. 
 
 ![Risk](images/lab3_tab3_risk.png)
 
