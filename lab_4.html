@@ -2612,7 +2612,13 @@ Dictionaries
 <p>Hopefully at this point in the semester, you have a pretty good grasp on how to load libraries and data. But if you’re still unsure about something:</p>
 <p><a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#load-libraries">Help loading libraries</a>. <a href="https://dghi-biostat.github.io/biostatlab/lab_0.html#task-4-load-data">Help loading data</a>.</p>
 <h2 id="task-2-table-1">Task 2: Table 1</h2>
-<p><strong>INSTRUCTIONS:</strong> Generate frequency counts of 5-year mortality (<code>death</code>) according to child’s birth order (<code>bord5</code>), stratified by the following variables: + <code>male</code> + <code>rural</code> + <code>magec</code> + <code>education</code></p>
+<p><strong>INSTRUCTIONS:</strong> Generate frequency counts of 5-year mortality (<code>death</code>) according to child’s birth order (<code>bord5</code>), stratified by the following variables:</p>
+<ul>
+<li><code>male</code></li>
+<li><code>rural</code></li>
+<li><code>magec</code></li>
+<li><code>education</code></li>
+</ul>
 <p>Use Table 1 to record frequency counts and strata-specific risk of death before 60 months, by birth order. Then, use <code>epi.2by2()</code> to generate stratified measures of risk difference, risk ratios, and their accompanying confidence intervals.</p>
 <p>You will also use the resulting <code>epi.2by2()</code> object to extract test statistics and p-values that test for potential effect measure modification by the stratifying variables.</p>
 <p>Moreover, you will use a pooled (i.e. adjusted) estimate of risk difference and risk ratio to assess for confounding by comparing those estimates to the crude (i.e. unadjusted) estimates of risk difference and risk ratio."</p>

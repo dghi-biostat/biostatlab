@@ -69,10 +69,11 @@ Hopefully at this point in the semester, you have a pretty good grasp on how to 
 ## Task 2: Table 1
 
 __INSTRUCTIONS:__ Generate frequency counts of 5-year mortality (`death`) according to child's birth order (`bord5`), stratified by the following variables:
-    + `male`
-    + `rural`
-    + `magec`
-    + `education`
+
+* `male`
+* `rural`
+* `magec`
+* `education`
 
 Use Table 1 to record frequency counts and strata-specific risk of death before 60 months, by birth order. Then, use `epi.2by2()` to generate stratified measures of risk difference, risk ratios, and their accompanying confidence intervals. 
 
