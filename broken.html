@@ -2106,7 +2106,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   /* Add any additional CSS rules below                      */
   </style>
   <style type="text/css">
-  /* base variables */
+  /* base(d!) variables */
 
   /* Edit the CSS properties in this file to create a custom
      Distill theme. Only edit values in the right column
@@ -2191,6 +2191,29 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
 
+  /*Spoiler alert text
+  usage--
+  text turns white:
+  <span class="spoiler" >test</span>
+
+  background turns transparent:
+  <span class="spoiler2"> other test </span>
+
+  */
+
+  .spoiler, .spoiler2{ 
+    color:              black; 
+    background-color:   black;
+  }
+
+  .spoiler:hover{
+    color: white;
+    }
+
+  .spoiler2:hover { 
+    background-color:white; 
+    }
+
   /* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
 
   code {
@@ -2238,7 +2261,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   d-title{
     margin-top: 50px;
-  } */</style>
+  }</style>
   <style type="text/css">
   /* base style */
 
@@ -2456,6 +2479,7 @@ Lab Assignments
 <a href="lab_1.html">Lab 1</a>
 <a href="lab_2.html">Lab 2</a>
 <a href="lab_3.html">Lab 3</a>
+<a href="lab_4.html">Lab 4</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>

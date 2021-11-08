@@ -144,7 +144,7 @@ Instructions overview:
 ## education
 ```
 
-#### 2.3.b: Report standardized pooled estimates
+#### 2.3.b: Report Mantel-Haenszel pooled estimates of risk difference (M-H)
 
 ```{r}
 # standardized pooled estimate
@@ -164,7 +164,7 @@ Instructions overview:
 #### 2.4.a: Extract risk ratios and 95% CIs from epi.2by2() objects
 
 ```{r}
-# Risk difference:
+# Risk ratios:
 
 ## male
 
@@ -190,7 +190,7 @@ Instructions overview:
 ## education
 ```
 
-#### 2.4.c: Report Mantel-Haenszel pooled estimates (M-H combined)
+#### 2.4.c: Report Mantel-Haenszel pooled estimates (M-H)
 
 ```{r}
 # Mantel-Haenszel pooled estimate

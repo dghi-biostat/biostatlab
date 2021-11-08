@@ -13,6 +13,7 @@ library(tidyverse)
 library(xaringanExtra)
 library(epiAssist)
 library(epiR)
+library(emo)
 ```
 
 ```{r xaringanExtra-clipboard, echo=FALSE}
@@ -30,9 +31,9 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 ### Lab 2 Goals
 
-* Calculate measures of association between birth order and child mortality by 5 years within strata of other variables
+* Calculate measures of association between birth order (i.e. the primary exposure of interest) and child mortality by 5 years (i.e. the primary outcome of interest) within strata of other variables
 
-* Assess potential for confounding and effect modification (mediation) by those other variables.
+* Assess for potential confounding, mediation or effect measure modification
 
 ### Lab 4 Grading scheme
 
@@ -62,8 +63,8 @@ install.packages("fmsb")
 
 Hopefully at this point in the semester, you have a pretty good grasp on how to load libraries and data. But if you're still unsure about something:
 
-[Help loading libraries](https://dghi-biostat.github.io/biostatlab/lab_0.html#load-libraries)
-[Help loading data](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-4-load-data)
+[Help loading libraries](https://dghi-biostat.github.io/biostatlab/lab_0.html#load-libraries).
+ [Help loading data](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-4-load-data).
 
 ## Task 2: Table 1
 
@@ -75,16 +76,15 @@ __INSTRUCTIONS:__ Generate frequency counts of 5-year mortality (`death`) accord
 
 Use Table 1 to record frequency counts and strata-specific risk of death before 60 months, by birth order. Then, use `epi.2by2()` to generate stratified measures of risk difference, risk ratios, and their accompanying confidence intervals. 
 
-You will also use the resulting `epi.2by2()` object to extract test statistics and p-values that test for potential confounding by the stratifying variables. 
+You will also use the resulting `epi.2by2()` object to extract test statistics and p-values that test for potential effect measure modification by the stratifying variables. 
 
-Finally, you will use a pooled estimate of risk difference and risk ratio to assess for effect measure modification by each of the stratifying variables.
-[[@liz is the above distinction correct?]]
+Moreover, you will use a pooled (i.e. adjusted) estimate of risk difference and risk ratio to assess for confounding by comparing those estimates to the crude (i.e. unadjusted) estimates of risk difference and risk ratio."
 
 Below is a detailed guide on how to complete each step of these instructions.
 
 ### Tabular analysis of stratifying variables
 
-Table 1 is an example of a stratified analysis of exposure and outcome variables. Essentially, we want to know if the four variables (`male`, `rural`, `magec`, and `education`) are confounders or effect measure modifiers of the relation between birth order and 5-year infant mortality. In other words, does the influence of a child's birth order on their mortality status differ between boys and girls? What about rural and urban families? Mothers of different age categories? And so on...
+Table 1 is an example of a stratified analysis of exposure and outcome variables. Essentially, we want to know if the four variables (`male`, `rural`, `magec`, and `education`) are confounders and/or effect measure modifiers of the relation between birth order and 5-year infant mortality. In other words, Questions of effect measure modification include whether the degree of association of child's birth order and mortality status is different for boys and girls? What about for rural and urban families? Mothers of different age categories? And so on...
 
 <aside>Remember the [BIG PICTURE](https://dghi-biostat.github.io/biostatlab/lab_3.html#task-2-big-picture) that was explained in the previous lab </aside>
 
@@ -140,7 +140,7 @@ Here, our stratifying variable is `mbmi_25`, which separates our tabulated data 
 
 We can generate row-wise proportions of our table by wrapping the table object in the `proportions()` function.
 
-<aside> row-wise proportions, a.k.a. __RISK of DEATH!__ </aside>
+<aside> row-wise proportions, a.k.a. __RISK of DEATH/NOT DEATH!__ As a reminder, rates (time in the denominator) are preferable measures of incidence of death when there are missing outcomes.</aside>
 
 ```{r echo = TRUE, eval = FALSE}
 
@@ -200,7 +200,13 @@ __INSTRUCTIONS:__ Use the `epi.2by2()` object to extract the measure of risk dif
 
 __IMPORTANT:__ The output for `epi.2by()` is NOT the full extent of the information contained within an `epi.2by2()` object! There is more to every object than what meets the eye.
 
-<aside> ![More than eye](images/more_eye.png)</aside>
+<aside> 
+
+```{r fig.cap = "More than eye", out.width="30%"}
+knitr::include_graphics("images/more_eye.png")
+```
+
+</aside>
 
 When you call an `epi.2by2()` object, you will notice that its printed output is a lot like that of `mAssoc()` from the previous lab. Except this time, there are "crude" and "M-H" estimates:
 
@@ -251,10 +257,11 @@ To learn how to use this function, you can view its documentation by running the
 ?riskdifference
 ```
 
-<aside>I promise you can figure it out. This one is pretty straightforward </aside>
+<aside>This function is pretty straightforward and I'm confident you can hack it `r emo::ji("fox")`  </aside>
 
 
 #### b. Test of homogeneity and p-value
+
 
 Inconveniently, `epi.2by2()` doesn't actually provide a chi-squared test of homogeneity of stratified risk differences. We can obtain this estimate by using the function `epiHomog()`, which takes a `flipTable()` object as its primary argument.
 
@@ -277,9 +284,14 @@ epiHomog(mbmi_flip)
 #>   1           3.44    0.0637
 ```
 
+##### Interpreting X2 test of homogeneity
 
-#### c. Standardized pooled estimate (Mantel-Haenszel)
-[[@liz should we be calling this a mantel-haenszel? The stata lab refers to it as an IVW pooled estimator, which was altogether confusing.]]
+What exactly is the chi-square test of homogeneity for? Well, it's all about effect measure modification. Suppose we focus on the risk difference measure. We use the risk difference measure to quantify the association of birth order with the risk of death by 60 months of age. In particular, we use it to quantify the risk of death for those with birth order 5+ in comparison to the risk of death for those with birth order 1-4 (i.e. the reference level) by subtracting the two risks. 
+
+When we consider a third variable such as male,  the chi-square test of homogeneity is used to evaluate whether there is evidence that the risk difference is different for male and for female children. If so, it is important that we report the risk difference separately for male and for female children. In an interesting feature, if there is effect measure modification on one effect measure scale (e.g. risk difference), then it may very well not be present on another scale (e.g. risk ratio). This is precisely why we talk about "effect *__measure__* modification" and not simply "effect modification".
+
+
+#### c. Pooled estimate (Mantel-Haenszel)
   
 Finally, we want the pooled estimate of risk difference. You might have already found this in the original print method's output of our `epi.2by2()` object, where it's referred to as `Attrib risk in the exposed (M-H)`.
 
@@ -304,7 +316,6 @@ mbmi_epi$massoc.detail$ARisk.mh.wald
 #>          est      lower      upper
 #> 1 0.04662555 0.02684395 0.06640716
 ```
-[[@liz is the following helpful or does it give away too much?]]
 
 We would interpret this pooled result by saying that, when accounting for confounding in the exposure due to a third variable (`mbmi_25`), risk of the outcome in the exposed was 0.05 (95% CI 0.03 to 0.07) higher than the unexposed.
 
@@ -332,7 +343,6 @@ knitr::include_graphics('https://imgs.xkcd.com/comics/honor_societies.png')
 ```
 
 
-
 Okay moving on...so our `mbmi_epi` object renders the following output:
 
 ```{r eval = FALSE, echo = TRUE}
@@ -355,8 +365,13 @@ To learn how to use this function, you can view its documentation by running the
 ?riskratio
 ```
 
+<aside>
+This one works the same as `riskdifference()`. Look it up and give it a try!
 
-#### Test of homogeneity
+</aside>
+
+
+#### Test of homogeneity and p value
 
 The test of homogeneity for risk ratios is available in the following location within our `epi.2by2()` object
 
@@ -380,9 +395,9 @@ Reflecting on this test statistic and the resulting p-value, given a significanc
 Hover for answer:
 <span class="spoiler2"> YOU THINK YOU GET FREEBIES?? </span>
 
-#### Mantel-Haenszel pooled estimate of RR
+#### Pooled estimate (Mantel-Haenszel)
 
-The Mantel-Haenszel pooled estimate appears in the printed output when you call your `epi.2by2()` object from the environment, and is called `Inc risk ratio (M-H)`. However, this is only reported to two decimals. To access the actual value instead of the rounded one, you can look for it in the following place within your `epi.2by2()` object:
+The pooled estimate appears in the printed output when you call your `epi.2by2()` object from the environment, and is called `Inc risk ratio (M-H)`. However, this is only reported to two decimals. To access the actual value instead of the rounded one, you can look for it in the following place within your `epi.2by2()` object:
 
 ```{r eval = FALSE, echo = TRUE}
 
@@ -399,8 +414,6 @@ mbmi_epi$massoc.detail$RR.mh.wald
 #>        est    lower    upper
 #> 1 1.055389 1.039048 1.071988
 ```
-
-[[@liz same as above for risk difference, is this helpful or does it give away too much?]]
 
 We would interpret this as meaning that when we account for confounding due to mother's BMI, the risk of experiencing the outcome among the exposed was 1.06 (95% CI 1.04 to 1.07) times greater than the outcome of experiencing risk among the unexposed.
 

@@ -39,8 +39,8 @@ navbar:
           href: lab_2.html
         - text: "Lab 3"
           href: lab_3.html
-        #- text: "Lab 4"
-        #  href: lab_4.html
+        - text: "Lab 4"
+          href: lab_4.html
         #- text: '---------'
         #- text: '707 Labs'
         #- text: "Lab 1"

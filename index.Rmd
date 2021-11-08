@@ -13,11 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-![[Increased Risk](https://www.explainxkcd.com/wiki/index.php/1252:_Increased_Risk)](images/increased_risk.png)
-
-
-
-
-
+```{r fig.cap = "[Probability comparisons](https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons)", fig}
+knitr::include_graphics("https://imgs.xkcd.com/comics/probability_comparisons.png")
+```
 
 
