@@ -29,7 +29,7 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 * Lab_4_kenya.rds - data file available on Sakai
 
-### Lab 2 Goals
+### Lab 4 Goals
 
 * Calculate measures of association between birth order (i.e. the primary exposure of interest) and child mortality by 5 years (i.e. the primary outcome of interest) within strata of other variables
 
