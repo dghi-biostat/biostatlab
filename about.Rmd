@@ -37,7 +37,7 @@ knitr::include_graphics('images/potato.png')
 
 Nathan is a professional potato.
 
-OH: Tuesday, 11am - 12pm
+OH: Tuesday, <a href = "./lab_01_alternate.html">1</a><a href = "./lab_01.html">1</a>:30am - 12:30pm
 
 ### The Catscot
 

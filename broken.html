@@ -2261,6 +2261,50 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   d-title{
     margin-top: 50px;
+  }
+
+  /* Collapsible section headers */
+  /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#customizing_the_disclosure_widget */
+
+  details.section-head {
+    width: 620px;
+    font-size: 30px;
+    list-style-type: disc;
+  }
+
+  details.section-head > summary {
+    /*font-size: 30px;*/
+  }
+
+  details[open] > summary {
+    color: #ededed;  
+  }
+
+  details[open] > summary > code {
+    color: #ededed;
+    background: #ededed;
+  }
+
+  details[open]{
+    background-color: #ededed;
+    border-radius: 10px 10px 10px 10px;
+    padding: 2px 10px;
+  } 
+
+  details.section-head > p {
+    font-size: 1.06rem;
+  }
+
+  details.section-head > ul > li {
+    font-size: 1.06rem;
+  }
+
+  details.section-head > h1 {
+    font-size: 30px;
+  }
+
+  details.section-head > details {
+    font-size: 1.10rem;
   }</style>
   <style type="text/css">
   /* base style */

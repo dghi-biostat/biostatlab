@@ -90,8 +90,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-07"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-07"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-16"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-16"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: Help with RStudio"/>
@@ -109,7 +109,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Help with RStudio"]},{"type":"character","attributes":{},"value":["This page provides links to introduce you to the RStudio environment.\n"]},{"type":"character","attributes":{},"value":["2021-11-07"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Help with RStudio"]},{"type":"character","attributes":{},"value":["This page provides links to introduce you to the RStudio environment.\n"]},{"type":"character","attributes":{},"value":["2021-11-16"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2267,6 +2267,50 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   d-title{
     margin-top: 50px;
+  }
+
+  /* Collapsible section headers */
+  /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#customizing_the_disclosure_widget */
+
+  details.section-head {
+    width: 620px;
+    font-size: 30px;
+    list-style-type: disc;
+  }
+
+  details.section-head > summary {
+    /*font-size: 30px;*/
+  }
+
+  details[open] > summary {
+    color: #ededed;  
+  }
+
+  details[open] > summary > code {
+    color: #ededed;
+    background: #ededed;
+  }
+
+  details[open]{
+    background-color: #ededed;
+    border-radius: 10px 10px 10px 10px;
+    padding: 2px 10px;
+  } 
+
+  details.section-head > p {
+    font-size: 1.06rem;
+  }
+
+  details.section-head > ul > li {
+    font-size: 1.06rem;
+  }
+
+  details.section-head > h1 {
+    font-size: 30px;
+  }
+
+  details.section-head > details {
+    font-size: 1.10rem;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2443,7 +2487,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Help with RStudio","description":"This page provides links to introduce you to the RStudio environment.","authors":[],"publishedDate":"2021-11-07T00:00:00.000-04:00"}
+{"title":"Help with RStudio","description":"This page provides links to introduce you to the RStudio environment.","authors":[],"publishedDate":"2021-11-16T00:00:00.000-05:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->

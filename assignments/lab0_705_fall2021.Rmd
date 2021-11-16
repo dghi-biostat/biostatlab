@@ -17,6 +17,7 @@ __a. Note that for this step, you should first install three packages using the 
 `install.packages("tidyverse")`  
 `install.packages("skimr")` 
 `install.packages("epiR")`  
+`install.packages("tableone")`
 `install.packages("devtools")`  
 `devtools::install_github("potato-nathan/epiAssist")`
 
