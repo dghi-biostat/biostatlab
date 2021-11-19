@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 (705)"
 description: |
-    __Due:__ November 23, 2021 by 14:00 ET
+    __Due:__ November 23, 2021 by 22:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
