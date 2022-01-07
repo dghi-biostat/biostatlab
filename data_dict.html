@@ -82,6 +82,7 @@ code span.vs { color: #008080; } /* VerbatimString */
 code span.wa { color: #008000; font-weight: bold; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
   <title>DGHI/Biostat Lab: Data Dictionary</title>
 
@@ -90,8 +91,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-16"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-16"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-01-07"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-01-07"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DGHI/Biostat Lab: Data Dictionary"/>
@@ -109,7 +110,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Data Dictionary"]},{"type":"character","attributes":{},"value":["Data Dictionary for Kenya's 2008 Demographic and Health Survey.\n"]},{"type":"character","attributes":{},"value":["2021-11-16"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Data Dictionary"]},{"type":"character","attributes":{},"value":["Data Dictionary for Kenya's 2008 Demographic and Health Survey.\n"]},{"type":"character","attributes":{},"value":["2022-01-07"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -456,7 +457,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1863,7 +1864,10 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2123,6 +2127,9 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   /* Optional: embed custom fonts here with `@import`          */
 
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Source+Sans+Pro:wght@300&display=swap');
+
+
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Amiri');
   @import url('https://fonts.googleapis.com/css2?family=Bitter');
@@ -2146,17 +2153,17 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    "Roboto Slab", serif;
-    --footer-font:     "Amiri", serif;
+    --heading-font:    "Libre Baskerville", serif;
+    --footer-font:     "Source Sans Pro", serif;
     --mono-font:       "DM Mono", monospace;
-    --body-font:       "Bitter", sans-serif;
-    --navbar-font:     "Roboto Slab", serif;  /* websites + blogs only */
+    --body-font:       "Source Sans Pro", sans-serif;
+    --navbar-font:     "Libre Baskerville", serif;  /* websites + blogs only */
   }
 
   /*-- ARTICLE METADATA --*/
   d-byline {
     --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
+    --heading-color:   #253559;
     --body-size:       0.8rem;
     --body-color:      rgba(0, 0, 0, 0.8);
   }
@@ -2180,18 +2187,18 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   .distill-site-header {
     --title-size:       21px;    
-    --text-color:       #ff414b;
+    --text-color:       #2f588d;
     --text-size:        17px;
     --hover-color:      #dd424c; 
-    --bkgd-color:       #ffd8db;
+    --bkgd-color:       #b3daf1;
   }
 
 
   .distill-site-footer {
-    --text-color:       #ffd8db;
+    --text-color:       #b3daf1;
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #b0b0b0;
+    --bkgd-color:       #999999;
   }
 
   /*-- Additional custom styles --*/
@@ -2224,8 +2231,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   code {
     font-family: 'Fira Code', monospace;
-  color: #ff414b; 
-  background: rgba(249, 83, 85, 0.1); 
+  color: #2f588d; 
+  background: #b3daf1; 
     font-weight: 500;
     font-size: 1em;
   }
@@ -2233,7 +2240,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   /* Change bullets */
   ul > li::marker {
     font-size: 1.125em;
-    color: #ff414b;
+    color: #2f588d;
   }
 
   /* Change link appearance */
@@ -2467,16 +2474,16 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
   <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/datatables-binding-0.18.1/datatables.js"></script>
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-  <link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+  <script src="site_libs/datatables-binding-0.20/datatables.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2496,7 +2503,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Data Dictionary","description":"Data Dictionary for Kenya's 2008 Demographic and Health Survey.","authors":[],"publishedDate":"2021-11-16T00:00:00.000-05:00"}
+{"title":"Data Dictionary","description":"Data Dictionary for Kenya's 2008 Demographic and Health Survey.","authors":[],"publishedDate":"2022-01-07T00:00:00.000-05:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2504,8 +2511,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
-<a class="logo" href="https://pngtree.com/so/cat">
-<img src="images/logo_cat.png" alt="Logo"/>
+<a class="logo" href="https://pngtree.com/so/llama">
+<img src="images/llama.png" alt="Logo"/>
 </a>
 <a href="index.html" class="title">DGHI/Biostat Lab</a>
 </div>
@@ -2593,8 +2600,8 @@ Dictionaries
 <p><a href="files/Data_Dictionary_Vanderbuilt.pdf"><strong>Guidelines for Data Collection &amp; Data Entry</strong></a> - Theresa A Scott, MS (Vanderbilt University)</p>
 <h1 id="kenya-dhs-data-dictionary-file">Kenya DHS Data Dictionary (<a href="files/data_dict.csv">file</a>)</h1>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-86585b7a2bae4298e023" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-86585b7a2bae4298e023">{"x":{"filter":"none","vertical":false,"data":[["caseid","bord","b3","b4","b5","b7","m2n","m18","m19","v008","v011","v025","v437","v438","v463z","s109"],["Used to uniquely identify each mother.","Birth order","Century month code for the date of birth of the child (see note below on century month codes).","Sex of child.","Whether child was alive or dead at the time of interview.","Age at death of the child in completed months gives a calculated age at death from the reported information. This variable occupies three digits. BASE: Dead children (B5 = 0).","Indicator of no prenatal care.","Size of child as reported subjectively by the mother.","Weight of child at birth given in kilograms with three implied decimal places. Divide by 1000 to produce weight in kilograms. Children who were not weighed are coded 9996","Century month code of date of interview (see note on century month codes).","Century month code of date of birth of the mother (see note on century month codes).","Type of place of residence. ","Weight of the mother in kilograms at time of interview. There is one implied decimal place in the weight (decimal points are not included in the data file). To produce the weight in kilograms divide by 10.","Height of the mother in centimeters at time of interview. There is one implied decimal place in the height (decimal points are not included in the data file). To produce the height in centimeters divide by 10.","Indicator of no smoking.","Education of the mother."],["Character","Integer","Integer","1.   male; \n2. female","0.   dead; 1. alive","Integer","0.   some prenatal care; \n1. no prenatal care;\n9. missing","1.   very large; \n2. large; \n3. average; \n4. smaller than average; \n5. very small; \n8. don't know; \n9. missing","Integer (note implied decimal places)","Integer","Integer","1.   urban; \n2. rural","Integer (note implied decimal places)","Integer (note implied decimal places)","0.   smokes something; \n1. smokes nothing; \n9. missing","0.   did not attend school; \n1. primary; \n2. post-primary/vocational; \n3. seoncdary / a-level; \n4. college (middle level); \n5. university"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Description<\/th>\n      <th>Coding<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":20,"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-db046f6733a4a6e1c4af" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-db046f6733a4a6e1c4af">{"x":{"filter":"none","vertical":false,"data":[["caseid","bord","b3","b4","b5","b7","m2n","m18","m19","v008","v011","v025","v437","v438","v463z","s109"],["Used to uniquely identify each mother.","Birth order","Century month code for the date of birth of the child (see note below on century month codes).","Sex of child.","Whether child was alive or dead at the time of interview.","Age at death of the child in completed months gives a calculated age at death from the reported information. This variable occupies three digits. BASE: Dead children (B5 = 0).","Indicator of no prenatal care.","Size of child as reported subjectively by the mother.","Weight of child at birth given in kilograms with three implied decimal places. Divide by 1000 to produce weight in kilograms. Children who were not weighed are coded 9996","Century month code of date of interview (see note on century month codes).","Century month code of date of birth of the mother (see note on century month codes).","Type of place of residence. ","Weight of the mother in kilograms at time of interview. There is one implied decimal place in the weight (decimal points are not included in the data file). To produce the weight in kilograms divide by 10.","Height of the mother in centimeters at time of interview. There is one implied decimal place in the height (decimal points are not included in the data file). To produce the height in centimeters divide by 10.","Indicator of no smoking.","Education of the mother."],["Character","Integer","Integer","1.   male; \n2. female","0.   dead; 1. alive","Integer","0.   some prenatal care; \n1. no prenatal care;\n9. missing","1.   very large; \n2. large; \n3. average; \n4. smaller than average; \n5. very small; \n8. don't know; \n9. missing","Integer (note implied decimal places)","Integer","Integer","1.   urban; \n2. rural","Integer (note implied decimal places)","Integer (note implied decimal places)","0.   smokes something; \n1. smokes nothing; \n9. missing","0.   did not attend school; \n1. primary; \n2. post-primary/vocational; \n3. seoncdary / a-level; \n4. college (middle level); \n5. university"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Description<\/th>\n      <th>Coding<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":20,"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="century-month-code">Century Month Code</h2>
 <p>All dates in the data file are expressed in terms of months and years and also as century month codes. A century month code (CMC) is the number of the month since the start of the century.</p>
@@ -2621,8 +2628,7 @@ Dictionaries
 <div class="distill-site-nav distill-site-footer">
 <p>GLHLTH 705 lab materials adapted to R from original labs written by Dr. Larry Park, Dr. Brian Pence, and Dr. Daniel Westreich</p>
 <p>Materials and website built using R version 4.1.0 and R Studio v1.4.1717</p>
-<p>cat PNG Designed By Costa from <a href='https://pngtree.com/freepng/cat-silhouette-png_3715779.html?sol=downref&id=bef'>pngtree.com/</a></p>
-<p><a title="Real Time Web Analytics" href="http://clicky.com/101331126"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a> <script async src="//static.getclicky.com/101331126.js"></script> <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101331126ns.gif" /></p></noscript></p>
+<p>Llama PNG Designed By andypp at <a href='https://pngtree.com/so/llama'>PNG Tree</a></p>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 

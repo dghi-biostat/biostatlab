@@ -251,7 +251,7 @@ kenya$education1 <- relevel(kenya$education, ref = "Post-primary")
 
 levels(kenya$education)
 
-$> [1] "Post-primary" "No primary"   "Primary only"
+#> [1] "Post-primary" "No primary"   "Primary only"
 ```
 
 
@@ -282,10 +282,10 @@ Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculat
 
 ## `family = ` and `link = `
 
-```{r}
-  fit_log <- glm(y ~ x, family = 'binomial'(link = 'log'), data = df)
+```{r eval = FALSE}
+fit_log <- glm(y ~ x, family = 'binomial'(link = 'log'), data = df)
 
-  fit_logit <- glm(y ~ x, family = 'binomial'(link = 'logit'), data = df)
+fit_logit <- glm(y ~ x, family = 'binomial'(link = 'logit'), data = df)
 ```
 
 

@@ -2933,11 +2933,11 @@ If <code>weight</code> were normally distributed, we would expect a straight dia
 
 <span class='va'>qqnorm_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/qqnorm.html'>qqnorm</a></span><span class='op'>(</span><span class='va'>regdat</span><span class='op'>$</span><span class='va'>ln_wt</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>qqnorm_data</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span>shape <span class='op'>=</span> <span class='fl'>1</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Q-Q plot for ln(weight)"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>"Theoretical Quantiles for ln_wt"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Sample Quantiles for ln_wt"</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>qqnorm_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>shape <span class='op'>=</span> <span class='fl'>1</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Q-Q plot for ln(weight)"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Theoretical Quantiles for ln_wt"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"Sample Quantiles for ln_wt"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="lab_01_files/figure-html5/unnamed-chunk-9-1.png" width="50%" /><img src="lab_01_files/figure-html5/unnamed-chunk-9-2.png" width="50%" /></p>
@@ -3304,8 +3304,8 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><code>m1</code> will serve as our data object within <code>ggplot()</code>. We can start by creating a scatter plot of the response and predictor variables from our formula. But instead of using the original data frame (<code>regdat</code>), we’ll use <code>data = m1</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Petal.Length</span>, y <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Petal.Length</span>, y <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='va'>p2</span>
 </code></pre>
@@ -3315,7 +3315,7 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>From here, we can add a <code>geom_smooth()</code> or <code>stat_smooth()</code> layer, using <code>method = "lm"</code> to fit an ordinary least squares regression line to our data:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>+</span> <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="lab_01_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
@@ -3325,9 +3325,9 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>To perform this method, we need to start with a scatter plot using {ggplot2}:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>toy</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>ran1</span>, y <span class='op'>=</span> <span class='va'>pos</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Age (years)"</span>, y <span class='op'>=</span> <span class='st'>"Points"</span>, title <span class='op'>=</span> <span class='st'>"This is fake data"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>toy</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>ran1</span>, y <span class='op'>=</span> <span class='va'>pos</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Age (years)"</span>, y <span class='op'>=</span> <span class='st'>"Points"</span>, title <span class='op'>=</span> <span class='st'>"This is fake data"</span><span class='op'>)</span>
 
 <span class='va'>p</span>
 </code></pre>
@@ -3340,7 +3340,7 @@ Notice that we have assigned a name to our plot, <code>p</code>. By doing this, 
 <p>Once we have our plot, we just need to add another layer, <code>stat_smooth()</code>, and designate a method and formula. Here, we’re building a univariate, linear model. Observe how we parameterize these details within the function:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>+</span> <span class='fu'>stat_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>stat_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="lab_01_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
@@ -3354,9 +3354,9 @@ Notice that we have assigned a name to our plot, <code>p</code>. By doing this, 
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://docs.r4photobiology.info/ggpmisc/'>ggpmisc</a></span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>stat_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>stat_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://docs.r4photobiology.info/ggpmisc/reference/stat_poly_eq.html'>stat_poly_eq</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>, 
-                <span class='fu'>aes</span><span class='op'>(</span>label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>..eq.label..</span>, <span class='va'>..rr.label..</span>, sep <span class='op'>=</span> <span class='st'>"~~~"</span><span class='op'>)</span><span class='op'>)</span>, 
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>..eq.label..</span>, <span class='va'>..rr.label..</span>, sep <span class='op'>=</span> <span class='st'>"~~~"</span><span class='op'>)</span><span class='op'>)</span>, 
                 parse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -3380,10 +3380,10 @@ From <a href="https://stackoverflow.com/questions/7549694/add-regression-line-eq
 <p>We could generate a histogram of our residuals. In the following code, notice that {ggplot2} finds our residuals when we refer to them as <code>.resid</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>geom_histogram</span><span class='op'>(</span>binwidth <span class='op'>=</span> <span class='fl'>.1</span>, fill <span class='op'>=</span> <span class='st'>"seagreen"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>'Residuals'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggtitle</span><span class='op'>(</span><span class='st'>"Histogram of residuals of Iris Petal Length regressed on Sepal Length"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>binwidth <span class='op'>=</span> <span class='fl'>.1</span>, fill <span class='op'>=</span> <span class='st'>"seagreen"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Residuals'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Histogram of residuals of Iris Petal Length regressed on Sepal Length"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="lab_01_files/figure-html5/unnamed-chunk-42-1.png" width="624" /></p>
@@ -3391,10 +3391,10 @@ From <a href="https://stackoverflow.com/questions/7549694/add-regression-line-eq
 <p>But we can also use that vector of residuals, <code>.resid</code> to create a scatter plot of our fitted data/observed data (which one?) against our residuals:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.fitted</span>, y <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_hline</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fitted values"</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.fitted</span>, y <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fitted values"</span>, 
        y <span class='op'>=</span> <span class='st'>"Residuals"</span>, 
        title <span class='op'>=</span> <span class='st'>"Residual plot of iris petal length regressed on sepal length"</span><span class='op'>)</span>
 </code></pre>
@@ -3406,10 +3406,10 @@ Notice that we have added a dashed horizontal line at y = 0 by adding a layer to
 </aside>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Petal.Length</span>, y <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_hline</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fitted values"</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>m1</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Petal.Length</span>, y <span class='op'>=</span> <span class='va'>.resid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fitted values"</span>, 
        y <span class='op'>=</span> <span class='st'>"Residuals"</span>, 
        title <span class='op'>=</span> <span class='st'>"Residual plot of iris petal length regressed on sepal length"</span><span class='op'>)</span>
 </code></pre>
@@ -3426,9 +3426,9 @@ Notice that we have added a dashed horizontal line at y = 0 by adding a layer to
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>het</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"X"</span>, y <span class='op'>=</span> <span class='st'>"Y"</span>, title <span class='op'>=</span> <span class='st'>"More fake data"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.r4photobiology.info/ggpp/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>het</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"X"</span>, y <span class='op'>=</span> <span class='st'>"Y"</span>, title <span class='op'>=</span> <span class='st'>"More fake data"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="lab_01_files/figure-html5/unnamed-chunk-46-1.png" width="624" /></p>
