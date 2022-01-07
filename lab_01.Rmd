@@ -6,19 +6,6 @@ date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
-outline
-                TASK                        STATUS
-- import data from .csv                     draft - done
-- plots with {ggplot2}                      draft - done
-- creating new variables                    draft - done
-- skewness and kurtosis                     draft - done
-- pearson and spearman rank CC              started
-- linear regression models                  not started
-- model evaluation                          not started
-- nested models                             not started
-- model comparison                          not started
-
-
 ```{r setup0, echo = FALSE, include = FALSE}
 regdat <- read.table("files/regdat.csv", sep = ',', col.names = c("sex", "age", "height", "weight"))
 
@@ -50,8 +37,6 @@ xaringanExtra::use_clipboard()
 
 
 ### Lab 01 Grading scheme
-
-[[@JOE grading scheme correct?]]
 
 | Competency | Points |
 |:-----------|:------:|
