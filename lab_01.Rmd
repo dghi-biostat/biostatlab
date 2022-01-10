@@ -57,6 +57,9 @@ xaringanExtra::use_clipboard()
 * {tidyverse}
 
 
+
+[TODO: Preamble]
+
 # Competencies
 
 ## Import data from `.csv`
@@ -139,6 +142,7 @@ Here is an example with filler column names:
 ```{r echo = TRUE, eval = FALSE}
 data <- read.csv("regdat.csv", header = FALSE, col.names = c("columnA", "columnB", "columnC", "columnD"))
 ```
+
 <aside>
 __Don't forget__ to use `<-` to assign a name to your imported data frame!
 </aside>
@@ -173,9 +177,9 @@ qq_data <- data.frame(qqnorm(regdat$weight)[2:1])
 
 names(qq_data) <- c("Observed Values", "Z Values")
 ```
-189
+
 ```{r echo = FALSE}
-knitr::kable(head(qqplot, 10))
+knitr::kable(head(qq_data, 10))
 ```
 
 We can use `qqnorm()` to calculate and plot these values. Here is an example using `regdat$weight`, with histogram for reference. Notice that the y-axis is labelled "Sample Quantiles" and its range is the minimum and maximum weight in regdat, while the x-axis is labelled "Theoretical Quantiles" and ranges from -3 to 3. Why might that be?
