@@ -2851,6 +2851,13 @@ Expand for the four simple rules of .csv data
 <p>A Q-Q plot allows us to compare a variable’s observed distribution against its “theoretical” distribution. It does this by taking a continuous variable, converting each value to a Z-score (using the variable’s mean and standard deviation), and then plotting the Z-score against the original observed value.</p>
 <p>To do this in R, we might start by creating a <code>qqnorm</code> object using <code>qqnorm()</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>qq_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/qqnorm.html'>qqnorm</a></span><span class='op'>(</span><span class='va'>regdat</span><span class='op'>$</span><span class='va'>weight</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Here’s an example of the first 10 datapoints in our qq_data object, with two columns aligning “Observed Values” and their respective “Z-values”.</p>
+<div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
 <tr class="header">
@@ -2909,7 +2916,7 @@ Expand for the four simple rules of .csv data
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>regdat</span><span class='op'>$</span><span class='va'>weight</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-7-1.png" width="50%" /><img src="lab_01_files/figure-html5/unnamed-chunk-7-2.png" width="50%" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-8-1.png" width="50%" /><img src="lab_01_files/figure-html5/unnamed-chunk-8-2.png" width="50%" /></p>
 </div>
 <aside>
 If <code>weight</code> were normally distributed, we would expect a straight diagonal line. See the “Note on Q-Q plots” below for an example of this.
@@ -2935,7 +2942,7 @@ If <code>weight</code> were normally distributed, we would expect a straight dia
 <span class='fu'><a href='https://rdrr.io/r/stats/qqnorm.html'>qqnorm</a></span><span class='op'>(</span><span class='va'>normal</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-8-1.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-8-2.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-8-3.png" width="33%" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-9-1.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-9-2.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-9-3.png" width="33%" /></p>
 </div>
 <h4 id="bonus-qqnorm-but-with-ggplot">Bonus: <code>qqnorm()</code>, but with <code>ggplot()</code></h4>
 <p><strong>For those interested:</strong></p>
@@ -2954,7 +2961,7 @@ If <code>weight</code> were normally distributed, we would expect a straight dia
   <span class='fu'>ylab</span><span class='op'>(</span><span class='st'>"Sample Quantiles for ln_wt"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-9-1.png" width="50%" /><img src="lab_01_files/figure-html5/unnamed-chunk-9-2.png" width="50%" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-10-1.png" width="50%" /><img src="lab_01_files/figure-html5/unnamed-chunk-10-2.png" width="50%" /></p>
 </div>
 <h2 id="creating-new-variables">Creating new variables</h2>
 <h3 id="log-transform"><code>log()</code> transform</h3>
@@ -2981,11 +2988,11 @@ If <code>weight</code> were normally distributed, we would expect a straight dia
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
 We can use a natural log transformation to help correct for that skew:
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
 </div>
 <aside>
 For more transforming data into a normal distribution, see <a href="https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/">this link</a>
@@ -3052,7 +3059,7 @@ You will need to install {moments} with <code>install.packages("moments")</code>
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-20-1.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-20-2.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-20-3.png" width="33%" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-21-1.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-21-2.png" width="33%" /><img src="lab_01_files/figure-html5/unnamed-chunk-21-3.png" width="33%" /></p>
 </div>
 <p>To calculate in R, use the function <code>cor(x, y, method = c("pearson", "kendall", "spearman"))</code> Specify your x and y variables and set the method to your cheeky brit of choice.</p>
 <aside>
@@ -3324,7 +3331,7 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='va'>p2</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-35-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
 </div>
 <p>From here, we can add a <code>geom_smooth()</code> or <code>stat_smooth()</code> layer, using <code>method = "lm"</code> to fit an ordinary least squares regression line to our data:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3332,7 +3339,7 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>+</span> <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-37-1.png" width="624" /></p>
 </div>
 <p>This second method becomes more important as our models increase in complexity. It also will helps in plotting residuals (see next section).</p>
 <h3 id="plot-first-then-model">2. Plot first, then model</h3>
@@ -3346,7 +3353,7 @@ F-statistic: 468.6 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='va'>p</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-37-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
 </div>
 <aside>
 Notice that we have assigned a name to our plot, <code>p</code>. By doing this, we can add layers to the original plot without needing to reproduce the code each time.
@@ -3357,11 +3364,11 @@ Notice that we have assigned a name to our plot, <code>p</code>. By doing this, 
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>+</span> <span class='fu'>stat_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-39-1.png" width="624" /></p>
 </div>
 <p>Notice that if we don’t designate a method, <code>stat_smooth()</code> will default to plotting a smoothed “loess” line, which we’ll learn more about later in the semester:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-39-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
 </div>
 <p>For those curious, we can also print our model’s equation in the plot. The code is a bit dense, but straightforward:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3374,7 +3381,7 @@ Notice that we have assigned a name to our plot, <code>p</code>. By doing this, 
                 parse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-41-1.png" width="624" /></p>
 </div>
 <aside>
 From <a href="https://stackoverflow.com/questions/7549694/add-regression-line-equation-and-r2-on-graph">this post</a> on SO.
@@ -3400,7 +3407,7 @@ From <a href="https://stackoverflow.com/questions/7549694/add-regression-line-eq
   <span class='fu'>ggtitle</span><span class='op'>(</span><span class='st'>"Histogram of residuals of Iris Petal Length regressed on Sepal Length"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-42-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-43-1.png" width="624" /></p>
 </div>
 <p>But we can also use that vector of residuals, <code>.resid</code> to create a scatter plot of our fitted data/observed data (which one?) against our residuals:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3413,7 +3420,7 @@ From <a href="https://stackoverflow.com/questions/7549694/add-regression-line-eq
        title <span class='op'>=</span> <span class='st'>"Residual plot of iris petal length regressed on sepal length"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-43-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-44-1.png" width="624" /></p>
 </div>
 <aside>
 Notice that we have added a dashed horizontal line at y = 0 by adding a layer to our plot: <code>+ geom_hline(yintercept = 0, linetype = "dashed")</code>
@@ -3428,7 +3435,7 @@ Notice that we have added a dashed horizontal line at y = 0 by adding a layer to
        title <span class='op'>=</span> <span class='st'>"Residual plot of iris petal length regressed on sepal length"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-44-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-45-1.png" width="624" /></p>
 </div>
 <p>This tells us if there is any bias in our model’s fit. If we observe a visible trend in our residual plot [TODO]</p>
 <p>One such trend we might observe is heteroskedasticity,</p>
@@ -3445,7 +3452,7 @@ Notice that we have added a dashed horizontal line at y = 0 by adding a layer to
   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"X"</span>, y <span class='op'>=</span> <span class='st'>"Y"</span>, title <span class='op'>=</span> <span class='st'>"More fake data"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="lab_01_files/figure-html5/unnamed-chunk-46-1.png" width="624" /></p>
+<p><img src="lab_01_files/figure-html5/unnamed-chunk-47-1.png" width="624" /></p>
 </div>
 <aside>
 <a href="https://en.wikipedia.org/wiki/Heteroscedasticity">Wikipedia</a> is telling me that this is Greek for “different” (<em>hetero</em>) “dispersion” (<em>skedasis</em>)

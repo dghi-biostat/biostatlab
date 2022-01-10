@@ -172,6 +172,12 @@ A Q-Q plot allows us to compare a variable's observed distribution against its "
 
 To do this in R, we might start by creating a `qqnorm` object using `qqnorm()`:
 
+```{r echo = TRUE, eval = FALSE}
+qq_data <- qqnorm(regdat$weight)
+```
+
+Here's an example of the first 10 datapoints in our qq_data object, with two columns aligning "Observed Values" and their respective "Z-values".
+
 ```{r include = FALSE}
 qq_data <- data.frame(qqnorm(regdat$weight)[2:1])
 
