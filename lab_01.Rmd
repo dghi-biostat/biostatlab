@@ -27,13 +27,17 @@ xaringanExtra::use_clipboard()
 ```
 
 
-## LAB MATERIALS (TODO)
+## LAB MATERIALS
 
 ### Lab 01 Goals
 
 * Estimate crude measures of (linear) association using univariable linear regression models  
 * Estimate crude measures of non-linear association using univariable linear regression models with linear transformed and categorical variables.  
 * Estimate adjusted measures of association using multivariable linear regression models
+
+### Data and assignment
+
+The assignment and dataset are both available on [Sakai](sakai.duke.edu).
 
 
 ### Lab 01 Grading scheme
@@ -58,9 +62,7 @@ xaringanExtra::use_clipboard()
 
 
 
-[TODO: Preamble]
-
-# Competencies
+# Competencies:
 
 ## Import data from `.csv`
 
@@ -90,7 +92,7 @@ And a spreadsheet application (e.g. Microsoft Excel) would display the data like
 ![Dating Data](images/lab01_datedata.png)
 
 
-And R would display the comma-separated data like this:
+Which in R Studio, would look like this:
 
 ```{r include = TRUE, echo = FALSE}
 
@@ -137,10 +139,11 @@ Now that you've done that, note that `read.csv()` allows the following arguments
 * `header = ` - this argument takes either `TRUE` or `FALSE`. If set to `TRUE`, the function will use the first row of the data as the column names ("headers")
 * `col.names = c()` - takes a vector that is the same length as the number of columns in the dataset. It will use the values in this vector as the column names.
 
-Here is an example with filler column names:
+Here is an example:
 
 ```{r echo = TRUE, eval = FALSE}
-data <- read.csv("regdat.csv", header = FALSE, col.names = c("columnA", "columnB", "columnC", "columnD"))
+data <- read.csv("regdat.csv", header = FALSE, 
+                 col.names = c("columnA", "columnB", "columnC", "columnD"))
 ```
 
 <aside>
@@ -156,8 +159,6 @@ If you need a refresher on creating histograms with {ggplot2}, you can find it [
 
 ### Scatter plots (`geom_point()`)
 
-[TODO](make help file on website)?
-
 We create scatter plots by assigning an `x` and `y` aesthetic (`aes()`) to a ggplot object, and then adding a layer called `geom_point()`
 
 ```{r}
@@ -172,11 +173,7 @@ A Q-Q plot allows us to compare a variable's observed distribution against its "
 
 To do this in R, we might start by creating a `qqnorm` object using `qqnorm()`:
 
-```{r echo = TRUE, eval = FALSE}
-qq_data <- qqnorm(regdat$weight)
-```
-
-Here's an example of the first 10 datapoints in our qq_data object, with two columns aligning "Observed Values" and their respective "Z-values".
+As an example, here are first 10 values of `regdat$weight`. "Observed Values" are the actual data, and "Z-values" are the Z-score for each of those values of `weight`:
 
 ```{r include = FALSE}
 qq_data <- data.frame(qqnorm(regdat$weight)[2:1])
@@ -188,7 +185,9 @@ names(qq_data) <- c("Observed Values", "Z Values")
 knitr::kable(head(qq_data, 10))
 ```
 
-We can use `qqnorm()` to calculate and plot these values. Here is an example using `regdat$weight`, with histogram for reference. Notice that the y-axis is labelled "Sample Quantiles" and its range is the minimum and maximum weight in regdat, while the x-axis is labelled "Theoretical Quantiles" and ranges from -3 to 3. Why might that be?
+We can use `qqnorm()` to calculate and plot these values automatically!
+
+Here is the Q-Q plot for `regdat$weight`, with histogram for reference. Notice that the y-axis is labelled "Sample Quantiles" and its range is the minimum and maximum weight in regdat, while the x-axis is labelled "Theoretical Quantiles" and ranges from -3 to 3. __Why might that be?__
 
 ```{r echo = TRUE, fig.show='hold', out.width = '50%'}
 qqnorm(regdat$weight, main = "Normal Q-Q Plot of Weight (lbs.)")
@@ -210,16 +209,17 @@ For a quick comparison, we can use a simple model to visualize how a truly norma
 If we extract the mean and standard deviation from our height, we can construct a normal distribution and plot it.
 
 ```{r, fig.show='hold', out.width = '33%', echo = TRUE, eval = TRUE}
+# calculate mean of height
 x_hat <- mean(regdat$height)
-
+# calculate sd of height
 x_sd <- sd(regdat$height)
-
+# simulate a normal distribution using height's mean and sd
 normal <- rnorm(500, mean = x_hat, sd = x_sd)
-
+# scatter plot
 plot(normal)
-
+# histogram
 hist(normal)
-
+# Q-Q plot
 qqnorm(normal)
 ```
 
@@ -227,15 +227,18 @@ qqnorm(normal)
 
 __For those interested:__
 
-Remember the discussion of how most objects contain more information than initially meets the eye?
+Remember the discussion about how most objects contain more information than initially meets the eye?
 
-The same goes for `qqnorm` objects. They aren't just a bunch of dots. They contain vectors of the theoretical and observed ("Sampled") quantiles. If we convert the `qqnorm` object to a `data.frame`, we can use `ggplot()` to call those specific columns for plotting:
+The same goes for `qqnorm` objects. They aren't just a bunch of dots. They contain vectors of the theoretical and observed ("Sampled") quantiles. If we convert the `qqnorm` object to a `data.frame`, we can use `ggplot()` to call those specific columns for plotting. Let's look at how we would make a Q-Q plot for the natural log of `weight`:
 
 ```{r echo = TRUE, fig.show='hold', out.width = '50%'}
+# calculate ln_wt
 regdat$ln_wt <- log(regdat$weight)
 
-qqnorm_data <- data.frame(qqnorm(regdat$ln_wt))
+# create qqnorm() object and convert to data.frame() object
+qqnorm_data <- data.frame(qqnorm(regdat$ln_wt, plot.it = FALSE))
 
+# plot in ggplot
 ggplot(data = qqnorm_data, aes(x = x, y = y)) +
   geom_point(shape = 1, size = 3) + 
   labs(title = "Q-Q plot for ln(weight)") +
@@ -259,7 +262,7 @@ log(10)
 
 If given a vector of values, `log()` will take the natural log of each of those values individually:
 
-```{r echo = TRUE, include = FALSE}
+```{r echo = TRUE, eval = FALSE}
 simple_vector <- c(1, 10, 100, 1000)
 
 log(simple_vector)
@@ -269,7 +272,7 @@ log(simple_vector)
 
 Not relevant to Lab 01, but you can also specify what base you want your log to be in with the argument `base = `:
 
-```{r}
+```{r echo = TRUE, eval = FALSE}
 log(simple_vector, base = 10)
 
 #> [1] 0 1 2 3
@@ -279,15 +282,14 @@ log(simple_vector, base = 10)
 #### Why do a log transformation?
 
 
-Let's use the `weight` variable in our `regdat` data frame, which is right-skewed:
+Imagine we have a variable that is highly right-skewed. The histogram of that variable might look something like this:
 
-```{r echo = FALSE}
-set.seed(123)
-skewed <- data.frame(skewed_var = rbeta(100, shape1 = 2, shape2 = 5, ncp = 0)^2)
-```
 
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
+set.seed(123)
+skewed <- data.frame(skewed_var = rbeta(100, shape1 = 2, shape2 = 5, ncp = 0)^2)
+
 ggplot(skewed, aes(x = skewed_var)) + #regdat, aes(x = weight)) +
   geom_histogram(fill = "forestgreen") +
   labs(x = "A skewed variable", y = "Count", title = "Histogram of a skewed variable")
@@ -296,7 +298,8 @@ ggplot(skewed, aes(x = skewed_var)) + #regdat, aes(x = weight)) +
 
 
 
-We can use a natural log transformation to help correct for that skew:
+We can use a natural log transformation to make the variable's distribution more "normal", and therefore suitable for linear regression:
+
 ```{r echo = FALSE, message = FALSE}
 skewed$log_var <- log(skewed$skewed_var)
 
@@ -308,10 +311,10 @@ ggplot(skewed, aes(x = log_var)) +
 ```
 
 <aside>
-For more transforming data into a normal distribution, see [this link](https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/)
+For more on transforming data into a normal distribution, see [this link](https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/)
 </aside>
 
-The natural log transformation uses 'Euler's number' (2.718) as it's 'base' (in contrast, a base 10 log transformation uses 10 as the base). So: 
+The natural log transformation uses 'Euler's number' (2.718) as its 'base' (in contrast, a base 10 log transformation uses 10 as the base). So: 
 
 $$
 \begin{eqnarray}
@@ -324,7 +327,7 @@ Using a log transformation can help to 'pull in' outlier values, which has the b
 
 ### Squaring with `^2`
 
-In R, you can raise a base by any exponent using `^`. For example, 10^3^ would be calculated like this:  
+In R, you can raise a base by any exponent using `^`. For example, 10^3^ would be written like this:
 
 ```{r echo = TRUE, eval = FALSE}
 10^3
@@ -344,22 +347,23 @@ simple_vector^2
 <aside>
 Recall that data frames are just lists of vectors! 
 
-You might consider using `%>%` and [`mutate()`](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-6-create-variable-mage) to square a variable.
+You might consider using `%>%` and [`mutate()`](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-6-create-variable-mage) to create a squared variable.
 </aside>
 
 
 
 ### Categorical variables with `case_when()`
 
-For a refresher on how to generate categorical variables from continuous variables, you can refer back to when we [created `magec`](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec) in last semester's first lab.
+For a refresher on how to generate categorical variables from continuous variables, you can refer back to when we [__created `magec`__](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-8-create-variable-magec) in last 705, Lab 0.
 
 ## Skewness and Kurtosis ({moments} package)
 
 
+In evaluating the skewness and kurtosis values, a variable that is perfectly normally distributed will have a skewness of 0 and a kurtosis of 3. 
 
-In evaluating the skewness and kurtosis values, a Normally distributed variable will have a skewness of 0 and a kurtosis of 3. So for example, if a variable has a skewness of -0.05 and a kurtosis of 2.2, we would conclude that the data are slightly left skewed (negative value) and there is some kurtosis. 
+So for example, if a variable has a skewness of -0.05 and a kurtosis of 2.2, we would conclude that the data are slightly left skewed (negative value) and there is some kurtosis. 
 
-More specifically, because kurstosis, 2.2 < 3, we conclude that there are less data in the tails. If the value for kurtosis had been greater than 3, we would have concluded that the variable has more data in the tails than expected under the N~ 
+More specifically, because kurstosis, 2.2 < 3, we conclude that there are less data in the tails. If the value for kurtosis had been greater than 3, we would have concluded that the variable has more data in the tails than expected under a normal distribution.
 
 <aside>
 
@@ -389,7 +393,11 @@ We use correlation coefficients to measure the strength and direction of the lin
 
 Correlation coefficients can range from -1 to 1. Values closer to 1 represent a strong __positive__ correlation. Those closer to -1 represent a strong __negative__ correlation. The closer the correlation coefficient, R, is to 0, the weaker the association between the two variables.
 
-```{r}
+
+
+
+```{r  fig.show='hold', out.width = '33%', dpi = 300, fig.height=3, fig.width=3, warning = FALSE, message = FALSE}
+
 # generating toy data-- this will not appear on the rendered site
 
 toy <- data.frame(ran1 = rnorm(150, 20, 5), ran2 = runif(150, 0, 40))
@@ -407,11 +415,9 @@ toy$neg <- jitter(seq(75,25, length.out = 150), amount = 20)
 R0 <- cor(toy$ran1, toy$ran2)
 Rneg <- cor(toy$ran1, toy$neg)
 Rpos <- cor(toy$ran1, toy$pos)
-```
 
+######################################################
 
-
-```{r  fig.show='hold', out.width = '33%', dpi = 300, fig.height=3, fig.width=3, warning = FALSE, message = FALSE}
 ggplot(toy, aes(x = ran1, y = neg)) +
   geom_point(color = "red") +
   geom_smooth(method = "lm", color = "black") +
@@ -429,7 +435,13 @@ ggplot(toy, aes(x = ran1, y = pos)) +
   labs(x = "X", y = "Y", title = paste("R (pearson) = ", round(Rpos,2), sep = ""))
 ```
 
-To calculate in R, use the function `cor(x, y, method = c("pearson", "kendall", "spearman"))` Specify your x and y variables and set the method to your cheeky brit of choice. 
+To calculate in R, use the function:
+```{r eval = FALSE}
+cor(x, y, 
+    method = c("pearson", "kendall", "spearman"))` 
+```
+
+Specify your x and y variables and set the method to your cheeky brit of choice. 
 
 <aside>
 The __Pearson__ is the parametric test. Both __Spearman__ and __Kendall__ refer to rank-based (non-parametric) measures of association for when our data are non-normal.
@@ -442,14 +454,14 @@ If no method is specified, "pearson" is the default.
 
 If you want to have a very particular kind of fun, try the following:
 
-1. Remove all non-continuous variables from your data frame and assign it a new name, like `cont_data`.
+1. Take your `regdat` data and create a new data frame of only continuous variables from `regdat`. Give it a new name, like `cont_data`.  
 2. Use R to run `cor(cont_data)`, where the data frame of continuous variable vectors is the only argument.
 
 <aside>
-You can use {dplyr}'s `select()` to [remove variables](https://www.marsja.se/how-to-remove-a-column-in-r-using-dplyr-by-name-and-index/) by name. There are [many](https://statisticsglobe.com/r-remove-data-frame-columns-by-name) [many](https://www.listendata.com/2015/06/r-keep-drop-columns-from-data-frame.html) ways to do this.
+You can use {dplyr}'s `select()` to [remove variables](https://www.marsja.se/how-to-remove-a-column-in-r-using-dplyr-by-name-and-index/) by name. But there are also [many](https://statisticsglobe.com/r-remove-data-frame-columns-by-name) [many](https://www.listendata.com/2015/06/r-keep-drop-columns-from-data-frame.html) ways to do this.
 </aside>
 
-What did it do? (Go look at Table 1 in the assignment. )
+What did it do? (Go look at Table 1 in the assignment.)
 
 
 ## Linear Regression Models
@@ -460,7 +472,7 @@ Building models in R is fun!
 
 Remember the concept of [R formulas](https://www.datacamp.com/community/tutorials/r-formula-tutorial)?
 
-Regression models make use of formulas in a very intuitive way. Here is the format:
+Regression models make use of formulas in a very intuitive way. Here is the general format:
 
 ```{r echo = TRUE, eval = FALSE}
 lm(response_var ~ predictor_var, data = a_data_frame)
@@ -468,7 +480,7 @@ lm(response_var ~ predictor_var, data = a_data_frame)
 
 `lm` stands for "linear model". If we assign a name to our model, we can access various components within the model, which we can index with `$`. 
 
-We then use `summary()` to view an overview of the model's most important components.
+We can also just use `summary()` to view an overview of the model's most important components.
 
 ```{r echo = TRUE}
 m1 <- lm(Sepal.Length ~ Petal.Length, data = iris)
@@ -496,33 +508,31 @@ In this section, we'll show you how to access a model's coefficients, confidence
 
 Remember how we said that you can extract numbers from your model when you assign it a name? If we inspect `m1` using `$` to index the object by name, we'll see some useful items at our disposal.
 
-You can obtain the model's coefficients with `coef(your_model)`
+You can obtain the model's coefficients with `coef(your_model)`. For example:
 
 ```{r echo = TRUE, eval = TRUE}
 coef(m1)
 ```
 
-And you can calculate 95% confidence intervals with `confint(your_model, level = 0.95)`. 
+And you can calculate 95% confidence intervals with `confint(your_model, level = 0.95)`. For example:
 
 ```{r echo = TRUE, eval = TRUE}
 confint(m1,  level = .95)
 
 ```
 
-And don't forget that you can inspect your model with `summary()`
+And don't forget that you can inspect your model with `summary()`:
 
 ```{r echo = TRUE, eval = TRUE}
 summary(m1)
 ```
 
-Our model also contains the columns of data (variables) used in its calculation:
+Our model contains the columns of data (variables) used in its calculation:
 
 ```{r echo = TRUE}
 head(m1$model)
 ```
-```{r}
-knitr::kable(head(m1$model))
-```
+
 
 It also has the resulting fitted values:
 
@@ -542,7 +552,7 @@ B1 <- m1$coefficients[2] # beta-one
 fitted <- B0 + B1 * x
 fitted
 ```
-The resulting value is the "fitted" value-- or the estimated value for the response value according to our model, given the value of our predictor variable, `r x`
+The resulting value is the "fitted" value, or the estimate of the response variable according to our model, given the value of the predictor, `Petal.Length` (which for the first row in our data, is `r x`).
 
 
 Notice that our model also contains residuals, or the differences between our observed values for y (our response variable), and the values predicted by our model:
@@ -553,24 +563,24 @@ head(m1$residuals)
 We can find the first row's residual value with the `fitted` value that we calculated above:
 
 ```{r  echo = TRUE, eval = TRUE}
-m1$model[1,1] - # observed Sepal.Length of row 1
-  fitted
+# observed Sepal.Length of row 1 minus the predicted/fitted value:
+m1$model[1,1] - fitted
 ```
 
 ## Plotting line of best fit
 
-{ggplot2} provides a wide variety of flexible tools for visualizing models. There are two main ways we might visualize a regression models. The best way to do this is to fit the model and then plot the prediction (often referred to as the line of best fit)
+{ggplot2} provides a wide variety of flexible tools for visualizing models. There are two main ways we might visualize a regression model. The best way to do this is to fit the model and then plot the prediction (often referred to as the line of best fit)
 
-You can also use functions within {ggplot2} to generate a line of best fit. This is a technique that we will encounter later in the semester that is handy in special circumstances. But for now, __we would like you to use the method that follows__.
+You can also use functions within {ggplot2} to generate a line of best fit. This is a technique that we will encounter later in the semester that is handy in special circumstances. But for now, __please use the method that follows__.
 
 <aside>
-[Here](https://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/) is a highly useful tutorial for how to plot different models in {ggplot2}. It includes splines, Loess, and multiple variations on quadratics.
+[__Here__](https://stats.idre.ucla.edu/r/faq/how-can-i-explore-different-smooths-in-ggplot2/) is a highly useful tutorial for how to plot different models in {ggplot2}. It includes splines, Loess, and multiple variations on quadratics.
 </aside>
 
 
 ### Model first, then plot
 
-We can also plot our data and line of best fit by using a model as the data object required by {ggplot2}.
+We can plot our data and line of best fit by using a model as the data object required by {ggplot2}.
 
 Remember our example model from earlier:
 
@@ -581,27 +591,8 @@ summary(m1)
 `m1` will serve as our data object within `ggplot()`. We can start by creating a scatter plot of the response and predictor variables from our formula. But instead of using the original data frame (`regdat`), we'll use `data = m1`:
 
 ```{r echo = TRUE}
-p2 <- ggplot(data = m1, aes(x = Petal.Length, y = Sepal.Length)) +
+p <- ggplot(data = m1, aes(x = Petal.Length, y = Sepal.Length)) +
   geom_point()
-
-p2
-```
-From here, we can add a `geom_smooth()` or `stat_smooth()` layer, using `method = "lm"` to fit an ordinary least squares regression line to our data:
-
-```{r echo = TRUE, message = FALSE}
-p2 + geom_smooth(method = "lm")
-```
-
-This second method becomes more important as our models increase in complexity. It also will helps in plotting residuals (see next section).
-
-### 2. Plot first, then model
-
-To perform this method, we need to start with a scatter plot using {ggplot2}:
-
-```{r echo = TRUE}
-p <- ggplot(data = toy, aes(x = ran1, y = pos)) +
-  geom_point() +
-  labs(x = "Age (years)", y = "Points", title = "This is fake data")
 
 p
 ```
@@ -610,17 +601,38 @@ p
 Notice that we have assigned a name to our plot, `p`. By doing this, we can add layers to the original plot without needing to reproduce the code each time.
 </aside>
 
-Once we have our plot, we just need to add another layer, `stat_smooth()`, and designate a method and formula. Here, we're building a univariate, linear model. Observe how we parameterize these details within the function:
+From here, we can add a `geom_smooth()` layer to fit an ordinary least squares regression line to our data. Notice that within the model `m1`, we have access to a variable, `.fitted`. We need to assign this to the y-axis of our plot. This will plot a line for `Petal.Length` against our fitted/predicted values! 
+
+```{r echo = TRUE, message = FALSE}
+p + geom_smooth(aes(y = .fitted))
+```
+
+Understanding how this method works will become more important as our models increase in complexity. It also will helps in plotting residuals (see [next section](https://dghi-biostat.github.io/biostatlab/lab_01.html#residuals-plots)).
+
+### Plot first, then model
+
+To perform this method, we need to start with a scatter plot using {ggplot2}:
 
 ```{r echo = TRUE}
-p + stat_smooth(method = "lm", formula = y ~ x)
+p2 <- ggplot(data = toy, aes(x = ran1, y = pos)) +
+  geom_point() +
+  labs(x = "Age (years)", y = "Points", title = "This is fake data")
+
+p2
+```
+
+
+Once we have our plot, we just need to add another layer, `stat_smooth()`, and designate a method and formula. Here, we're building a univariate, linear model. Observe how we parameterize these details within the `stat_smooth()` function:
+
+```{r echo = TRUE}
+p2 + stat_smooth(method = "lm", formula = y ~ x)
 ```
 
 
 Notice that if we don't designate a method, `stat_smooth()` will default to plotting a smoothed "loess" line, which we'll learn more about later in the semester:
 
-```{r warning = FALSE, message = FALSE}
-p + stat_smooth(formula = y ~ x)
+```{r echo = TRUE, warning = FALSE, message = FALSE}
+p2 + stat_smooth(formula = y ~ x)
 ```
 
 For those curious, we can also print our model's equation in the plot. The code is a bit dense, but straightforward: 
@@ -628,9 +640,11 @@ For those curious, we can also print our model's equation in the plot. The code 
 ```{r echo = TRUE}
 require(ggpmisc)
 
-p + stat_smooth(method = "lm", formula = y ~ x) +
+p2 + stat_smooth(method = "lm", formula = y ~ x) +
   stat_poly_eq(formula = y ~ x, 
-                aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                aes(label = paste(..eq.label.., 
+                                  ..rr.label.., 
+                                  sep = "~~~")), 
                 parse = TRUE)
 ```
 
@@ -640,7 +654,7 @@ From [this post](https://stackoverflow.com/questions/7549694/add-regression-line
 
 ## Model Evaluation
 
-Once we've built a model, there are various measures we might use to evaluate how well that model fits our data. Here we discuss two of those measures: residuals and heteroscedasticity.
+Once we've built a model, there are various measures we might use to evaluate how well that model fits our data. Here we discuss two of those measures: __residuals__ and __heteroscedasticity__.
 
 ### Residuals plots
 
@@ -661,7 +675,7 @@ ggplot(data = m1, aes(x = .resid)) +
 
 
 
-But we can also use that vector of residuals, `.resid` to create a scatter plot of our fitted data/observed data (which one?) against our residuals:
+But we can also use that vector of residuals, `.resid` to create a scatter plot of our fitted data against our residuals:
 
 ```{r echo = TRUE}
 ggplot(data = m1, aes(x = .fitted, y = .resid)) +
@@ -672,20 +686,12 @@ ggplot(data = m1, aes(x = .fitted, y = .resid)) +
        title = "Residual plot of iris petal length regressed on sepal length")
 ```
 <aside>
-Notice that we have added a dashed horizontal line at y = 0 by adding a layer to our plot:
+Notice that we have added a dashed horizontal line at `y = 0` by adding a layer to our plot:
 `+ geom_hline(yintercept = 0, linetype = "dashed")`
 </aside>
 
-```{r echo = TRUE}
-ggplot(data = m1, aes(x = Petal.Length, y = .resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  labs(x = "Fitted values", 
-       y = "Residuals", 
-       title = "Residual plot of iris petal length regressed on sepal length")
-```
 
-This tells us if there is any bias in our model's fit. If we observe a visible trend in our residual plot [TODO] 
+This tells us if there is any bias in our model's fit.
 
 One such trend we might observe is heteroskedasticity, 
 
@@ -694,7 +700,7 @@ One such trend we might observe is heteroskedasticity,
 
 Simply put, heteroskedasticity is when the variability of Y (our response variable) is different depending on X (our predictor variable).
 
-In the following plot, is the probability of an accurate prediction of Y higher when X is closer to 0 or 100? 
+In the following plot, where along the x-axis would we be able to accurately predict Y using a linear model?
 
 ```{r}
 # making more toy data, this time to show heterskedasticity
@@ -722,12 +728,12 @@ ggplot(het, aes(x = x, y = z)) +
 The data above are __heteroskedastilisticexpialidocious.__
 
 <aside>
-[Link, if you don't get the reference](https://youtu.be/dQw4w9WgXcQ)
+[Link, for the Disney lovers](https://youtu.be/dQw4w9WgXcQ)
 </aside>
 
-#### Breusch-Pagan/CookWeisberg
+#### Breusch-Pagan/Cook-Weisberg
 
-We can use a chi-squared test to assess __how heteroskedastic__ our data really is. We can do this using `ncvTest()` from the package {car}.
+We can use a chi-squared test to assess __how heteroskedastic__ our data really are. We can do this using `ncvTest()` from the package {car}.
 
 Here's a test of our iris model, whose residuals we visualized above:
 
@@ -739,7 +745,7 @@ ncvTest(m1)
 For proof of method, see ["References" section in documentation](https://www.rdocumentation.org/packages/car/versions/1.2-6/topics/ncv.test)
 </aside>
 
-Meanwhile, we're more certain in the heterskedastilistic nature of the fake data:
+Meanwhile, here's a Breusch-Pagan test of the heteroskedastilistic data above. Notice the p-value:
 
 ```{r echo = TRUE}
 ncvTest(lm(z~x, data = het))
@@ -750,9 +756,9 @@ ncvTest(lm(z~x, data = het))
 
 We can use an F-statistic to compare models when we add or omit variables. Section 9.2 of OpenIntro contains a great introduction to model selection. In it, they recommend two different model selection strategies:
 
-1. Backwards elimination - where we generate a fully saturated model, then take one variable out at a time.
+1. __Backwards elimination__ - where we generate a fully saturated model, then take one variable out at a time.
 
-2. Forward selection - where we start with a single predictor variable, and add one new variable at a time.
+2. __Forward selection__ - where we start with a single predictor variable, and add one new variable at a time.
 
 With each step in either of these processes, we need some kind of test to help us evaluate if the removal/addition of a variable has *improved* the model.
 
@@ -762,9 +768,9 @@ In OpenIntro, they use R^2^. But we can also use an F-test.
 
 Use `anova(aModel, anotherModel)` to compute the F-statistic for the comparison of two models. 
 
-[Further up](TODO) on this page, we created a model that aimed to predict `iris` sepal length using measures of iris petal length.
+[Further up](https://dghi-biostat.github.io/biostatlab/lab_01.html#univariate-single-variable-models-with-lm) on this page, we created a model that aimed to predict `iris` sepal length using measures of iris petal length.
 
-Here's that model in brief:
+Here's that model's summary:
 
 ```{r echo = TRUE}
 summary(m1)
@@ -779,7 +785,7 @@ summary(m1_quadratic)
 
 Compare the two outputs and notice that our Adjusted R-squared has increased. This is a good sign.
 
-But an F-statistic quantifies the difference in model fit between two models.
+But an F-statistic quantifies the difference in model fit between two models:
 
 ```{r echo = TRUE}
 anova(m1, m1_quadratic, test = "F")

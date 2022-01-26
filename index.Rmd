@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r fig.cap = "[Probability comparisons](https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons)", fig}
-knitr::include_graphics("https://imgs.xkcd.com/comics/probability_comparisons.png")
+```{r fig.cap = "[Linear Regression](https://www.explainxkcd.com/wiki/index.php/1725:_Linear_Regression)", out.width = "20%"}
+knitr::include_graphics("images/linear_regression.png")
 ```
 
 

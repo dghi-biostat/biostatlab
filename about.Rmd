@@ -17,7 +17,6 @@ knitr::include_graphics('images/larry.png')
 
 Larry has been growing out his hair.
 
-OH: 
 
 ### Nour
 
@@ -37,7 +36,7 @@ knitr::include_graphics('images/potato.png')
 
 Nathan is a professional potato.
 
-OH: Tuesday, <a href = "./lab_01.html">1</a>1:30am - <a href = "lab_01_alternate.html">1</a>2:30pm
+OH: Tuesday, <a href = "">1</a>2:30am - <a href = "">1</a>:30pm
 
 ### The Catscot
 

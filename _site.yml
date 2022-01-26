@@ -10,8 +10,8 @@ navbar:
     image: images/llama.png
     href: 'https://pngtree.com/so/llama'
   right:
-    - text: "Analysis Map"
-      href: mind_map.html
+    #- text: "Analysis Map"
+    #  href: mind_map.html
     - text: "Help With"
       menu:
         - text: "Using RStudio"
@@ -39,10 +39,10 @@ navbar:
           href: lab_3.html
         - text: "Lab 4"
           href: lab_4.html
-        #- text: '---------'
-        #- text: '707 Labs'
-        #- text: "Lab 1"
-        #  href: lab_01.html
+        - text: '---------' # draws a line in the menu space
+        - text: '707 Labs'
+        - text: "Lab 1"
+          href: lab_01.html
         #- text: "Lab 2"
         #  href: lab_02.html
         #- text: "Lab 3"
@@ -57,8 +57,8 @@ navbar:
           href: fun_dict.html
         - text: "Data Dictionary"
           href: data_dict.html
-    - text: "About"
-      href: about.html
+    #- text: "About"
+    #  href: about.html
     - icon: fab fa-github
       href: https://github.com/dghi-biostat/biostatlab
 output: 
