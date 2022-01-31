@@ -52,3 +52,17 @@ Measures of Association,riskdifference(),"a = outcome+, b = outcome-, N1 = expos
 Measures of Association,riskratio(),"a = outcome+, b = outcome-, N1 = exposed+, N0 = exposed-",Takes +/- outcomes by exposure and calculates risk ratio and confidence intervals,fmsb
 Measures of Association,epi.2by2(),table object with exposure-outcome in top-left,"Computes summary measures of risk. When exposure variable has more than one level, use mAssoc() instead.",epiR
 Measures of Association,epiHomog(),table object with exposure-outcome in top-left,Takes a stratified table and returns the result of a chi-square test of homogeneity on the various strata's risk differences,epiAssist
+Import,read.csv(),"file = "" "", header = TRUE, col.names = c()","Imports a .csv file. If header = TRUE, uses the first row of data as column headers/variable names. If header = FALSE, can designate variable names using a string vector with argument col.names(""x"", ""y"", ""z"")",utils
+Stats,skewness(),a vector or variable,Calculates the skewness of a variable,moments
+Stats,kurtosis(),a vector or variable,Calculates the kurtosis of a variable,moments
+Stats,qqnorm(),a vector or variable,Generates Q-Q plot object of a variable.,stats
+Stats,cor(),a list of vectors of continuous variables,"Calculates correlation coefficient of one or more variables. If given a data.frame or matrix object, generates a correlation coefficient matrix.",stats
+Model,lm(),"See Lab 01, model building",,stats
+Model,summary(),a model object,Prints primary statistics of a model object,stats
+Model,confint(),a model object,Prints confidence intervals for the coefficients of a model object,stats
+Model,coef(),a model object,Prints coefficients values of a model object,stats
+Plot,geom_hline(),"data, yintercept(), linetype = ""dashed""",Plots a horizontal line at a specified y intercept,ggplot2
+Plot,geom_point(),"data, aes(x = , y = )",Generates a scatter plot of two variables,ggplot2
+Plot,geom_smooth(),"data, aes(x = , y = )","Plots a line given two continuous variables, x and y. If no method or formula specified, uses a Loess plotting function to generate a locally weighted regression curve. method = ""lm"" generates an OLS linear regression line",ggplot2
+Stats,ncvTest(),a model object,Generates Cook-Weisberg statistic,car
+Stats,anova(),two model objects,Generates F-statistic that compares the fit of two similar models.,stats

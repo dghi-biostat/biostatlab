@@ -1,22 +1,12 @@
 ---
 title: "Lab 02 (707)"
 description: |
-    __Due:__ March 18, 2022 by 14:00 ET
+    __Lab 02 Due:__ March 4, 2022 by 14:00 ET
+    __Lab 03 Due:__ March 25, 2022 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
-outline
-                TASK                        STATUS
-- import data from .csv                     not started
-- plots with {ggplot2}                      not started
-- creating new variables                    not started
-- skewness and kurtosis                     not started
-- pearson and spearman rank CC              not started
-- linear regression models                  not started
-- model evaluation                          not started
-- nested models                             not started
-- model comparison                          not started
 
 ```{r}
 # DELETE BEFORE PUBLISHING
@@ -50,9 +40,7 @@ library(biostat3)
 xaringanExtra::use_clipboard()
 ```
 
-<details class = "section-head">
 
-<summary>LAB MATERIALS</summary>
 
 ### Lab 02 Goals
 
@@ -77,46 +65,35 @@ xaringanExtra::use_clipboard()
 |   Figures   |   10 (3.33 points each)  |
 |   __Total__  |  __55__  |
 
+### Data and assignment
+
+The assignment and dataset are both available on [Sakai](sakai.duke.edu)
+
+
 ### Packages
 
 * {moments}
 * {car}
 * {tidyverse}
 
-</details>
+
 
 
 # Competencies
 
-```{r eval = FALSE, echo = FALSE}
-## NOTE: Using <details> features to create collapsible sections.
-## These are structured with the following syntax:
-
-<details class = "section-head">
-<summary>NAME OF SECTION</summary>
-# NAME OF SECTION
-## NAME OF SUBSECTION 1
-## NAME OF SUBSECTION 2
-## NAME OF SUBSECTION 3
-## NAME OF SUBSECTION  ETC.
-
-</details>
-
-```
 
 
-<details class = "section-head">
-<summary>Tabular analysis (frequency counts)</summary>
+
 # Tabular analysis (frequency counts)
 
 [Link to lab from 705:](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
 
 
-</details>
 
 
-<details class = "section-head">
-<summary>Summary of GLM</summary>
+
+
+
 # Summary of GLM
 
 GLM (or Generalized Linear Models) are a family of modeling methods that can fit linear and non-linear models. They can be classified according to the distribution of the outcome (i.e. dependent/response) variable and the link function which specifies the relationship between the dependent variable (Y) and a linear combination of covariates ($\beta_1$...$\beta_i$), as summarized below.
@@ -138,10 +115,10 @@ In the table above:
 + __Distribution__ refers to the outcome variable
 + __Link__: the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
 
-</details>
 
-<details class = "section-head">
-<summary>Confidence Limit Difference and Ratios (CLD/CLR)</summary>
+
+
+
 # Confidence Limit Difference and Ratios (CLD/CLR)
 
 Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and useful measures of the precision of a parameter estimate and make it easier to compare estimates across studies. For example, two studies may report similar point estimates, but one may have a much wider 95% CI, meaning its value is less precise.
@@ -151,10 +128,10 @@ Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and
 * $CLR = \frac{[upper\ 95\%\ CI]}{[lower\ 95\%\ CI]}$
 
 
-</details>
 
-<details class = "section-head">
-<summary>Nominal, Ordinal, and Disjoint Indicator variables</summary>
+
+
+
 # Nominal, Ordinal, and Disjoint Indicator variables
 
 ### The issue with ordered categories
@@ -271,11 +248,11 @@ kenya <- kenya %>%
 
 ```
 
-</details>
 
 
-<details class = "section-head">
-<summary>Log-linear and Logit models with `glm()`</summary>
+
+
+
 # Log-linear and Logit models with `glm()`
 
 Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are helpful here
@@ -334,17 +311,17 @@ RR_IOR_multi <- function(y, x, z, df) {
 }
 ```
 
-</details>
 
 
 
-<details class = "section-head">
-<summary>NAME OF SECTION</summary>
+
+
+
 # NAME OF SECTION
 ## NAME OF SUBSECTION 1
 ## NAME OF SUBSECTION 2
 ## NAME OF SUBSECTION 3
 ## NAME OF SUBSECTION  ETC.
 
-</details>
+
 

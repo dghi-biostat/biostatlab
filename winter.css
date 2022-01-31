@@ -115,7 +115,9 @@ background turns transparent:
 code {
   font-family: 'Fira Code', monospace;
 color: #2f588d; 
-background: #b3daf1; 
+background: #bae5ff;
+
+/*background: #b3daf1; */
   font-weight: 500;
   font-size: 1em;
 }
@@ -128,7 +130,7 @@ ul > li::marker {
 
 /* Change link appearance */
 d-article a {
-  border-bottom: 2px solid #ffd8db;
+  border-bottom: 2px solid #577cad;
   text-decoration: none;
 }
 
@@ -162,7 +164,7 @@ d-title{
 /* Collapsible section headers */
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#customizing_the_disclosure_widget */
 
-details.section-head {
+/*details.section-head {
   width: 620px;
   font-size: 30px;
   list-style-type: disc;
@@ -172,7 +174,7 @@ details.section-head > summary {
   /*font-size: 30px;*/
 }
 
-details[open] > summary {
+/*details[open] > summary {
   color: #ededed;  
 }
 
@@ -201,4 +203,4 @@ details.section-head > h1 {
 
 details.section-head > details {
   font-size: 1.10rem;
-}
+}*/

@@ -435,8 +435,10 @@ ggplot(toy, aes(x = ran1, y = pos)) +
   labs(x = "X", y = "Y", title = paste("R (pearson) = ", round(Rpos,2), sep = ""))
 ```
 
+
 To calculate in R, use the function:
-```{r eval = FALSE}
+
+```{r eval = FALSE, echo = TRUE}
 cor(x, y, 
     method = c("pearson", "kendall", "spearman"))` 
 ```
