@@ -1,7 +1,8 @@
 ---
 title: "Lab 02 (707)"
-description: |
+description: | 
     __Lab 02 Due:__ March 4, 2022 by 14:00 ET
+    <br></br>
     __Lab 03 Due:__ March 25, 2022 by 14:00 ET
 date: "`r Sys.Date()`"
 output: distill::distill_article
@@ -41,6 +42,14 @@ xaringanExtra::use_clipboard()
 ```
 
 
+- tabular analysis
+- summary of GLM
+- CLD/CLR
+- disjoint indicator variables
+- log-linear and logit models
+
+
+## LAB MATERIALS
 
 ### Lab 02 Goals
 
@@ -72,21 +81,16 @@ The assignment and dataset are both available on [Sakai](sakai.duke.edu)
 
 ### Packages
 
-* {moments}
-* {car}
 * {tidyverse}
-
-
-
+* {fastDummies}
+* {lmtest}
+* {biostat3}
 
 # Competencies
 
+## Tabular analysis (frequency counts)
 
-
-
-# Tabular analysis (frequency counts)
-
-[Link to lab from 705:](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
+[Link to lab from 705](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
 
 
 
@@ -94,7 +98,7 @@ The assignment and dataset are both available on [Sakai](sakai.duke.edu)
 
 
 
-# Summary of GLM
+## Summary of GLM
 
 GLM (or Generalized Linear Models) are a family of modeling methods that can fit linear and non-linear models. They can be classified according to the distribution of the outcome (i.e. dependent/response) variable and the link function which specifies the relationship between the dependent variable (Y) and a linear combination of covariates ($\beta_1$...$\beta_i$), as summarized below.
 
@@ -119,7 +123,7 @@ In the table above:
 
 
 
-# Confidence Limit Difference and Ratios (CLD/CLR)
+## Confidence Limit Difference and Ratios (CLD/CLR)
 
 Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and useful measures of the precision of a parameter estimate and make it easier to compare estimates across studies. For example, two studies may report similar point estimates, but one may have a much wider 95% CI, meaning its value is less precise.
 
@@ -132,7 +136,7 @@ Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and
 
 
 
-# Nominal, Ordinal, and Disjoint Indicator variables
+## Disjoint Indicator variables
 
 ### The issue with ordered categories
 
@@ -151,7 +155,7 @@ Disjoint indicator variables are derived from categoricals by generating k new v
 |`education == 1` | primary school only    | 0             | 1             | 0           |
 |`education == 2` | post-primary education | 0             | 0             | 1           |
 
-#### Example - linear risk regression model for education, coded with indicators
+### Example - linear risk regression model for education, coded with indicators
 
 * Risk(preterm | education) = $\beta_0 + \beta_1X_1 + \beta_2X_2$
    
@@ -192,10 +196,12 @@ $$
 
 ### Generate indicator variables in R:
 
+[[@Joe what to do here? should we introduce fastDummies for Lab 02? ]]
 There are at least 3 ways to make or model disjoint indicator variables in R. We will discuss only two of them here. To that end, we have some good news and some not-so-good news.
 
 <aside>
 If you have very specific needs, {fastDummies} might offer some options. Find [a nice tutorial here](https://www.marsja.se/create-dummy-variables-in-r/)
+</aside>
 
 #### The good news: `factor()` is your friend!
 
@@ -249,15 +255,17 @@ kenya <- kenya %>%
 ```
 
 
+This has created three new binary variables, `education_0`, `education_1`, and `education_2`, that each indicate the presence or absence of that specific education level for each individual in the data.
 
 
 
+## Log-linear and Logit models with `glm()`
 
-# Log-linear and Logit models with `glm()`
+[[TODO]]
 
 Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are helpful here
 
-## `family = ` and `link = `
+### `family = ` and `link = `
 
 ```{r eval = FALSE}
 fit_log <- glm(y ~ x, family = 'binomial'(link = 'log'), data = df)
@@ -266,62 +274,35 @@ fit_logit <- glm(y ~ x, family = 'binomial'(link = 'logit'), data = df)
 ```
 
 
-## Extract estimates of RR and OR with `exp()`
-
-#### toy functions for risk difference, risk ratio, and odds ratio:
-These were toy functions I wrote to speed up the coding for the lab. But show the basic steps for extracting these measures
-```{r}
-RD_single <- function(y, x, df) {
-  fit_risk <- lm(y ~ x, data = df)
-  list("linear risk regression", coef(fit_risk), "confidence interval", confint(fit_risk, 'x', level = .95))
-}
-
-RD_multi <- function(y, x, z, df) {
-  fit_risk <- lm(y ~ x + z, data = df)
-  list("linear risk regression", coef(fit_risk), 
-       "confidence intervals",
-       "level 1", confint(fit_risk, 'x', level = .95),
-       "level 2", confint(fit_risk, 'z', level = .95))
-}
-
-RR_IOR_single <- function(y, x, df) {
-  fit_log <- glm(y ~ x, family = 'binomial'(link = 'log'), data = df)
-
-  fit_logit <- glm(y ~ x, family = 'binomial'(link = 'logit'), data = df)
-
-  answer <- list("log regression", exp(coef(fit_log)),
-                "log confidence intervals", exp(confint(fit_log, 'x', level = .95)[1:2]),
-                "logit regression", exp(coef(fit_logit)), 
-                "logit confidence intervals", exp(confint(fit_logit, 'x', level = .95)[1:2])
-  )
-  return(answer)
-}
-
-RR_IOR_multi <- function(y, x, z, df) {
-  fit_log <- glm(y ~ x + z, family = 'binomial'(link = 'log'), data = df)
-
-  fit_logit <- glm(y ~ x + z, family = 'binomial'(link = 'logit'), data = df)
-
-  answer <- list("log regression", exp(coef(fit_log)),
-                "log confidence interval", exp(confint(fit_log)),
-                "logit regression", exp(coef(fit_logit)), 
-                "logit confidence interval", exp(confint(fit_logit))
-  )
-  return(answer)
-}
-```
+### Extract estimates of RR and OR with `exp()`
 
 
 
+## Categorical vs. Continuous Coding
+
+Some exposure variables may be either analyzed as continuous or categorized according to:
+
+* customary or clinical cut points (e.g., body mass index (BMI)  
+* categories based on values used to classify people as ‘underweight’, ‘normal’, ‘overweight’ or ‘obese’)  
+* empirical cut points (e.g. tertiles or quartiles), a priori cut points relevant to biologic mechanisms  
+* potential public health interventions  
+* other factors of interest or by cut points used commonly in the literature (this would allow comparisons between your results and what has been published previously). 
+
+The least restrictive way to model continuous variables would be to estimate separate risks for each value (e.g. each year of maternal age). However, this approach would yield highly imprecise estimates and is not recommended.
 
 
+## Graphing risks versus exposures: categorical vars
 
+[[TODO]]
 
-# NAME OF SECTION
-## NAME OF SUBSECTION 1
-## NAME OF SUBSECTION 2
-## NAME OF SUBSECTION 3
-## NAME OF SUBSECTION  ETC.
+## The Likelihood Ratio Test (LRT)
+[[TODO]]
 
+## Evaluating the validity-precision trade-off assuming constancy
 
+[[TODO -- @Joe, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage...are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test. 
+
+Seems like the amount of text in this sectino of the original resource guide could clutter up the webpage and discourage students from running the code in the first place, let alone understanding how to interpret the results of the analysis they're running. I will think about how we might better integrate these two different modes of presentation.
+
+The same could be said for "Graphing risks versus exposures: categorical variables" and "LRT". Seems there should be something to distinguish interpretation vs. help with code. Will be curious to hear your experience in years past (since I prefer to learn by reading things on my own, I really enjoyed this form of presentation last year. But I think I'm in the minority.)]]
 
