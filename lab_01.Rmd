@@ -48,9 +48,9 @@ The assignment and dataset are both available on [Sakai](sakai.duke.edu).
 |   Table 1b - Spearman rank CC  |   3   |
 |   Table 2 - Univariate models  |   10  |
 |   Table 3 - F Statistic |   3  |
-|   Task 4 - Multivariate models |   10  |
+|   Task 4 - Multivariable models |   10  |
 |   Figures |   15 (1 point each)  |
-|   Short answers 1 - 8 |   56 (7 points each)  |
+|   Short answers 1 - 7 |   56 (8 points each)  |
 |   __Total__  |  __100__  |
 
 
