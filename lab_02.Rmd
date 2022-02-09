@@ -120,7 +120,7 @@ In the table above:
 #### Additional resources:
 
 Here is a PDF of model forms and estimation for linear, log and logit risk models:
-[link]("files/lab02_modelforms.pdf")
+[link](files/lab02_modelforms.pdf)
 
 ## Confidence Limit Difference and Ratios (CLD/CLR)
 
