@@ -2595,11 +2595,15 @@ Dictionaries
 <li><a href="#tabular-analysis-frequency-counts">Tabular analysis (frequency counts)</a></li>
 <li><a href="#summary-of-glm">Summary of GLM</a></li>
 <li><a href="#confidence-limit-difference-and-ratios-cldclr">Confidence Limit Difference and Ratios (CLD/CLR)</a></li>
-<li><a href="#disjoint-indicator-variables">Disjoint Indicator variables</a>
+<li><a href="#r-commands-for-models">R Commands for models</a>
 <ul>
-<li><a href="#the-issue-with-ordered-categories">The issue with ordered categories</a></li>
-<li><a href="#disjoint-indicator-variables-1">Disjoint indicator variables</a></li>
-<li><a href="#example---linear-risk-regression-model-for-education-coded-with-indicators">Example - linear risk regression model for education, coded with indicators</a></li>
+<li><a href="#generate-predicted-values-from-log-risk-models">Generate predicted values from log risk models</a></li>
+<li><a href="#generate-contrasts-from-ci-from-glm-models">Generate contrasts from CI from GLM models</a></li>
+</ul></li>
+<li><a href="#nominal-ordinal-and-disjoint-indicator-variables">Nominal, ordinal, and disjoint indicator variables</a>
+<ul>
+<li><a href="#what-is-a-disjoint-indicator">What is a disjoint indicator</a></li>
+<li><a href="#example-of-indicators-in-a-model">Example of indicators in a model</a></li>
 <li><a href="#generate-indicator-variables-in-r">Generate indicator variables in R:</a></li>
 </ul></li>
 <li><a href="#log-linear-and-logit-models-with-glm">Log-linear and Logit models with <code>glm()</code></a>
@@ -2696,8 +2700,10 @@ Dictionaries
 <li>{biostat3}</li>
 </ul>
 <h1 id="competencies">Competencies</h1>
+<p>The following sections contain the competencies and code that you will need to complete labs 2 and 3.</p>
 <h2 id="tabular-analysis-frequency-counts">Tabular analysis (frequency counts)</h2>
-<p><a href="https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize">Link to lab from 705</a></p>
+<p>You will generate the values for tabular analysis the same code as we used last semester. Please refer to last semester’s lab 1 resource guide for guidance:</p>
+<p><a href="https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize">Link to 705 lab 1, tabular analysis</a></p>
 <h2 id="summary-of-glm">Summary of GLM</h2>
 <p>GLM (or Generalized Linear Models) are a family of modeling methods that can fit linear and non-linear models. They can be classified according to the distribution of the outcome (i.e. dependent/response) variable and the link function which specifies the relationship between the dependent variable (Y) and a linear combination of covariates (<span class="math inline">\(\beta_1\)</span>…<span class="math inline">\(\beta_i\)</span>), as summarized below.</p>
 <table>
@@ -2762,16 +2768,22 @@ Dictionaries
 <li><strong>Distribution</strong> refers to the outcome variable</li>
 <li><strong>Link</strong>: the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: <span class="math inline">\(\beta_0 + \beta_1X_1 + \beta_kX_k\)</span>)</li>
 </ul>
+<h4 id="additional-resources">Additional resources:</h4>
+<p>Here is a PDF of model forms and estimation for linear, log and logit risk models: <a href="%22files/lab02_modelforms.pdf%22">link</a></p>
 <h2 id="confidence-limit-difference-and-ratios-cldclr">Confidence Limit Difference and Ratios (CLD/CLR)</h2>
 <p>Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and useful measures of the precision of a parameter estimate and make it easier to compare estimates across studies. For example, two studies may report similar point estimates, but one may have a much wider 95% CI, meaning its value is less precise.</p>
 <ul>
 <li><span class="math inline">\(CLD = [upper\ 95\%\ CI] - [lower\ 95\%\ CI]\)</span></li>
 <li><span class="math inline">\(CLR = \frac{[upper\ 95\%\ CI]}{[lower\ 95\%\ CI]}\)</span></li>
 </ul>
-<h2 id="disjoint-indicator-variables">Disjoint Indicator variables</h2>
-<h3 id="the-issue-with-ordered-categories">The issue with ordered categories</h3>
+<h2 id="r-commands-for-models">R Commands for models</h2>
+<h3 id="generate-predicted-values-from-log-risk-models">Generate predicted values from log risk models</h3>
+<p>[TODO]</p>
+<h3 id="generate-contrasts-from-ci-from-glm-models">Generate contrasts from CI from GLM models</h3>
+<p>[TODO]</p>
+<h2 id="nominal-ordinal-and-disjoint-indicator-variables">Nominal, ordinal, and disjoint indicator variables</h2>
 <p>Categorical variables can be represented as having values 1, 2, 3, …, but one must be careful with such representations. Nominal variables have no inherent ordering (e.g., male = 0, female = 1, Kleinfelter’s = 2) and ordinal variables may be qualitatively ordered but may not have uniform linear spacing (e.g., low = 0, medium = 1, high = 2). Including such variables in models as linear terms means that the model is mis-specified and can lead to erroneous inference because the relationship between the outcome and categorical is assumed to be linear.</p>
-<h3 id="disjoint-indicator-variables-1">Disjoint indicator variables</h3>
+<h3 id="what-is-a-disjoint-indicator">What is a disjoint indicator</h3>
 <p>Disjoint indicator (a.k.a., dummy) variables derived from nominal or ordinal categories removes the linear assumption and allows more flexibility in the shape of the outcome-predictor association.</p>
 <p>Disjoint indicator variables are derived from categoricals by generating k new variables, one for each of the k levels of the categorical, as illustrated in the table below. You could leave out one of the indicator variables (the reference level), but I prefer to code all levels to allow flexibility in changing the reference level as needed.</p>
 <table>
@@ -2808,7 +2820,8 @@ Dictionaries
 </tr>
 </tbody>
 </table>
-<h3 id="example---linear-risk-regression-model-for-education-coded-with-indicators">Example - linear risk regression model for education, coded with indicators</h3>
+<h3 id="example-of-indicators-in-a-model">Example of indicators in a model</h3>
+<p>Here, we will build a linear risk regression model for education, coded with indicators</p>
 <ul>
 <li><p>Risk(preterm | education) = <span class="math inline">\(\beta_0 + \beta_1X_1 + \beta_2X_2\)</span></p>
 <p>where X<sub>1</sub> = <code>ed_primary</code> and X<sub>2</sub> = <code>ed_post</code> and the referent category is no primary school</p></li>
@@ -2972,7 +2985,7 @@ df = k_{full\ model} - k_{reduced\ model}
 </div>
 </div>
 <h2 id="evaluating-the-validity-precision-trade-off-assuming-constancy">Evaluating the validity-precision trade-off assuming constancy</h2>
-<p>[[TODO – <span class="citation" data-cites="Joe">@Joe</span>, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage…are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test. ]]</p>
+<p>TODO – <span class="citation" data-cites="Joe">@Joe</span>, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage…are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

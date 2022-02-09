@@ -87,9 +87,13 @@ The assignment and dataset are both available on [Sakai](sakai.duke.edu)
 
 # Competencies
 
+The following sections contain the competencies and code that you will need to complete labs 2 and 3.
+
 ## Tabular analysis (frequency counts)
 
-[Link to lab from 705](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
+You will generate the values for tabular analysis the same code as we used last semester. Please refer to last semester's lab 1 resource guide for guidance:
+
+[Link to 705 lab 1, tabular analysis](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
 
 
 ## Summary of GLM
@@ -113,9 +117,10 @@ In the table above:
 + __Distribution__ refers to the outcome variable
 + __Link__: the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
 
+#### Additional resources:
 
-
-
+Here is a PDF of model forms and estimation for linear, log and logit risk models:
+[link]("files/lab02_modelforms.pdf")
 
 ## Confidence Limit Difference and Ratios (CLD/CLR)
 
@@ -126,14 +131,20 @@ Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and
 * $CLR = \frac{[upper\ 95\%\ CI]}{[lower\ 95\%\ CI]}$
 
 
+## R Commands for models
 
-## Disjoint Indicator variables
+### Generate predicted values from log risk models
 
-### The issue with ordered categories
+[TODO]
+
+### Generate contrasts from CI from GLM models
+[TODO]
+
+## Nominal, ordinal, and disjoint indicator variables
 
 Categorical variables can be represented as having values 1, 2, 3, …, but one must be careful with such representations. Nominal variables have no inherent ordering (e.g., male = 0, female = 1, Kleinfelter’s = 2) and ordinal variables may be qualitatively ordered but may not have uniform linear spacing (e.g., low = 0, medium = 1, high = 2). Including such variables in models as linear terms means that the model is mis-specified and can lead to erroneous inference because the relationship between the outcome and categorical is assumed to be linear.
 
-### Disjoint indicator variables
+### What is a disjoint indicator
 
 Disjoint indicator (a.k.a., dummy) variables derived from nominal or ordinal categories removes the linear assumption and allows more flexibility in the shape of the outcome-predictor association.
 
@@ -146,7 +157,9 @@ Disjoint indicator variables are derived from categoricals by generating k new v
 |`education == 1` | primary school only    | 0             | 1             | 0           |
 |`education == 2` | post-primary education | 0             | 0             | 1           |
 
-### Example - linear risk regression model for education, coded with indicators
+### Example of indicators in a model
+
+Here, we will build a linear risk regression model for education, coded with indicators
 
 * Risk(preterm | education) = $\beta_0 + \beta_1X_1 + \beta_2X_2$
    
@@ -364,9 +377,4 @@ lrtest(lm_reduced, lm_full)
 
 ## Evaluating the validity-precision trade-off assuming constancy
 
-[[TODO -- @Joe, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage...are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test. 
-
-Seems like the amount of text in this sectino of the original resource guide could clutter up the webpage and discourage students from running the code in the first place, let alone understanding how to interpret the results of the analysis they're running. I will think about how we might better integrate these two different modes of presentation.
-
-The same could be said for "Graphing risks versus exposures: categorical variables" and "LRT". Seems there should be something to distinguish interpretation vs. help with code. Will be curious to hear your experience in years past (since I prefer to learn by reading things on my own, I really enjoyed this form of presentation last year. But I think I'm in the minority.)]]
-
+TODO -- @Joe, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage...are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test.
