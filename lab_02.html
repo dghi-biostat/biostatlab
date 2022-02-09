@@ -2621,14 +2621,7 @@ Dictionaries
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># DELETE BEFORE PUBLISHING</span>
-<span class='co'># get data</span>
-<span class='va'>kenya</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya.rds"</span><span class='op'>)</span>
 
-<span class='va'>kenya_ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya[unfactored].rds"</span><span class='op'>)</span>
-</code></pre>
-</div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -2857,8 +2850,8 @@ Dictionaries
 <p>For this lab, we would like you to manually construct indicator variables. You can use <code>mutate()</code> and <code>case_when()</code> or <code>ifelse()</code> to create conditional statements that transform your nice categorical variables to a matrix of ones and zeroes. Here is an example using <code>education</code> in our data frame:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kenya</span> <span class='op'>&lt;-</span> <span class='va'>kenya</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kenya</span> <span class='op'>&lt;-</span> <span class='va'>kenya</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
         education_0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"No primary"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
         education_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"Primary only"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
         education_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"Post-primary"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
