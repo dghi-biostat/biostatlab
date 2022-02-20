@@ -1,7 +1,9 @@
 ---
 title: "Lab 02 (707)"
 description: | 
-    __Lab 02 Due:__ March 18, 2022 by 14:00 ET (__Note:__ There are no written questions to turn in for Lab 2.)
+    __Lab 02 Due:__ March 18, 2022 by 14:00 ET 
+    <br></br>
+    (__Note:__ There are no written questions to turn in for Lab 2.)
     <br></br>
     __Lab 03 Due:__ April 1, 2022 by 14:00 ET
  
