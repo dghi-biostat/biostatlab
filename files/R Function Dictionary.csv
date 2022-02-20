@@ -66,3 +66,9 @@ Plot,geom_point(),"data, aes(x = , y = )",Generates a scatter plot of two variab
 Plot,geom_smooth(),"data, aes(x = , y = )","Plots a line given two continuous variables, x and y. If no method or formula specified, uses a Loess plotting function to generate a locally weighted regression curve. method = ""lm"" generates an OLS linear regression line",ggplot2
 Stats,ncvTest(),a model object,Generates Cook-Weisberg statistic,car
 Stats,anova(),two model objects,Generates F-statistic that compares the fit of two similar models.,stats
+Model,glm(),,,
+Stats,lincom(),,,biostat3
+Stats,logLik(),,,stats
+Stats,lrtest(),,,lmtest
+Model,predict.lm(),,,
+Transform,cbind(),,,

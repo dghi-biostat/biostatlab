@@ -2,19 +2,21 @@
 title: "Lab 02 (707)"
 description: | 
     __Lab 02 Due:__ March 4, 2022 by 14:00 ET
+    __*Note:__ There are no written questions to turn in for Lab 2.
     <br></br>
     __Lab 03 Due:__ March 25, 2022 by 14:00 ET
+ 
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 
-```{r echo = FALSE}
+```{r eval = FALSE, echo = FALSE}
 # DELETE BEFORE PUBLISHING
 # get data
 kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya.rds")
 
-kenya_ind <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya[unfactored].rds")
+saveRDS(kenya %>% slice_sample(n = 100) %>% select(education, bord5, death), file = "files/ed_bord5.rds")
 
 ```
 
@@ -34,6 +36,10 @@ library(stringr)
 library(glm.predict)
 library(lmtest)
 library(biostat3)
+library(fastDummies)
+
+kenya <- readRDS("files/ed_bord5.rds")
+regdat <- read.csv("files/regdat.csv", header = TRUE, col.names = c("sex", "age", "height", "weight"))
 ```
 
 ```{r xaringanExtra-clipboard, echo=FALSE}
@@ -60,8 +66,6 @@ xaringanExtra::use_clipboard()
 
 
 ### Lab 02 Grading scheme
-
-[[@JOE grading scheme correct? Sakai shows it was assessed out of 60 points, but I can't figure out where the additional 5 points is coming from]]
 
 | Competency | Points |
 |:-----------|:------:|
@@ -119,8 +123,10 @@ In the table above:
 
 #### Additional resources:
 
+[TODO - create a thumbnail of this pdf?]
+
 Here is a PDF of model forms and estimation for linear, log and logit risk models:
-[link](files/lab02_modelforms.pdf)
+[link]("files/lab02_modelforms.pdf")
 
 ## Confidence Limit Difference and Ratios (CLD/CLR)
 
@@ -204,42 +210,87 @@ There are at least 3 ways to make or model disjoint indicator variables in R.
 
 #### Option 1: Manual indicator variables
 
-For this lab, we would like you to manually construct indicator variables. You can use `mutate()` and `case_when()` or `ifelse()` to create conditional statements that transform your nice categorical variables to a matrix of ones and zeroes. Here is an example using `education` in our data frame:
+For __Task 2__ in this lab, we would like you to manually construct indicator variables. You can use `mutate()` and `case_when()` or `ifelse()` to create conditional statements that transform your nice categorical variables to a matrix of ones and zeroes. Here is an example of how we would do this using `education` in our data frame:
 
-```{r echo = TRUE, eval = FALSE}
-
+```{r echo = TRUE}
 kenya <- kenya %>%
   mutate(
         education_0 = ifelse(education == "No primary", 1, 0),
         education_1 = ifelse(education == "Primary only", 1, 0),
         education_2 = ifelse(education == "Post-primary", 1, 0))
-
-
 ```
 
 
-This has created three new binary variables, `education_0`, `education_1`, and `education_2`, that each indicate the presence or absence of that specific education level for each individual in the data.
+This has created three new binary variables, `education_0`, `education_1`, and `education_2`, that each indicate the presence or absence of that specific education level for each individual in the data:
+
+```{r echo = FALSE}
+kable(
+  head(
+    kenya %>%
+  select(education, education_0, education_1, education_2), 7))
+```
+
+
 
 #### Option 2: `fastDummies`
 
-[@Joe did we decide that we want to introduce fastDummies for this lab?]
+For __Task 3__, feel free to try fastDummies. For example, if we want to create disjoint indicator variables for the strata of `education` by `bord5`, we might run the following code to create the interaction variable:
 
-https://www.marsja.se/create-dummy-variables-in-r/
+```{r echo = TRUE}
+kenya <- kenya %>%
+  mutate(education_bord5 = interaction(education, bord5))
+```
+
+This has created a new variable, `education_bord5`, that contains six categories, one for each unique combination of `education` and `bord5` (since 3 * 2 = 6):
+
+```{r}
+kable(
+  head(
+    kenya %>% select(education, bord5, education_bord5)
+    ))
+```
+
+
+
+Then we can use `dummy_cols()` to create the disjoint indicator variables associated with this interaction variable:
+
+```{r echo = TRUE}
+kenya <- dummy_cols(kenya, select_columns = "education_bord5")
+```
+
+```{r layout = "1-page"}
+kable(
+  head(
+    kenya %>%
+      select(education_bord5, "education_bord5_No primary.1-4 in Birth Order":"education_bord5_Post-primary.5+ in Birth Order")
+  )
+)
+```
+
+
 
 
 #### Option 3: `factor()`
+__NOT RECOMMENDED FOR THIS LAB__ But feel free to use in your own practice in the future (This is what we did in 707 lab 1).
 
-__NOT RECOMMENDED FOR THIS LAB__ (This is what we did in 707 lab 1).
+The functions `glm()` and `lm()` automatically treat `factor` type variables as disjoint indicator variables. So if you have factored the variable, you can simply enter the variable with the 'lm' or 'glm' commands. 
 
-The functions `glm()` and `lm()` automatically treat `factor` type variables as disjoint indicator variables. 
+For example, the following two bits of code run the same regression model:
+
+```{r eval = FALSE}
+# 1. using factor-type variable for education:
+glm(formula = death ~ factor(education), family = binomial(link = "identity"), data = kenya)
+
+# 2. using disjoint indicator variables for education: 
+glm(formula = death ~ education_1 + education_2, family = binomial(link = "identity"), data = kenya)
+```
+
+
+#### Reference Categories and Factor Variables
 
 Remember last semester? 
 
-<aside>
-I sure don't
-</aside>
-
-Remember when we talked about the importance of setting a "reference" category? That concept applies here too. When doing regressions on disjoint categorical variables, we need a baseline against which we might compare the other levels of that variable.
+We talked about the importance of setting a "reference" category? That concept applies here too. When doing regressions on disjoint categorical variables, we need a baseline against which we might compare the other levels of that variable.
 
 The lowest level of a factor-type variable is treated as the reference category (in regressions, the intercept or $\beta_0$)
 
@@ -268,24 +319,52 @@ levels(kenya$education)
 
 
 
-
 ## Log-linear and Logit models with `glm()`
-
-[[TODO]]
 
 Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are helpful here
 
-### `family = ` and `link = `
+In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Some code might be:
 
-```{r eval = FALSE}
-fit_log <- glm(y ~ x, family = 'binomial'(link = 'log'), data = df)
-
-fit_logit <- glm(y ~ x, family = 'binomial'(link = 'logit'), data = df)
+```{r echo = TRUE, eval = FALSE}
+m1 <- lm(weight~height, data=regdat)
 ```
 
+Well, turns out, we can fit the same model using the `glm()` function. This will fit the same model but will use a __likelihood-based__ estimation algorithm instead of SSE: 
 
-### Extract estimates of RR and OR with `exp()`
+```{r echo = TRUE, eval = FALSE}
+m1 <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
+```
 
+You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the 'family' option and the link function using 'link'. 
+
+For Lab 2, our only response variable is death, which is binary, so our Family is going to be 'binomial'; however, our link function will differ depending on the measure of effect we want to estimate:
+
+| Desired effect measure | Link function name |
+|:-----|:------:|
+| Risk difference | `link = "identity"` |
+| Risk ratio | `link = "log"` |
+| Odds ratio | `link = "logit"` |
+
+Note that we will have to __*exponentiate*__ our regression coefficients for the log and logit models since these models are fit on the log scale;  For example, here is a model on the log-linear scale:
+
+```{r echo = TRUE}
+# fit model
+m1 <- glm(death ~ education_1 + education_2, 
+          data = kenya, family = 'binomial'(link = 'log'))
+
+# log-scale coefficients
+coef(m1)
+
+# risk ratio-scale coefficients
+exp(coef(m1))
+
+```
+
+<aside>
+Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
+</aside>
+
+Once we have exponentiated our coefficients, we can interpret them
 
 
 ## Categorical vs. Continuous Coding
@@ -378,3 +457,4 @@ lrtest(lm_reduced, lm_full)
 ## Evaluating the validity-precision trade-off assuming constancy
 
 TODO -- @Joe, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage...are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test.
+[[@potato - yes, agreeed. let's hold off for Week1/lab2 and come back to this discussion next week!]]
