@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r fig.cap = "[Linear Regression](https://www.explainxkcd.com/wiki/index.php/1725:_Linear_Regression)", out.width = "20%"}
-knitr::include_graphics("images/linear_regression.png")
+```{r fig.cap = "[Error Bars](https://www.explainxkcd.com/wiki/index.php/2110:_Error_Bars)", out.width = "20%"}
+knitr::include_graphics("images/error_bars.png")
 ```
 
 

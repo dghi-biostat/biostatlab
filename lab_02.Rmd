@@ -1,10 +1,9 @@
 ---
 title: "Lab 02 (707)"
 description: | 
-    __Lab 02 Due:__ March 4, 2022 by 14:00 ET
-    __*Note:__ There are no written questions to turn in for Lab 2.
+    __Lab 02 Due:__ March 18, 2022 by 14:00 ET (__Note:__ There are no written questions to turn in for Lab 2.)
     <br></br>
-    __Lab 03 Due:__ March 25, 2022 by 14:00 ET
+    __Lab 03 Due:__ April 1, 2022 by 14:00 ET
  
 date: "`r Sys.Date()`"
 output: distill::distill_article
@@ -47,14 +46,6 @@ regdat <- read.csv("files/regdat.csv", header = TRUE, col.names = c("sex", "age"
 xaringanExtra::use_clipboard()
 ```
 
-
-- tabular analysis
-- summary of GLM
-- CLD/CLR
-- disjoint indicator variables
-- log-linear and logit models
-
-
 ## LAB MATERIALS
 
 ### Lab 02 Goals
@@ -90,24 +81,58 @@ The assignment and dataset are both available on [Sakai](sakai.duke.edu)
 * {lmtest}
 * {biostat3}
 
+### Readings and Resources 
+
+```{r panelset, echo=FALSE}
+# activate panelset feature
+xaringanExtra::use_panelset()
+
+
+# this function overlays a hyperlink on an image
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
+```
+
+::: {.panelset}
+::: {.panel}
+
+#### Model Forms
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_modelforms.png", url = "files/lab02_modelforms.pdf")
+```
+
+:::
+
+::: {.panel}
+
+#### Others
+
+:::
+:::
+
 # Competencies
 
 The following sections contain the competencies and code that you will need to complete labs 2 and 3.
 
 ## Tabular analysis (frequency counts)
 
-You will generate the values for tabular analysis the same code as we used last semester. Please refer to last semester's lab 1 resource guide for guidance:
+You will generate the values for tabular analysis using the same code as we used last semester. Please refer to last semester's lab 1 resource guide for guidance:
 
 [Link to 705 lab 1, tabular analysis](https://dghi-biostat.github.io/biostatlab/lab_1.html#cross-tabulation-with-group_by-and-summarize)
 
 
 ## Summary of GLM
 
-GLM (or Generalized Linear Models) are a family of modeling methods that can fit linear and non-linear models. They can be classified according to the distribution of the outcome (i.e. dependent/response) variable and the link function which specifies the relationship between the dependent variable (Y) and a linear combination of covariates ($\beta_1$...$\beta_i$), as summarized below.
+GLM (or Generalized Linear Models) are a family of modeling methods that can fit linear and non-linear models. They can be classified according to the distribution of the __*outcome variable*__ (i.e. dependent/response) and the __*link function*__, which specifies the relationship between the dependent variable (Y) and a linear combination of covariates ($\beta_1$...$\beta_i$), as summarized below.
 
 
 
-| Outcome | Regression Model | Distribution | Link ($g(Y)$) | Form |
+| Outcome | Regression Model | Distribution | Link($g(Y)$) | Form |
 |:--------|:-----------------|:-------------|:------------|:-----|
 | Continuous| linear | Normal | identity | $Y = \beta_0 + \beta_1X_1...\beta_kX_k$|
 | Binary| linear risk | binomial | identity | $R = \beta_0 + \beta_1X_1...\beta_kX_k$|
@@ -120,14 +145,11 @@ In the table above:
 + __Y__ = a continuous dependent variable (outcome) or count variable (for Poisson models)
 + __R__ = a probability of a binomial outcome, e.g. risk (incidence proportion) or prevalence
 + __Distribution__ refers to the outcome variable
-+ __Link__: the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
++ __Link__ is the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
 
 #### Additional resources:
 
-[TODO - create a thumbnail of this pdf?]
-
-Here is a PDF of model forms and estimation for linear, log and logit risk models:
-[link]("files/lab02_modelforms.pdf")
+[Here is a PDF of model forms and estimation for linear, log and logit risk models.]("files/lab02_modelforms.pdf")
 
 ## Confidence Limit Difference and Ratios (CLD/CLR)
 
@@ -140,13 +162,59 @@ Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and
 
 ## R Commands for models
 
-### Generate predicted values from log risk models
+### Generate predicted values from linear models
 
-[TODO]
+The `predict()` functions are useful for computing predicted values based on your model fit. This can generate a vector of predictions based on your data used to fit the model. You can also use data that is separate from the model fitting.
+
+The only requirement is that the `newdata` column names need to be identical to the variables in your model.
+
+`predict()` is also useful for manually generating confidence intervals of your fitted/predicted values.
+
+#### How to use `predict.lm()`
+
+First, let's make a model object:
+
+```{r echo = TRUE}
+model <- lm(weight ~ height, data = regdat)
+```
+
+Next, use `predict.lm()` to generate predicted values and their confidence intervals using our model object:
+
+```{r echo = TRUE}
+model_predict <- predict.lm(model, interval = "confidence")
+```
+
+```{r}
+kable(
+  head(
+  model_predict 
+))
+```
+
+We could also join `model_predict` back to our original data [for the purpsoe of plotting a line of best fit with confidence intervals](https://dghi-biostat.github.io/biostatlab/lab_02.html#plotting-risks-versus-exposures).
+
+We can use `cbind()` to combine multiple columns of the same length into a single data frame:
+
+```{r echo = TRUE}
+regdat <- cbind(regdat, model_predict)
+```
+
+```{r layout = "l-body-outset"}
+kable(
+  head(
+  regdat 
+))
+```
+
+
+
+
 
 ### Linear Combinations from GLM models
 
-The `lincom()` function from package {biostat3} can be used to generate point estimates and confidence intervals for any combination of covariable values in the model; these are also referred to as contrasts.
+The `lincom()` function from package {biostat3} can be used to generate point estimates and confidence intervals for any combination of covariable values in the model; these are referred to as __contrasts__.
+
+#### Run a model
 
 First, let's use `glm()` to run a linear risk model to predict the risk of birth order on death:
 
@@ -166,6 +234,9 @@ death &=& (Intercept) + bord5*X\\
 \end{eqnarray}
 $$
 
+
+#### Predict risk when bord5 == 0
+
 Let's use the `lincom()` command to calculate the predicted risk of death for a child with birth order 1 - 4 (`bord5 == 0`):
 
 ```{r echo = TRUE, layout = "l-body-outset"}
@@ -178,13 +249,17 @@ Notice how we use the `specification = ` argument to construct our linear combin
 lincom(model = m1, specification = "(Intercept)", level = 0.95)
 ```
 
+#### Predict risk when bord5 == 1
+
 Now, let's use `lincom()` to calculate the predicted risk of death for a child with birth order >= 5 (`bord5 == 1`):
 
 ```{r echo = TRUE, layout = "l-body-outset"}
 lincom(model = m1, specification = "(Intercept) + 1*bord5", level = 0.95)
 ```
 
-Next, we can use lincom to calculate the risk difference of death for birth order >= 5 vs. 1 - 4.
+#### Calculating risk difference (bord5 == 1 vs. bord5 == 0)
+
+Next, we can use `lincom()` to calculate the risk difference of death for birth order >= 5 vs. 1 - 4.
 
 Here is the model equation for risk difference in this example:
 
@@ -193,11 +268,13 @@ RD = \beta_0 + \beta_1 - \beta_0
 $$
 which reduces to $RD = \beta_1$. 
 
-In the `lincom()` command, we only need to include our parameter for $\beta_1$:
+This means that in the `lincom()` command, we only need to include our parameter for $\beta_1$:
 
 ```{r, echo = TRUE, layout = "l-body-outset"}
 lincom(model = m1, specification = "bord5", level = 0.95)
 ```
+
+#### Multivariable and logit models
 
 When you are working with log or logit risk models, use the argument `eform = TRUE` to generate estimates that are already exponentiated.
 
@@ -211,16 +288,16 @@ With more complex, multivariable models, the `lincom()` command becomes very han
 
 ## Nominal, ordinal, and disjoint indicator variables
 
-Categorical variables can be represented as having values 1, 2, 3, …, but one must be careful with such representations. Nominal variables have no inherent ordering (e.g., male = 0, female = 1, Kleinfelter’s = 2) and ordinal variables may be qualitatively ordered but may not have uniform linear spacing (e.g., low = 0, medium = 1, high = 2). Including such variables in models as linear terms means that the model is mis-specified and can lead to erroneous inference because the relationship between the outcome and categorical is assumed to be linear.
+Categorical variables can be represented as having values 1, 2, 3, …, but one must be careful with such representations. Nominal variables have no inherent ordering (e.g., male = 0, female = 1, intersex = 2) and ordinal variables may be qualitatively ordered but may not have uniform linear spacing (e.g., low = 0, medium = 1, high = 2). Including such variables in models as linear terms means that the model is mis-specified and can lead to erroneous inference because the relationship between the outcome and categorical is assumed to be linear.
 
 ### What is a disjoint indicator
 
 Disjoint indicator (a.k.a., dummy) variables derived from nominal or ordinal categories removes the linear assumption and allows more flexibility in the shape of the outcome-predictor association.
 
-Disjoint indicator variables are derived from categoricals by generating k new variables, one for each of the k levels of the categorical, as illustrated in the table below. You could leave out one of the indicator variables (the reference level), but I prefer to code all levels to allow flexibility in changing the reference level as needed.
+Disjoint indicator variables are derived from categoricals by generating $k$ new variables, one for each of the $k$ levels of the categorical, as illustrated in the table below. You could leave out one of the indicator variables (the reference level), but I prefer to code all levels to allow flexibility in changing the reference level as needed.
 
 
-| Original Coding|   Original Labels      |   `ed_none`   | `ed_primary`  | `ed_post`   |
+| Original Coding|   Original Labels      |   `education_0`   | `education_1`  | `education_2`   |
 |:---------------|:-----------------------|:-------------:|:-------------:|:-----------:|
 |`education == 0` | no primary school      | 1             | 0             | 0           |
 |`education == 1` | primary school only    | 0             | 1             | 0           |
@@ -228,11 +305,11 @@ Disjoint indicator variables are derived from categoricals by generating k new v
 
 ### Example of indicators in a model
 
-Here, we will build a linear risk regression model for education, coded with indicators
+Here, we will build a linear risk regression model for education, coded with indicators.
 
 * Risk(preterm | education) = $\beta_0 + \beta_1X_1 + \beta_2X_2$
    
-    where X~1~ = `ed_primary` and X~2~ = `ed_post` and the referent category is no primary school
+    where $X_1$~ = `ed_primary` and $X_2$~ = `ed_post` and the referent category is no primary school
 
 
 * In this model
@@ -243,11 +320,9 @@ Here, we will build a linear risk regression model for education, coded with ind
 \n
 * To calculate RDs with "no primary school" as the reference group and "primary school only" as the index group:
 
-    __RD[primary vs. no primary]:__
-
 $$
 \begin{eqnarray}
-&=& R_1 - R_0\\
+RD[primary\ vs.\ no\ primary]&=& R_1 - R_0\\
 &=& [\beta_0 + 1*\beta_1 + 0*\beta_2] - [\beta_0 + 0*\beta_1 + 0*\beta_2]\\
 &=& [\beta_0 + \beta_1] - [\beta_0] = \beta_1
 \end{eqnarray}
@@ -259,13 +334,13 @@ $$
 
 $$
 \begin{eqnarray}
-&=& R_2 - R_0\\
+RD[post\ primary\ vs.\ no\ primary]&=& R_2 - R_0\\
 &=& [\beta_0 + 0*\beta_1 + 1*\beta_2] - [\beta_0 + 0*\beta_1 + 0*\beta_2]\\
 &=& [\beta_0 + 1* \beta_2] - [\beta_0] = \beta_2
 \end{eqnarray}
 $$
 
-* RR and OR are calculated similarly
+* Risk Ratio and Odds Ratio are calculated similarly
 
 ### Generate indicator variables in R:
 
@@ -273,7 +348,7 @@ There are at least 3 ways to make or model disjoint indicator variables in R.
 
 #### Option 1: Manual indicator variables
 
-For __Task 2__ in this lab, we would like you to manually construct indicator variables. You can use `mutate()` and `case_when()` or `ifelse()` to create conditional statements that transform your nice categorical variables to a matrix of ones and zeroes. Here is an example of how we would do this using `education` in our data frame:
+For __Task 2 and 3__ in this lab, we would like you to manually construct indicator variables. You can use `mutate()` and `case_when()` or `ifelse()` to create conditional statements that transform your nice categorical variables to a matrix of ones and zeroes. Here is an example of how we would do this using `education` in our data frame:
 
 ```{r echo = TRUE}
 kenya <- kenya %>%
@@ -290,27 +365,27 @@ This has created three new binary variables, `education_0`, `education_1`, and `
 kable(
   head(
     kenya %>%
-  select(education, education_0, education_1, education_2), 7))
+  select(education, education_0, education_1, education_2), 7), align = "c")
 ```
 
 
 
 #### Option 2: `fastDummies`
 
-For __Task 3__, feel free to try fastDummies. For example, if we want to create disjoint indicator variables for the strata of `education` by `bord5`, we might run the following code to create the interaction variable:
+For __Task 4__, feel free to try {fastDummies}. For example, if we want to create disjoint indicator variables for the strata of `education` by `bord5`, we might run the following code to create the interaction variable:
 
 ```{r echo = TRUE}
 kenya <- kenya %>%
   mutate(education_bord5 = interaction(education, bord5))
 ```
 
-This has created a new variable, `education_bord5`, that contains six categories, one for each unique combination of `education` and `bord5` (since 3 * 2 = 6):
+This has created a new variable, `education_bord5`, that contains six categories, one for each unique combination of `education` and `bord5` (since 3 levels * 2 levels = 6 unique combinations):
 
 ```{r}
 kable(
   head(
     kenya %>% select(education, bord5, education_bord5)
-    ))
+    ), align = "c")
 ```
 
 
@@ -326,7 +401,7 @@ kable(
   head(
     kenya %>%
       select(education_bord5, "education_bord5_0.0":"education_bord5_2.1")
-  )
+  ), align = "c"
 )
 ```
 
@@ -349,7 +424,7 @@ glm(formula = death ~ education_1 + education_2, family = binomial(link = "ident
 ```
 
 
-#### Reference Categories and Factor Variables
+#### Reference Categories and Factor-type Variables
 
 Remember last semester? 
 
@@ -384,9 +459,9 @@ levels(kenya$education)
 
 ## Log-linear and Logit models with `glm()`
 
-Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are helpful here
+Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are very helpful, and may be of interest to some students.
 
-In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Some code might be:
+In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Our code looked like this:
 
 ```{r echo = TRUE, eval = FALSE}
 m2_lm <- lm(weight~height, data=regdat)
@@ -398,9 +473,9 @@ Well, turns out, we can fit the same model using the `glm()` function. This will
 m2_glm <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
 ```
 
-You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the 'family' option and the link function using 'link'. 
+You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the `family = ` option and the link function using `link = `. 
 
-For Lab 2, our only response variable is death, which is binary, so our Family is going to be 'binomial'; however, our link function will differ depending on the measure of effect we want to estimate:
+For Lab 2, our only response variable is death, which is binary, so our `family` is going to be `"binomial"`; however, our link function will differ depending on the measure of effect we want to estimate:
 
 | Desired effect measure | Link function name |
 |:-----|:------:|
@@ -428,33 +503,54 @@ exp(coef(m3))
 Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
 </aside>
 
-The log-scale coefficient is interpreted as the change in the log-scale change in $y$ given a one-unit change in $x$. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of `education_1` (A mother with a Primary education) would result in a -0.07 reduced risk of death on the log scale.
+The log-scale coefficient is interpreted as the change in the log-scale change in $y$ given a one-unit change in $x$. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of `education_2` (A mother with a post-primary education) would result in a -0.526 reduced risk of death __on the log scale__.
 
 But once we have exponentiated our coefficients, we can interpret them on the risk ratio scale:
 
-According to our model, the exposure of Primary education (`education_1`) has a risk ratio of 0.93 (a 7% decrease in risk) when compared with the reference exposure of No education. 
+According to our model, the exposure of post-primary education (`education_2`) has a risk ratio of 0.59 (a 41% decrease in risk) when compared with the reference exposure of No education. 
+
+## Plotting risks versus exposures
+
+Refer back to the section on [using `predict.lm()` to generate predictions and confidence intervals](https://dghi-biostat.github.io/biostatlab/lab_02.html#generate-predicted-values-from-linear-models), where we generated upper and lower confidence limits from a model along with a model's predicted values.
+
+Once joined back to your original data, you can use those values to generate a scatter plot of the risks and upper and lower confidence limits, plotted against a predictor variable.
+
+### Run a model and predict
+
+Remember that in the section on predict.lm(), we used the following code to run a model, generate predictions and confidence intervals, and then join those values back to our original data:
 
 
-## Categorical vs. Continuous Coding
+```{r echo = TRUE, eval = FALSE}
+model <- lm(weight ~ height, data = regdat)
 
-Some exposure variables may be either analyzed as continuous or categorized according to:
+model_predict <- predict.lm(model, interval = "confidence")
 
-* customary or clinical cut points (e.g., body mass index (BMI)  
-* categories based on values used to classify people as ‘underweight’, ‘normal’, ‘overweight’ or ‘obese’)  
-* empirical cut points (e.g. tertiles or quartiles), a priori cut points relevant to biologic mechanisms  
-* potential public health interventions  
-* other factors of interest or by cut points used commonly in the literature (this would allow comparisons between your results and what has been published previously). 
+regdat <- cbind(regdat, model_predictions)
+```
 
-The least restrictive way to model continuous variables would be to estimate separate risks for each value (e.g. each year of maternal age). However, this approach would yield highly imprecise estimates and is not recommended.
+### Plot predictions
 
+We can use those values to plot our predictions (and their confidence intervals) against the primary predictor variable of interest (in this case, `height`).
 
-## Graphing risks versus exposures: categorical vars
+First, let's just plot our predictions
 
-[[TODO]]
+```{r echo = TRUE}
+p1 <- ggplot(data = regdat, aes(x = height, y = fit)) +
+  geom_line() +
+  geom_point()
+p1
+```
 
-## Assess effect measure modification
+We can add a confidence interval using the {ggplot2} function `geom_ribbon()`.
 
-[[TODO]]
+```{r echo = TRUE}
+p1 + geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue")
+```
+
+<aside>
+ When we map our aesthetics using `aes()`, we will need to specify a `ymin` and a `ymax` to determine the lower and upper bounds of the confidence intervals. In our data, these are currently named `lwr` and `upr`, respectively.
+</aside>
+
 
 ## The Likelihood Ratio Test (LRT)
 
@@ -482,8 +578,6 @@ LRT\ Statistic &=& (-2*LogLikelihood(reduced\_model)) - (-2*LogLikelihood(full\_
 $$
 
 The LRT statistic is distributed as a Chi-square with degrees of freedom:
-
-$df = (# variables in full model) – (# variables in the reduced model)$
 
 $$
 df = k_{full\ model} - k_{reduced\ model}
@@ -522,6 +616,15 @@ lrtest(lm_reduced, lm_full)
 ```
 
 
-## Evaluating the validity-precision trade-off assuming constancy
+## Categorical vs. Continuous Coding
 
+Some exposure variables may be either analyzed as continuous or categorized according to:
+
+* customary or clinical cut points (e.g., body mass index (BMI)  
+* categories based on values used to classify people as ‘underweight’, ‘normal’, ‘overweight’ or ‘obese’)  
+* empirical cut points (e.g. tertiles or quartiles), a priori cut points relevant to biologic mechanisms  
+* potential public health interventions  
+* other factors of interest or by cut points used commonly in the literature (this would allow comparisons between your results and what has been published previously). 
+
+The least restrictive way to model continuous variables would be to estimate separate risks for each value (e.g. each year of maternal age). However, this approach would yield highly imprecise estimates and is not recommended.
 
