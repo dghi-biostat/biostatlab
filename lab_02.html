@@ -2598,7 +2598,7 @@ Dictionaries
 <li><a href="#r-commands-for-models">R Commands for models</a>
 <ul>
 <li><a href="#generate-predicted-values-from-log-risk-models">Generate predicted values from log risk models</a></li>
-<li><a href="#generate-contrasts-from-ci-from-glm-models">Generate contrasts from CI from GLM models</a></li>
+<li><a href="#linear-combinations-from-glm-models">Linear Combinations from GLM models</a></li>
 </ul></li>
 <li><a href="#nominal-ordinal-and-disjoint-indicator-variables">Nominal, ordinal, and disjoint indicator variables</a>
 <ul>
@@ -2775,8 +2775,87 @@ Dictionaries
 <h2 id="r-commands-for-models">R Commands for models</h2>
 <h3 id="generate-predicted-values-from-log-risk-models">Generate predicted values from log risk models</h3>
 <p>[TODO]</p>
-<h3 id="generate-contrasts-from-ci-from-glm-models">Generate contrasts from CI from GLM models</h3>
-<p>[TODO]</p>
+<h3 id="linear-combinations-from-glm-models">Linear Combinations from GLM models</h3>
+<p>The <code>lincom()</code> function from package {biostat3} can be used to generate point estimates and confidence intervals for any combination of covariable values in the model; these are also referred to as contrasts.</p>
+<p>First, let’s use <code>glm()</code> to run a linear risk model to predict the risk of birth order on death:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>death</span> <span class='op'>~</span> <span class='va'>bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span>, family <span class='op'>=</span> <span class='st'>"gaussian"</span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>m1</span>
+</code></pre>
+</div>
+<pre><code>
+Call:  glm(formula = death ~ bord5, family = gaussian(link = &quot;identity&quot;), 
+    data = kenya)
+
+Coefficients:
+(Intercept)        bord5  
+    0.13699      0.01116  
+
+Degrees of Freedom: 99 Total (i.e. Null);  98 Residual
+Null Deviance:      12.04 
+Residual Deviance: 12.04    AIC: 78.07</code></pre>
+</div>
+<p>Here is our model equation as defined by the above output:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+R &amp;=&amp; \beta_0 + \beta_1*X \\
+death &amp;=&amp; (Intercept) + bord5*X\\
+&amp;=&amp; 0.1369863  + 0.0111618*X 
+\end{eqnarray}
+\]</span></p>
+<p>Let’s use the <code>lincom()</code> command to calculate the predicted risk of death for a child with birth order 1 - 4 (<code>bord5 == 0</code>):</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lincom</span><span class='op'>(</span>model <span class='op'>=</span> <span class='va'>m1</span>, specification <span class='op'>=</span> <span class='st'>"(Intercept) + 0*bord5"</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>                       Estimate     2.5 %    97.5 %    Chisq
+(Intercept) + 0*bord5 0.1369863 0.0565888 0.2173838 11.15232
+                        Pr(&gt;Chisq)
+(Intercept) + 0*bord5 0.0008392654</code></pre>
+</div>
+<p>Notice how we use the <code>specification =</code> argument to construct our linear combination by referring to the variables in our model. Since <span class="math inline">\(0 * bord5\)</span> will always result in 0, we can simplify our specification even further and achieve the same result:</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lincom</span><span class='op'>(</span>model <span class='op'>=</span> <span class='va'>m1</span>, specification <span class='op'>=</span> <span class='st'>"(Intercept)"</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>             Estimate     2.5 %    97.5 %    Chisq   Pr(&gt;Chisq)
+(Intercept) 0.1369863 0.0565888 0.2173838 11.15232 0.0008392654</code></pre>
+</div>
+<p>Now, let’s use <code>lincom()</code> to calculate the predicted risk of death for a child with birth order &gt;= 5 (<code>bord5 == 1</code>):</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lincom</span><span class='op'>(</span>model <span class='op'>=</span> <span class='va'>m1</span>, specification <span class='op'>=</span> <span class='st'>"(Intercept) + 1*bord5"</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>                       Estimate      2.5 %    97.5 %    Chisq
+(Intercept) + 1*bord5 0.1481481 0.01595099 0.2803453 4.824412
+                      Pr(&gt;Chisq)
+(Intercept) + 1*bord5 0.02805943</code></pre>
+</div>
+<p>Next, we can use lincom to calculate the risk difference of death for birth order &gt;= 5 vs. 1 - 4.</p>
+<p>Here is the model equation for risk difference in this example:</p>
+<p><span class="math display">\[
+RD = \beta_0 + \beta_1 - \beta_0
+\]</span> which reduces to <span class="math inline">\(RD = \beta_1\)</span>.</p>
+<p>In the <code>lincom()</code> command, we only need to include our parameter for <span class="math inline">\(\beta_1\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lincom</span><span class='op'>(</span>model <span class='op'>=</span> <span class='va'>m1</span>, specification <span class='op'>=</span> <span class='st'>"bord5"</span>, level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>        Estimate      2.5 %    97.5 %      Chisq Pr(&gt;Chisq)
+bord5 0.01116185 -0.1435632 0.1658869 0.01999157  0.8875606</code></pre>
+</div>
+<p>When you are working with log or logit risk models, use the argument <code>eform = TRUE</code> to generate estimates that are already exponentiated.</p>
+<aside>
+<code>eform</code> i.e. “exponentiated form”
+</aside>
+<p>You may have noticed that the estimates above are quite trivial. If you were paying attention, the estimate when <code>bord5 == 0</code> was identical to our intercept.</p>
+<p>With more complex, multivariable models, the <code>lincom()</code> command becomes very handy!</p>
 <h2 id="nominal-ordinal-and-disjoint-indicator-variables">Nominal, ordinal, and disjoint indicator variables</h2>
 <p>Categorical variables can be represented as having values 1, 2, 3, …, but one must be careful with such representations. Nominal variables have no inherent ordering (e.g., male = 0, female = 1, Kleinfelter’s = 2) and ordinal variables may be qualitatively ordered but may not have uniform linear spacing (e.g., low = 0, medium = 1, high = 2). Including such variables in models as linear terms means that the model is mis-specified and can lead to erroneous inference because the relationship between the outcome and categorical is assumed to be linear.</p>
 <h3 id="what-is-a-disjoint-indicator">What is a disjoint indicator</h3>
@@ -2861,9 +2940,9 @@ Dictionaries
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kenya</span> <span class='op'>&lt;-</span> <span class='va'>kenya</span> <span class='op'>%&gt;%</span>
   <span class='fu'>mutate</span><span class='op'>(</span>
-        education_0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"No primary"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
-        education_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"Primary only"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
-        education_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='st'>"Post-primary"</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+        education_0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+        education_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+        education_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>education</span> <span class='op'>==</span> <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2872,7 +2951,7 @@ Dictionaries
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">education</th>
+<th style="text-align: right;">education</th>
 <th style="text-align: right;">education_0</th>
 <th style="text-align: right;">education_1</th>
 <th style="text-align: right;">education_2</th>
@@ -2880,43 +2959,43 @@ Dictionaries
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Primary only</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Post-primary</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Post-primary</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Primary only</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Primary only</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">No primary</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Primary only</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
@@ -2938,41 +3017,41 @@ Dictionaries
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">education</th>
-<th style="text-align: left;">bord5</th>
+<th style="text-align: right;">education</th>
+<th style="text-align: right;">bord5</th>
 <th style="text-align: left;">education_bord5</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Primary only</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">1.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Post-primary</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">Post-primary.1-4 in Birth Order</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Post-primary</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">Post-primary.1-4 in Birth Order</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Primary only</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Primary only</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">1.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">No primary</td>
-<td style="text-align: left;">1-4 in Birth Order</td>
-<td style="text-align: left;">No primary.1-4 in Birth Order</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0.0</td>
 </tr>
 </tbody>
 </table>
@@ -2984,31 +3063,31 @@ Dictionaries
 </code></pre>
 </div>
 </div>
-<div class="layout-chunk" data-layout="1-page">
+<div class="layout-chunk" data-layout="l-page">
 <table>
 <colgroup>
-<col style="width: 10%" />
+<col style="width: 11%" />
 <col style="width: 14%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
 <col style="width: 14%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">education_bord5</th>
-<th style="text-align: right;">education_bord5_No primary.1-4 in Birth Order</th>
-<th style="text-align: right;">education_bord5_Primary only.1-4 in Birth Order</th>
-<th style="text-align: right;">education_bord5_Post-primary.1-4 in Birth Order</th>
-<th style="text-align: right;">education_bord5_No primary.5+ in Birth Order</th>
-<th style="text-align: right;">education_bord5_Primary only.5+ in Birth Order</th>
-<th style="text-align: right;">education_bord5_Post-primary.5+ in Birth Order</th>
+<th style="text-align: right;">education_bord5_0.0</th>
+<th style="text-align: right;">education_bord5_1.0</th>
+<th style="text-align: right;">education_bord5_2.0</th>
+<th style="text-align: right;">education_bord5_0.1</th>
+<th style="text-align: right;">education_bord5_1.1</th>
+<th style="text-align: right;">education_bord5_2.1</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
+<td style="text-align: left;">1.0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
@@ -3017,7 +3096,7 @@ Dictionaries
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Post-primary.1-4 in Birth Order</td>
+<td style="text-align: left;">2.0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
@@ -3026,25 +3105,25 @@ Dictionaries
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Post-primary.1-4 in Birth Order</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: left;">0.0</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: left;">0.0</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Primary only.1-4 in Birth Order</td>
+<td style="text-align: left;">1.0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
@@ -3053,7 +3132,7 @@ Dictionaries
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">No primary.1-4 in Birth Order</td>
+<td style="text-align: left;">0.0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -3065,7 +3144,7 @@ Dictionaries
 </table>
 </div>
 <h4 id="option-3-factor">Option 3: <code>factor()</code></h4>
-<p><strong>NOT RECOMMENDED FOR THIS LAB</strong> But feel free to use in your own practice in the future (This is what we did in 707 lab 1).</p>
+<p><strong>NOT RECOMMENDED FOR THIS LAB</strong> But feel free to use in your own practice in the future (This is what we did in 707 Lab 1).</p>
 <p>The functions <code>glm()</code> and <code>lm()</code> automatically treat <code>factor</code> type variables as disjoint indicator variables. So if you have factored the variable, you can simply enter the variable with the ‘lm’ or ‘glm’ commands.</p>
 <p>For example, the following two bits of code run the same regression model:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3102,14 +3181,14 @@ Dictionaries
 <p>In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Some code might be:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>weight</span><span class='op'>~</span><span class='va'>height</span>, data<span class='op'>=</span><span class='va'>regdat</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>m2_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>weight</span><span class='op'>~</span><span class='va'>height</span>, data<span class='op'>=</span><span class='va'>regdat</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Well, turns out, we can fit the same model using the <code>glm()</code> function. This will fit the same model but will use a <strong>likelihood-based</strong> estimation algorithm instead of SSE:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>weight</span> <span class='op'>~</span> <span class='va'>height</span>, data <span class='op'>=</span> <span class='va'>regdat</span>, family <span class='op'>=</span> <span class='st'>'guassian'</span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>'identity'</span><span class='op'>)</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>m2_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>weight</span> <span class='op'>~</span> <span class='va'>height</span>, data <span class='op'>=</span> <span class='va'>regdat</span>, family <span class='op'>=</span> <span class='st'>'guassian'</span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>'identity'</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -3141,27 +3220,29 @@ Dictionaries
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># fit model</span>
-<span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>death</span> <span class='op'>~</span> <span class='va'>education_1</span> <span class='op'>+</span> <span class='va'>education_2</span>, 
+<span class='va'>m3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>death</span> <span class='op'>~</span> <span class='va'>education_1</span> <span class='op'>+</span> <span class='va'>education_2</span>, 
           data <span class='op'>=</span> <span class='va'>kenya</span>, family <span class='op'>=</span> <span class='st'>'binomial'</span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>'log'</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># log-scale coefficients</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>m1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>m3</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>(Intercept) education_1 education_2 
-  -1.568616   -1.182919   -1.105533 </code></pre>
+-1.87180218 -0.07410797 -0.52609310 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># risk ratio-scale coefficients</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>m1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>m3</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>(Intercept) education_1 education_2 
-  0.2083333   0.3063830   0.3310345 </code></pre>
+  0.1538462   0.9285714   0.5909091 </code></pre>
 </div>
 <aside>
 Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
 </aside>
-<p>Once we have exponentiated our coefficients, we can interpret them</p>
+<p>The log-scale coefficient is interpreted as the change in the log-scale change in <span class="math inline">\(y\)</span> given a one-unit change in <span class="math inline">\(x\)</span>. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of <code>education_1</code> (A mother with a Primary education) would result in a -0.07 reduced risk of death on the log scale.</p>
+<p>But once we have exponentiated our coefficients, we can interpret them on the risk ratio scale:</p>
+<p>According to our model, the exposure of Primary education (<code>education_1</code>) has a risk ratio of 0.93 (a 7% decrease in risk) when compared with the reference exposure of No education.</p>
 <h2 id="categorical-vs.-continuous-coding">Categorical vs. Continuous Coding</h2>
 <p>Some exposure variables may be either analyzed as continuous or categorized according to:</p>
 <ul>
@@ -3233,8 +3314,7 @@ df = k_{full\ model} - k_{reduced\ model}
 </div>
 </div>
 <h2 id="evaluating-the-validity-precision-trade-off-assuming-constancy">Evaluating the validity-precision trade-off assuming constancy</h2>
-<p>TODO – <span class="citation" data-cites="Joe">@Joe</span>, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage…are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test. [<span class="citation" data-cites="potato">[@potato - yes, agreeed. let's hold off for Week1/lab2 and come back to this discussion next week!]</span>]</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

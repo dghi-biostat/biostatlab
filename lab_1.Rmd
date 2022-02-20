@@ -133,7 +133,7 @@ The code for creating histograms using `ggplot` is fairly straightforward, and w
 `starwars` is loaded into R every time you load the rest of the tidyverse package.
 </aside>
 
-```{r}
+```{r layout = "l-body-outset"}
 kable(head(starwars[,1:11]))
 ```
 

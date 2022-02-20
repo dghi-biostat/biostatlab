@@ -14,7 +14,7 @@ output: distill::distill_article
 ```{r eval = FALSE, echo = FALSE}
 # DELETE BEFORE PUBLISHING
 # get data
-kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya.rds")
+kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya[unfactored].rds")
 
 saveRDS(kenya %>% slice_sample(n = 100) %>% select(education, bord5, death), file = "files/ed_bord5.rds")
 
@@ -32,6 +32,7 @@ library(ggpubr)
 
 
 # used in lab?
+library(car)
 library(stringr)
 library(glm.predict)
 library(lmtest)
@@ -143,8 +144,70 @@ Confidence Limit Difference (CLD) and Confidence Limit Ratio (CLR) are quick and
 
 [TODO]
 
-### Generate contrasts from CI from GLM models
-[TODO]
+### Linear Combinations from GLM models
+
+The `lincom()` function from package {biostat3} can be used to generate point estimates and confidence intervals for any combination of covariable values in the model; these are also referred to as contrasts.
+
+First, let's use `glm()` to run a linear risk model to predict the risk of birth order on death:
+
+```{r echo = TRUE}
+m1 <- glm(death ~ bord5, data = kenya, family = "gaussian"(link = "identity"))
+
+m1
+```
+
+Here is our model equation as defined by the above output:
+
+$$
+\begin{eqnarray}
+R &=& \beta_0 + \beta_1*X \\
+death &=& (Intercept) + bord5*X\\
+&=& `r coef(m1)[1]`  + `r coef(m1)[2]`*X 
+\end{eqnarray}
+$$
+
+Let's use the `lincom()` command to calculate the predicted risk of death for a child with birth order 1 - 4 (`bord5 == 0`):
+
+```{r echo = TRUE, layout = "l-body-outset"}
+lincom(model = m1, specification = "(Intercept) + 0*bord5", level = 0.95)
+```
+
+Notice how we use the `specification = ` argument to construct our linear combination by referring to the variables in our model. Since $0 * bord5$ will always result in 0, we can simplify our specification even further and achieve the same result:
+
+```{r echo = TRUE, layout = "l-body-outset"}
+lincom(model = m1, specification = "(Intercept)", level = 0.95)
+```
+
+Now, let's use `lincom()` to calculate the predicted risk of death for a child with birth order >= 5 (`bord5 == 1`):
+
+```{r echo = TRUE, layout = "l-body-outset"}
+lincom(model = m1, specification = "(Intercept) + 1*bord5", level = 0.95)
+```
+
+Next, we can use lincom to calculate the risk difference of death for birth order >= 5 vs. 1 - 4.
+
+Here is the model equation for risk difference in this example:
+
+$$
+RD = \beta_0 + \beta_1 - \beta_0
+$$
+which reduces to $RD = \beta_1$. 
+
+In the `lincom()` command, we only need to include our parameter for $\beta_1$:
+
+```{r, echo = TRUE, layout = "l-body-outset"}
+lincom(model = m1, specification = "bord5", level = 0.95)
+```
+
+When you are working with log or logit risk models, use the argument `eform = TRUE` to generate estimates that are already exponentiated.
+
+<aside>
+`eform` i.e. "exponentiated form"
+</aside>
+
+You may have noticed that the estimates above are quite trivial. If you were paying attention, the estimate when `bord5 == 0` was identical to our intercept. 
+
+With more complex, multivariable models, the `lincom()` command becomes very handy!
 
 ## Nominal, ordinal, and disjoint indicator variables
 
@@ -215,9 +278,9 @@ For __Task 2__ in this lab, we would like you to manually construct indicator va
 ```{r echo = TRUE}
 kenya <- kenya %>%
   mutate(
-        education_0 = ifelse(education == "No primary", 1, 0),
-        education_1 = ifelse(education == "Primary only", 1, 0),
-        education_2 = ifelse(education == "Post-primary", 1, 0))
+        education_0 = ifelse(education == 0, 1, 0),
+        education_1 = ifelse(education == 1, 1, 0),
+        education_2 = ifelse(education == 2, 1, 0))
 ```
 
 
@@ -258,11 +321,11 @@ Then we can use `dummy_cols()` to create the disjoint indicator variables associ
 kenya <- dummy_cols(kenya, select_columns = "education_bord5")
 ```
 
-```{r layout = "1-page"}
+```{r layout = "l-page"}
 kable(
   head(
     kenya %>%
-      select(education_bord5, "education_bord5_No primary.1-4 in Birth Order":"education_bord5_Post-primary.5+ in Birth Order")
+      select(education_bord5, "education_bord5_0.0":"education_bord5_2.1")
   )
 )
 ```
@@ -271,7 +334,7 @@ kable(
 
 
 #### Option 3: `factor()`
-__NOT RECOMMENDED FOR THIS LAB__ But feel free to use in your own practice in the future (This is what we did in 707 lab 1).
+__NOT RECOMMENDED FOR THIS LAB__ But feel free to use in your own practice in the future (This is what we did in 707 Lab 1).
 
 The functions `glm()` and `lm()` automatically treat `factor` type variables as disjoint indicator variables. So if you have factored the variable, you can simply enter the variable with the 'lm' or 'glm' commands. 
 
@@ -326,13 +389,13 @@ Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculat
 In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Some code might be:
 
 ```{r echo = TRUE, eval = FALSE}
-m1 <- lm(weight~height, data=regdat)
+m2_lm <- lm(weight~height, data=regdat)
 ```
 
 Well, turns out, we can fit the same model using the `glm()` function. This will fit the same model but will use a __likelihood-based__ estimation algorithm instead of SSE: 
 
 ```{r echo = TRUE, eval = FALSE}
-m1 <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
+m2_glm <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
 ```
 
 You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the 'family' option and the link function using 'link'. 
@@ -349,22 +412,27 @@ Note that we will have to __*exponentiate*__ our regression coefficients for the
 
 ```{r echo = TRUE}
 # fit model
-m1 <- glm(death ~ education_1 + education_2, 
+m3 <- glm(death ~ education_1 + education_2, 
           data = kenya, family = 'binomial'(link = 'log'))
 
 # log-scale coefficients
-coef(m1)
+coef(m3)
 
 # risk ratio-scale coefficients
-exp(coef(m1))
+exp(coef(m3))
 
 ```
+
 
 <aside>
 Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
 </aside>
 
-Once we have exponentiated our coefficients, we can interpret them
+The log-scale coefficient is interpreted as the change in the log-scale change in $y$ given a one-unit change in $x$. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of `education_1` (A mother with a Primary education) would result in a -0.07 reduced risk of death on the log scale.
+
+But once we have exponentiated our coefficients, we can interpret them on the risk ratio scale:
+
+According to our model, the exposure of Primary education (`education_1`) has a risk ratio of 0.93 (a 7% decrease in risk) when compared with the reference exposure of No education. 
 
 
 ## Categorical vs. Continuous Coding
@@ -456,5 +524,4 @@ lrtest(lm_reduced, lm_full)
 
 ## Evaluating the validity-precision trade-off assuming constancy
 
-TODO -- @Joe, I almost feel like this part of the guide would be better off as its own standalone document or webpage. What do you think? Just seems that this really useful information would get buried on the help page. Maybe would be useful to think about how students view this webpage...are they accessing it to get help with code, or does it also provide vital information on how to interpret a given test.
-[[@potato - yes, agreeed. let's hold off for Week1/lab2 and come back to this discussion next week!]]
+
