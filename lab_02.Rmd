@@ -73,7 +73,7 @@ xaringanExtra::use_clipboard()
 
 ### Data and assignment
 
-The assignment and dataset are both available on [Sakai](sakai.duke.edu)
+The assignment and dataset are both available on [Sakai](https://youtu.be/dQw4w9WgXcQ)
 
 
 ### Packages
