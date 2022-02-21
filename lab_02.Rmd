@@ -12,16 +12,6 @@ output: distill::distill_article
 ---
 
 
-```{r eval = FALSE, echo = FALSE}
-# DELETE BEFORE PUBLISHING
-# get data
-kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 2/r/Lab_2_kenya[unfactored].rds")
-
-saveRDS(kenya %>% slice_sample(n = 100) %>% select(education, bord5, death), file = "files/ed_bord5.rds")
-
-```
-
-
 ```{r setup0, echo = FALSE, include = FALSE}
 
 knitr::opts_chunk$set(echo = FALSE)
