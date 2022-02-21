@@ -102,7 +102,20 @@ image_link("images/lab02_modelforms.png", url = "files/lab02_modelforms.pdf")
 
 ::: {.panel}
 
-#### Others
+#### Effect Measure Modification
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_EMM.png", url = "files/lab02_EMM.pdf")
+```
+
+:::
+::: {.panel}
+
+#### Precision and Validity
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_precisionvalidity.png", url = "files/lab02_precisionvalidity.pdf")
+```
 
 :::
 :::
@@ -407,7 +420,7 @@ The functions `glm()` and `lm()` automatically treat `factor` type variables as 
 
 For example, the following two bits of code run the same regression model:
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 # 1. using factor-type variable for education:
 glm(formula = death ~ factor(education), family = binomial(link = "identity"), data = kenya)
 
