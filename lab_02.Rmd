@@ -384,9 +384,19 @@ kenya <- kenya %>%
   mutate(education_bord5 = interaction(education, bord5))
 ```
 
-This has created a new variable, `education_bord5`, that contains six categories, one for each unique combination of `education` and `bord5` (since 3 levels * 2 levels = 6 unique combinations):
+This has created a new variable, `education_bord5`, that contains 6 unique categories, one for each of the 6 possible unique combinations of `bord5` and `education`:
 
-```{r}
+| `bord5` | `education` | Interaction Term |
+|:-------:|:-----------:|:----------------:|
+| 0 | 0 | "0.0" |
+| 0 | 1 | "0.1" |
+| 0 | 2 | "0.2" |
+| 1 | 0 | "1.0" |
+| 1 | 1 | "1.1" |
+| 1 | 2 | "1.2" |
+
+
+```{r eval = FALSE}
 kable(
   head(
     kenya %>% select(education, bord5, education_bord5)
@@ -395,7 +405,7 @@ kable(
 
 
 
-Then we can use `dummy_cols()` to create the disjoint indicator variables associated with this interaction variable:
+Next, we can use `dummy_cols()` to create the disjoint indicator variables associated with this interaction variable:
 
 ```{r echo = TRUE}
 kenya <- dummy_cols(kenya, select_columns = "education_bord5")
@@ -410,7 +420,7 @@ kable(
 )
 ```
 
-
+Since we are also fitting main effect parameters in our model (`bord5` and `education`), any combination of `education_bord5` that contains 0 is redundant. Once we construct dummy variables, we will only want to include in our model those dummy variables that do not contain 0.
 
 
 #### Option 3: `factor()`
