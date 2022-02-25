@@ -153,8 +153,69 @@ In the table above:
 + __Link__ is the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
 
 #### Additional resources:
-
+[[@potato - link is broken]]
 [Here is a PDF of model forms and estimation for linear, log and logit risk models.]("files/lab02_modelforms.pdf")
+
+
+## Log-linear and Logit models with `glm()`
+
+Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are very helpful, and may be of interest to some students.
+
+In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Our code looked like this:
+
+```{r echo = TRUE, eval = FALSE}
+m2_lm <- lm(weight~height, data=regdat)
+```
+
+Well, turns out, we can fit the same model using the `glm()` function. This will fit the same model but will use a __likelihood-based__ estimation algorithm instead of SSE: 
+
+```{r echo = TRUE, eval = FALSE}
+m2_glm <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
+```
+
+You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the `family = ` option and the link function using `link = `. 
+
+For Lab 2, our only response variable is death, which is binary, so our `family` is going to be `"binomial"`; however, our link function will differ depending on the measure of effect we want to estimate:
+
+| Desired effect measure | Link function name |
+|:-----|:------:|
+| Risk difference | `link = "identity"` |
+| Risk ratio | `link = "log"` |
+| Odds ratio | `link = "logit"` |
+
+Note that we will have to __*exponentiate*__ our regression coefficients for the log and logit models since these models are fit on the log scale;  For example, here is a model on the log-linear scale:
+```{r echo = FALSE}
+kenya <- kenya %>%
+  mutate(
+        education_0 = ifelse(education == 0, 1, 0),
+        education_1 = ifelse(education == 1, 1, 0),
+        education_2 = ifelse(education == 2, 1, 0))
+```
+
+```{r echo = TRUE}
+# fit model
+m3 <- glm(death ~ education_1 + education_2, 
+          data = kenya, family = 'binomial'(link = 'log'))
+
+# log-scale coefficients
+coef(m3)
+
+# risk ratio-scale coefficients
+exp(coef(m3))
+
+```
+
+
+<aside>
+Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
+</aside>
+
+The log-scale coefficient is interpreted as the change in the log-scale change in $y$ given a one-unit change in $x$. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of `education_2` (A mother with a post-primary education) would result in a -0.526 reduced risk of death __on the log scale__.
+
+But once we have exponentiated our coefficients, we can interpret them on the risk ratio scale:
+
+According to our model, the exposure of post-primary education (`education_2`) has a risk ratio of 0.59 (a 41% decrease in risk) when compared with the reference exposure of No education. 
+
 
 ## Confidence Limit Difference and Ratios (CLD/CLR)
 
@@ -178,17 +239,17 @@ The only requirement is that the `newdata` column names need to be identical to 
 #### How to use `predict.lm()`
 
 First, let's make a model object:
-
+[[@potato - i changed lm to glm in a few places below.]]
 ```{r echo = TRUE}
-model <- lm(weight ~ height, data = regdat)
+model <- glm(weight ~ height, data = regdat)
 ```
 
-Next, use `predict.lm()` to generate predicted values and their confidence intervals using our model object:
+Next, use `predict.glm()` to generate predicted values and their confidence intervals using our model object:
 
 ```{r echo = TRUE}
-model_predict <- predict.lm(model, interval = "confidence")
+model_predict <- predict.glm(model, interval = "confidence")
 ```
-
+[[@potato - code below did not work for me. ]]
 ```{r}
 kable(
   head(
@@ -212,9 +273,6 @@ kable(
 ```
 
 
-
-
-
 ### Linear Combinations from GLM models
 
 The `lincom()` function from package {biostat3} can be used to generate point estimates and confidence intervals for any combination of covariable values in the model; these are referred to as __contrasts__.
@@ -224,7 +282,7 @@ The `lincom()` function from package {biostat3} can be used to generate point es
 First, let's use `glm()` to run a linear risk model to predict the risk of birth order on death:
 
 ```{r echo = TRUE}
-m1 <- glm(death ~ bord5, data = kenya, family = "gaussian"(link = "identity"))
+m1 <- glm(death ~ bord5, data = kenya, family =binomial(link = "identity"))
 
 m1
 ```
@@ -471,59 +529,6 @@ levels(kenya$education)
 ```
 
 
-
-## Log-linear and Logit models with `glm()`
-
-Note: [this SO question](https://stackoverflow.com/questions/41384075/r-calculate-and-interpret-odds-ratio-in-logistic-regression) and [this stackexchange query](https://stats.stackexchange.com/questions/8661/logistic-regression-in-r-odds-ratio) are very helpful, and may be of interest to some students.
-
-In 707 Lab 1, you may remember we fit a linear regression model using the sum of squared errors algorithm (SSE). Our code looked like this:
-
-```{r echo = TRUE, eval = FALSE}
-m2_lm <- lm(weight~height, data=regdat)
-```
-
-Well, turns out, we can fit the same model using the `glm()` function. This will fit the same model but will use a __likelihood-based__ estimation algorithm instead of SSE: 
-
-```{r echo = TRUE, eval = FALSE}
-m2_glm <- glm(weight ~ height, data = regdat, family = 'guassian'(link = 'identity'))
-```
-
-You will notice that in order to use the 'glm' function, we also have to specify the distribution of the response variable using the `family = ` option and the link function using `link = `. 
-
-For Lab 2, our only response variable is death, which is binary, so our `family` is going to be `"binomial"`; however, our link function will differ depending on the measure of effect we want to estimate:
-
-| Desired effect measure | Link function name |
-|:-----|:------:|
-| Risk difference | `link = "identity"` |
-| Risk ratio | `link = "log"` |
-| Odds ratio | `link = "logit"` |
-
-Note that we will have to __*exponentiate*__ our regression coefficients for the log and logit models since these models are fit on the log scale;  For example, here is a model on the log-linear scale:
-
-```{r echo = TRUE}
-# fit model
-m3 <- glm(death ~ education_1 + education_2, 
-          data = kenya, family = 'binomial'(link = 'log'))
-
-# log-scale coefficients
-coef(m3)
-
-# risk ratio-scale coefficients
-exp(coef(m3))
-
-```
-
-
-<aside>
-Note that we do not have to exponentiate our regression coefficients from the linear risk model since there is no transformation.
-</aside>
-
-The log-scale coefficient is interpreted as the change in the log-scale change in $y$ given a one-unit change in $x$. In the above example, since our model variables are disjoint and therefore binary, we would say that the presence of `education_2` (A mother with a post-primary education) would result in a -0.526 reduced risk of death __on the log scale__.
-
-But once we have exponentiated our coefficients, we can interpret them on the risk ratio scale:
-
-According to our model, the exposure of post-primary education (`education_2`) has a risk ratio of 0.59 (a 41% decrease in risk) when compared with the reference exposure of No education. 
-
 ## Plotting risks versus exposures
 
 Refer back to the section on [using `predict.lm()` to generate predictions and confidence intervals](https://dghi-biostat.github.io/biostatlab/lab_02.html#generate-predicted-values-from-linear-models), where we generated upper and lower confidence limits from a model along with a model's predicted values.
@@ -535,10 +540,10 @@ Once joined back to your original data, you can use those values to generate a s
 Remember that in the section on predict.lm(), we used the following code to run a model, generate predictions and confidence intervals, and then join those values back to our original data:
 
 
-```{r echo = TRUE, eval = FALSE}
+```{r echo = TRUE}
 model <- lm(weight ~ height, data = regdat)
 
-model_predict <- predict.lm(model, interval = "confidence")
+model_predictions <- predict.lm(model, interval = "confidence")
 
 regdat <- cbind(regdat, model_predictions)
 ```
