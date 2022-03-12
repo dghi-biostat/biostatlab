@@ -1,0 +1,393 @@
+---
+title: "Lab 04 (707) - Time to Event Analysis"
+description: | 
+    __Lab 04 Due:__ April 15th, 2022 by 14:00 ET 
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+
+```{r setup0, echo = FALSE, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tidyverse)
+library(xaringanExtra)
+library(emo)
+library(ggpubr)
+
+
+# used in lab?
+library(tidyverse)
+library(survival)
+library(survminer)
+library(epiR)
+library(fmsb)
+library(biostat3)
+
+kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 4/r/lab4_kenya.rds")
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+## LAB MATERIALS
+
+### Lab 02 Goals
+
+* Describe survival time data utilizing summary statistics and graphical methods
+* Fit Cox proportional hazards regression models with fixed and time-varying covariates
+* Assess appropriateness of the assumptions of the Cox model
+* Calculate incidence rates and ratios using Poisson methods
+
+
+### Lab 02 Grading scheme
+
+| Competency | Points |
+|:-----------|:------:|
+|   .Rmd file runs without error |   10  |
+|   Table 1   |   5  |
+|   Table 2  |   12   |
+|   Table 3  |   8  |
+|   Figures 1 - 10   |   30 (3 points each)  |
+| Short answer questions| 20 (5 points each) |
+|   __Total__  |  __85__  |
+
+### Data and assignment
+
+The assignment and dataset are both available on [Sakai](https://youtu.be/dQw4w9WgXcQ)
+
+__NOTE ON THE DATASET:__ As you load the data into R, be sure to notice that this is the *original*, DHS dataset, with 22,534 observations (i.e. from before we closed the cohort).
+
+
+### Packages
+
+* {tidyverse}
+* {survival}
+* {survminer}
+* {epiR}
+* {fmsb}
+* {biostat3}
+
+### Readings and Resources 
+
+```{r panelset, echo=FALSE}
+# activate panelset feature
+xaringanExtra::use_panelset()
+
+
+# this function overlays a hyperlink on an image
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
+```
+
+::: {.panelset}
+::: {.panel}
+
+#### Model Forms
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_modelforms.png", url = "files/lab02_modelforms.pdf")
+```
+
+:::
+
+::: {.panel}
+
+#### Effect Measure Modification
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_EMM.png", url = "files/lab02_EMM.pdf")
+```
+
+:::
+::: {.panel}
+
+#### Precision and Validity
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab02_precisionvalidity.png", url = "files/lab02_precisionvalidity.pdf")
+```
+
+:::
+:::
+
+
+## Part 1: Survival Analysis
+
+The methods we have used so far have assumed a closed cohort—no loss to follow-up or censoring. In the event that we have loss to follow up (or even if we don’t), we can analyze the time-to-death using methods from survival analysis. The most common approach for this is to utilize the Cox proportional hazards regression model. We will first focus on how to describe time-to-event data, then we will turn to how to analyze and check assumptions for the Cox proportional hazards model.
+
+### Survival data
+
+Survival analysis in R is similar to other types of analysis with the exception that you have to first tell R that you are working with time-to-event data. Before we begin to analyze survival data, we need to create a `Surv()` data object.
+
+This is a special data type, unique to the {survival} package. It simultaneously indicates an observation's time at risk, and whether or not it was censored. 
+
+The `Surv()` function takes two objects from our data frame, the subject's follow-up time and whether or not they experienced the event. 
+
+In the present analysis, that information is stored in our variables `time` (how many months the child survived after birth) and `death`, respectively. We can create this object as a new variable in our data frame using `mutate()`:
+
+```{r echo = TRUE, eval = TRUE}
+kenya <- kenya %>%
+      mutate(surv_object = Surv(time = time, event = death))
+```
+
+Be sure to inspect that new `Surv()` object. Here's how it appears next to our variables for `time` and `death`:
+
+```{r eval = TRUE, echo = FALSE}
+kable(
+  head(
+    kenya %>%
+      dplyr::select(time, death, surv_object), 
+  12)
+)
+```
+
+We can then use our `Surv()` object to build a `survfit()` time-to-event model, which is parameterized just like in the function `lm()`. 
+
+```{r echo = TRUE, eval = FALSE}
+surv_bord5 <- survfit(surv_object ~ bord5, data = kenya)
+```
+
+If we inspect this model, we'll see that it is the tabular representation of a survival curve. Use `summary()` to inspect it for yourself:
+
+```{r eval = FALSE, echo = TRUE}
+summary(surv_bord5)
+```
+
+The summary of `surv_bord5` will show us a tabulation of the cohort's survival probability at each time-step, along with how many were at risk and the number of events in that interval.
+
+### Describing Survival Data
+
+Survival data can be described both graphically and analytically. Measures such as total time at risk, number of subjects and median survival time are common values reported in survival analysis reports. 
+
+If we `print()` the object, we receive a brief set of summary statistics that would suffice for a good portion of Table 1. But median values are NA. And there's no mean. Oh no! 
+
+```{r}
+print(surv_bord5)
+```
+
+<aside>
+[This Stats Exchange post](https://stats.stackexchange.com/questions/402432/why-median-is-na-for-some-of-the-group-outcomes-in-survival-analysis) explains why. Basically, our data doesn't have enough events to calculate a median.
+</aside>
+
+
+To fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
+
+
+### Kaplan-Meier Curves
+
+Graphically, Kaplan-Meier curves are plots of the probability of survival as a function of time. These are often presented for each level of the primary exposure variable and are usually unadjusted (although adjusted KM curves are possible).
+
+The package {survminer} contains plotting functions that interact with `survfit()` objects to plot survival curves. The syntax is a bit different than {ggplot2}, but the concept is the same.
+
+```{r echo = TRUE, eval = TRUE}
+ggsurvplot(fit = surv_bord5, data = kenya,
+           ylim = c(.8, 1),
+           conf.int = TRUE,
+           xlab = "Time since birth (months)",
+           ylab = "Probability of Survival",
+           title = "FIGURE 1: Survival Probability by birth order",
+           legend = "bottom", # this specifies legend position
+           legend.title = "Birth Order (bord5)",
+           legend.labs = c("1-4", "5+")
+        )
+```
+
+<aside>
+For more plotting options of `ggsurvplot()`, check out [this link](http://www.sthda.com/english/wiki/survminer-r-package-survival-data-analysis-and-visualization)
+</aside>
+
+### Cox Proportional Hazards Models
+
+[@joe should we include a PDF here with more details on Coxph? similar to lab 2/3 PDF resources]
+
+In R, Cox PH models are parameterized just like the `survfit()` function, in that they take a `Surv()` object as the response variable. However, they're different in their output. The output is similar to the familiar regression output, with coefficients.
+
+```{r echo = TRUE, eval = TRUE}
+cox_bord5 <- coxph(Surv(time, death) ~ bord5, data = kenya)
+
+summary(cox_bord5)
+```
+
+#### Adjusted models
+
+To estimate the effect of `bord5`, adjusting for maternal education (coded with disjoint indicator variables), we would use the following code:
+
+```{r echo = TRUE, eval = FALSE}
+cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 + 
+      education_c2 + education_c3, 
+      data = kenya)
+```
+
+#### Violation of the Proportional Hazards Assumption
+
+The standard Cox proportional hazards model assumes that the effect of a covariate on the time to an event (e.g. bord5) remains the same across follow-up (i.e., is proportional or constant over time). This might not be a reasonable assumption. We can evaluate if our data is consistent with this assumption through graphical or test-based methods.
+
+A common graphical method is to plot a transformation of survival for categories of a variable (S(t), the probability of not having the event) against the natural logarithm of follow-up time. In particular, the ln(-ln(S(t)) for two categories of a given variable should remain fairly parallel in a loose sense (never cross, although the lines may not be perfectly straight). 
+
+If two lines cross, or appear to be converging (or diverging) even outside of the range of time used, then this can indicate that the proportional hazards assumption may not be reasonable and you should explore estimating an effect that varies over time. 
+
+These plots are only useful for categorical variables and cannot be utilized for continuous variables.
+
+In R, we generate this type of plot similar to Kaplan Meier plots. But since we're using data from our `coxph()` model objects, we first need to convert that model object to a survival object (using `survfit()`) that can be recognized by `ggsurvplot()`:
+
+```{r}
+surv_bord5_ed <- survfit(cox_bord5, data = kenya)
+```
+
+We can then generate a log-log plot with similar code for `ggsurvplot()`, except we need to set our function. Its default gives the survival probability, but here we will set `fun = "cloglog"`. 
+
+```{r echo = TRUE, eval = TRUE}
+ggsurvplot(surv_bord5, fun = "cloglog",
+           conf.int = TRUE,
+           xlab = "Time (in months) using log",
+           ylab = "log-log survival",
+           title = "FIGURE 6: log-log curves by bord5",
+           legend = "bottom", # this specifies legend position
+           legend.title = "Birth Order (bord5)",
+           legend.labs = c("1-4", "5+"))
+```
+
+#### Plotting adjusted models
+
+You might notice that if we tried to plot the adjusted model from above, the plot appears unstratified:
+
+```{r echo = TRUE, eval = TRUE}
+surv_bord5_ed <- survfit(cox_bord5_ed, data = kenya)
+
+ggsurvplot(surv_bord5_ed, fun = "cloglog",
+           conf.int = TRUE,
+           xlab = "Time (in months) using log",
+           ylab = "log-log survival",
+           title = "FIGURE 6: log-log curves by bord5")
+
+```
+
+The `strata()` function allows us to indicate which variable we wish to evaluate for the proportional hazards assumptions. This function is used *within* our model equation.
+
+So to get a proper stratified "cloglog" plot from our adjusted Cox model, we must re-build the model and specify which variable to stratify with `strata()`, then convert to `survfit()`, and __*only then*__ will it plot properly: 
+
+```{r}
+cox_bord5_ed_strata <- coxph(Surv(time, death) ~ strata(bord5) + 
+      education_c2 + education_c3 + male + mage + mage2, 
+      data = kenya)
+
+surv_bord5_ed_strata <- survfit(cox_bord5_ed_strata, data = kenya)
+
+ggsurvplot(surv_bord5_ed_strata, fun = "cloglog",
+           conf.int = TRUE,
+           xlab = "Time (in months) using log",
+           ylab = "log-log survival",
+           title = "FIGURE 6: log-log curves by bord5",
+           legend = "bottom", # this specifies legend position
+           legend.title = "Birth Order (bord5)",
+           legend.labs = c("1-4", "5+"))
+```
+
+If we compared these adjusted log-log survival curves with those of the plain model, where `bord5` is the only predictor (`formula = Surv(time, death) ~ bord5`), we would find that the plots are quite alike, but contain subtle differences in the alignment of the curves. 
+
+#### Formal statistical test of proportional hazards
+
+A formal statistical test of proportional hazards can be conducted by allowing the hazard ratio to vary across time, and testing if this time-varying effect is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function via which `time` is interacting with `bord5` in our model:
+
+```{r}
+cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
+      data = kenya,
+      tt = function(bord5, time,...)bord5*time)
+
+cox_tt
+```
+
+
+
+[[@joe 
+
+1. I figure we just give this piece of code as-is to students since it's a little tricky.
+
+2. Back when I had access to Stata, I ran this to obtain the estimate using Stata's algorithm. Here's the output that Stata gives:
+
+*******************
+
+model: stcox bord5 educ2 educ3 male rural mage mage2, tvc(bord5)
+
+output:
+
+  _t  | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+*tvc:*
+bord5 |   .9990971   .0014877    -0.61   0.544     .9961856    1.002017
+
+P value for the Stata model is still approximately the same same, with LR chi2(8) = 225.63
+
+*******************
+
+Notice that the R output is just *slightly* different from what is obtained in Stata. Does the `function()` in our R code need to be a little different? Is Stata interacting time and bord5 in a way that's not just multiplying them together?
+
+3. R's survival package has a nifty little function, `cox.zph()` which allows for the assessment of time-dependent *coefficients*, and therefore allows us to test the assumption of proportionality. 
+
+```{r}
+# first build our model
+cox_adj <- coxph(Surv(time, death) ~ bord5 + 
+      education_c2 + education_c3 + male + mage + mage2, 
+      data = kenya)
+cox_adj
+```
+
+```{r}
+# next run cox.zph() on our model, specifying the time transform function
+zp <- cox.zph(cox_adj, transform = function(time)log(time))
+zp
+```
+
+```{r}
+# we can also plot it
+plot(zp[1])
+abline(0,0, col = 2)
+abline(h = cox_adj$coefficients[1], col = 3, lwd = 2, lty = 2)
+```
+
+
+This is all taken from this tutorial,  which you might find super helpful anyways:
+https://cran.r-project.org/web/packages/survival/vignettes/timedep.pdf
+
+4. The link below is to a tutorial for a function called timeSplitter. Could be an interesting substitute task. You'll see that the current solution in R for estimating a time-varying effect is a little bit "black box". timeSplitter() could be a more hands-on type of task:
+
+https://cran.r-project.org/web/packages/Greg/vignettes/timeSplitter.html
+
+
+]]
+
+
+### Estimating Time-varying effects
+
+In the event that you find the proportional hazards assumption violated for a particular covariate, you should report the effect of the exposure at several time points (you can think of this as effect modification of the exposure by follow-up time). The specification of a Cox model with a time-varying effect for the covariate $X_1$ is:
+
+$$
+ln[h(t)] = ln[h_0(t) + \beta_1X_1 + \beta_2X_1*t]
+$$
+Notice that this is in a form similar to our original Cox regression formula, but contains an interaction term between our main effect and $t$, time.
+
+To estimate the hazard ratio for $X_1 = 1$ vs. $X_1 = 0$ at time $t = T$:
+
+$$
+\begin{eqnarray}
+ln(HR) &=& ln \left[ \frac{h(t|X=1, t=T)}{h(t|X=0, t = T)}\right] = \frac{ln[h(t|X=1, t=T)]}{ln[h(t|X=0, t = T)]}\\
+\\
+&=&[ln(h_0(T)) + \beta_1(1) + \beta_2(1)*T] - [ln(h_0(t)) + \beta_1(0) + \beta_2(0)*T]\\
+\\
+HR &=& exp(\beta_1 + \beta_2*T) \\
+95\%\  CI &=& exp[\beta_1 + \beta_2*T +/- (1.96 * SE(\beta_1 + \beta_2*T))]
+\end{eqnarray}
+$$
+
+
+## Part 2: Calculating incidence rates and related measures of association
+
+
+
+
