@@ -153,8 +153,8 @@ In the table above:
 + __Link__ is the functional relation between the dependent variable and the linear combination of covariates (which is referred to as the linear predictor: $\beta_0 + \beta_1X_1 + \beta_kX_k$)
 
 #### Additional resources:
-[[@potato - link is broken]]
-[Here is a PDF of model forms and estimation for linear, log and logit risk models.]("files/lab02_modelforms.pdf")
+
+[Here is a PDF of model forms and estimation for linear, log and logit risk models.](files/lab02_modelforms.pdf)
 
 
 ## Log-linear and Logit models with `glm()`
@@ -184,6 +184,7 @@ For Lab 2, our only response variable is death, which is binary, so our `family`
 | Odds ratio | `link = "logit"` |
 
 Note that we will have to __*exponentiate*__ our regression coefficients for the log and logit models since these models are fit on the log scale;  For example, here is a model on the log-linear scale:
+
 ```{r echo = FALSE}
 kenya <- kenya %>%
   mutate(
@@ -239,7 +240,7 @@ The only requirement is that the `newdata` column names need to be identical to 
 #### How to use `predict.lm()`
 
 First, let's make a model object:
-[[@potato - i changed lm to glm in a few places below.]]
+
 ```{r echo = TRUE}
 model <- glm(weight ~ height, data = regdat)
 ```
@@ -249,7 +250,7 @@ Next, use `predict.glm()` to generate predicted values and their confidence inte
 ```{r echo = TRUE}
 model_predict <- predict.glm(model, interval = "confidence")
 ```
-[[@potato - code below did not work for me. ]]
+
 ```{r}
 kable(
   head(
