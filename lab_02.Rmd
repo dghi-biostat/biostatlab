@@ -1,5 +1,5 @@
 ---
-title: "Lab 02 (707)"
+title: "Lab 2 & 3 (707)"
 description: | 
     __Lab 02 Due:__ March 18, 2022 by 14:00 ET 
     <br></br>

@@ -1,5 +1,5 @@
 ---
-title: "Lab 01 (707)"
+title: "Lab 1 (707)"
 description: |
   __Due:__ February 18, 2022 by 14:00 ET
 date: "`r Sys.Date()`"
