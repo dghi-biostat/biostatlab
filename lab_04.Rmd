@@ -159,7 +159,7 @@ print(surv_bord5)
 
 
 To fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
-
+[[@potato - move this bit about Table 1 to before the surv function piece since they need to do this Table 1 first.]]
 
 ### Kaplan-Meier Curves
 
