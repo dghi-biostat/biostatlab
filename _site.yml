@@ -43,10 +43,8 @@ navbar:
         - text: '707 Labs'
         - text: "Lab 1"
           href: lab_01.html
-        - text: "Lab 2"
+        - text: "Lab 2 & 3"
           href: lab_02.html
-        #- text: "Lab 3"
-        #  href: lab_03.html
         #- text: "Lab 4"
         #  href: lab_4.html
     - text: "Submission Guidelines"
