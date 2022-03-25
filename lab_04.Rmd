@@ -159,7 +159,7 @@ print(surv_bord5)
 
 
 To fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
-
+[[@potato - move this bit about Table 1 to before the surv function piece since they need to do this Table 1 first.]]
 
 ### Kaplan-Meier Curves
 
@@ -187,6 +187,7 @@ For more plotting options of `ggsurvplot()`, check out [this link](http://www.st
 ### Cox Proportional Hazards Models
 
 [@joe should we include a PDF here with more details on Coxph? similar to lab 2/3 PDF resources]
+[[@potato - yes, i think so but it's not all that halpful since the equation is so simple yet so opaque. if you have time to copy/paste from old lab resource into new pdf that woudl be great. otherwise, i can work on it soon. i don't think it's critical for now though]]
 
 In R, Cox PH models are parameterized just like the `survfit()` function, in that they take a `Surv()` object as the response variable. However, they're different in their output. The output is similar to the familiar regression output, with coefficients.
 
@@ -205,10 +206,11 @@ cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 +
       education_c2 + education_c3, 
       data = kenya)
 ```
+[[@potato, can you please add code using factor() as well.]]
 
 #### Violation of the Proportional Hazards Assumption
 
-The standard Cox proportional hazards model assumes that the effect of a covariate on the time to an event (e.g. bord5) remains the same across follow-up (i.e., is proportional or constant over time). This might not be a reasonable assumption. We can evaluate if our data is consistent with this assumption through graphical or test-based methods.
+The standard Cox proportional hazards model assumes that the effect of a covariate on the time to an event (e.g. bord5) remains the same across follow-up (i.e., is proportional or constant over time). This might not be a reasonable assumption. We can evaluate if our data are consistent with this assumption through graphical or test-based methods.
 
 A common graphical method is to plot a transformation of survival for categories of a variable (S(t), the probability of not having the event) against the natural logarithm of follow-up time. In particular, the ln(-ln(S(t)) for two categories of a given variable should remain fairly parallel in a loose sense (never cross, although the lines may not be perfectly straight). 
 
@@ -309,7 +311,7 @@ P value for the Stata model is still approximately the same same, with LR chi2(8
 
 Notice that the R output is just *slightly* different from what is obtained in Stata. Does the `function()` in our R code need to be a little different? Is Stata interacting time and bord5 in a way that's not just multiplying them together?
 
-
+[[@potato - thanks for this. the answers are very similar. different software handle event date ties differently which may explain the discepancy but i think since it's so minor, we can ignore. but i should look to see how R handles ties. otherwise - the interaction term is simply a linear interaction so i think you are doing this correctly (same as Stata)!]]
 
 3. R's survival package has a nifty little function, `cox.zph()` which allows for the assessment of time-dependent *coefficients*, and therefore allows us to test the assumption of proportionality.
 
@@ -468,7 +470,7 @@ lincom(poisson_bord5, "(Intercept) + bord5", eform = TRUE)
 lincom(poisson_bord5, "bord5", eform = TRUE)
 ```
 
-Note that the exposure time is explicitly specified in the GLM options using `offset()`. We must use the natural log of `time` to generate the appropriate estimates.
+Note that the exposure time is explicitly specified in the GLM options using `offset()`. We must use the natural log of `time` to generate the appropriate estimates since our model is fit on the log scale.
 
 To generate estimates of Incidence Rates (IR) and Incidence Rate Ratios (IRR), you can use the `lincom()` command with your poisson models. 
 
