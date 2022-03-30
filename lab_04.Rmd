@@ -1,7 +1,7 @@
 ---
 title: "Lab 04 (707) - Time to Event Analysis"
 description: | 
-    __Lab 04 Due:__ April 15th, 2022 by 14:00 ET 
+    __Lab 04 Due:__ April 15th, 2022 by the start of your lab session
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -70,69 +70,46 @@ __NOTE ON THE DATASET:__ As you load the data into R, be sure to notice that thi
 * {fmsb}
 * {biostat3}
 
-### Readings and Resources 
-
-```{r panelset, echo=FALSE}
-# activate panelset feature
-xaringanExtra::use_panelset()
-
-
-# this function overlays a hyperlink on an image
-image_link <- function(image,url,...){
-  htmltools::a(
-    href=url,
-    htmltools::img(src=image,...)
-    )
-}
-```
-
-::: {.panelset}
-::: {.panel}
-
-#### Model Forms
-
-```{r echo = FALSE, layout = "shaded"}
-image_link("images/lab02_modelforms.png", url = "files/lab02_modelforms.pdf")
-```
-
-:::
-:::
 
 
 ## Survival Analysis
 
 The methods we have used so far have assumed a closed cohort—no loss to follow-up or censoring. In the event that we have loss to follow up (or even if we don’t), we can analyze the time-to-death using methods from survival analysis. The most common approach for this is to utilize the Cox proportional hazards regression model. We will first focus on how to describe time-to-event data, then we will turn to how to analyze and check assumptions for the Cox proportional hazards model.
 
-### Survival data
+### Describing survival data
 
-Survival analysis in R is similar to other types of analysis with the exception that you have to first tell R that you are working with time-to-event data. Before we begin to analyze survival data, we need to create a `Surv()` data object.
+Survival analysis in R is similar to other types of analysis with the exception that you have to first tell R that you are working with time-to-event data. Before we begin to analyze survival data and generate Kaplan-Meier curves, we need to create a `Surv()` data object.
 
 This is a special data type, unique to the {survival} package. It simultaneously indicates an observation's time at risk, and whether or not it was censored. 
 
-The `Surv()` function takes two objects from our data frame, the subject's follow-up time and whether or not they experienced the event. 
+The `Surv()` function takes two objects from our data frame: the subject's follow-up time and whether or not they experienced the event. 
 
-In the present analysis, that information is stored in our variables `time` (how many months the child survived after birth) and `death`, respectively. We can create this object as a new variable in our data frame using `mutate()`:
+In the present analysis, that information is stored in our variables `time` (how many months the child has survived after birth) and `death`, respectively. We can create this object as a new variable in our data frame using `mutate()`:
 
 ```{r echo = TRUE, eval = TRUE}
 kenya <- kenya %>%
-      mutate(surv_object = Surv(time = time, event = death))
+      mutate(surv_data = Surv(time = time, event = death))
 ```
 
-Be sure to inspect that new `Surv()` object. Here's how it appears next to our variables for `time` and `death`:
+Be sure to inspect that new `Surv()` column. Here's how it appears next to our variables for `time` and `death`:
 
 ```{r eval = TRUE, echo = FALSE}
 kable(
   head(
     kenya %>%
-      dplyr::select(time, death, surv_object), 
+      dplyr::select(time, death, surv_data), 
   12)
 )
 ```
 
+<aside>
+Note that `Surv()` can also be created as a standalone object and does not need to be attached to a data frame as a new column.
+</aside>
+
 We can then use our `Surv()` object to build a `survfit()` time-to-event model, which is parameterized just like in the function `lm()`. 
 
 ```{r echo = TRUE}
-surv_bord5 <- survfit(surv_object ~ bord5, data = kenya)
+surv_bord5 <- survfit(surv_data ~ bord5, data = kenya)
 ```
 
 If we inspect this model, we'll see that it is the tabular representation of a survival curve. Use `summary()` to inspect it for yourself:
@@ -147,7 +124,7 @@ The summary of `surv_bord5` will show us a tabulation of the cohort's survival p
 
 Survival data can be described both graphically and analytically. Measures such as total time at risk, number of subjects and median survival time are common values reported in survival analysis reports. 
 
-If we `print()` the object, we receive a brief set of summary statistics that would suffice for a good portion of Table 1. But median values are NA. And there's no mean. Oh no! 
+If we `print()` the `surv_fit()` object generated above, we receive a brief set of summary statistics that would suffice for a good portion of Table 1. But median values are NA. And there's no mean. Oh no! 
 
 ```{r}
 print(surv_bord5)
@@ -157,9 +134,7 @@ print(surv_bord5)
 [This Stats Exchange post](https://stats.stackexchange.com/questions/402432/why-median-is-na-for-some-of-the-group-outcomes-in-survival-analysis) explains why. Basically, our data doesn't have enough events to calculate a median.
 </aside>
 
-
-To fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
-[[@potato - move this bit about Table 1 to before the surv function piece since they need to do this Table 1 first.]]
+In view of this, to fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
 
 ### Kaplan-Meier Curves
 
@@ -167,7 +142,7 @@ Graphically, Kaplan-Meier curves are plots of the probability of survival as a f
 
 The package {survminer} contains plotting functions that interact with `survfit()` objects to plot survival curves. The syntax is a bit different than {ggplot2}, but the concept is the same.
 
-```{r echo = TRUE, eval = TRUE}
+```{r echo = TRUE, eval = TRUE, fig.height = 6, fig.width = 8}
 ggsurvplot(fit = surv_bord5, data = kenya,
            ylim = c(.8, 1),
            conf.int = TRUE,
@@ -186,8 +161,36 @@ For more plotting options of `ggsurvplot()`, check out [this link](http://www.st
 
 ### Cox Proportional Hazards Models
 
-[@joe should we include a PDF here with more details on Coxph? similar to lab 2/3 PDF resources]
-[[@potato - yes, i think so but it's not all that halpful since the equation is so simple yet so opaque. if you have time to copy/paste from old lab resource into new pdf that woudl be great. otherwise, i can work on it soon. i don't think it's critical for now though]]
+
+```{r panelset, echo=FALSE}
+# activate panelset feature
+xaringanExtra::use_panelset()
+
+
+# this function overlays a hyperlink on an image
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
+```
+
+::: {.panelset}
+::: {.panel}
+
+#### Reading - Hazard Ratios
+
+```{r echo = FALSE, layout = "shaded"}
+image_link("images/lab04_coxph.png", url = "files/lab04_coxph.pdf")
+```
+
+:::
+:::
+
+<aside>
+(Click on the thumbnail for further reading.)
+</aside>
 
 In R, Cox PH models are parameterized just like the `survfit()` function, in that they take a `Surv()` object as the response variable. However, they're different in their output. The output is similar to the familiar regression output, with coefficients.
 
@@ -206,7 +209,14 @@ cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 +
       education_c2 + education_c3, 
       data = kenya)
 ```
-[[@potato, can you please add code using factor() as well.]]
+
+Alternatively, we can parameterize education as a factor-type variable to obtain the same result:
+
+```{r echo = TRUE, eval = FALSE}
+cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 + factor(education), 
+      data = kenya)
+```
+
 
 #### Violation of the Proportional Hazards Assumption
 
@@ -256,7 +266,7 @@ The `strata()` function allows us to indicate which variable we wish to evaluate
 
 So to get a proper stratified "cloglog" plot from our adjusted Cox model, we must re-build the model and specify which variable to stratify with `strata()`, then convert to `survfit()`, and __*only then*__ will it plot properly: 
 
-```{r}
+```{r echo = TRUE}
 cox_bord5_ed_strata <- coxph(Surv(time, death) ~ strata(bord5) + 
       education_c2 + education_c3 + male + mage + mage2, 
       data = kenya)
@@ -279,69 +289,11 @@ If we compared these adjusted log-log survival curves with those of the plain mo
 
 A formal statistical test of proportional hazards can be conducted by allowing the hazard ratio to vary across time, and testing if this time-varying effect is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function by which `time` is interacting with `bord5` in our model:
 
-```{r}
+```{r echo = TRUE, eval = FALSE}
 cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
       data = kenya, 
       tt = function(bord5, time,...)bord5*log(time))
-cox_tt
 ```
-
-
-
-
-[[@joe 
-
-1. I figure we just give this piece of code as-is to students since it's a little tricky.
-
-2. Back when I had access to Stata, I ran this to obtain the estimate using Stata's algorithm. Here's the output that Stata gives:
-
-*******************
-
-model: stcox bord5 educ2 educ3 male rural mage mage2, tvc(bord5)
-
-output:
-
-  _t  | Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
-*tvc:*
-bord5 |   .9990971   .0014877    -0.61   0.544     .9961856    1.002017
-
-P value for the Stata model is still approximately the same same, with LR chi2(8) = 225.63
-
-*******************
-
-Notice that the R output is just *slightly* different from what is obtained in Stata. Does the `function()` in our R code need to be a little different? Is Stata interacting time and bord5 in a way that's not just multiplying them together?
-
-[[@potato - thanks for this. the answers are very similar. different software handle event date ties differently which may explain the discepancy but i think since it's so minor, we can ignore. but i should look to see how R handles ties. otherwise - the interaction term is simply a linear interaction so i think you are doing this correctly (same as Stata)!]]
-
-3. R's survival package has a nifty little function, `cox.zph()` which allows for the assessment of time-dependent *coefficients*, and therefore allows us to test the assumption of proportionality.
-
-```{r}
-# first build our model
-cox_adj <- coxph(Surv(time, death) ~ bord5 + 
-      education_c2 + education_c3 + male + mage + mage2, 
-      data = kenya)
-cox_adj
-```
-
-```{r}
-# next run cox.zph() on our model, specifying the time transform function
-zp <- cox.zph(cox_adj, transform = "identity")
-zp
-```
-
-
-```{r}
-# we can also produce a plot of the Beta(t) time variability for each of the coefficients in our model
-plot(zp)
-```
-
-
-This is all taken from this tutorial,  which you might find super helpful anyways:
-https://cran.r-project.org/web/packages/survival/vignettes/timedep.pdf
-
-But keep in mind that students are also expected to estimate the effect of bord5 at 4 different time points using the adjusted model with the time-varying coefficient (task I.2.E). 
-
-]]
 
 
 ### Estimating Time-varying effects
@@ -376,7 +328,7 @@ Just as the generalized linear model can be used to estimate risks, risk differe
 $$
 ln(deaths) = \beta_0 + \beta_1X_1... + \beta_kX_k + ln(time)
 $$
-where family = "poisson" and link = "log".
+where __family = "poisson"__ and __link = "log"__.
 
 Notice that the specification of the Poisson model includes the number of deaths and the logarithm of the exposure time. Rearranging the above equation and a bit of algebra shows how this can be used to derive the incidence rate (IR):
 
@@ -388,30 +340,28 @@ ln(IR) &=& \beta_0 + \beta_1X_1...+\beta_kX_k
 \end{eqnarray}
 $$
 
-To estimate incidence rates for $X_1 = 0,1$:
+To estimate incidence rates for $X_1 = 0,1$:  
 
+ 
 $$
 \begin{eqnarray}
 ln[IR | X_1] &=& \beta_0 + \beta_1X_1\\
 \\
-when\  X_1 = 0: \\
+\textbf{when\  X_1 = 0:} \\
 ln(IR_0) &=& \beta_0 + \beta_1(0)\\
 IR_0 &=& exp(\beta_0)\\
-
 \\
-when\  X_1 = 1: \\
+\textbf{when\  X_1 = 1:} \\
 ln(IR_1) &=& \beta_0 + \beta_1(1)\\
 IR_1 &=& exp(\beta_1 + \beta_1)
-
 \end{eqnarray}
 $$
 
-To estimate the incidence rate ratio (IRR) for $X_1 = 1$ vs. $X_1 = 0$:
+To estimate the incidence rate ratio (IRR) for $X_1 = 1$ vs. $X_1 = 0$:  
 
 $$
 \begin{eqnarray}
 ln(IRR) = ln\left(\frac{IR_1}{IR_0}\right) &=& ln(IR_1) - ln(IR_0)\\
-
 &=&[\beta_0 + \beta_1(1)] - [\beta_0 + \beta_1(0)] \\
 &=& \beta_1
 \\
@@ -426,7 +376,7 @@ IRs and IRRs can be estimated through linear combinations of the regression para
 
 ### R commands for the tabular analysis of rates
 
-You can use the `pyears()` function to generate values that are useful in calculating incidence rates and incidence rate ratios
+You can use the `pyears()` function from the {survival} package to generate values that are useful in calculating incidence rates and incidence rate ratios
 
 ```{r echo = TRUE, eval = TRUE}
 ptime_bord5 <- pyears(Surv(time, death) ~ strata(bord5), 
@@ -456,12 +406,23 @@ ptime_bord5$pyears[2]
 The command for a Poisson regression model has the following form:
 
 ```{r echo = TRUE, eval = FALSE}
-poisson_bord5 <- glm(death ~ bord5 + offset(log(time)), family = "poisson"(link = "log"), data = kenya)
+poisson_bord5 <- glm(death ~ bord5 + offset(log(time)), 
+                     family = "poisson"(link = "log"), data = kenya)
+```
 
+Access the model summary just like any normal `glm()` model:
+
+```{r echo = TRUE, eval = FALSE}
 summary(poisson_bord5)
+```
 
+Note that the exposure time is explicitly specified in the GLM options using `offset()`. We must use the natural log of `time` to generate the appropriate estimates since our model is fit on the log scale (`link = "log")`.
+
+To generate estimates of Incidence Rates (IR) and Incidence Rate Ratios (IRR), you can use the `lincom()` command with your poisson models. 
+
+```{r echo = TRUE, eval = FALSE}
 # IR at intercept
-exp(coef(poisson_bord5))[1]
+lincom(poisson_bord5, "(Intercept)", eform = TRUE)
 
 # IR at bord5 == "5+"
 lincom(poisson_bord5, "(Intercept) + bord5", eform = TRUE)
@@ -469,9 +430,5 @@ lincom(poisson_bord5, "(Intercept) + bord5", eform = TRUE)
 # IRR and CI
 lincom(poisson_bord5, "bord5", eform = TRUE)
 ```
-
-Note that the exposure time is explicitly specified in the GLM options using `offset()`. We must use the natural log of `time` to generate the appropriate estimates since our model is fit on the log scale.
-
-To generate estimates of Incidence Rates (IR) and Incidence Rate Ratios (IRR), you can use the `lincom()` command with your poisson models. 
 
 To have IR/IRR reported (instead of beta coefficients), be sure to set `eform = TRUE` in your `lincom()` function.
