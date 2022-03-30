@@ -34,7 +34,7 @@ xaringanExtra::use_clipboard()
 
 ## LAB MATERIALS
 
-### Lab 02 Goals
+### Lab 04 Goals
 
 * Describe survival time data utilizing summary statistics and graphical methods
 * Fit Cox proportional hazards regression models with fixed and time-varying covariates
@@ -42,7 +42,7 @@ xaringanExtra::use_clipboard()
 * Calculate incidence rates and ratios using Poisson methods
 
 
-### Lab 02 Grading scheme
+### Lab 04 Grading scheme
 
 | Competency | Points |
 |:-----------|:------:|
