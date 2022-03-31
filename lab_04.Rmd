@@ -132,7 +132,7 @@ print(surv_bord5)
 ```
 
 <aside>
-[This Stats Exchange post](https://stats.stackexchange.com/questions/402432/why-median-is-na-for-some-of-the-group-outcomes-in-survival-analysis) explains why. Basically, our data doesn't have enough events to calculate a median.
+[This Stats Exchange post](https://stats.stackexchange.com/questions/402432/why-median-is-na-for-some-of-the-group-outcomes-in-survival-analysis) explains why. Basically, our data don't have enough events to calculate a median.
 </aside>
 
 In view of this, to fill out Table 1, we will need to rely on the `summarize()` function to get summary data for the variables `time` and `death`
