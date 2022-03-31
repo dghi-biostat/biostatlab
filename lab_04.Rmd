@@ -284,7 +284,7 @@ ggsurvplot(surv_bord5_ed_strata, fun = "cloglog",
            legend.labs = c("1-4", "5+"))
 ```
 
-If we compared these adjusted log-log survival curves with those of the plain model, where `bord5` is the only predictor (`formula = Surv(time, death) ~ bord5`), we would find that the plots are quite alike, but contain subtle differences in the alignment of the curves. 
+If we compared these adjusted log-log survival curves with those of the plain model, where `bord5` is the only predictor (`formula = Surv(time, death) ~ bord5`), we would find that the plots are quite alike, but contain subtle differences in the alignment of the curves. In evaluating the proportionality assumption in Cox regression, we only need the assumption to hold, conditional on modeled covariates; so plotting these adjusted curves is useful. 
 
 #### Formal statistical test of proportional hazards
 
