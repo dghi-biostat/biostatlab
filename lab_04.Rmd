@@ -286,17 +286,6 @@ ggsurvplot(surv_bord5_ed_strata, fun = "cloglog",
 
 If we compared these adjusted log-log survival curves with those of the plain model, where `bord5` is the only predictor (`formula = Surv(time, death) ~ bord5`), we would find that the plots are quite alike, but contain subtle differences in the alignment of the curves. In evaluating the proportionality assumption in Cox regression, we only need the assumption to hold, conditional on modeled covariates; so plotting these adjusted curves is useful. 
 
-#### Formal statistical test of proportional hazards
-
-A formal statistical test of proportional hazards can be conducted by allowing the hazard ratio to vary across time, and testing if this time-varying effect is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function by which `time` is interacting with `bord5` in our model:
-
-```{r echo = TRUE, eval = FALSE}
-cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
-      data = kenya, 
-      tt = function(bord5, time,...)bord5*log(time))
-```
-
-
 ### Estimating Time-varying effects
 
 In the event that you find the proportional hazards assumption violated for a particular covariate, you should report the effect of the exposure at several time points (you can think of this as effect modification of the exposure by follow-up time). The specification of a Cox model with a time-varying effect for the covariate $X_1$ is:
@@ -321,6 +310,16 @@ HR &=& exp(\beta_1 + \beta_2*T) \\
 $$
 
 You can use the Cox regression model that contains the time-varying effect `lincom()` command to generate time-varying effects. Remember to 'eform'!
+
+#### Formal statistical test of proportional hazards
+
+A formal statistical test of proportional hazards can be conducted by allowing the hazard ratio to vary across time, and testing if this time-varying effect is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function by which `time` is interacting with `bord5` in our model:
+
+```{r echo = TRUE, eval = FALSE}
+cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
+      data = kenya, 
+      tt = function(bord5, time,...)bord5*log(time))
+```
 
 ## Calculating incidence rates and related measures of association
 
