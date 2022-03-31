@@ -8,7 +8,6 @@ output: distill::distill_article
 
 
 ```{r setup0, echo = FALSE, include = FALSE}
-
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 library(tidyverse)
@@ -25,7 +24,7 @@ library(epiR)
 library(fmsb)
 library(biostat3)
 
-kenya <- readRDS("C:/Users/18165/Box/2021 GLHLTH 705_707 Lab R Resources/707 Labs/707 Lab 4/r/lab4_kenya.rds")
+kenya <- readRDS("files/survival_example.rds")
 ```
 
 ```{r xaringanExtra-clipboard, echo=FALSE}
@@ -113,11 +112,16 @@ We can then use our `Surv()` object to build a `survfit()` time-to-event model, 
 surv_bord5 <- survfit(surv_data ~ bord5, data = kenya)
 ```
 
-If we inspect this model, we'll see that it is the tabular representation of a survival curve. Use `summary()` to inspect it for yourself:
+If we inspect this model, we'll see that it is the tabular representation of a survival curve. Use `summary()` to inspect it for yourself.
 
 ```{r eval = FALSE, echo = TRUE}
 summary(surv_bord5)
 ```
+
+<aside>
+Seriously, run this `summary()` code for yourself and see. The output is too long for the website. Once you do, notice how these calculations are similar to the ones your performed manually in the take-home assignment from class.
+</aside>
+
 
 The summary of `surv_bord5` will show us a tabulation of the cohort's survival probability at each time-step, along with how many were at risk and the number of events in that interval.
 
@@ -149,7 +153,7 @@ ggsurvplot(fit = surv_bord5, data = kenya,
            conf.int = TRUE,
            xlab = "Time since birth (months)",
            ylab = "Probability of Survival",
-           title = "FIGURE 1: Survival Probability by birth order",
+           title = "Survival Probability by birth order",
            legend = "bottom", # this specifies legend position
            legend.title = "Birth Order (bord5)",
            legend.labs = c("1-4", "5+")
@@ -242,7 +246,7 @@ ggsurvplot(surv_bord5, fun = "cloglog",
            conf.int = TRUE,
            xlab = "Time (in months) using log",
            ylab = "log-log survival",
-           title = "FIGURE 6: log-log curves by bord5",
+           title = "log-log curves by bord5",
            legend = "bottom", # this specifies legend position
            legend.title = "Birth Order (bord5)",
            legend.labs = c("1-4", "5+"))
@@ -259,7 +263,7 @@ ggsurvplot(surv_bord5_ed, fun = "cloglog",
            conf.int = TRUE,
            xlab = "Time (in months) using log",
            ylab = "log-log survival",
-           title = "FIGURE 6: log-log curves by bord5")
+           title = "log-log curves by bord5(?)")
 
 ```
 
@@ -278,7 +282,7 @@ ggsurvplot(surv_bord5_ed_strata, fun = "cloglog",
            conf.int = TRUE,
            xlab = "Time (in months) using log",
            ylab = "log-log survival",
-           title = "FIGURE 6: log-log curves by bord5",
+           title = "log-log curves by bord5(!)",
            legend = "bottom", # this specifies legend position
            legend.title = "Birth Order (bord5)",
            legend.labs = c("1-4", "5+"))
@@ -313,12 +317,14 @@ You can use the Cox regression model that contains the time-varying effect `linc
 
 #### Formal statistical test of proportional hazards
 
-A formal statistical test of proportional hazards can be conducted by allowing the hazard ratio to vary across time, and testing if this time-varying effect is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function by which `time` is interacting with `bord5` in our model:
+We can use R to formally test the significance of this time-varying effect as it pertains to the assumption of proportional hazards.
+
+By allowing the hazard ratio to vary across time, we test if this __time-varying effect__ is  significant. To perform this, we use the `tt()` function in our model formula, and then use the argument `tt = ` to specify the function by which `time` is interacting with `bord5` in our model:
 
 ```{r echo = TRUE, eval = FALSE}
 cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
       data = kenya, 
-      tt = function(bord5, time,...)bord5*log(time))
+      tt = function(x, time,...)x*time)
 ```
 
 ## Calculating incidence rates and related measures of association

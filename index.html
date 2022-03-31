@@ -2184,17 +2184,17 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   .distill-site-header {
     --title-size:       21px;    
-    --text-color:       #2f588d;
+    --text-color:       #FFFFFF;
     --text-size:        17px;
-    --hover-color:      #dd424c; 
-    --bkgd-color:       #b3daf1;
+    --hover-color:      #8A009D; 
+    --bkgd-color:       #009D8A;
   }
 
 
   .distill-site-footer {
-    --text-color:       #b3daf1;
+    --text-color:       #FFFFFF;
     --text-size:        15px;
-    --hover-color:      white;
+    --hover-color:      #9D0061;
     --bkgd-color:       #999999;
   }
 
@@ -2228,8 +2228,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   code {
     font-family: 'Fira Code', monospace;
-  color: #2f588d; 
-  background: #def3ff;
+  color: #3C009D; 
+  background: #DEDEDE;
 
   /*background: #b3daf1; */
     font-weight: 500;
@@ -2244,8 +2244,13 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
   /* Change link appearance */
   d-article a {
-    border-bottom: 2px solid #577cad;
+    border-bottom: 2px solid #9D0061;
     text-decoration: none;
+  }
+
+  d-article a:hover{
+    background-color: #9D0061 ;
+    color: #FFFFFF;
   }
 
   /* following are custom settings to make the cat image as tall as the navbar */
@@ -2501,8 +2506,8 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
-<a class="logo" href="https://pngtree.com/so/llama">
-<img src="images/llama.png" alt="Logo"/>
+<a class="logo" href="`https://pngtree.com/so/llama`">
+<img src="images/narwhal.png" alt="Logo"/>
 </a>
 <a href="index.html" class="title">DGHI/Biostat Lab</a>
 </div>
@@ -2539,6 +2544,7 @@ Lab Assignments
 <span class="nav-dropdown-header">707 Labs</span>
 <a href="lab_01.html">Lab 1</a>
 <a href="lab_02.html">Lab 2 &amp; 3</a>
+<a href="lab_04.html">Lab 4</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>
@@ -2575,9 +2581,9 @@ Dictionaries
 <div class="d-article">
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
-<img src="images/error_bars.png" alt="[Error Bars](https://www.explainxkcd.com/wiki/index.php/2110:_Error_Bars)" width="20%" />
+<img src="images/confounding_variables.png" alt="[Confounding Variables](https://www.explainxkcd.com/wiki/index.php/2560:_Confounding_Variables)" width="20%" />
 <p class="caption">
-Figure 1: <a href="https://www.explainxkcd.com/wiki/index.php/2110:_Error_Bars">Error Bars</a>
+Figure 1: <a href="https://www.explainxkcd.com/wiki/index.php/2560:_Confounding_Variables">Confounding Variables</a>
 </p>
 </div>
 </div>
@@ -2596,7 +2602,13 @@ Figure 1: <a href="https://www.explainxkcd.com/wiki/index.php/2110:_Error_Bars">
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>GLHLTH 705 &amp; 707 lab materials adapted to R from original labs written by Dr. Larry Park, Dr. Joseph Egger, Dr. Brian Pence, and Dr. Daniel Westreich</p>
+<p>Materials and website built using R version 4.1.0 and R Studio v1.4.1717</p>
+<p>Llama PNG Designed By andypp at <a href='https://pngtree.com/so/llama'>PNG Tree</a></p>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

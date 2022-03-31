@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r fig.cap = "[Error Bars](https://www.explainxkcd.com/wiki/index.php/2110:_Error_Bars)", out.width = "20%"}
-knitr::include_graphics("images/error_bars.png")
+```{r fig.cap = "[Confounding Variables](https://www.explainxkcd.com/wiki/index.php/2560:_Confounding_Variables)", out.width = "20%"}
+knitr::include_graphics("images/confounding_variables.png")
 ```
 
 
