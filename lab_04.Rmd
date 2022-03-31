@@ -1,7 +1,7 @@
 ---
 title: "Lab 04 (707) - Time to Event Analysis"
 description: | 
-    __Lab 04 Due:__ April 15th, 2022 by the start of your lab session
+    __Lab 04 Due:__ April 15th, 2022, 5pm EDT (optional lab session on the 15th)
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -50,9 +50,10 @@ xaringanExtra::use_clipboard()
 |   Table 1   |   5  |
 |   Table 2  |   12   |
 |   Table 3  |   8  |
+|   Table 4  |   15 |
 |   Figures 1 - 10   |   30 (3 points each)  |
 | Short answer questions| 20 (5 points each) |
-|   __Total__  |  __85__  |
+|   __Total__  |  __100__  |
 
 ### Data and assignment
 
@@ -78,9 +79,9 @@ The methods we have used so far have assumed a closed cohort—no loss to follow
 
 ### Describing survival data
 
-Survival analysis in R is similar to other types of analysis with the exception that you have to first tell R that you are working with time-to-event data. Before we begin to analyze survival data and generate Kaplan-Meier curves, we need to create a `Surv()` data object.
+Survival analysis in R is similar to other types of analyses in R with the exception that you have to first tell R that you are working with time-to-event data. Before we begin to analyze survival data and generate Kaplan-Meier curves, we need to create a `Surv()` data object.
 
-This is a special data type, unique to the {survival} package. It simultaneously indicates an observation's time at risk, and whether or not it was censored. 
+This is a special data type, unique to the {survival} package. It simultaneously indicates an observation's time at risk, and whether it was censored. 
 
 The `Surv()` function takes two objects from our data frame: the subject's follow-up time and whether or not they experienced the event. 
 
