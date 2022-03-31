@@ -320,7 +320,7 @@ HR &=& exp(\beta_1 + \beta_2*T) \\
 \end{eqnarray}
 $$
 
-You can use the Cox regression model that contains the time-varying effect `lincom()` command to generate time-varying effects
+You can use the Cox regression model that contains the time-varying effect `lincom()` command to generate time-varying effects. Remember to 'eform'!
 
 ## Calculating incidence rates and related measures of association
 
