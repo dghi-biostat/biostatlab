@@ -34,9 +34,26 @@ kenya <- readRDS("files/ed_bord5.rds")
 regdat <- read.csv("files/regdat.csv", header = TRUE, col.names = c("sex", "age", "height", "weight"))
 ```
 
+```{r panelset, echo=FALSE}
+# activate panelset feature
+xaringanExtra::use_panelset()
+
+
+# this function overlays a hyperlink on an image
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
+```
+
 ```{r xaringanExtra-clipboard, echo=FALSE}
 xaringanExtra::use_clipboard()
 ```
+
+
+
 
 ## LAB MATERIALS
 
@@ -48,8 +65,13 @@ xaringanExtra::use_clipboard()
 *	Assess for potential confounding and effect measure modification.  
 *	Learn how to properly specify a model using backward, stepwise regression techniques.  
 
+### Lab 2 & 3 Grading scheme
 
-### Lab 02 Grading scheme
+::: {.panelset}
+
+::: {.panel}
+
+#### Lab 2
 
 | Competency | Points |
 |:-----------|:------:|
@@ -58,8 +80,26 @@ xaringanExtra::use_clipboard()
 |   Table 2a  |   10   |
 |   Table 2b  |   5  |
 |   Table 3   |   10  |
-|   Figures   |   10 (3.33 points each)  |
+|   Figures   |   15 (5 points each)  |
+|   __Total__  |  __60__  |
+
+:::
+
+::: {.panel}
+
+#### Lab 3
+
+| Competency | Points |
+|:-----------|:------:|
+|   .Rmd file runs without error |   10  |
+|   Table 4   |   5  |
+|   Table 5  |   10   |
+|   Table 6  |   5  |
+|   Short answer questions   |   20 (4 points each)  |
 |   __Total__  |  __55__  |
+
+:::
+:::
 
 ### Data and assignment
 
@@ -74,20 +114,6 @@ The assignment and dataset are both available on [Sakai](https://youtu.be/dQw4w9
 * {biostat3}
 
 ### Readings and Resources 
-
-```{r panelset, echo=FALSE}
-# activate panelset feature
-xaringanExtra::use_panelset()
-
-
-# this function overlays a hyperlink on an image
-image_link <- function(image,url,...){
-  htmltools::a(
-    href=url,
-    htmltools::img(src=image,...)
-    )
-}
-```
 
 ::: {.panelset}
 ::: {.panel}

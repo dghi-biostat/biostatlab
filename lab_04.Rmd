@@ -1,5 +1,5 @@
 ---
-title: "Lab 04 (707) - Time to Event Analysis"
+title: "Lab 4 (707) - Time to Event Analysis"
 description: | 
     __Lab 04 Due:__ April 15th, 2022, 5pm EDT (optional lab session on the 15th)
 date: "`r Sys.Date()`"
@@ -33,7 +33,7 @@ xaringanExtra::use_clipboard()
 
 ## LAB MATERIALS
 
-### Lab 04 Goals
+### Lab 4 Goals
 
 * Describe survival time data utilizing summary statistics and graphical methods
 * Fit Cox proportional hazards regression models with fixed and time-varying covariates
@@ -41,7 +41,7 @@ xaringanExtra::use_clipboard()
 * Calculate incidence rates and ratios using Poisson methods
 
 
-### Lab 04 Grading scheme
+### Lab 4 Grading scheme
 
 | Competency | Points |
 |:-----------|:------:|
@@ -233,18 +233,12 @@ If two lines cross, or appear to be converging (or diverging) even outside of th
 
 These plots are only useful for categorical variables and cannot be utilized for continuous variables.
 
-In R, we generate this type of plot similar to Kaplan Meier plots. But since we're using data from our `coxph()` model objects, we first need to convert that model object to a survival object (using `survfit()`) that can be recognized by `ggsurvplot()`:
-
-```{r}
-surv_bord5_ed <- survfit(cox_bord5, data = kenya)
-```
-
-We can then generate a log-log plot with similar code for `ggsurvplot()`, except we need to set our function. Its default gives the survival probability, but here we will set `fun = "cloglog"`. 
+In R, we generate this type of plot similar to a Kaplan Meier, except we need to specify our function (`fun`). Its default gives the survival probability, but here we will set `fun = "cloglog"`. 
 
 ```{r echo = TRUE, eval = TRUE}
 ggsurvplot(surv_bord5, fun = "cloglog",
            conf.int = TRUE,
-           xlab = "Time (in months) using log",
+           xlab = "Natural log of time (months)",
            ylab = "log-log survival",
            title = "log-log curves by bord5",
            legend = "bottom", # this specifies legend position
@@ -252,13 +246,21 @@ ggsurvplot(surv_bord5, fun = "cloglog",
            legend.labs = c("1-4", "5+"))
 ```
 
+<aside>
+Note that we have used the original survival object, `surv_bord5` to generate this plot. The `coxph()` model object cannot be used for plotting, unfortuneately.
+</aside>
+
 #### Plotting adjusted models
 
-You might notice that if we tried to plot the adjusted model from above, the plot appears unstratified:
+To plot an adjusted model, we'll need to convert it to a `survfit()` object:
 
 ```{r echo = TRUE, eval = TRUE}
 surv_bord5_ed <- survfit(cox_bord5_ed, data = kenya)
+```
 
+You might notice that if we try and plot the adjusted model, the plot appears unstratified:
+
+```{r echo = TRUE, eval = TRUE}
 ggsurvplot(surv_bord5_ed, fun = "cloglog",
            conf.int = TRUE,
            xlab = "Time (in months) using log",

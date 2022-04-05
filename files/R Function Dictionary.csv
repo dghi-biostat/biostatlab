@@ -57,7 +57,7 @@ Stats,skewness(),a vector or variable,Calculates the skewness of a variable,mome
 Stats,kurtosis(),a vector or variable,Calculates the kurtosis of a variable,moments
 Stats,qqnorm(),a vector or variable,Generates Q-Q plot object of a variable.,stats
 Stats,cor(),a list of vectors of continuous variables,"Calculates correlation coefficient of one or more variables. If given a data.frame or matrix object, generates a correlation coefficient matrix.",stats
-Model,lm(),"See Lab 01, model building",,stats
+Model,lm(),"See 707 Lab 1, model building",,stats
 Model,summary(),a model object,Prints primary statistics of a model object,stats
 Model,confint(),a model object,Prints confidence intervals for the coefficients of a model object,stats
 Model,coef(),a model object,Prints coefficients values of a model object,stats
@@ -66,9 +66,17 @@ Plot,geom_point(),"data, aes(x = , y = )",Generates a scatter plot of two variab
 Plot,geom_smooth(),"data, aes(x = , y = )","Plots a line given two continuous variables, x and y. If no method or formula specified, uses a Loess plotting function to generate a locally weighted regression curve. method = ""lm"" generates an OLS linear regression line",ggplot2
 Stats,ncvTest(),a model object,Generates Cook-Weisberg statistic,car
 Stats,anova(),two model objects,Generates F-statistic that compares the fit of two similar models.,stats
-Model,glm(),,,
-Stats,lincom(),,,biostat3
-Stats,logLik(),,,stats
-Stats,lrtest(),,,lmtest
-Model,predict.lm(),,,
-Transform,cbind(),,,
+Model,glm(),"model formula, data, model family and link function",Fits generalized linear models (see 707 Labs 2 & 3),
+Stats,lincom(),"model object, specification",Calculates the estimate of a model by combining model parameters in the given specification,biostat3
+Stats,logLik(),model object,Returns log-likelihood of a given model,stats
+Stats,lrtest(),two model objects,Returns the result of a likelihood ratio test on two models,lmtest
+Model,predict.lm(),model object (optional: newdata),"Returns a vector of model estimates, either using the original data or newdata",stats
+Transform,cbind(),list of equal-length vectors,Binds columns into a new matrix or data.frame object,base
+Transform,Surv(),,,survival
+Model,survfit(),,,survival
+Plot,ggsurvplot(),,,
+Model,coxph(),,,
+,tt(),,,
+,strata(),,,
+,pyears(),,,
+,ratedifference(),,,

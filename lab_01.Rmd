@@ -29,7 +29,7 @@ xaringanExtra::use_clipboard()
 
 ## LAB MATERIALS
 
-### Lab 01 Goals
+### Lab 1 Goals
 
 * Estimate crude measures of (linear) association using univariable linear regression models  
 * Estimate crude measures of non-linear association using univariable linear regression models with linear transformed and categorical variables.  
@@ -40,7 +40,7 @@ xaringanExtra::use_clipboard()
 The assignment and dataset are both available on [Sakai](sakai.duke.edu).
 
 
-### Lab 01 Grading scheme
+### Lab 1 Grading scheme
 
 | Competency | Points |
 |:-----------|:------:|
