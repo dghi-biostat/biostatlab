@@ -409,6 +409,24 @@ ptime_bord5$event[2]
 ptime_bord5$pyears[2]
 ```
 
+You can then use the functions `ratedifference()` and `rateratio()` from the package {fmsb} to calculate the incidence rate difference and incidence rate ratio, respectively.
+
+Both functions take the same arguments:
+
+```{r eval = FALSE, echo = TRUE}
+ratedifference(a, b, PT1, PT0, conf.level = 0.95)
+rateratio(a, b, PT1, PT0, conf.level = 0.95)
+```
+
+Where __*a*__ is the number of disease occurence among the exposed,
+
+__*b*__ is the number of diease occurence among the unexposed,
+
+__*PT1*__ is the observed person-time in the exposed cohort, 
+
+And __*PT0*__ is the observed person-time in the unexposed cohort. 
+
+
 ### R Commands for Poisson Regression Models
 
 The command for a Poisson regression model has the following form:
