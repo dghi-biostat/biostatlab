@@ -458,3 +458,4 @@ lincom(poisson_bord5, "bord5", eform = TRUE)
 ```
 
 To have IR/IRR reported (instead of beta coefficients), be sure to set `eform = TRUE` in your `lincom()` function.
+
