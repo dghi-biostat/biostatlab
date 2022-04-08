@@ -326,6 +326,7 @@ By allowing the hazard ratio to vary across time, we test if this __time-varying
 ```{r echo = TRUE, eval = FALSE}
 cox_tt <- coxph(Surv(time, death) ~ bord5 + male + rural + education_c2 + education_c3 + mage + mage2 + tt(bord5),
       data = kenya, 
+      ties = "breslow",
       tt = function(x, time,...)x*time)
 ```
 
