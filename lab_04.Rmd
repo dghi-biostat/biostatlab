@@ -200,7 +200,7 @@ image_link("images/lab04_coxph.png", url = "files/lab04_coxph.pdf")
 In R, Cox PH models are parameterized just like the `survfit()` function, in that they take a `Surv()` object as the response variable. However, they're different in their output. The output is similar to the familiar regression output, with coefficients.
 
 ```{r echo = TRUE, eval = TRUE}
-cox_bord5 <- coxph(Surv(time, death) ~ bord5, data = kenya)
+cox_bord5 <- coxph(Surv(time, death) ~ bord5, data = kenya, ties = "breslow")
 
 summary(cox_bord5)
 ```
@@ -212,6 +212,7 @@ To estimate the effect of `bord5`, adjusting for maternal education (coded with 
 ```{r echo = TRUE}
 cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 + 
       education_c2 + education_c3, 
+      ties = "breslow",
       data = kenya)
 ```
 
@@ -219,7 +220,8 @@ Alternatively, we can parameterize education as a factor-type variable to obtain
 
 ```{r echo = TRUE, eval = FALSE}
 cox_bord5_ed <- coxph(Surv(time, death) ~ bord5 + factor(education), 
-      data = kenya)
+                      ties = "breslow",
+                      data = kenya)
 ```
 
 
@@ -276,6 +278,7 @@ So to get a proper stratified "cloglog" plot from our adjusted Cox model, we mus
 ```{r echo = TRUE}
 cox_bord5_ed_strata <- coxph(Surv(time, death) ~ strata(bord5) + 
       education_c2 + education_c3 + male + mage + mage2, 
+      ties = "breslow",
       data = kenya)
 
 surv_bord5_ed_strata <- survfit(cox_bord5_ed_strata, data = kenya)

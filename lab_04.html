@@ -2912,28 +2912,28 @@ output. The output is similar to the familiar regression output, with
 coefficients.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5</span> <span class='op'>&lt;-</span> <span class='fu'>coxph</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5</span> <span class='op'>&lt;-</span> <span class='fu'>coxph</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span>, ties <span class='op'>=</span> <span class='st'>"breslow"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>cox_bord5</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>Call:
-coxph(formula = Surv(time, death) ~ bord5, data = kenya)
+coxph(formula = Surv(time, death) ~ bord5, data = kenya, ties = &quot;breslow&quot;)
 
   n= 2000, number of events= 195 
 
         coef exp(coef) se(coef)     z Pr(&gt;|z|)  
-bord5 0.3888    1.4753   0.1606 2.421   0.0155 *
+bord5 0.3874    1.4732   0.1606 2.413   0.0158 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
       exp(coef) exp(-coef) lower .95 upper .95
-bord5     1.475     0.6778     1.077     2.021
+bord5     1.473     0.6788     1.075     2.018
 
 Concordance= 0.537  (se = 0.016 )
-Likelihood ratio test= 5.52  on 1 df,   p=0.02
-Wald test            = 5.86  on 1 df,   p=0.02
-Score (logrank) test = 5.94  on 1 df,   p=0.01</code></pre>
+Likelihood ratio test= 5.48  on 1 df,   p=0.02
+Wald test            = 5.82  on 1 df,   p=0.02
+Score (logrank) test = 5.89  on 1 df,   p=0.02</code></pre>
 </div>
 <h4 id="adjusted-models">Adjusted models</h4>
 <p>To estimate the effect of <code>bord5</code>, adjusting for maternal
@@ -2943,6 +2943,7 @@ following code:</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed</span> <span class='op'>&lt;-</span> <span class='fu'>coxph</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> 
       <span class='va'>education_c2</span> <span class='op'>+</span> <span class='va'>education_c3</span>, 
+      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
       data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2952,7 +2953,8 @@ variable to obtain the same result:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed</span> <span class='op'>&lt;-</span> <span class='fu'>coxph</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>education</span><span class='op'>)</span>, 
-      data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+                      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
+                      data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -3032,6 +3034,7 @@ with <code>strata()</code>, then convert to <code>survfit()</code>, and
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed_strata</span> <span class='op'>&lt;-</span> <span class='fu'>coxph</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='fu'>strata</span><span class='op'>(</span><span class='va'>bord5</span><span class='op'>)</span> <span class='op'>+</span> 
       <span class='va'>education_c2</span> <span class='op'>+</span> <span class='va'>education_c3</span> <span class='op'>+</span> <span class='va'>male</span> <span class='op'>+</span> <span class='va'>mage</span> <span class='op'>+</span> <span class='va'>mage2</span>, 
+      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
       data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
 
 <span class='va'>surv_bord5_ed_strata</span> <span class='op'>&lt;-</span> <span class='fu'>survfit</span><span class='op'>(</span><span class='va'>cox_bord5_ed_strata</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
