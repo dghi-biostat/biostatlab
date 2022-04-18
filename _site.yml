@@ -10,6 +10,8 @@ navbar:
     image: images/narwhal.png
     href: '`https://pngtree.com/so/llama`'
   right:
+    - text: "Potato"
+      href: https://www.livescience.com/45838-potato-nutrition.html
     #- text: "Analysis Map"
     #  href: mind_map.html
     - text: "Help With"
