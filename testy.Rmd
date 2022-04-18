@@ -23,13 +23,6 @@ When you click the **Knit** button a document will be generated that includes bo
 ## Including plops
 
 
-<<<<<<< HEAD
-## R Parkdown
-=======
-## R Markjoedown - 
->>>>>>> 2504ed4926d8cc2b0725f9910e506c16c70bab31
-
-
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
