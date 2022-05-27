@@ -1,0 +1,219 @@
+---
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday November 23, 2021"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Lab 4 {.tabset}
+
+## Task 1: Load libraries & data
+
+For this assignment, use the dataset 'Lab_4_kenya.rds'.
+
+
+```{r}
+# load in dataset 
+
+```
+
+```{r}
+# load libraries: {tidyverse}, {epiR}, {fmsb}, {skimr}, and {epiAssist}
+
+```
+
+
+
+## Task 2: Table 1
+
+Instructions overview:
+
+1.) Fill in Table 1 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by the following covariables::
+  a)	Child’s gender (variable `male`)
+  b)	Rural/urban residence (variable `rural`)
+  c)	Maternal age (variable `magec`)
+  d)	Maternal education (variable `education`)
+
+2.) Generate measures of association with `epi.2by()`
+
+3.)	For each covariable, extract:
+  a) RD for mortality in association with bord5 within each covariable stratum
+  b) Generate test statistic of homogeneity and p-value 
+  c) Generate a standardized pooled estimate
+
+4.) For each covariable, extract:
+  a) RR for mortality in association with bord5 within each covariable stratum. 
+  b) Generate test statistic of homogeneity and p-value
+  c) Generate a Mantel-Haenszel pooled estimate.
+
+
+### Task 2.1: Stratified frequency counts and risk
+
+#### 2.1.a: `male`
+
+```{r male risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by sex (male) and birth order (bord5)
+
+  
+```
+
+#### 2.1.b: `rural`
+
+```{r rural risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by residence (rural) and birth order (bord5)
+  
+```
+
+#### 2.1.c: `magec`
+
+```{r magec risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by mother's age (magec) and birth order (bord5)
+
+  
+```
+
+#### 2.1.d: `education`
+
+```{r education risk}
+# use table() and proportions() to calculate sub-group frequency counts and risk of death by mother's education (education) and birth order (bord5)
+
+  
+```
+
+### Task 2.2: Create `epi.2by2()` object
+
+
+#### 2.2.a: Flip tables with `flipTable()`
+
+```{r}
+# flip male
+
+# flip rural
+
+# flip magec
+
+# flip education
+
+```
+
+
+#### 2.2.b: Create epi.2by2 object with `epi.2by2()`
+
+```{r}
+# epi.2by2() for male
+
+# epi.2by2() for rural
+
+# epi.2by2() for magec
+
+# epi.2by2() for education
+
+```
+
+### Task 2.3: Risk differences and test of homogeneity
+
+#### 2.3.a: Extract risk differences and 95% CIs from epi.2by2() objects
+
+```{r}
+# Risk difference:
+
+## male
+
+## rural
+
+## magec
+
+## education
+
+```
+
+#### 2.3.b: Extract homogeneity test statistics
+
+```{r}
+# Homogeneity test statistic and p value
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+#### 2.3.b: Report Mantel-Haenszel pooled estimates of risk difference (M-H)
+
+```{r}
+# standardized pooled estimate
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+
+### Task 2.4: Risk ratios and test of homogeneity
+
+#### 2.4.a: Extract risk ratios and 95% CIs from epi.2by2() objects
+
+```{r}
+# Risk ratios:
+
+## male
+
+## rural
+
+## magec
+
+## education
+
+```
+
+#### 2.4.b: Extract homogeneity test statistics
+
+```{r}
+# Homogeneity test statistic and p value
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+#### 2.4.c: Report Mantel-Haenszel pooled estimates (M-H)
+
+```{r}
+# Mantel-Haenszel pooled estimate
+
+## male
+
+## rural
+
+## magec
+
+## education
+```
+
+
+
+## Task 3: Short Answer
+__Do you see evidence for confounding for any of the stratification variables (`male`, `rural`, `magec`, and `education`)?  Explain your response for each variable.__  
+
+__(Hint, you will need to refer back to the crude association estimates of risk difference and risk ratio that you generated for Table 3 of Lab 3).__
+
+
+## Task 4: Short Answer
+
+__For which covariables does it seem appropriate to report a single pooled adjusted estimate and for which does it seem necessary to report separate stratified estimates (i.e., do you see evidence of effect modification)?  Explain your rationale for each covariable.  Does your answer differ depending on whether you are considering the RD or RR as your measure of effect?__
+
+

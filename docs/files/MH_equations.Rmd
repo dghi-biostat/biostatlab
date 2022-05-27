@@ -1,0 +1,136 @@
+---
+title: "mantel-haenszel"
+author: "DGHI Biostat"
+date: "11/6/2021"
+output: html_document
+---
+
+## Toy data
+```{r}
+
+# list of cell values
+num <- c(23, 53, 46, 23, 20, 68, 58, 34)
+
+# create a 3-D array and convert to a table object
+dat <- as.table(array(num, dim = c(2,2,2)))
+
+# voila!
+dat
+```
+
+
+## Arrange data
+
+Vectors for each cell position
+(i.e. `a` will be a vector that contains values from that top-left cell of all strata)
+```{r}
+  if(length(dim(dat)) > 2){
+    a <- dat[1,1,]; A <- a
+    b <- dat[1,2,]; B <- b
+    c <- dat[2,1,]; C <- c
+    d <- dat[2,2,]; D <- d
+  }
+
+# compare a with printed table in previous chunk
+a
+```
+
+
+
+Layout of 2x2 contingency tables
+
+```{r}
+
+  ## =================
+  ## DECLARE VARIABLES
+  ## =================
+  
+  ##        | D+   | D-   | Total
+  ## ----------------------------
+  ## Exp +  | a    | b    | N1
+  ## Exp -  | c    | d    | N0
+  ## -------|------|------|------
+  ## Total  | M1   | M0   | Total
+
+```
+
+
+Totals within exposure strata and outcome (case) strata
+```{r}
+# Total within strata cases:
+  M1 <- a + c
+  # Total within strata non-cases:
+  M0 <- b + d
+  # Total within strata exposed:
+  N1 <- a + b
+  # Total within strata unexposed:
+  N0 <- c + d
+  # Total within strata subjects:
+  total <- a + b + c + d
+```
+
+## Calculate crude estimates
+
+Risk difference
+```{r}
+crude_RD <- (a / (a + b)) - (c / (c + d))
+crude_RD
+```
+
+Risk ratio
+```{r}
+crude_RR <- (a / (a + b)) / (c / (c + d))
+crude_RR
+```
+
+
+
+## Calculate MH pooled estimates
+
+### Pooled risk difference (M-H)
+(note: I also found this calculation being referred to as a "Mantel-Haenszel type method". source: https://www.statsdirect.com/help/meta_analysis/risk_difference.htm)
+```{r}
+# assign units (units = 1 provides calculation of risk difference)
+units <- 1
+
+  # Summary attributable risk (Rothman 2002 p 147 and p 152, equation 8-1):
+sARisk.p <- (sum(((a * N0) - (c * N1)) / total) / sum((N1 * N0) / total)) * units
+  # w <- (N1 * N0) / total
+  # var.p1 <- (((a * d) / (N1^2 * (N1 - 1))) + ((c * b) / (N0^2 * (N0 - 1))))
+  # var.p1[N0 == 1] <- 0
+  # var.p1[N1 == 1] <- 0
+  # varARisk.s <- sum(w^2 * var.p1) / sum(w)^2
+  # sARisk.se <- (sqrt(varARisk.s)) * units
+  # sARisk.l <- sARisk.p - (z * sARisk.se)
+  # sARisk.u <- sARisk.p + (z * sARisk.se)
+
+# check point estimate against crude estimates
+
+sARisk.p
+crude_RD
+```
+
+
+### Pooled incidence risk ratio (M-H)
+(note: this one is for sure an M-H method. source: https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704-ep713_confounding-em/BS704-EP713_Confounding-EM7.html)
+```{r}
+  # Summary incidence risk ratio (Rothman 2002 p 148 and 152, equation 8-2):
+  sRR.p <- sum((a * N0 / total)) / sum((c * N1 / total))
+  # varLNRR.s <- sum(((M1 * N1 * N0) / total^2) - ((a * c)/ total)) / (sum((a * N0)/total) * sum((c * N1)/total))
+  # lnRR.s <- log(sRR.p)
+  # sRR.se <- (sqrt(varLNRR.s))
+  # sRR.l <- exp(lnRR.s - (z * sqrt(varLNRR.s)))
+  # sRR.u <- exp(lnRR.s + (z * sqrt(varLNRR.s)))
+
+# check point estimate
+sRR.p
+crude_RR
+```
+
+
+
+## Reference
+
+Source code: https://rdrr.io/cran/epiR/src/R/epi.2by2.R
+
+Internal citation: Rothman KJ (2002). Epidemiology An Introduction. Oxford University Press, London, p 130 - 143.

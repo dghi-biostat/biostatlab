@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lab 0</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="DGHI Biostat" />
+    <meta name="date" content="2021-09-10" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lab 0
+## 🦄<br/>key concepts
+### DGHI Biostat
+### Duke University
+### 2021-09-10
+
+---
+
+class: center, middle
+
+# Review
+
+## `⚔`
+
+
+
+
+
+---
+# Review
+
+Here are some concepts that we introduced in the previous lab session:
+
+--
+
+- Creating a new project &amp; R Markdown file
+
+--
+
+- Using basic functions
+
+--
+
+- Data types
+
+--
+
+- Vectors
+
+--
+
+- Refer to individual variables within a data frame with `$`
+
+---
+
+# Today's agenda:
+
+--
+
+- Review:
+
+  - Data types
+  - Vectors
+  
+--
+
+- Create our own toy __vectors__, and assemble them into a __data frame__
+
+--
+
+- Transform our data frame by adding new columns with `mutate()`
+
+--
+
+- Learn more about `%&gt;%` (pipes!)
+
+--
+
+- Learn the basic anatomy of functions
+
+--
+
+- Learn the basics of plotting in {ggplot}
+
+---
+# Data types in R
+
+--
+
+Two main types of data: numbers &amp; non-numbers
+
+--
+
+.pull-left[
+__Numeric__
+1. Integers (eg. 1, 2, 3);
+
+1. Double/floating point (eg. 1.2345235, 600.342, 235.9596);
+
+1. Dates (in this lab, we deal with time, but not "Dates")
+]
+
+--
+
+.pull-right[
+__non-Numeric__
+
+1. character strings (e.g. "text!");
+
+1. factors (i.e. categorical variables)
+
+1. logical (i.e. TRUE, FALSE)
+
+]
+
+--
+
+## `NA` can be used with any of these data types to represent:
+
+--
+
+
+Data that is __*"Not available"*__
+
+---
+class: inverse
+
+# Vectors
+
+- A vector is a "data structure that contains data elements of the same __*type*__"
+
+--
+
+- __Translation:__ It's literally just a list of things that are alike
+
+--
+
+- Create your own vector with `c()`, and separate each value with a comma
+
+--
+
+- A logical vector of length 6: 
+
+
+```r
+logic &lt;- c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE)
+```
+
+--
+
+- A character vector of length 6:
+
+
+```r
+string &lt;- c("This", "is", "a", "vector", "of", "character strings")
+```
+
+--
+
+- A numeric vector of length 6:
+
+
+```r
+numeric &lt;- c(24, 12.2, 55, 23, 4.01, 3.33)
+```
+
+
+---
+
+# Data frames &amp; tibbles
+
+- In the tidyverse, "tibble" is basically just another word for "data frame"
+
+--
+
+- Like a spreadsheet, data frames contain: Columns (variables) &amp; Rows (observations)
+  
+--
+
+- A data frame is just a "list" of vectors of all the same length!
+
+--
+
+
+```r
+trees &lt;- tibble(logic, string, numeric)
+```
+
+--
+
+
+|logic |string            | numeric|
+|:-----|:-----------------|-------:|
+|TRUE  |This              |   24.00|
+|FALSE |is                |   12.20|
+|TRUE  |a                 |   55.00|
+|TRUE  |vector            |   23.00|
+|FALSE |of                |    4.01|
+|FALSE |character strings |    3.33|
+
+---
+## Vectors -&gt; data frame
+
+
+```r
+diseased &lt;- c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE)
+```
+
+
+```r
+location &lt;- c("hilltop", "glade", "marsh", "ravine", "glade", "hilltop")
+```
+
+
+```r
+treeHeight &lt;- c(24, 12.2, 55, 23, 4.01, 3.33)
+```
+
+--
+
+
+```r
+trees &lt;- tibble(diseased, location, treeHeight)
+```
+
+--
+
+
+|diseased |location | treeHeight|
+|:--------|:--------|----------:|
+|TRUE     |hilltop  |      24.00|
+|FALSE    |glade    |      12.20|
+|TRUE     |marsh    |      55.00|
+|TRUE     |ravine   |      23.00|
+|FALSE    |glade    |       4.01|
+|FALSE    |hilltop  |       3.33|
+
+---
+## Inspecting data with functions
+
+
+|diseased |location | treeHeight|
+|:--------|:--------|----------:|
+|TRUE     |hilltop  |      24.00|
+|FALSE    |glade    |      12.20|
+|TRUE     |marsh    |      55.00|
+|TRUE     |ravine   |      23.00|
+|FALSE    |glade    |       4.01|
+|FALSE    |hilltop  |       3.33|
+
+
+```r
+nrow(trees) # gives us the number of rows
+```
+
+```
+## [1] 6
+```
+
+```r
+mean(trees$treeHeight) # gives us the mean of variable "treeHeight"
+```
+
+```
+## [1] 20.25667
+```
+---
+## Inspecting data with functions (cont.)
+
+
+|diseased |location | treeHeight|
+|:--------|:--------|----------:|
+|TRUE     |hilltop  |      24.00|
+|FALSE    |glade    |      12.20|
+|TRUE     |marsh    |      55.00|
+|TRUE     |ravine   |      23.00|
+|FALSE    |glade    |       4.01|
+|FALSE    |hilltop  |       3.33|
+
+
+```r
+max(trees$treeHeight) # gives us the maximum value of "treeHeight"
+```
+
+```
+## [1] 55
+```
+
+
+```r
+unique(trees$location) # lists unique values within variable "location"
+```
+
+```
+## [1] "hilltop" "glade"   "marsh"   "ravine"
+```
+
+---
+## Transforming data with functions
+
+- In the tidyverse, we use a pipe to "funnel" our data to a series of functions
+
+- We can use `mutate()` to create a new column
+
+
+
+.panelset[
+.panel[.panel-name[Before mutate()]
+
+
+|diseased |location | treeHeight|
+|:--------|:--------|----------:|
+|TRUE     |hilltop  |      24.00|
+|FALSE    |glade    |      12.20|
+|TRUE     |marsh    |      55.00|
+|TRUE     |ravine   |      23.00|
+|FALSE    |glade    |       4.01|
+|FALSE    |hilltop  |       3.33|
+
+
+```r
+trees &lt;- trees %&gt;%
+  mutate(newColumn = treeHeight / 2)
+```
+
+]
+
+.panel[.panel-name[After mutate()]
+
+
+```r
+trees &lt;- trees %&gt;%
+  mutate(newColumn = treeHeight / 2)
+```
+
+
+|diseased |location | treeHeight| newColumn|
+|:--------|:--------|----------:|---------:|
+|TRUE     |hilltop  |      24.00|    12.000|
+|FALSE    |glade    |      12.20|     6.100|
+|TRUE     |marsh    |      55.00|    27.500|
+|TRUE     |ravine   |      23.00|    11.500|
+|FALSE    |glade    |       4.01|     2.005|
+|FALSE    |hilltop  |       3.33|     1.665|
+
+]
+]
+
+---
+class: inverse, center, middle
+
+# Pipes! 
+# `%&gt;%`
+
+---
+# A piping example:
+
+.panelset[
+
+.panel[.panel-name[Code]
+
+
+```r
+trxdata %&gt;%
+  filter(provider != 'refill') %&gt;%
+  group_by(provider) %&gt;%
+  arrange(trxdate) %&gt;%
+  mutate(cum_awp_provider = cumsum(x)) %&gt;%
+  ggplot() + 
+  geom_line(aes(x = trxdate, y = cum_awp_prov1, color = provider)) +
+  labs(title = "Running count of units prescribed by 
+       provider over time\n(VIP Pharmacy Data)", 
+       y = "Prescription counts", 
+       x = "deidentified date", 
+       color = 'Provider') +
+  scale_y_continuous(labels = comma) +
+  scale_color_manual(values = mycolors3(colorCount3))
+```
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="images/prov_presc.png" width="80%" /&gt;
+
+
+
+]
+]
+
+
+---
+
+## Using `case_when()` for conditional statements
+
+
+|diseased |location | treeHeight| newColumn|
+|:--------|:--------|----------:|---------:|
+|TRUE     |hilltop  |      24.00|    12.000|
+|FALSE    |glade    |      12.20|     6.100|
+|TRUE     |marsh    |      55.00|    27.500|
+|TRUE     |ravine   |      23.00|    11.500|
+|FALSE    |glade    |       4.01|     2.005|
+|FALSE    |hilltop  |       3.33|     1.665|
+
+What will the following code do to `trees`?
+
+
+```r
+trees &lt;- trees %&gt;%
+  mutate(conditionalVar = case_when(treeHeight &gt; 20 ~ 0,
+                                    diseased == FALSE ~ 1,
+                                    location == "hilltop" ~ 2))
+```
+
+---
+
+# Using `case_when()` (cont.)
+
+
+```r
+trees &lt;- trees %&gt;%
+  mutate(conditionalVar = case_when(treeHeight &gt; 20 ~ 0,
+                                    diseased == FALSE &amp; treeHeight &lt; 20 ~ 1,
+                                    location == "hilltop" ~ 2))
+```
+
+
+|diseased |location | treeHeight| newColumn| conditionalVar|
+|:--------|:--------|----------:|---------:|--------------:|
+|TRUE     |hilltop  |      24.00|    12.000|              0|
+|FALSE    |glade    |      12.20|     6.100|              1|
+|TRUE     |marsh    |      55.00|    27.500|              0|
+|TRUE     |ravine   |      23.00|    11.500|              0|
+|FALSE    |glade    |       4.01|     2.005|              1|
+|FALSE    |hilltop  |       3.33|     1.665|              1|
+
+--
+
+Notice that `location == "hilltop" ~ 2` never gets evaluated. Why?
+
+---
+
+# The anatomy of a function
+
+
+|diseased |location | treeHeight| newColumn| conditionalVar|
+|:--------|:--------|----------:|---------:|--------------:|
+|TRUE     |hilltop  |      24.00|    12.000|              0|
+|FALSE    |glade    |      12.20|     6.100|              1|
+|TRUE     |marsh    |      55.00|    27.500|              0|
+|TRUE     |ravine   |      23.00|    11.500|              0|
+|FALSE    |glade    |       4.01|     2.005|              1|
+|FALSE    |hilltop  |       3.33|     1.665|              1|
+
+--
+
+
+```r
+factor(trees$conditionalVar, 
+       labels = c("&gt;20", "not diseased"))
+```
+
+--
+
+The underlying anatomy:
+
+
+```r
+function(argument1Value, # R naturally recognizes some arguments
+         argument2 = argument2Value) # others we can specify with =
+```
+
+---
+# Creating categorical variables with `factor()`
+
+
+```r
+trees$conditionalVar &lt;- factor(trees$conditionalVar,
+                                   labels = c("&gt;20", "not diseased"))
+```
+
+--
+
+
+|diseased |location | treeHeight| newColumn|conditionalVar |
+|:--------|:--------|----------:|---------:|:--------------|
+|TRUE     |hilltop  |      24.00|    12.000|&gt;20            |
+|FALSE    |glade    |      12.20|     6.100|not diseased   |
+|TRUE     |marsh    |      55.00|    27.500|&gt;20            |
+|TRUE     |ravine   |      23.00|    11.500|&gt;20            |
+|FALSE    |glade    |       4.01|     2.005|not diseased   |
+|FALSE    |hilltop  |       3.33|     1.665|not diseased   |
+
+---
+
+## Plotting `trees` with `ggplot()`
+
+In `ggplot`, every plot is built on an initial "plotting field" with universal aesthetics and data:
+
+--
+
+
+```r
+ggplot(trees, aes(x = treeHeight))
+```
+
+
+--
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+
+--
+
+.footnote[
+__Note:__ "Aesthetics", or `aes()`, is just the way ggplot refers to variables. In the above plot, we have assigned the variable `treeHeight` to the "x aesthetic (the x-axis)
+]
+
+---
+# Making a histogram with `geom_histogram()`
+
+We can then "add layers" according variable type and our desired type of plot:
+
+
+```r
+ggplot(trees, aes(x = treeHeight)) +
+  geom_histogram()
+```
+
+--
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+
+--
+
+.footnote[
+Not a very effective use of a histogram when we only have 6 rows in our dataset, eh?
+]
+
+---
+## Making a boxplot with `geom_boxplot()`
+
+Changing the type of plot is pretty simple. Switch out `geom_histogram()` for `geom_boxplot()`. Since `treeHeight` is a numeric type variable, `ggplot` can create a boxplot using the same aesthetics:
+
+
+```r
+ggplot(trees, aes(x = treeHeight)) +
+  geom_boxplot()
+```
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+
+---
+# Making a scatter plot with `geom_point()`
+
+We may decided to plot the variable named `treeHeight` against our other numeric type variable, `newColumn`. We can do this by mapping `newColumn` to the y-axis, and adding a `geom_point()` layer to our visualization.
+
+--
+
+What will this code create?
+
+
+```r
+ggplot(trees, aes(x = treeHeight, y = newColumn)) +
+  geom_point()
+```
+
+
+--
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+---
+# Labelling a plot with `labs()`
+
+Building on the scatter plot, perhaps we decide the plot needs labels to make it more easily interpreted. We can add a labels layer with `labs()`: 
+
+
+```r
+ggplot(trees, aes(x = treeHeight, y = newColumn)) +
+  geom_point() +
+  labs(x = "Random numbers that Nathan typed as an example", 
+       y = "Random numbers / 2", 
+       title = "Plot of some random numbers")
+```
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+
+---
+# Plotting categorical variables with `geom_bar()`
+
+Bar plots are a quick and easy way to plot frequency counts of categorical variables. We can plot our variable, `conditionalVar`, with a bar plot layer, `geom_bar()`. We can even change the color of the bars by giving it the argument `fill = `
+
+
+```r
+ggplot(trees, aes(x = conditionalVar)) +
+  geom_bar(fill = "forestgreen")
+```
+
+.pull-left[
+
+![](Lab0_slides_files/figure-html/unnamed-chunk-41-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+- Find all kinds of different color options [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+
+- Or use [hexadecimal codes](https://www.colorhexa.com/) to refer to specific colors (ex. [#12BBAC](https://www.colorhexa.com/12bbac))
+]
+
+---
+class: center, middle, inverse
+
+# Questions on Lab 0?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-dark",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

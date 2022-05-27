@@ -1,0 +1,185 @@
+---
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday Setpember 17, 2021"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Lab 0 {.tabset}
+
+## Task 3: Install packages and load libraries
+
+__a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to task 3b directly.__
+
+`install.packages("tidyverse")`  
+`install.packages("skimr")` 
+`install.packages("epiR")`  
+`install.packages("tableone")`
+`install.packages("devtools")`  
+`devtools::install_github("potato-nathan/epiAssist")`
+
+b. Load libraries:
+
+__For this lab, we need {skimr} and {tidyverse}__
+
+
+__In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:__
+
+`library(tidyverse)`
+`library(skimr)`
+
+```{r load libraries}
+# load library {tidyverse}
+
+
+# now load library {skimr}
+
+```
+
+
+## Task 4: Load data
+
+__Use command readRDS(‘filename.rds’) to load in the dataset. Don’t forget to use the assignment operator to give the dataset a name after importing the data. As an example, you can name it like this:__
+
+`kenya <- readRDS('data/filename.rds')` 
+
+```{r load data}
+# load dataset and give it a name within the r environment
+
+
+```
+
+
+
+## Task 5: Explore the dataframe
+
+__Familiarize yourself with the data by using the commands `head()`, `skim()`, `ncol()`, and `nrow()`.__
+
+* Are there any string/character variables?
+* Are there any variable or value labels? 
+* Do any variables have notes? 
+
+```{r dimensions}
+# find number of columns with ncol(dataName)
+
+# find number of rows with nrow(dataName)
+```
+
+```{r variables}
+# inspect variable names with names(dataName)
+
+# inspect 3 variable's types with class(dataName$variableName)
+
+```
+
+```{r skim}
+# generate summary statistics for your dataset with skim(dataName)
+
+```
+
+
+
+## Task 6: Create variable `mage`
+
+__Using a pipe and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). __
+
+__This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, `so divide by 12 to get years`. See the data dictionary for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.__
+
+
+```{r mage}
+# create variable mage with a pipe (%>%) and mutate()
+
+
+```
+
+## Task 7: Frequency distributions of mage
+
+__Suppose you want to break down `mage` into an ordinal categorical variable with three categories. First, we might inspect the frequency distribution (in one-way frequency table) for `mage`. Do this using `table()`.__
+
+__Use `table()` to look at `kenya$mage`, then consider the following questions:__
+
+* Are there any missing values for `mage`? If so, how many?  
+* Which range of ages appear the most frequently in `mage`?  
+
+```{r mage table}
+# generate a table of mage's frequency distribution with table()
+# don't forget to include counts of NA values with the argument useNA = "always"
+
+
+```
+
+
+## Task 8: Create variable magec
+
+__Using `mage`, generate a new variable with three categories: <18, 18-39, and ≥ 40, naming the new variable "magec” (mother’s age categorical). Set the values for `magec` to be 0,1,2, where 0 corresponds to the youngest age group (<18).__
+__Recommended steps:__
+
+```{r create magec}
+# create magec with a pipe (%>%) and mutate()
+# since this is your first time encountering case_when(), we've provided a layman's translation of how our code is communicating with the dataset. You just need to specify x, y, and z accordingly:
+
+
+kenya <- kenya %>%
+  mutate(magec = 
+           case_when(mage < 18 ~ x, 
+                     # "if mage is less than 18, then magec is x"
+                     mage >= 18 & mage < 40 ~ y, 
+                     # "if mage is greater than or equal to 18 AND if it is less than 40, then magec is y
+                     mage >= 40 ~ z) 
+                     # " if mage is greater than or equal to 40, then magec is z 
+
+  ) # don't forget the closing parenthesis for mutate()
+
+# finally, notice that each new condition is separated from the last by a comma
+
+```
+
+
+```{r factor magec}
+# factor magec (convert it to a categorical variable) with factor()
+
+```
+
+
+
+## Task 9: Cross-tab of mage and magec
+
+__Look at a cross-tabulation (two-way table) of mage and magec to ensure that magec was created correctly. Be sure missing values were handled properly (all observations that have a missing value for mage should be assigned the R missing value “NA” for magec.).   Type “?table” for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns of the table. Experiment to make your table readable.__
+
+### Method 1:
+
+```{r table cross-tab}
+# create a cross-tabulation of your new variables with table()
+
+```
+
+### Method 2: 
+
+```{r tidyverse cross-tab}
+# generate cross-tabulated numbers with a pipe, group_by(), and count()
+
+```
+
+
+
+
+## Task 10: Save new dataset
+
+__Save the new dataset in the same directory using a different file name with the form shown in the instructions on page 1 using the saveRDS() command.__
+
+```{r save data}
+# save the datset with saveRDS()
+
+saveRDS(datasetName, file = "data/filename.rds")
+```
+
+
+
+
+
+
+
+

@@ -4,14 +4,12 @@ theme: stylesheets/spring.css
 favicon: images/favicon.ico
 description: |
   Biostat & Epi Lab
-output_dir: "."
+output_dir: "docs"
 navbar:
   logo:
     image: images/narwhal.png
-    href: '`https://pngtree.com/so/llama`'
+    href: https://pngtree.com/so/llama
   right:
-    - text: "Potato"
-      href: https://www.livescience.com/45838-potato-nutrition.html
     #- text: "Analysis Map"
     #  href: mind_map.html
     - text: "Help With"
@@ -46,7 +44,7 @@ navbar:
         - text: "Lab 1"
           href: lab_01.html
         - text: "Lab 2 & 3"
-          href: lab_02.html
+          href: lab_02_03.html
         - text: "Lab 4"
           href: lab_04.html
     - text: "Submission Guidelines"

@@ -1,0 +1,267 @@
+---
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday October 22, 2021"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Lab 2 {.tabset}
+
+## Task 1: Load libraries and data
+
+```{r load dataset}
+# load dataset
+
+
+```
+
+
+```{r load tidyverse}
+# load {tidyverse} and {skimr} packages
+
+
+```
+
+
+## Task 2: Code derived variables
+
+
+### Task 2a: size 
+
+```{r size}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+
+### Task 2b: `belowavg` 
+
+
+```{r belowavg}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+### Task 2c: `pnc` 
+
+
+```{r pnc}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+
+
+### Task 2d: `rural` 
+
+
+```{r rural}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+
+
+### Task 2e: `education` 
+
+
+```{r education}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+
+
+
+### Task 2f: `death` 
+
+
+```{r death}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+
+
+
+### Task 2g: `time` 
+
+
+```{r time}
+# create derived variable using %>% and mutate()
+
+
+  
+```
+
+
+
+## Task 3: Close the cohort
+
+Create the equivalent of a closed cohort for the analysis of 5-year childhood mortality from this dataset. 
+
+*__NOTE:__* Complete task 3 before completing the remaining tasks.
+
+### Task 3a: Exclude irrelevant observations
+
+```{r filter cohort}
+
+```
+
+
+### Task 3b: Re-code `time`
+
+```{r recode time}
+
+```
+
+
+### Task 3c: Recode `time` to `time` +1
+
+```{r time + 1}
+
+```
+
+
+### Task 3d: Recode `death`
+
+
+
+```{r recode death}
+#Re-code death so that when `time >= 61`, `death == "alive"`
+
+
+```
+
+
+### Task 3e: Save new dataset
+
+Save this new dataset containing 16828 subjects (make sure to give it a new name).
+
+```{r save closed cohort}
+
+```
+
+
+## Task 4: Frequency histograms (closed cohort)
+
+
+Generate frequency histograms of `time`, overall and separately for levels of `death`.  Use `labs()` to put meaningful axis labels and a title on each figure.
+
+```{r time hist overall}
+
+```
+
+
+```{r time hist when death is 0}
+
+```
+
+```{r time hist when death is 1}
+
+```
+
+
+
+## Task 5: Boxplots of time (closed cohort)
+
+Generate boxplots of `time`, overall and separately for levels of `death`. Use `labs()` to put meaningful axis labels and a title on each figure.
+
+```{r time boxplot overall}
+
+```
+
+
+```{r time boxplot when death is 0}
+
+```
+
+```{r time boxplot when death is 1}
+
+```
+
+
+## Task 6: Frequency counts and percentages 
+
+Fill in Table 1 with the frequency counts and percentages for the levels of the new categorical variables you have generated.  Calculate percentages only for the non-missing values.  Round percentages to 1 decimal place. 
+
+### Size at birth (size)
+
+```{r freq time}
+
+```
+
+### Size at birth categorical (belowavg)
+```{r freq belowavg}
+
+```
+
+### Prenatal care (pnc)
+```{r freq pnc}
+
+```
+
+### Residence type (rural)
+```{r freq rural}
+
+```
+
+### Mother's education (education)
+```{r freq education}
+
+```
+
+### Death by 5 years (death)
+
+```{r freq death}
+
+```
+
+
+## Task 7: Update data dictionary 
+
+Update your data dictionary for the Kenya dataset, adding the newly created variables.
+
+Similar to Lab 1, use `skim()` to generate summary statistics for the entire dataset.
+
+```{r skim dataset}
+
+```
+
+
+## Task 8: Short Answer
+
+__Examine the range and proportion of missing for each of the variables 7 you have created in this lab.  Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)?  In contemplating analysis of these data, what do you think should be done with anomalous information?  What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
+
+
+(Type your response here! No need to put it in a code chunk.)

@@ -1,0 +1,34 @@
+Variable,Description,Coding
+caseid,Used to uniquely identify each mother.,Character
+bord,Birth order,Integer
+b3,Century month code for the date of birth of the child (see note below on century month codes).,Integer
+b4,Sex of child.,"1.   male; 
+2. female"
+b5,Whether child was alive or dead at the time of interview.,0.   dead; 1. alive
+b7,Age at death of the child in completed months gives a calculated age at death from the reported information. This variable occupies three digits. BASE: Dead children (B5 = 0).,Integer
+m2n,Indicator of no prenatal care.,"0.   some prenatal care; 
+1. no prenatal care;
+9. missing"
+m18,Size of child as reported subjectively by the mother.,"1.   very large; 
+2. large; 
+3. average; 
+4. smaller than average; 
+5. very small; 
+8. don't know; 
+9. missing"
+m19,Weight of child at birth given in kilograms with three implied decimal places. Divide by 1000 to produce weight in kilograms. Children who were not weighed are coded 9996,Integer (note implied decimal places)
+v008,Century month code of date of interview (see note on century month codes).,Integer
+v011,Century month code of date of birth of the mother (see note on century month codes).,Integer
+v025,Type of place of residence. ,"1.   urban; 
+2. rural"
+v437,Weight of the mother in kilograms at time of interview. There is one implied decimal place in the weight (decimal points are not included in the data file). To produce the weight in kilograms divide by 10.,Integer (note implied decimal places)
+v438,Height of the mother in centimeters at time of interview. There is one implied decimal place in the height (decimal points are not included in the data file). To produce the height in centimeters divide by 10.,Integer (note implied decimal places)
+v463z,Indicator of no smoking.,"0.   smokes something; 
+1. smokes nothing; 
+9. missing"
+s109,Education of the mother.,"0.   did not attend school; 
+1. primary; 
+2. post-primary/vocational; 
+3. seoncdary / a-level; 
+4. college (middle level); 
+5. university"

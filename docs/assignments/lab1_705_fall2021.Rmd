@@ -1,0 +1,206 @@
+---
+title: "GLHLTH 705 Lab"
+subtitle: "Due: Friday October 1, 2021"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Lab 1: {.tabset}
+
+## Goals
+
+* Generate derived variables
+* Identify and recode special values 
+* Run descriptive statistics for continuous and categorical variables 
+* Generate graphics for continuous variables 
+* Generate a complete data dictionary
+
+## Task 1: Load packages and data
+
+Use the dataset Lab_1_kenya.rds for this assignment. You will also need packages {skimr} and {tidyverse}
+
+```{r load packages}
+# load packages {skimr} and {tidyverse}
+
+
+```
+
+```{r load data}
+# load in data with readRDS(). 
+
+
+```
+
+
+## Task 2: Recode variables
+
+### Task2a: `bord5`
+
+__`bord5`__: A dichotomous categorical (i.e. binary) variable indicating whether the child's birth order was 1-4 or 5+.
+
+
+```{r bord5}
+# create derived variable using %>% and mutate()
+kenya <- kenya %>%
+  mutate(bord5 = case_when(bord < 5 ~ 0,
+                           bord >= 5 ~ 1
+  ))
+
+# convert derived variable to a factor with factor()
+
+kenya$bord5 <- factor(kenya$bord5, 
+                      labels = c('1-4 in Birth Order', '5+ in Birth Order'))
+
+```
+
+
+### Task 2b: `male`
+
+`male`: A dichotomous categorical (i.e. binary) variable indicating that the child is male. Based on variable `b4`.
+
+```{r male}
+# create derived variable using %>% and mutate()
+
+
+# convert derived variable to a factor with factor()
+
+
+```
+
+### Task 2c: `mweight`
+
+`mweight`: Continuous variable for maternal weight at time of interview (in kilograms). Based on variable `v437`. Note that `v437` contains 1 implied decimal place. Divide by 10 to get kilograms. 
+
+```{r mweight}
+# create derived variable using %>% and mutate()
+
+
+```
+
+### Task 2d: `mheight`
+
+`mheight`:  Continuous maternal height at time of interview (in meters). Based on variable `v438`. Note that according to the Data Dictionary, this variable is in centimeters and also contains 1 implied decimal place. Divide by 1000 to get meters. 
+
+```{r mheight}
+# create derived variable using %>% and mutate()
+
+
+```
+
+
+### Task 2e: `mbmi`
+
+`mbmi`: maternal body mass index (BMI).  Weight (kilograms) / height^2 (meters). 
+
+```{r mbmi}
+# create derived variable using %>% and mutate()
+
+
+```
+
+
+## Task 3: Frequency histograms
+
+Generate frequency histograms of `mweight`, `mheight` and `mbmi.`  Put meaningful axis labels and a title on each figure.
+
+
+### Task 3a: `mweight`
+
+```{r mweight hist}
+# histogram of mweight
+
+```
+
+
+### Task 3b: `mheight`
+
+```{r mheight hist}
+# histogram of mweight
+
+```
+
+### Task 3c: `mbmi`
+
+```{r mbmi hist}
+# histogram of mbmi
+
+```
+
+## Task 4: Boxplots
+
+Generate boxplots of `mweight`, `mheight`, and `mbmi` for the levels of `magec`. Put meaningful axis labels and a title on each figure.
+
+### Task 4a: `mweight`
+
+```{r mweight box}
+# boxplot of mweight
+
+```
+
+### Task 4b: `mheight`
+
+```{r mheight box}
+# boxplot of mheight
+
+```
+
+### Task 4c: `mbmi`
+
+```{r mbmi box}
+# boxplot of mbmi
+
+```
+
+
+## Task 5: Frequency table
+
+Fill in the sheet labelled Table 1 with the frequency counts and percentages for the levels of the 3 categorical variables you have generated. Calculate percentages only for the non-missing values. Round percentages to 1 decimal place.
+
+### Task 5a: `bord5`
+
+```{r bord5 freq}
+# create a summary table with %>% to generate frequency counts and percentages
+
+
+```
+
+### Task 5b: `magec`
+
+```{r magec freq}
+# create a summary table with %>% to generate frequency counts and percentages
+
+
+```
+
+### Task 5c: `male`
+
+```{r male freq}
+# create a summary table with %>% to generate frequency counts and percentages
+
+
+
+```
+
+## Task 6: Table 2
+
+Table 2 is the data dictionary for the Kenya DHS dataset, with columns added to annotate the variables and provide summary statistics.
+
+a.	Fill in the columns in this table for the variables originally on the dataset.
+b.	Add rows for the 7 new variables that you have created in both Labs 0 and 1.
+
+```{r}
+# generate summary statistics of your data frame with skim()
+
+```
+
+## Task 7: Short answer
+
+__Examine the range and proportion of missing values for each of the 7 variables you have created in Labs 0 and 1. Are there characteristics of any of these variables that are concerning (e.g., missing, suspicious or impossible values)? In contemplating analysis of these data, what do you think should be done with anomalous information? What effect would missing values have on the validity of your analyses (e.g., how might missing or extreme values affect inferences)?__
+__(Response no longer than 250 words, please)__
+
+
+(Type your response here! No need to put it in a code chunk.)
+
