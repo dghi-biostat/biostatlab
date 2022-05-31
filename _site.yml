@@ -30,23 +30,23 @@ navbar:
       menu:
         - text: "705 Labs"
         - text: "Lab 0"
-          href: lab_0.html
+          href: 705_lab_0.html
         - text: "Lab 1"
-          href: lab_1.html
+          href: 705_lab_1.html
         - text: "Lab 2"
-          href: lab_2.html
+          href: 705_lab_2.html
         - text: "Lab 3"
-          href: lab_3.html
+          href: 705_lab_3.html
         - text: "Lab 4"
-          href: lab_4.html
+          href: 705_lab_4.html
         - text: '---------' # draws a line in the menu space
         - text: '707 Labs'
         - text: "Lab 1"
-          href: lab_01.html
+          href: 707_lab_01.html
         - text: "Lab 2 & 3"
-          href: lab_02_03.html
+          href: 707_lab_02_03.html
         - text: "Lab 4"
-          href: lab_04.html
+          href: 707_lab_04.html
     - text: "Submission Guidelines"
       href: submit.html
     - text: "Dictionaries"

@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 (705)"
 description: |
-    __Due:__ November 23, 2021 by 22:00 ET
+    __Due:__ `r read.csv('files/due_dates.csv')[5,2]` by `r read.csv('files/due_dates.csv')[5,3]`
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
