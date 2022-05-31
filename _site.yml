@@ -30,9 +30,9 @@ navbar:
       menu:
         - text: "705 Labs"
         - text: "Lab 0"
-          href: docs/705_lab_0.html
+          href: guide_705_lab_0.html
         - text: "Lab 1"
-          href: docs/705_lab_1.html
+          href: guide_705_lab_1.html
         - text: "Lab 2"
           href: docs/705_lab_2.html
         - text: "Lab 3"
