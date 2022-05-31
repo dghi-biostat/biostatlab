@@ -34,19 +34,19 @@ navbar:
         - text: "Lab 1"
           href: guide_705_lab_1.html
         - text: "Lab 2"
-          href: docs/705_lab_2.html
+          href: 705_lab_2.html
         - text: "Lab 3"
-          href: docs/705_lab_3.html
+          href: 705_lab_3.html
         - text: "Lab 4"
-          href: docs/705_lab_4.html
+          href: 705_lab_4.html
         - text: '---------' # draws a line in the menu space
         - text: '707 Labs'
         - text: "Lab 1"
-          href: docs/707_lab_01.html
+          href: 707_lab_01.html
         - text: "Lab 2 & 3"
-          href: docs/707_lab_02_03.html
+          href: 707_lab_02_03.html
         - text: "Lab 4"
-          href: docs/707_lab_04.html
+          href: 707_lab_04.html
     - text: "Submission Guidelines"
       href: submit.html
     - text: "Dictionaries"

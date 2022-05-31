@@ -2571,16 +2571,16 @@ Lab Assignments
 </button>
 <div class="nav-dropdown-content">
 <span class="nav-dropdown-header">705 Labs</span>
-<a href="docs/705_lab_0.html">Lab 0</a>
-<a href="docs/705_lab_1.html">Lab 1</a>
-<a href="docs/705_lab_2.html">Lab 2</a>
-<a href="docs/705_lab_3.html">Lab 3</a>
-<a href="docs/705_lab_4.html">Lab 4</a>
+<a href="guide_705_lab_0.html">Lab 0</a>
+<a href="guide_705_lab_1.html">Lab 1</a>
+<a href="705_lab_2.html">Lab 2</a>
+<a href="705_lab_3.html">Lab 3</a>
+<a href="705_lab_4.html">Lab 4</a>
 <hr/>
 <span class="nav-dropdown-header">707 Labs</span>
-<a href="docs/707_lab_01.html">Lab 1</a>
-<a href="docs/707_lab_02_03.html">Lab 2 &amp; 3</a>
-<a href="docs/707_lab_04.html">Lab 4</a>
+<a href="707_lab_01.html">Lab 1</a>
+<a href="707_lab_02_03.html">Lab 2 &amp; 3</a>
+<a href="707_lab_04.html">Lab 4</a>
 </div>
 </div>
 <a href="submit.html">Submission Guidelines</a>
@@ -2820,7 +2820,7 @@ pipe</a> with skimr() to call specific variables, like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skim</a></span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
+  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2836,7 +2836,7 @@ want to “group by <code>death</code>, then skim the variable
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>death</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skim</a></span><span class='op'>(</span><span class='va'>mbmi</span><span class='op'>)</span>
+  <span class='fu'>skim</span><span class='op'>(</span><span class='va'>mbmi</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -3209,7 +3209,7 @@ the reference level for each variable.
 <h4 id="print-simple-table">Print simple table</h4>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>simple_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>simple_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;              level                  Overall      </span>
 <span class='co'>#&gt;  n                                   16828        </span>
@@ -3234,7 +3234,7 @@ variables of interest e.g. of <code>size</code> and
 <code>pnc</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;              Stratified by bord5</span>
 <span class='co'>#&gt;               level                  1-4 in Birth Order 5+ in Birth Order  p     test</span>
@@ -3282,7 +3282,7 @@ calculate a Fisher’s Exact test, the nonparametric equivalent of the
 chi-square test of independence.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://docs.ropensci.org/skimr/reference/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span>, exact <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>stratified_tab</span>, showAllLevels <span class='op'>=</span> <span class='cn'>TRUE</span>, exact <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>#&gt;               Stratified by bord5</span>
 <span class='co'>#&gt;               level                  1-4 in Birth Order 5+ in Birth Order p      test </span>
