@@ -1,6 +1,5 @@
 ---
 title: "GLHLTH 705 Lab"
-subtitle: "Due: Friday Setpember 17, 2021"
 author: "YOUR NAME HERE"
 date: "`r Sys.Date()`"
 output: 
@@ -14,14 +13,10 @@ output:
 
 __a. Note that for this step, you should first install three packages using the following codes; If you have already installed these packages once before, proceed to task 3b directly.__
 
-`install.packages("tidyverse")`  
-`install.packages("skimr")` 
-`install.packages("epiR")`  
-`install.packages("tableone")`
-`install.packages("devtools")`  
+`install.packages(c("tidyverse", "skimr", "epiR", "tableone", "devtools"))`
 `devtools::install_github("potato-nathan/epiAssist")`
 
-b. Load libraries:
+__b. Load libraries:__
 
 __For this lab, we need {skimr} and {tidyverse}__
 

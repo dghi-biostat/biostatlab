@@ -84,27 +84,33 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>DGHI/Biostat Lab: Broken Code</title>
+  <title>DGHI/Biostat Lab: Lab 4 (707) - Time to Event Analysis</title>
 
+  <meta property="description" itemprop="description" content="__Lab 04 Due:__ April 15, 2022, by 15:00 ET"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-06-20"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-06-20"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="DGHI/Biostat Lab: Broken Code"/>
+  <meta property="og:title" content="DGHI/Biostat Lab: Lab 4 (707) - Time to Event Analysis"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="__Lab 04 Due:__ April 15, 2022, by 15:00 ET"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DGHI/Biostat Lab"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="DGHI/Biostat Lab: Broken Code"/>
+  <meta property="twitter:title" content="DGHI/Biostat Lab: Lab 4 (707) - Time to Event Analysis"/>
+  <meta property="twitter:description" content="__Lab 04 Due:__ April 15, 2022, by 15:00 ET"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Broken Code"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Lab 4 (707) - Time to Event Analysis"]},{"type":"character","attributes":{},"value":["__Lab 04 Due:__ April 15, 2022, by 15:00 ET\n"]},{"type":"character","attributes":{},"value":["2022-06-20"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2505,6 +2511,12 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+  <link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+  <script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+  <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+  <link href="site_libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+  <script src="site_libs/panelset-0.2.6/panelset.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2524,7 +2536,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Broken Code","authors":[]}
+{"title":"Lab 4 (707) - Time to Event Analysis","description":"__Lab 04 Due:__ April 15, 2022, by 15:00 ET","authors":[],"publishedDate":"2022-06-20T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2597,49 +2609,709 @@ Dictionaries
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Broken Code</h1>
+<h1>Lab 4 (707) - Time to Event Analysis</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p><strong>Lab 04 Due:</strong> April 15, 2022, by 15:00 ET</p></p>
 </div>
 
 
 <div class="d-article">
-<h2 id="some-tips-for-code-that-wont-run">Some tips for code that won’t
-run</h2>
-<p>Don’t hesitate to ask for help if you are having problems with
-software, code, etc. But be warned, your question should be specific and
-detailed, not just “Why won’t this line of code run?”</p>
-<p>In my experience, unsent emails are sometimes better (and faster)
-than a TA. What looks like a hairy knot in your code is often quick to
-untangle when you start putting things in writing. This is why we ask
-that any email you send be both detailed and specific.</p>
-<p>Here are some other things that may help in getting your code to
-work:</p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
 <ul>
-<li>Check that you haven’t mixed up <code>==</code> and
-<code>=</code><br />
-</li>
-<li>Go for a walk (seriously, maybe you’ve been sitting for too
-long)<br />
-</li>
-<li>Google your error message – there’s almost always someone else who
-has encountered a similar problem<br />
-</li>
-<li>Don’t delete and make changes to the same line of code. Copy/paste
-into a new chunk. Formulate a hypothesis. Make changes. Take notes on
-what changed. Revise your hypothesis. Repeat.<br />
-</li>
-<li>Learn the <a
-href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE#debugging-in-r-markdown-documents">R
-Debugger</a> (The code for 705’s lab probably won’t need the debugger,
-but if you’re getting deep into things, ask Nathan about it)</li>
+<li><a href="#lab-materials">LAB MATERIALS</a>
+<ul>
+<li><a href="#lab-4-goals">Lab 4 Goals</a></li>
+<li><a href="#lab-4-grading-scheme">Lab 4 Grading scheme</a></li>
+<li><a href="#data-and-assignment">Data and assignment</a></li>
+<li><a href="#packages">Packages</a></li>
+</ul></li>
+<li><a href="#survival-analysis">Survival Analysis</a>
+<ul>
+<li><a href="#describing-survival-data">Describing survival
+data</a></li>
+<li><a href="#describing-survival-data-1">Describing Survival
+Data</a></li>
+<li><a href="#kaplan-meier-curves">Kaplan-Meier Curves</a></li>
+<li><a href="#cox-proportional-hazards-models">Cox Proportional Hazards
+Models</a></li>
+<li><a href="#estimating-time-varying-effects">Estimating Time-varying
+effects</a></li>
+</ul></li>
+<li><a
+href="#calculating-incidence-rates-and-related-measures-of-association">Calculating
+incidence rates and related measures of association</a>
+<ul>
+<li><a href="#r-commands-for-the-tabular-analysis-of-rates">R commands
+for the tabular analysis of rates</a></li>
+<li><a href="#r-commands-for-poisson-regression-models">R Commands for
+Poisson Regression Models</a></li>
+</ul></li>
 </ul>
-<p>You might also flip through <a
-href="https://rmd4sci.njtierney.com/common-problems-with-rmarkdown-and-some-solutions.html">this
-article on commmon problems in R Markdown</a>, which might provide some
-<a href = "lab_04.html">answers</a>.</p>
-<div class="sourceCode" id="cb1"><pre
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="lab-materials">LAB MATERIALS</h2>
+<h3 id="lab-4-goals">Lab 4 Goals</h3>
+<ul>
+<li>Describe survival time data utilizing summary statistics and
+graphical methods</li>
+<li>Fit Cox proportional hazards regression models with fixed and
+time-varying covariates</li>
+<li>Assess appropriateness of the assumptions of the Cox model</li>
+<li>Calculate incidence rates and ratios using Poisson methods</li>
+</ul>
+<h3 id="lab-4-grading-scheme">Lab 4 Grading scheme</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Competency</th>
+<th style="text-align: center;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">.Rmd file runs without error</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Table 1</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Table 2</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Table 3</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Table 4</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Figures 1 - 10</td>
+<td style="text-align: center;">30 (3 points each)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Short answer questions</td>
+<td style="text-align: center;">20 (5 points each)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-and-assignment">Data and assignment</h3>
+<p>The assignment and dataset are both available on <a
+href="https://youtu.be/dQw4w9WgXcQ">Sakai</a></p>
+<p><strong>NOTE ON THE DATASET:</strong> As you load the data into R, be
+sure to notice that this is the <em>original</em>, DHS dataset, with
+22,534 observations (i.e. from before we closed the cohort).</p>
+<h3 id="packages">Packages</h3>
+<ul>
+<li>{tidyverse}</li>
+<li>{survival}</li>
+<li>{survminer}</li>
+<li>{epiR}</li>
+<li>{fmsb}</li>
+<li>{biostat3}</li>
+</ul>
+<h2 id="survival-analysis">Survival Analysis</h2>
+<p>The methods we have used so far have assumed a closed cohort—no loss
+to follow-up or censoring. In the event that we have loss to follow up
+(or even if we don’t), we can analyze the time-to-death using methods
+from survival analysis. The most common approach for this is to utilize
+the Cox proportional hazards regression model. We will first focus on
+how to describe time-to-event data, then we will turn to how to analyze
+and check assumptions for the Cox proportional hazards model.</p>
+<h3 id="describing-survival-data">Describing survival data</h3>
+<p>Survival analysis in R is similar to other types of analyses in R
+with the exception that you have to first tell R that you are working
+with time-to-event data. Before we begin to analyze survival data and
+generate Kaplan-Meier curves, we need to create a <code>Surv()</code>
+data object.</p>
+<p>This is a special data type, unique to the {survival} package. It
+simultaneously indicates an observation’s time at risk, and whether it
+was censored.</p>
+<p>The <code>Surv()</code> function takes two objects from our data
+frame: the subject’s follow-up time and whether or not they experienced
+the event.</p>
+<p>In the present analysis, that information is stored in our variables
+<code>time</code> (how many months the child has survived after birth)
+and <code>death</code>, respectively. We can create this object as a new
+variable in our data frame using <code>mutate()</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kenya</span> <span class='op'>&lt;-</span> <span class='va'>kenya</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>surv_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span>time <span class='op'>=</span> <span class='va'>time</span>, event <span class='op'>=</span> <span class='va'>death</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Be sure to inspect that new <code>Surv()</code> column. Here’s how it
+appears next to our variables for <code>time</code> and
+<code>death</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">death</th>
+<th style="text-align: right;">surv_data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">38+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">205</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">205+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">153+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">262</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">262+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">38+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">192+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">301</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">301+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">325</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">325+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">79+</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">158</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">158+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<aside>
+Note that <code>Surv()</code> can also be created as a standalone object
+and does not need to be attached to a data frame as a new column.
+</aside>
+<p>We can then use our <code>Surv()</code> object to build a
+<code>survfit()</code> time-to-event model, which is parameterized just
+like in the function <code>lm()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>surv_bord5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survfit</a></span><span class='op'>(</span><span class='va'>surv_data</span> <span class='op'>~</span> <span class='va'>bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>If we inspect this model, we’ll see that it is the tabular
+representation of a survival curve. Use <code>summary()</code> to
+inspect it for yourself.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>surv_bord5</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<aside>
+Seriously, run this <code>summary()</code> code for yourself and see.
+The output is too long for the website. Once you do, notice how these
+calculations are similar to the ones your performed manually in the
+take-home assignment from class.
+</aside>
+<p>The summary of <code>surv_bord5</code> will show us a tabulation of
+the cohort’s survival probability at each time-step, along with how many
+were at risk and the number of events in that interval.</p>
+<h3 id="describing-survival-data-1">Describing Survival Data</h3>
+<p>Survival data can be described both graphically and analytically.
+Measures such as total time at risk, number of subjects and median
+survival time are common values reported in survival analysis
+reports.</p>
+<p>If we <code>print()</code> the <code>surv_fit()</code> object
+generated above, we receive a brief set of summary statistics that would
+suffice for a good portion of Table 1. But median values are NA. And
+there’s no mean. Oh no!</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>Call: survfit(formula = surv_data ~ bord5, data = kenya)
+
+           n events median 0.95LCL 0.95UCL
+bord5=0 1559    141     NA      NA      NA
+bord5=1  441     54     NA      NA      NA</code></pre>
+</div>
+<aside>
+<a
+href="https://stats.stackexchange.com/questions/402432/why-median-is-na-for-some-of-the-group-outcomes-in-survival-analysis">This
+Stats Exchange post</a> explains why. Basically, our data don’t have
+enough events to calculate a median.
+</aside>
+<p>In view of this, to fill out Table 1, we will need to rely on the
+<code>summarize()</code> function to get summary data for the variables
+<code>time</code> and <code>death</code></p>
+<h3 id="kaplan-meier-curves">Kaplan-Meier Curves</h3>
+<p>Graphically, Kaplan-Meier curves are plots of the probability of
+survival as a function of time. These are often presented for each level
+of the primary exposure variable and are usually unadjusted (although
+adjusted KM curves are possible).</p>
+<p>The package {survminer} contains plotting functions that interact
+with <code>survfit()</code> objects to plot survival curves. The syntax
+is a bit different than {ggplot2}, but the concept is the same.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggsurvplot</span><span class='op'>(</span>fit <span class='op'>=</span> <span class='va'>surv_bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span>,
+           ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.8</span>, <span class='fl'>1</span><span class='op'>)</span>,
+           conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           xlab <span class='op'>=</span> <span class='st'>"Time since birth (months)"</span>,
+           ylab <span class='op'>=</span> <span class='st'>"Probability of Survival"</span>,
+           title <span class='op'>=</span> <span class='st'>"Survival Probability by birth order"</span>,
+           legend <span class='op'>=</span> <span class='st'>"bottom"</span>, <span class='co'># this specifies legend position</span>
+           legend.title <span class='op'>=</span> <span class='st'>"Birth Order (bord5)"</span>,
+           legend.labs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1-4"</span>, <span class='st'>"5+"</span><span class='op'>)</span>
+        <span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="707_lab_4_files/figure-html5/unnamed-chunk-6-1.png" width="768" /></p>
+</div>
+<aside>
+For more plotting options of <code>ggsurvplot()</code>, check out <a
+href="http://www.sthda.com/english/wiki/survminer-r-package-survival-data-analysis-and-visualization">this
+link</a>
+</aside>
+<h3 id="cox-proportional-hazards-models">Cox Proportional Hazards
+Models</h3>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="panelset">
+<section id="reading---hazard-ratios" class="panel">
+<h4>Reading - Hazard Ratios</h4>
+<div class="layout-chunk" data-layout="shaded">
+<a href="files/lab04_coxph.pdf">
+<img src="images/lab04_coxph.png"/>
+</a>
+</div>
+</section>
+</div>
+<aside>
+(Click on the thumbnail for further reading.)
+</aside>
+<p>In R, Cox PH models are parameterized just like the
+<code>survfit()</code> function, in that they take a <code>Surv()</code>
+object as the response variable. However, they’re different in their
+output. The output is similar to the familiar regression output, with
+coefficients.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span>, data <span class='op'>=</span> <span class='va'>kenya</span>, ties <span class='op'>=</span> <span class='st'>"breslow"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>cox_bord5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Call:
+coxph(formula = Surv(time, death) ~ bord5, data = kenya, ties = &quot;breslow&quot;)
+
+  n= 2000, number of events= 195 
+
+        coef exp(coef) se(coef)     z Pr(&gt;|z|)  
+bord5 0.3874    1.4732   0.1606 2.413   0.0158 *
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+      exp(coef) exp(-coef) lower .95 upper .95
+bord5     1.473     0.6788     1.075     2.018
+
+Concordance= 0.537  (se = 0.016 )
+Likelihood ratio test= 5.48  on 1 df,   p=0.02
+Wald test            = 5.82  on 1 df,   p=0.02
+Score (logrank) test = 5.89  on 1 df,   p=0.02</code></pre>
+</div>
+<h4 id="adjusted-models">Adjusted models</h4>
+<p>To estimate the effect of <code>bord5</code>, adjusting for maternal
+education (coded with disjoint indicator variables), we would use the
+following code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> 
+      <span class='va'>education_c2</span> <span class='op'>+</span> <span class='va'>education_c3</span>, 
+      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
+      data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Alternatively, we can parameterize education as a factor-type
+variable to obtain the same result:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>education</span><span class='op'>)</span>, 
+                      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
+                      data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="violation-of-the-proportional-hazards-assumption">Violation of
+the Proportional Hazards Assumption</h4>
+<p>The standard Cox proportional hazards model assumes that the effect
+of a covariate on the time to an event (e.g. bord5) remains the same
+across follow-up (i.e., is proportional or constant over time). This
+might not be a reasonable assumption. We can evaluate if our data are
+consistent with this assumption through graphical or test-based
+methods.</p>
+<p>A common graphical method is to plot a transformation of survival for
+categories of a variable (S(t), the probability of not having the event)
+against the natural logarithm of follow-up time. In particular, the
+ln(-ln(S(t)) for two categories of a given variable should remain fairly
+parallel in a loose sense (never cross, although the lines may not be
+perfectly straight).</p>
+<p>If two lines cross, or appear to be converging (or diverging) even
+outside of the range of time used, then this can indicate that the
+proportional hazards assumption may not be reasonable and you should
+explore estimating an effect that varies over time.</p>
+<p>These plots are only useful for categorical variables and cannot be
+utilized for continuous variables.</p>
+<p>In R, we generate this type of plot similar to a Kaplan Meier, except
+we need to specify our function (<code>fun</code>). Its default gives
+the survival probability, but here we will set
+<code>fun = "cloglog"</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggsurvplot</span><span class='op'>(</span><span class='va'>surv_bord5</span>, fun <span class='op'>=</span> <span class='st'>"cloglog"</span>,
+           conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           xlab <span class='op'>=</span> <span class='st'>"Natural log of time (months)"</span>,
+           ylab <span class='op'>=</span> <span class='st'>"log-log survival"</span>,
+           title <span class='op'>=</span> <span class='st'>"log-log curves by bord5"</span>,
+           legend <span class='op'>=</span> <span class='st'>"bottom"</span>, <span class='co'># this specifies legend position</span>
+           legend.title <span class='op'>=</span> <span class='st'>"Birth Order (bord5)"</span>,
+           legend.labs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1-4"</span>, <span class='st'>"5+"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="707_lab_4_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<aside>
+Note that we have used the original survival object,
+<code>surv_bord5</code> to generate this plot. The <code>coxph()</code>
+model object cannot be used for plotting, unfortuneately.
+</aside>
+<h4 id="plotting-adjusted-models">Plotting adjusted models</h4>
+<p>To plot an adjusted model, we’ll need to convert it to a
+<code>survfit()</code> object:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>surv_bord5_ed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survfit</a></span><span class='op'>(</span><span class='va'>cox_bord5_ed</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>You might notice that if we try and plot the adjusted model, the plot
+appears unstratified:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggsurvplot</span><span class='op'>(</span><span class='va'>surv_bord5_ed</span>, fun <span class='op'>=</span> <span class='st'>"cloglog"</span>,
+           conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           xlab <span class='op'>=</span> <span class='st'>"Time (in months) using log"</span>,
+           ylab <span class='op'>=</span> <span class='st'>"log-log survival"</span>,
+           title <span class='op'>=</span> <span class='st'>"log-log curves by bord5(?)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="707_lab_4_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<p>The <code>strata()</code> function allows us to indicate which
+variable we wish to evaluate for the proportional hazards assumptions.
+This function is used <em>within</em> our model equation.</p>
+<p>So to get a proper stratified “cloglog” plot from our adjusted Cox
+model, we must re-build the model and specify which variable to stratify
+with <code>strata()</code>, then convert to <code>survfit()</code>, and
+<strong><em>only then</em></strong> will it plot properly:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_bord5_ed_strata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/strata.html'>strata</a></span><span class='op'>(</span><span class='va'>bord5</span><span class='op'>)</span> <span class='op'>+</span> 
+      <span class='va'>education_c2</span> <span class='op'>+</span> <span class='va'>education_c3</span> <span class='op'>+</span> <span class='va'>male</span> <span class='op'>+</span> <span class='va'>mage</span> <span class='op'>+</span> <span class='va'>mage2</span>, 
+      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
+      data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+
+<span class='va'>surv_bord5_ed_strata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survfit</a></span><span class='op'>(</span><span class='va'>cox_bord5_ed_strata</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+
+<span class='fu'>ggsurvplot</span><span class='op'>(</span><span class='va'>surv_bord5_ed_strata</span>, fun <span class='op'>=</span> <span class='st'>"cloglog"</span>,
+           conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           xlab <span class='op'>=</span> <span class='st'>"Time (in months) using log"</span>,
+           ylab <span class='op'>=</span> <span class='st'>"log-log survival"</span>,
+           title <span class='op'>=</span> <span class='st'>"log-log curves by bord5(!)"</span>,
+           legend <span class='op'>=</span> <span class='st'>"bottom"</span>, <span class='co'># this specifies legend position</span>
+           legend.title <span class='op'>=</span> <span class='st'>"Birth Order (bord5)"</span>,
+           legend.labs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1-4"</span>, <span class='st'>"5+"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="707_lab_4_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>If we compared these adjusted log-log survival curves with those of
+the plain model, where <code>bord5</code> is the only predictor
+(<code>formula = Surv(time, death) ~ bord5</code>), we would find that
+the plots are quite alike, but contain subtle differences in the
+alignment of the curves. In evaluating the proportionality assumption in
+Cox regression, we only need the assumption to hold, conditional on
+modeled covariates; so plotting these adjusted curves is useful.</p>
+<h3 id="estimating-time-varying-effects">Estimating Time-varying
+effects</h3>
+<p>In the event that you find the proportional hazards assumption
+violated for a particular covariate, you should report the effect of the
+exposure at several time points (you can think of this as effect
+modification of the exposure by follow-up time). The specification of a
+Cox model with a time-varying effect for the covariate <span
+class="math inline">\(X_1\)</span> is:</p>
+<p><span class="math display">\[
+ln[h(t)] = ln[h_0(t) + \beta_1X_1 + \beta_2X_1*t]
+\]</span> Notice that this is in a form similar to our original Cox
+regression formula, but contains an interaction term between our main
+effect and <span class="math inline">\(t\)</span>, time.</p>
+<p>To estimate the hazard ratio for <span class="math inline">\(X_1 =
+1\)</span> vs. <span class="math inline">\(X_1 = 0\)</span> at time
+<span class="math inline">\(t = T\)</span>:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+ln(HR) &amp;=&amp; ln \left[ \frac{h(t|X=1, t=T)}{h(t|X=0, t =
+T)}\right] = \frac{ln[h(t|X=1, t=T)]}{ln[h(t|X=0, t = T)]}\\
+\\
+&amp;=&amp;[ln(h_0(T)) + \beta_1(1) + \beta_2(1)*T] - [ln(h_0(t)) +
+\beta_1(0) + \beta_2(0)*T]\\
+&amp;=&amp; \beta_1(1) + \beta_2(1) * T\\
+\\
+HR &amp;=&amp; exp(\beta_1 + \beta_2*T) \\
+95\%\  CI &amp;=&amp; exp[\beta_1 + \beta_2*T \pm (1.96 * SE(\beta_1 +
+\beta_2*T))]
+\end{eqnarray}
+\]</span></p>
+<p>You can use the Cox regression model that contains the time-varying
+effect <code>lincom()</code> command to generate time-varying effects.
+Remember to ‘eform’!</p>
+<h4 id="formal-statistical-test-of-proportional-hazards">Formal
+statistical test of proportional hazards</h4>
+<p>We can use R to formally test the significance of this time-varying
+effect as it pertains to the assumption of proportional hazards.</p>
+<p>By allowing the hazard ratio to vary across time, we test if this
+<strong>time-varying effect</strong> is significant. To perform this, we
+use the <code>tt()</code> function in our model formula, and then use
+the argument <code>tt =</code> to specify the function by which
+<code>time</code> is interacting with <code>bord5</code> in our
+model:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cox_tt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> <span class='va'>male</span> <span class='op'>+</span> <span class='va'>rural</span> <span class='op'>+</span> <span class='va'>education_c2</span> <span class='op'>+</span> <span class='va'>education_c3</span> <span class='op'>+</span> <span class='va'>mage</span> <span class='op'>+</span> <span class='va'>mage2</span> <span class='op'>+</span> <span class='fu'>tt</span><span class='op'>(</span><span class='va'>bord5</span><span class='op'>)</span>,
+      data <span class='op'>=</span> <span class='va'>kenya</span>, 
+      ties <span class='op'>=</span> <span class='st'>"breslow"</span>,
+      tt <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>time</span>,<span class='va'>...</span><span class='op'>)</span><span class='va'>x</span><span class='op'>*</span><span class='va'>time</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2
+id="calculating-incidence-rates-and-related-measures-of-association">Calculating
+incidence rates and related measures of association</h2>
+<p>Just as the generalized linear model can be used to estimate risks,
+risk differences and risk ratios, we can also use this methodology to
+estimate incidence rates and incidence rate ratios from the counts of
+outcomes over time. The Poisson distribution is used to model counts or
+rates and has the general form:</p>
+<p><span class="math display">\[
+ln(deaths) = \beta_0 + \beta_1X_1... + \beta_kX_k + ln(time)
+\]</span> where <strong>family = “poisson”</strong> and <strong>link =
+“log”</strong>.</p>
+<p>Notice that the specification of the Poisson model includes the
+number of deaths and the logarithm of the exposure time. Rearranging the
+above equation and a bit of algebra shows how this can be used to derive
+the incidence rate (IR):</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+ln(deaths) - ln(time) &amp;=&amp; \beta_0 + \beta_1X_1... + \beta_kX_k\\
+ln\left(\frac{deaths}{time}\right) &amp;=&amp; \beta_0 +
+\beta_1X_1...+\beta_kX_k\\
+ln(IR) &amp;=&amp; \beta_0 + \beta_1X_1...+\beta_kX_k
+\end{eqnarray}
+\]</span></p>
+<p>To estimate incidence rates for <span class="math inline">\(X_1 =
+0,1\)</span>:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+ln[IR | X_1] &amp;=&amp; \beta_0 + \beta_1X_1\\
+\\
+\textbf{when\  X_1 = 0:} \\
+ln(IR_0) &amp;=&amp; \beta_0 + \beta_1(0)\\
+IR_0 &amp;=&amp; exp(\beta_0)\\
+\\
+\textbf{when\  X_1 = 1:} \\
+ln(IR_1) &amp;=&amp; \beta_0 + \beta_1(1)\\
+IR_1 &amp;=&amp; exp(\beta_1 + \beta_1)
+\end{eqnarray}
+\]</span></p>
+<p>To estimate the incidence rate ratio (IRR) for <span
+class="math inline">\(X_1 = 1\)</span> vs. <span
+class="math inline">\(X_1 = 0\)</span>:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+ln(IRR) = ln\left(\frac{IR_1}{IR_0}\right) &amp;=&amp; ln(IR_1) -
+ln(IR_0)\\
+&amp;=&amp;[\beta_0 + \beta_1(1)] - [\beta_0 + \beta_1(0)] \\
+&amp;=&amp; \beta_1
+\\
+\\
+IRR &amp;=&amp; exp(\beta_1)\\
+95\%\ CI &amp;=&amp; exp[\beta_1 \pm (1.96 * SE(\beta_1))]
+\end{eqnarray}
+\]</span></p>
+<p>IRs and IRRs can be estimated through linear combinations of the
+regression parameters as we have done with previous linear models, using
+<code>lincom()</code>.</p>
+<h3 id="r-commands-for-the-tabular-analysis-of-rates">R commands for the
+tabular analysis of rates</h3>
+<p>You can use the <code>pyears()</code> function from the {survival}
+package to generate values that are useful in calculating incidence
+rates and incidence rate ratios</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ptime_bord5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/pyears.html'>pyears</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>death</span><span class='op'>)</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/strata.html'>strata</a></span><span class='op'>(</span><span class='va'>bord5</span><span class='op'>)</span>, 
+                      data <span class='op'>=</span> <span class='va'>kenya</span>, scale <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>ptime_bord5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Call: pyears(formula = Surv(time, death) ~ strata(bord5), data = kenya, 
+    scale = 1)
+
+number of observations = 2000
+
+ strata(bord5)    N     Events    Time   
+--------------- ------ -------- -------- 
+    bord5=0      1559    141     203041 
+    bord5=1       441     54      40760 </code></pre>
+</div>
+<p>You can then access values within the <code>pyears()</code> object
+like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># events of death in strata bord5 = 0</span>
+<span class='va'>ptime_bord5</span><span class='op'>$</span><span class='va'>event</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>bord5=0 
+    141 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># person time in strata bord5 = 0</span>
+<span class='va'>ptime_bord5</span><span class='op'>$</span><span class='va'>pyears</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>bord5=0 
+ 203041 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># events of death in strata bord5 = 1</span>
+<span class='va'>ptime_bord5</span><span class='op'>$</span><span class='va'>event</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>bord5=1 
+     54 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># person time in strata bord5 = 1</span>
+<span class='va'>ptime_bord5</span><span class='op'>$</span><span class='va'>pyears</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>bord5=1 
+  40760 </code></pre>
+</div>
+<p>You can then use the functions <code>ratedifference()</code> and
+<code>rateratio()</code> from the package {fmsb} to calculate the
+incidence rate difference and incidence rate ratio, respectively.</p>
+<p>Both functions take the same arguments:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ratedifference</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>PT1</span>, <span class='va'>PT0</span>, conf.level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+<span class='fu'>rateratio</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>PT1</span>, <span class='va'>PT0</span>, conf.level <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Where <strong><em>a</em></strong> is the number of disease occurence
+among the exposed,</p>
+<p><strong><em>b</em></strong> is the number of diease occurence among
+the unexposed,</p>
+<p><strong><em>PT1</em></strong> is the observed person-time in the
+exposed cohort,</p>
+<p>And <strong><em>PT0</em></strong> is the observed person-time in the
+unexposed cohort.</p>
+<h3 id="r-commands-for-poisson-regression-models">R Commands for Poisson
+Regression Models</h3>
+<p>The command for a Poisson regression model has the following
+form:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>poisson_bord5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>death</span> <span class='op'>~</span> <span class='va'>bord5</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/offset.html'>offset</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>)</span><span class='op'>)</span>, 
+                     family <span class='op'>=</span> <span class='st'>"poisson"</span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>"log"</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>kenya</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Access the model summary just like any normal <code>glm()</code>
+model:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>poisson_bord5</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Note that the exposure time is explicitly specified in the GLM
+options using <code>offset()</code>. We must use the natural log of
+<code>time</code> to generate the appropriate estimates since our model
+is fit on the log scale (<code>link = "log")</code>.</p>
+<p>To generate estimates of Incidence Rates (IR) and Incidence Rate
+Ratios (IRR), you can use the <code>lincom()</code> command with your
+poisson models.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># IR at intercept</span>
+<span class='fu'>lincom</span><span class='op'>(</span><span class='va'>poisson_bord5</span>, <span class='st'>"(Intercept)"</span>, eform <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># IR at bord5 == "5+"</span>
+<span class='fu'>lincom</span><span class='op'>(</span><span class='va'>poisson_bord5</span>, <span class='st'>"(Intercept) + bord5"</span>, eform <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># IRR and CI</span>
+<span class='fu'>lincom</span><span class='op'>(</span><span class='va'>poisson_bord5</span>, <span class='st'>"bord5"</span>, eform <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>To have IR/IRR reported (instead of beta coefficients), be sure to
+set <code>eform = TRUE</code> in your <code>lincom()</code>
+function.</p>
+<div class="sourceCode" id="cb8"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2648,6 +3320,15 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

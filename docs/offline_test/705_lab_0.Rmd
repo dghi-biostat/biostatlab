@@ -1,7 +1,7 @@
 ---
 title: "Lab 0 (705)"
 description: |
-    __Due:__ `r read.csv('files/due_dates.csv')[1,2]` by `r read.csv('files/due_dates.csv')[1,3]`
+    __Due:__ `r read.csv('../files/due_dates.csv')[1,2]` by `r read.csv('../files/due_dates.csv')[1,3]`
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -10,13 +10,13 @@ output: distill::distill_article
 # this chunk triggers the running of a script called "runtime.R"
 # which is located in the folder "./offline_access"
 # this will generate word documents that match the website documents
-#setwd("offline_access")
-#source("runtime.R")
-#setwd("..")
+setwd("offline_access")
+source("runtime.R")
+setwd("..")
 ```
 
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
 library(tweetrmd)
@@ -27,11 +27,11 @@ library(skimr)
 library(xaringanExtra)
 ```
 
-```{r echo=FALSE}
+```{r xaringanExtra-clipboard, echo=FALSE}
 xaringanExtra::use_clipboard()
 ```
 
-```{r echo=FALSE}
+```{r share-again, echo=FALSE}
 xaringanExtra::use_share_again()
 ```
 
@@ -39,7 +39,7 @@ __*Note: This lab is not graded*__ (i.e. does not contribute to your course eval
 
 ### LAB MATERIALS
 
-* [__R Markdown file for Lab 0__](assignments/lab0_705_fall2021.Rmd)
+* [__R Markdown file for Lab 0__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab0_705_fall2021.Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `Lab0_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * Lab_0_kenya.rds - data file available in the Resources folder of the Sakai course webpage
@@ -47,8 +47,8 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 ### Slides
 
-```{r fig.cap="[Slides](slides/index.html)"}
-xaringanExtra::embed_xaringan(url = "files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
+```{r embed-xaringan, echo=FALSE, fig.cap="[Slides](slides/index.html)"}
+xaringanExtra::embed_xaringan(url = "../files/Lab0_slides/Lab0_slides.html", ratio = "16:9")
 ```
 
 ### Lab 0 Goals
@@ -88,12 +88,12 @@ Now open RStudio and take a deep breath. Don't panic. This will all be very fami
 
 Initiate a new project by going to __*File*__ and clicking __*New Project*__. 
 
-![Creating a new project](images/newproject.png)
+![Creating a new project](../images/newproject.png)
 Then select __*Existing Directory*__ and hit __*Browse*__. Navigate to the folder titled __Lab 0__. Open it, then hit __*Open*__. 
 
 If you've done this correctly, your new folder, "Lab 0" should appear in the bottom-right R Studio window pane, under the tab "Files" Likewise, the folder name, "Lab 0" should appear in the upper-right hand corner, indicating the current project's name. 
 
-<aside>Current project indicator is marked as "G" in [this helpful screenshot](https://dghi-biostat.github.io/biostatlab/docs/help_rstudio.html#the-r-environment) of the R Studio environment</aside>
+<aside>Current project indicator is marked as "G" in [this helpful screenshot](https://dghi-biostat.github.io/biostatlab/help_rstudio.html#the-r-environment) of the R Studio environment</aside>
 
 ## Task 2: Familiarize yourself with R Markdown
 
@@ -117,7 +117,7 @@ Now open the file in RStudio. You can just double-click on it from the file fold
 
 Click the white square at the top of the Lab 0 document (circled in red in the photo below) to do just that:
 
-![Pop-out](images/popout.png)
+![Pop-out](../images/popout.png)
 
 
 ## Task 3: Install packages and load libraries
@@ -133,30 +133,30 @@ Since R is open-source, users are able to create their own packages so that othe
 Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console, one line at a time, to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
 
 
-```{r echo = TRUE}
+```{r install packages 1, eval = FALSE, echo = TRUE}
 install.packages("tidyverse")
 ```
 
 
-```{r echo = TRUE}
+```{r install packages 2, eval = FALSE, echo = TRUE}
 install.packages("skimr")
 ```
 
-```{r echo = TRUE}
+```{r install packages 3, eval = FALSE, echo = TRUE}
 install.packages("tableone")
 ```
 
-```{r echo = TRUE}
+```{r install packages 4, eval = FALSE, echo = TRUE}
 install.packages("epiR")
 ```
 
 
-```{r echo = TRUE}
+```{r install packages 5, eval = FALSE, echo = TRUE}
 install.packages("devtools")
 ```
 
 
-```{r echo = TRUE}
+```{r install packages 6, eval = FALSE, echo = TRUE}
 devtools::install_github("potato-nathan/epiAssist")
 ```
 
@@ -167,7 +167,7 @@ Unlike installing packages, every time we open a new R session, we need to enabl
 
 In a fresh code chunk, call in the {tidyverse} and {skimr} packages using the following code:
 
-```{r echo = TRUE}
+```{r load libraries, eval = FALSE, echo = TRUE}
 library(tidyverse)
 library(skimr)
 ```
@@ -185,7 +185,7 @@ Within our function, all we need to do is specify the file name, and that it's i
 
 Use the following code to load your data into R and give it the name `kenya`. 
 
-```{r eval = FALSE}
+```{r load dataset, echo = TRUE, eval = FALSE}
 
 kenya <- readRDS('data/Lab_0_kenya.rds')
 
@@ -199,7 +199,7 @@ If functions are the verbs of the R language, objects are the nouns. Just like n
 
 To further illustrate, in the chunk of code below, `fruit` becomes a character vector object of length 3, `number` becomes a numeric vector object of length 1, and `logical` becomes a logical vector object of length 1. 
 
-You can use `class()` to inspect an object's type, and `object.size()` to inspect an object's size. We will learn more about [vectors](https://dghi-biostat.github.io/biostatlab/docs/help_jargon.html#vector) in a later assignment.
+You can use `class()` to inspect an object's type, and `object.size()` to inspect an object's size. We will learn more about [vectors](https://dghi-biostat.github.io/biostatlab/help_jargon.html#vector) in a later assignment.
 
 Most functions require specific types of objects. 
 
@@ -209,7 +209,7 @@ The `<-` is called the __*Assignment Operator*__. We use it to assign names to o
 
 We can use our assignment operator for characters, numbers, logical operators, etc.:
 
-```{r eval = TRUE}
+```{r create var, echo = TRUE, eval = TRUE}
 fruit <- c("oranges", "papayas", "apricots")
 
 number <- 99
@@ -219,7 +219,7 @@ logical <- FALSE
 
 Now that the above values are stored in our environment, we can use them in other functions or operations as predefined variables:
 
-```{r eval = FALSE}
+```{r operate var, echo = TRUE, eval = FALSE}
 paste(fruit, "are orange", sep = " ")
 #> [1] "oranges are orange"  "papayas are orange"  "apricots are orange"
 
@@ -233,7 +233,7 @@ isTRUE(logical)
 
 We've done the same thing with our dataset, giving it the name `kenya`. We might use the function `head()` to view the first six rows in the dataset. This is a quick and easy way to glance at our dataset and its accompanying variables:
 
-```{r eval = FALSE}
+```{r head, echo = TRUE, eval = FALSE}
 
 head(kenya)
 
@@ -263,15 +263,15 @@ Use `skim()` to print summary statistics for each variable in the data frame
 
 ## Task 6: Create variable `mage`
 
-Using a pipe (`%>%`) and the `mutate()` function, create a new variable, `mage` for mother’s age (as an integer) at the time of each child’s birth (note – some of these mothers have had multiple children). 
+Using a pipe (`%>%`) and the `mutate()` function, create a new variable, `mage` for motherâ€™s age (as an integer) at the time of each childâ€™s birth (note â€“ some of these mothers have had multiple children). 
 
-This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See [the data dictionary](https://dghi-biostat.github.io/biostatlab/docs/data_dict.html#century-month-code) for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
+This is calculated from variables `b3` (month code of childâ€™s birth) and `v011` (month code of motherâ€™s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See [the data dictionary](https://dghi-biostat.github.io/biostatlab/data_dict.html#century-month-code) for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
 
-<aside>Most datasets are accompanied by documentation or data dictionaries, which are a description of the variables in the data set and other relevant pieces of information. Be sure to read through [these guidelines](https://www.mc.vanderbilt.edu/crc/workshop_files/2012-09-07.pdf) if you haven't already.</aside>
+<aside>Most datasets are accompanied by documentation or data dictionaries, which are a description of the variables in the data set and other relevant pieces of information. Be sure to read through [these guidelines](https://www.mc.vanderbilt.edu/crc/workshop_../files/2012-09-07.pdf) if you haven't already.</aside>
 
 For this task, the `mutate()` function will work with the following syntax. 
 
-```{r eval = FALSE}
+```{r mutate, echo = TRUE, eval = FALSE}
 # don't forget to write over your old dataframe using `kenya <-`
 
 data <- data %>%
@@ -281,13 +281,13 @@ data <- data %>%
 
 ### Pipes (`%>%`)
 
-One of the most useful tools in the `tidyverse` package is a little thing called a [__*pipe*__](https://dghi-biostat.github.io/biostatlab/docs/help_jargon.html#magrittrpipe). It's represented with the symbol `%>%`, and allows us to express a series of operations in a continuous string of code, rather than using the assignment operator over and over. 
+One of the most useful tools in the `tidyverse` package is a little thing called a [__*pipe*__](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe). It's represented with the symbol `%>%`, and allows us to express a series of operations in a continuous string of code, rather than using the assignment operator over and over. 
 
 As an example, let's pretend we have a dataset that is a record of birds struck by aircraft in the United Sates over the past few decades. We want to know the frequency distribution of sky conditions for birds struck over 5,000 feet within the borders of North Carolina. 
 
 In base R, we might code it like this:
 
-```{r echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 birds_NC <- subset(birds, state == "NC")
 
 birds_NC <- subset(birds_NC, height > 5000)
@@ -297,7 +297,7 @@ table(birds_NC$sky)
 
 With a pipe, `%>%`, both our code and output becomes more tidy. More importantly, it's easy to read:
 
-```{r echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 birds %>%
   filter(state == "NC", height > 5000) %>%
   group_by(sky) %>%
@@ -317,7 +317,7 @@ It works on character variables, categorical (factor) variables, and even number
 
 As was mentioned earlier, we can tell R to look at specific variables inside our dataframe with the `$` sign. The syntax looks like this: 
 
-```{r echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 dataframeName$variableName
 ```
 
@@ -331,10 +331,10 @@ Use `table()` to look at `kenya$mage`, then consider the following questions:
 
 ## Task 8: Create variable `magec`
 
-Using `mage`, generate a new variable with three categories: "<18", "18-39", and "≥ 40", naming the new variable `magec` 
+Using `mage`, generate a new variable with three categories: "<18", "18-39", and "â‰¥ 40", naming the new variable `magec` 
 
 <aside>`magec` stands for: 
-{m}other’s  
+{m}otherâ€™s  
 {age}   
 {c}ategorical </aside> 
 
@@ -351,7 +351,7 @@ We recommend you do this in the following steps:
 Values:  
   0:  <18   
   1:	18-39  
-  2:  ≥ 40  
+  2:  â‰¥ 40  
 </aside>
 
 ### `case_when()`
@@ -360,7 +360,7 @@ This function is used to create conditional rules when creating new variables wi
 
 An example of the syntax is as follows:
 
-```{r echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 case_when(size == 'small' ~ 0, 
           size == 'medium' ~ 1,
           size == 'large' ~ 2,
@@ -375,7 +375,7 @@ To the right of the tilde, we put the value that we want to return __if the logi
 
 If it were run on a dataset containing a variable called `size`, the literal translation of the above code would go something like this:
 
-```{r echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 For each row in the dataset,  
     * if `size` equals 'small', then return 0
     * if `size` equals 'medium', then return 1
@@ -395,7 +395,7 @@ See the [documentation for `case_when()`](https://rdrr.io/cran/dplyr/man/case_wh
 
 Convert a variable to a factor with the following syntax:
 
-```{r eval = FALSE}
+```{r factor, echo = TRUE, eval = FALSE}
 data$variableYouWantToFactor <- factor(data$variableYouWantToFactor,
                                        labels = c("Label for 0", "Label for 1", "Label for 2"))
 ```
@@ -404,13 +404,13 @@ data$variableYouWantToFactor <- factor(data$variableYouWantToFactor,
 
 ## Task 9: Cross-tab of `mage` and `magec`
 
-Look at a cross-tabulation (two-way table) of `mage` and `magec` to ensure that `magec` was created correctly. Be sure missing values were handled properly (all observations that have a missing value for `mage` should be assigned the R missing value “NA” for `magec`). Try the two separate methods for cross-tabulation, as we will be using both for separate purposes later in the semester:
+Look at a cross-tabulation (two-way table) of `mage` and `magec` to ensure that `magec` was created correctly. Be sure missing values were handled properly (all observations that have a missing value for `mage` should be assigned the R missing value â€œNAâ€ for `magec`). Try the two separate methods for cross-tabulation, as we will be using both for separate purposes later in the semester:
 
 ### Method 1
 
-Type “?table” in the console for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns. Experiment to make your table readable.
+Type â€œ?tableâ€ in the console for help with how to create a 2x2 table.  Note: the order of the variables in the command controls which one is in the rows and which is in the columns. Experiment to make your table readable.
 
-```{r echo = TRUE}
+```{r 2x2table, eval = FALSE, echo = TRUE}
 # example code:
 
 table(data$x, data$y, useNA = 'always')
@@ -422,7 +422,7 @@ table(data$x, data$y, useNA = 'always')
 We can also use `tidyverse` functions to accomplish a two-way tabulation of our variables of interest. These functions will become increasingly relevant and useful, and are a big reason why R is such a popular platform for data science. We will use a pipe (`%>%`), `group_by()`, another pipe, and `count()` to get the same output given by `table()`.
 
 
-```{r echo = TRUE}
+```{r pipe, eval = FALSE, echo = TRUE}
 # example code:
 
 # notice that we don't want to assign this operation to a name
