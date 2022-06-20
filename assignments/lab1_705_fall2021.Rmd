@@ -204,3 +204,13 @@ __(Response no longer than 250 words, please)__
 
 (Type your response here! No need to put it in a code chunk.)
 
+
+## Appendix
+
+1. [Operator precedence in R](https://www.datamentor.io/r-programming/precedence-associativity/)
+  + The concept of operate precedence in R is why the filter() function can successfully evaluate phrases that look like `filter(x > 50 & sex == 'Male')`  
+  + Not like you're going to have time for the next few months, but if you're curious about modular division, [here's a nerdy excerpt](https://lost-contact.mit.edu/afs//adrake.org/usr/rkh/Books/books/Neal%20Stephenson%20-%20Cryptonomicon%20v2%20(HTML,%20Fully%20Proofed)/slide18.html) from one of my favorite books, Cryptonomicon -- it uses a bike chain to explain modular division and its applications to programming
+
+2. [How to change colors in ggplot](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually)
+ + additionally, there are preset color palettes that you can use when you need more than one color in your plot. [Here to learn more](http://applied-r.com/rcolorbrewer-palettes/)
+

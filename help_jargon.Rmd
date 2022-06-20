@@ -149,7 +149,7 @@ A __directory__ is any file folder on your computer.
 
 Your __root directory__ is the top-most directory on your computer (in Windows, this is the folder calls "C:", for Mac users, it's usually labelled as "Macintosh HD")
 
-In R, your __working directory__ is typically the folder that contains whatever [R Project](https://dghi-biostat.github.io/biostatlab/help_projects.html) you have open.
+In R, your __working directory__ is typically the folder that contains whatever [R Project](https://dghi-biostat.github.io/biostatlab/docs/help_projects.html) you have open.
 
 Say you have a dataset called "data.rds" in your main working directory. You can import it using any number of functions by referring to its file path as simply "data.rds". 
 
