@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
-```{r}
+```{r echo = FALSE}
 # this chunk triggers the running of a script called "runtime.R"
 # which is located in the folder "./offline_access"
 # this will generate word documents that match the website documents
@@ -17,11 +17,12 @@ output: distill::distill_article
 
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, eval = FALSE)
 
 library(tweetrmd)
 library(tidyverse)
 library(skimr)
+library(openintro)
 
 # devtools::install_github("gadenbuie/xaringanExtra")
 library(xaringanExtra)
@@ -39,7 +40,7 @@ __*Note: This lab is not graded*__ (i.e. does not contribute to your course eval
 
 ### LAB MATERIALS
 
-* [__R Markdown file for Lab 0__](assignments/lab0_705_fall2021.Rmd)
+* [__R Markdown file for Lab 0__](assignments/lab0_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. Once you're finished, rename it as `Lab0_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
 * Lab_0_kenya.rds - data file available in the Resources folder of the Sakai course webpage
@@ -124,39 +125,18 @@ Click the white square at the top of the Lab 0 document (circled in red in the p
 
 ### Installing packages
 
-Packages are collections of functions. As we'll see shortly, we use functions as code to inspect, manipulate, and analyze our data. They are the __verbs__ of the R language.
+Packages are collections of functions. As we'll see shortly, we use functions to inspect, manipulate, and analyze our data. They are the __verbs__ of the R language.
 
-There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}.
+There are packages that come built-in with R. These have names like {base}, {utils}, and {stats}. 
 
 Since R is open-source, users are able to create their own packages so that other R users can use them. These packages are available in places like [the Comprehensive R Archive Network (CRAN for short)](https://cran.r-project.org/web/packages/) and [GitHub](https://github.com/).
 
-Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console, one line at a time, to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
+Lucky for us, packages are easily retrieved from the R Console. If you haven't already, run the following code from the R Console to download the packages that we'll be needing for this semester. Unless you uninstall R, __*you should only ever have to do this once__*:
 
 
-```{r echo = TRUE}
-install.packages("tidyverse")
-```
+```{r echo = TRUE, eval = FALSE}
+install.packages(c("tidyverse", "skimr", "tableone", "epiR", "devtools"))
 
-
-```{r echo = TRUE}
-install.packages("skimr")
-```
-
-```{r echo = TRUE}
-install.packages("tableone")
-```
-
-```{r echo = TRUE}
-install.packages("epiR")
-```
-
-
-```{r echo = TRUE}
-install.packages("devtools")
-```
-
-
-```{r echo = TRUE}
 devtools::install_github("potato-nathan/epiAssist")
 ```
 

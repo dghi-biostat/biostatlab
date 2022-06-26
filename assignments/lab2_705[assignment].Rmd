@@ -153,17 +153,6 @@ Create the equivalent of a closed cohort for the analysis of 5-year childhood mo
 ```
 
 
-### Task 3d: Recode `death`
-
-
-
-```{r recode death}
-#Re-code death so that when `time >= 61`, `death == "alive"`
-
-
-```
-
-
 ### Task 3e: Save new dataset
 
 Save this new dataset containing 16828 subjects (make sure to give it a new name).

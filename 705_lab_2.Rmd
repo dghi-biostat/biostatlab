@@ -20,10 +20,10 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS 
 
-* [__R Markdown file for Lab 2__](assignments/lab2_705_fall2021.Rmd)
+* [__R Markdown file for Lab 2__](assignments/lab2_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab2_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document for Tables 1 & 2__](assignments/Lab2_Tables.xlsx)
+* [__Excel document for Tables 1 & 2__](assignments/lab2_705_tables[assignment].xlsx)
 
 * Lab_2_kenya.rds - data file available on Sakai
 

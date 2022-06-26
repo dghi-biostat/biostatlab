@@ -31,20 +31,24 @@ For this assignment, use the dataset 'Lab_4_kenya.rds'.
 
 Instructions overview:
 
-1.) Fill in Table 1 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by the following covariables::
+1.) Stratified frequency counts and risk
+
+Fill in Table 1 with the numbers of deaths and the 60-month risk of death according to birth order (bord5) stratified by the following covariables::
   a)	Child’s gender (variable `male`)
   b)	Rural/urban residence (variable `rural`)
   c)	Maternal age (variable `magec`)
   d)	Maternal education (variable `education`)
 
-2.) Generate measures of association with `epi.2by()`
+2.) Create `epi.2by2()` object
 
-3.)	For each covariable, extract:
+3.)	Extract estimateses of risk difference
+For each covariable, extract:
   a) RD for mortality in association with bord5 within each covariable stratum
   b) Generate test statistic of homogeneity and p-value 
   c) Generate a standardized pooled estimate
 
-4.) For each covariable, extract:
+4.) Extract estimates of risk ratios
+For each covariable, extract:
   a) RR for mortality in association with bord5 within each covariable stratum. 
   b) Generate test statistic of homogeneity and p-value
   c) Generate a Mantel-Haenszel pooled estimate.

@@ -347,14 +347,14 @@ simple_vector^2
 <aside>
 Recall that data frames are just lists of vectors! 
 
-You might consider using `%>%` and [`mutate()`](https://dghi-biostat.github.io/biostatlab/docs/lab_0.html#task-6-create-variable-mage) to create a squared variable.
+You might consider using `%>%` and [`mutate()`](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#task-6-create-variable-mage) to create a squared variable.
 </aside>
 
 
 
 ### Categorical variables with `case_when()`
 
-For a refresher on how to generate categorical variables from continuous variables, you can refer back to when we [__created `magec`__](https://dghi-biostat.github.io/biostatlab/docs/lab_0.html#task-8-create-variable-magec) in last 705, Lab 0.
+For a refresher on how to generate categorical variables from continuous variables, you can refer back to when we [__created `magec`__](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#task-8-create-variable-magec) in last 705, Lab 0.
 
 ## Skewness and Kurtosis ({moments} package)
 

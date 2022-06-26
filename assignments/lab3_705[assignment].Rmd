@@ -27,7 +27,10 @@ output:
 
 #### Just think on this for a moment. Internalize it. Come back to it:
 
-For this and subsequent labs, we are considering 1) child mortality within 5 years as our outcome (response) variable, 2) birth order >= 5 as the main risk factor variable and 3) other variables as potential confounders or modifiers of the relationship between mortality and birth order. 
+For this and subsequent labs, we are considering: 
+1) child mortality within 5 years as our outcome (response) variable, 
+2) birth order >= 5 as the main risk factor variable and 
+3) other variables as potential confounders or modifiers of the relationship between mortality and birth order. 
 
 
 ## Task 3: Table 1 
@@ -110,7 +113,7 @@ For this and subsequent labs, we are considering 1) child mortality within 5 yea
 ```
 
 ```{r}
-# to perform a fisher's exact test, create one last tableone object, then submit it to its print() function, with the argument "exact = TRUE"
+# to perform a fisher's exact test on the stratified variables, run the same command to "print" our stratified table, but also include the argument `exact = TRUE`
 
 
 ```

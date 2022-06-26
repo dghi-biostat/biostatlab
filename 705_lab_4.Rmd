@@ -22,10 +22,10 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS 
 
-* [__R Markdown file for Lab 4__](assignments/lab4_705_fall2021.Rmd)
+* [__R Markdown file for Lab 4__](assignments/lab4_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab4_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document with Table for Task 2__](assignments/Lab4_Tables.xlsx)
+* [__Excel document with Table for Task 2__](assignments/lab4_705_tables.xlsx)
 
 * Lab_4_kenya.rds - data file available on Sakai
 
@@ -63,8 +63,8 @@ install.packages("fmsb")
 
 Hopefully at this point in the semester, you have a pretty good grasp on how to load libraries and data. But if you're still unsure about something:
 
-[Help loading libraries](https://dghi-biostat.github.io/biostatlab/docs/lab_0.html#load-libraries).
- [Help loading data](https://dghi-biostat.github.io/biostatlab/docs/lab_0.html#task-4-load-data).
+[Help loading libraries](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#load-libraries).
+ [Help loading data](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#task-4-load-data).
 
 ## Task 2: Table 1
 
