@@ -23,7 +23,7 @@ Here are some other things that may help in getting your code to work:
 * Don't delete and make changes to the same line of code. Copy/paste into a new chunk. Formulate a hypothesis. Make changes. Take notes on what changed. Revise your hypothesis. Repeat.  
 * Learn the [R Debugger](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE#debugging-in-r-markdown-documents)  (The code for 705's lab probably won't need the debugger, but if you're getting deep into things, ask Nathan about it)
 
-You might also flip through [this article on commmon problems in R Markdown](https://rmd4sci.njtierney.com/common-problems-with-rmarkdown-and-some-solutions.html), which might provide some <a href = "lab_04.html">answers</a>. 
+You might also flip through [this article on commmon problems in R Markdown](https://rmd4sci.njtierney.com/common-problems-with-rmarkdown-and-some-solutions.html), which might provide some answers. 
 
 
 

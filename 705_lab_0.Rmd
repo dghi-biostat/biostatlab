@@ -247,7 +247,7 @@ Using a pipe (`%>%`) and the `mutate()` function, create a new variable, `mage` 
 
 This is calculated from variables `b3` (month code of child’s birth) and `v011` (month code of mother’s birth). The difference between the values of these variables is in months, so __divide by 12 to get years__. See [the data dictionary](https://dghi-biostat.github.io/biostatlab/docs/data_dict.html#century-month-code) for a more detailed description of month codes and how to use them. Use `as.integer()` around your calculation to truncate the calculated values for `mage` to integers.
 
-<aside>Most datasets are accompanied by documentation or data dictionaries, which are a description of the variables in the data set and other relevant pieces of information. Be sure to read through [these guidelines](https://www.mc.vanderbilt.edu/crc/workshop_files/2012-09-07.pdf) if you haven't already.</aside>
+<aside>Most datasets are accompanied by documentation or data dictionaries, which are a description of the variables in the data set and other relevant pieces of information. Be sure to read through [these guidelines]("C:\\Users\\18165\\Documents\\R\\Lab\biostatlab\\files\\Data_Dictionary_Vanderbuilt.pdf") if you haven't already.</aside>
 
 For this task, the `mutate()` function will work with the following syntax. 
 
@@ -274,6 +274,12 @@ birds_NC <- subset(birds_NC, height > 5000)
 
 table(birds_NC$sky)
 ```
+
+<aside> You can find this dataset by installing the `openintro` package:
+```{r eval = FALSE, echo = TRUE}
+install.packages('openintro')
+```
+</aside>
 
 With a pipe, `%>%`, both our code and output becomes more tidy. More importantly, it's easy to read:
 

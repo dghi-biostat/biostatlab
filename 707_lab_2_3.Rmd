@@ -140,7 +140,7 @@ image_link("images/lab02_EMM.png", url = "files/lab02_EMM.pdf")
 #### Precision and Validity
 
 ```{r echo = FALSE, layout = "shaded"}
-image_link("images/lab02_precisionvalidity.png", url = "files/lab02_precisionvalidity.pdf")
+image_link("images/lab02_validityprecision.png", url = "files/lab02_validityprecision.pdf")
 ```
 
 :::
@@ -284,7 +284,7 @@ kable(
 ))
 ```
 
-We could also join `model_predict` back to our original data [for the purpsoe of plotting a line of best fit with confidence intervals](https://dghi-biostat.github.io/biostatlab/docs/707_lab_2.html#plotting-risks-versus-exposures).
+We could also join `model_predict` back to our original data [for the purpsoe of plotting a line of best fit with confidence intervals](https://dghi-biostat.github.io/biostatlab/docs/707_lab_2_3.html#plotting-risks-versus-exposures).
 
 We can use `cbind()` to combine multiple columns of the same length into a single data frame:
 
@@ -558,7 +558,7 @@ levels(kenya$education)
 
 ## Plotting risks versus exposures
 
-Refer back to the section on [using `predict.lm()` to generate predictions and confidence intervals](https://dghi-biostat.github.io/biostatlab/docs/707_lab_2.html#generate-predicted-values-from-linear-models), where we generated upper and lower confidence limits from a model along with a model's predicted values.
+Refer back to the section on [using `predict.lm()` to generate predictions and confidence intervals](https://dghi-biostat.github.io/biostatlab/docs/707_lab_2_3.html#generate-predicted-values-from-linear-models), where we generated upper and lower confidence limits from a model along with a model's predicted values.
 
 Once joined back to your original data, you can use those values to generate a scatter plot of the risks and upper and lower confidence limits, plotted against a predictor variable.
 

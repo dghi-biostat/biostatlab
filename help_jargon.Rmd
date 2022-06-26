@@ -208,7 +208,6 @@ Understanding factors mostly takes time. If you want to speed that up, [here's t
 In it, they reference a few articles for further reading:
 
 * [Wrangling categorical data in R](https://peerj.com/preprints/3163/)
-* [stringsAsFActors: An unauthorized biography](https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/)
 * [stringsAsFactors = <sigh>](https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh) -- this one is kinda funny
 
 
@@ -229,9 +228,9 @@ If you're really trying to nerd out, you can access the free full text of [__*gg
 
 You may have heard of [GitHub](https://github.com/), a popular website for version control, collaboration, and code sharing. 
 
-Git is the underlying software that GitHub runs on. It's free and open source. You won't be expected to use a Git repository for your projects in this class, but it's nice to know what's out there. 
+Git is the underlying file management software being run on GitHub. It's free and open source. You won't be expected to use a Git repository for your projects in this class, but it's nice to know what's out there. 
 
-[This massive book](https://git-scm.com/book/en/v2) is available for those who would like to learn more. I think the first and second sections, "Getting Started" and "Git Basics", are good places to start.
+[This massive book](https://git-scm.com/book/en/v2) is available for those who would like to learn more. I think the first and second sections, "Getting Started" and "Git Basics", are good places to start. John Little also teaches a [helpful workshop](https://rfun.library.duke.edu/portfolio/git_workshop/) that might help you get oriented to the Git paradigm.
 
 ### HTML
 
@@ -286,15 +285,15 @@ I'll quote from [an answer in StackOverflow](https://stackoverflow.com/questions
 
 Chapter from [R for Data Science](https://r4ds.had.co.nz/pipes.html) gives a nice intro. 
 
-For you nerds, [here's a history of the pipe operator in R](http://adolfoalvarez.cl/plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/)
+For you nerds, [here's a history of the pipe operator in R](http://adolfoalvarez.cl/blog/2021-09-16-plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/)
 
 ### parameter
 
 Used interchangeably with "argument"
 
-### reproducible expressions (reprex)
+### reproducible examples (reprex)
 
-When you encounter a problem in your code that you just can't figure out, it's often best to create a [__reproducible expression__](http://adv-r.had.co.nz/Reproducibility.html). This allows whoever is helping you to recreate your problem in their own R console.
+When you encounter a problem in your code that you just can't figure out, it's often best to create a [__reproducible example__](http://adv-r.had.co.nz/Reproducibility.html). This allows whoever is helping you to recreate your problem in their own R console.
 
 Creating a "reprex" often entails trimming your code to the bare essentials and isolating whatever step in your code is causing it to hit an error.
 
@@ -327,7 +326,7 @@ As simple as it sounds, strings are a topic of mind-numbing complexity, as the u
 
 R for Data Science gives [a nice introduction to the mechanics of strings here](https://r4ds.had.co.nz/strings.html#strings), but hints at their wider implications in [its chapter on data importation](https://r4ds.had.co.nz/data-import.html).
 
-Regular expressions (not to be confused with reproducible expressions), or regex, are their own beast, [and may help you understand how databases and search engines work](https://www.regular-expressions.info/)
+Regular expressions (not to be confused with reproducible examples), or regex, are their own beast, [and may help you understand how databases and search engines work](https://www.regular-expressions.info/)
 
 ### tibble
 

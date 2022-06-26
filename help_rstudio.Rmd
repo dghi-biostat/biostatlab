@@ -40,7 +40,7 @@ include_graphics('images/Renviron.png')
 
 Did you lose track of one of your window panes? Use the *View* tab in the top bar to return to a view with all panes
 
-[![Show All Panes](images/show_windows.png)](images/show_windows.png)
+![Show All Panes](images/show_windows.png)
 
 ### Change RStudio color theme
 
@@ -71,7 +71,7 @@ If for some reason your code is hitting an error, here are some useful commands 
 
 __Command:__ `?functionName`
 
-__What it does:__ Pulls up the documentation for whatever you type in place of `functionName`, and displays it in the Help window. A function's documentation is often (but not always) the final word on how a function is meant to behave in R. It will provide information on the [function's arguments](TODO: link to other help page) (and their default values), the resulting output ("Values"), and will give you examples of how to implement that function. 
+__What it does:__ Pulls up the documentation for whatever you type in place of `functionName`, and displays it in the Help window. A function's documentation is often (but not always) the final word on how a function is meant to behave in R. It will provide information on the [function's arguments](https://dghi-biostat.github.io/biostatlab/docs/help_packages.html#objects-functions-and-arguments) (and their default values), the resulting output ("Values"), and will give you examples of how to implement that function. 
 
 #### Session information
 
@@ -104,7 +104,7 @@ The RStudio environment itself can feel overwhelming at first. Luckily, there ar
 * Dr. Eric Green used to run a summer workshop called "I Eat Data Science for Breakfast". He gives a stellar tutorial to the RStudio environment [__starting at 10:49 in his Week 1 video__](https://youtu.be/fntu_jMsWWE?t=649).
 
 <aside>
-```{r, out.width = "10%", fig.cap = "I Eat Data Science for Breakfast"}
+```{r, fig.cap = "I Eat Data Science for Breakfast"}
 include_graphics('images/ieat_covid.png')
 ```
 </aside>

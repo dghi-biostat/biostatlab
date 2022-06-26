@@ -61,7 +61,7 @@ When completing tables, follow the rounding patterns specified below. This patte
 <aside>(for the purposes of grading, if any “chunk” of code in your file contains special options, we will ask you to resubmit a file omitting them). </aside>
 
 * __R MARKDOWN FILE:__ Your markdown file MUST have the following components: 
-  + an informative YAML header (see guide to Lab 0[TODO])
+  + an informative [YAML header](help_jargon.html#yaml-header)
   + a set of commands calling in all relevant packages
   + a line of code calling in the analysis dataset
   + each task’s code performed under the appropriate subheading

@@ -1,0 +1,29 @@
+This directory is meant for students to use if they need offline access to the lab materials.
+
+In an ideal world, this directory will re-build every time you hit "Build Website" within R Studio.
+
+The code that will build this directory will be hidden in the first code chunk of Lab 0.
+
+As it stands, this meta-operation of building offline_access automatically will only work on a Windows machine, as it depends on a .bat file that proceeds to run code on Windows Powershell (I know, I know...it's ridiculous)
+
+Anyways, the code chunk in Lab 0 will perform the following steps:
+
+  1. first copy all .Rmd files into the directory "offline_access".
+  2. then change the working directory to "offline_access"
+  3. then proceed to execute the file "runtime.R" which is housed within "/offline_access"
+    runtime.R executes the following steps;
+      1. gets all .Rmd files within /offline_access
+      2. iterate through files list and:
+        a. edit file paths to refer to one directory above -- this is important so that images and other important files will render properly
+        b. render the file to a word document
+        
+
+Before handing over the reigns to this website, I hope to have this workflow amended to allow Mac users to also Build the website and produce the same result. There are two possible solutions:
+
+1. Easiests solution is hopefully just to create a .sh file and have runtime.R to first check if a user is rendering from a Mac or PC, then run the appropriate .sh or .bat file. 
+  Hopefully the .sh file will accept the same exact parameters as the original .bat file, so that the only thing that needs to be changed in runtime.R is literally ".bat" to ".sh"
+2. The more time-intensive solution is to write an R script that:
+  converts the .Rmd files to .txt
+  loads them in as a string of data
+  replaces/inserts desired values
+  converts back to .Rmd and knits

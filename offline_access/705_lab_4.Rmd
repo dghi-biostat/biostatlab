@@ -3,7 +3,7 @@ title: "Lab 4 (705)"
 description: |
     __Due:__ `r read.csv('../files/due_dates.csv')[5,2]` by `r read.csv('../files/due_dates.csv')[5,3]`
 date: "`r Sys.Date()`"
-output: word_document
+output: distill::distill_article
 always_allow_html: true
 ---
 
@@ -23,10 +23,10 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS 
 
-* [__R Markdown file for Lab 4__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab4_705_fall2021.Rmd)
+* [__R Markdown file for Lab 4__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab4_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab4_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document with Table for Task 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/Lab4_Tables.xlsx)
+* [__Excel document with Table for Task 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab4_705_tables.xlsx)
 
 * Lab_4_kenya.rds - data file available on Sakai
 
@@ -64,8 +64,8 @@ install.packages("fmsb")
 
 Hopefully at this point in the semester, you have a pretty good grasp on how to load libraries and data. But if you're still unsure about something:
 
-[Help loading libraries](https://dghi-biostat.github.io/biostatlab/lab_0.html#load-libraries).
- [Help loading data](https://dghi-biostat.github.io/biostatlab/lab_0.html#task-4-load-data).
+[Help loading libraries](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#load-libraries).
+ [Help loading data](https://dghi-biostat.github.io/biostatlab/docs/705_lab_0.html#task-4-load-data).
 
 ## Task 2: Table 1
 
@@ -88,13 +88,13 @@ Below is a detailed guide on how to complete each step of these instructions.
 
 Table 1 is an example of a stratified analysis of exposure and outcome variables. Essentially, we want to know if the four variables (`male`, `rural`, `magec`, and `education`) are confounders and/or effect measure modifiers of the relation between birth order and 5-year infant mortality. In other words, Questions of effect measure modification include whether the degree of association of child's birth order and mortality status is different for boys and girls? What about for rural and urban families? Mothers of different age categories? And so on...
 
-<aside>Remember the [BIG PICTURE](https://dghi-biostat.github.io/biostatlab/lab_3.html#task-2-big-picture) that was explained in the previous lab </aside>
+<aside>Remember the [BIG PICTURE](https://dghi-biostat.github.io/biostatlab/docs/705_lab_3.html#task-2-big-picture) that was explained in the previous lab </aside>
 
 When you open the Excel file that contains __Table 1__, here is what you will see:
 
 ![Table 1](../images/lab4_tab3.png)
 
-<aside>If you haven't already, download the Excel file [at the top of this page](https://dghi-biostat.github.io/biostatlab/lab_4.html#lab-materials) to access __Table 1__ </aside>
+<aside>If you haven't already, download the Excel file [at the top of this page](https://dghi-biostat.github.io/biostatlab/docs/705_lab_4.html#lab-materials) to access __Table 1__ </aside>
 
 We will break __Table 1__ into sections, and walk you through how to obtain these values in R.
 
@@ -102,14 +102,14 @@ We will break __Table 1__ into sections, and walk you through how to obtain thes
 
 __INSTRUCTIONS:__ Fill in the table with the numbers of deaths (`death`, the outcome) and the 60-month risk of death according to birth order (`bord5`, the exposure), stratified by:
 
-  a)	Child’s gender (variable `male`)  
+  a)	Childâ€™s gender (variable `male`)  
   b)	Rural/urban residence (variable `rural`)  
   c)	Maternal age (variable `magec`)  
   d)	Maternal education (variable `education`)  
 
 ![Table 1 - Frequency counts and risk](../images/lab4_tab3_freq.png)
   
-For this task, we recommend that you create a table object with `table()`, similar to [the one you created in lab 3](https://dghi-biostat.github.io/biostatlab/lab_3.html#step-1-create-a-table-object-with-table), where your outcome of interest is mortality (`death`) and your exposure of interest is child birth order (`bord5`). Except this time, include a third stratifying variable.
+For this task, we recommend that you create a table object with `table()`, similar to [the one you created in lab 3](https://dghi-biostat.github.io/biostatlab/docs/705_lab_3.html#step-1-create-a-table-object-with-table), where your outcome of interest is mortality (`death`) and your exposure of interest is child birth order (`bord5`). Except this time, include a third stratifying variable.
 
 <aside> If you've been enjoying the {tidyverse}, feel free to use `group_by()` and `count()`. But the table object will be useful in later steps.</aside>
 
@@ -171,7 +171,7 @@ proportions(mbmi_tab, margin = c(1, 3))
 
 __INSTRUCTIONS:__ Create an `epi.2by2()` object for each of the tables you generated above. 
 
-`epi.2by2()` works just like `mAssoc()`. We need to [rearrange our tables](https://dghi-biostat.github.io/biostatlab/lab_3.html#step-2-rearrange-table-with-fliptable) so that our outcome of interest and exposure of interest are in the top-left corner of each table. 
+`epi.2by2()` works just like `mAssoc()`. We need to [rearrange our tables](https://dghi-biostat.github.io/biostatlab/docs/705_lab_3.html#step-2-rearrange-table-with-fliptable) so that our outcome of interest and exposure of interest are in the top-left corner of each table. 
 
 Good news: The function `flipTable()` is designed to work with stratified tables too!
 
@@ -217,7 +217,7 @@ When you call an `epi.2by2()` object, you will notice that its printed output is
 
 But if you inspect the `epi.2by2()` object (either in your R Environment, or by typing the object's name, followed by `$`), you will find vectors, lists, data frames, and all sorts of sub-objects.
 
-<aside> See [this link](https://dghi-biostat.github.io/biostatlab/help_jargon.html#section) if you are still uncertain about the functionality of `$`</aside>
+<aside> See [this link](https://dghi-biostat.github.io/biostatlab/docs/help_jargon.html#section) if you are still uncertain about the functionality of `$`</aside>
 
 Following is how to locate the necessary information for this portion of __Table 1__
 
@@ -245,7 +245,7 @@ mbmi_epi$massoc.detail$ARisk.strata.wald
 
 You might notice that this returns a single estimate for each stratum. Our table, however, asks for two estimates for each. What gives??
 
-Since we have pre-determined our "reference" and "index" levels, and know that a risk difference is [defined](https://dghi-biostat.github.io/biostatlab/lab_2.html#reference-and-index-levels-of-a-categorical-variable) as "risk in the level of interest minus risk in the reference level", what's the result when our reference level is also our level of interest? 
+Since we have pre-determined our "reference" and "index" levels, and know that a risk difference is [defined](https://dghi-biostat.github.io/biostatlab/docs/705_lab_2.html#reference-and-index-levels-of-a-categorical-variable) as "risk in the level of interest minus risk in the reference level", what's the result when our reference level is also our level of interest? 
 
 #### Check your work!
 
@@ -299,7 +299,7 @@ Finally, we want the pooled estimate of risk difference. You might have already 
 
 But since we need to report this estimate to three decimal points (see gutter), we need to reach into our `epi.2by2` object and find the exact Mantel-Haenszel pooled estimate. You can access it by calling the following path:
 
-<aside>As per [lab submission guidelines](https://dghi-biostat.github.io/biostatlab/submit.html#rounding) on rounding </aside>
+<aside>As per [lab submission guidelines](https://dghi-biostat.github.io/biostatlab/docs/submit.html#rounding) on rounding </aside>
 
 ```{r eval = FALSE, echo = TRUE}
 

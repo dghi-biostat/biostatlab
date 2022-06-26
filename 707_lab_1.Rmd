@@ -37,7 +37,7 @@ xaringanExtra::use_clipboard()
 
 ### Data and assignment
 
-The assignment and dataset are both available on [Sakai](sakai.duke.edu).
+The assignment and dataset are both available on [Sakai](https://www.youtube.com/watch?v=xvFZjo5PgG0).
 
 
 ### Lab 1 Grading scheme

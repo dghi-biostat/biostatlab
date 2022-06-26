@@ -3,7 +3,7 @@ title: "Lab 3 (705)"
 description: |
     __Due:__ `r read.csv('../files/due_dates.csv')[4,2]` by `r read.csv('../files/due_dates.csv')[4,3]`
 date: "`r Sys.Date()`"
-output: word_document
+output: distill::distill_article
 always_allow_html: true
 ---
 
@@ -22,10 +22,10 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS
 
-* [__R Markdown file for Lab 3__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab3_705_fall2021.Rmd)
+* [__R Markdown file for Lab 3__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab3_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab3_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document with Tables 1, 2, and 3__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/Lab3_Tables.xlsx)
+* [__Excel document with Tables 1, 2, and 3__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab3_705_tables.xlsx)
 
 * Lab_3_kenya.rds - data file available on Sakai
 
@@ -79,7 +79,7 @@ For this and subsequent labs, we are considering
 
 __INSTRUCTIONS:__ Fill in `Table 1` with the descriptive statistics for maternal BMI (`mbmi`) and maternal age (`mage`), overall and by the two levels of child mortality within 5 years (`death`). 
 
-<aside>Reminder that you can find Tables 1-3 in the Excel file provided in the [Lab Materials](https://dghi-biostat.github.io/biostatlab/lab_3.html#lab-materials) for this lab </aside>
+<aside>Reminder that you can find Tables 1-3 in the Excel file provided in the [Lab Materials](https://dghi-biostat.github.io/biostatlab/docs/705_lab_3.html#lab-materials) for this lab </aside>
 
 This table also requires you to use R to calculate statistical tests (T-test and Kruskal-Wallis) of the association between the outcome, `death`, and maternal BMI and age (i.e., comparing the distributions of maternal BMI and maternal age for the children who died versus those who were alive).  
 
@@ -91,7 +91,7 @@ Read on for advice on how to generate overall and stratified summary statistics,
 
 The skim() function provided by {skimr} makes this task a simple one. However, unlike previous labs where we ran a summary on the entire dataset, in this task we want individual variables. To keep your output clean, we recommend you generate your summary statistics only for the variables of interest.
 
-We can use [a pipe](https://dghi-biostat.github.io/biostatlab/help_jargon.html#magrittrpipe) with skimr() to call specific variables, like this:
+We can use [a pipe](https://dghi-biostat.github.io/biostatlab/docs/help_jargon.html#magrittrpipe) with skimr() to call specific variables, like this:
 
 ```{r eval = FALSE, echo = TRUE}
 data %>%
@@ -122,7 +122,7 @@ T-tests and one of their nonparametric cousins, Kruskal-Wallis, can be used to c
 
 There are a few simple functions from the {stats} package that we can use to manually run these tests. To implement, we use functions `t.test()` and `kruskal.test()`. Both take the same arguments: 
 
-<aside> Many functions in R can perform a task like generating tables, while computing a p-value as a matter of course (see [Task 4](https://dghi-biostat.github.io/biostatlab/lab_3.html#task-4-table-2] below). </aside>
+<aside> Many functions in R can perform a task like generating tables, while computing a p-value as a matter of course (see [Task 4](https://dghi-biostat.github.io/biostatlab/docs/705_lab_3.html#task-4-table-2] below). </aside>
 
   1. A formula: `depVar ~ indepVar`
   2. A data frame
@@ -229,7 +229,7 @@ The first, "All Children" requires the __overall__ frequency counts and percenta
 The next two columns, "Dead" and "Alive", require frequency counts and percentages of each of the variables of interest, stratified by mortality status at 5 years, `death`. 
 Be sure to calculate percentages only for the non-missing values and round percentages to 1 decimal place. 
 
-This table also includes statistical measures (Chi-Sq and Fisher’s exact test) of the association between mortality status and the variables in the table.
+This table also includes statistical measures (Chi-Sq and Fisherâ€™s exact test) of the association between mortality status and the variables in the table.
 
 Round p-values to 3 decimal places.
 
@@ -560,7 +560,7 @@ Running `mAssoc()` when your exposure variable has 2+ levels will render multipl
 
 __INSTRUCTIONS:__ Generate boxplots of maternal BMI (`mbmi`) and maternal age (`mage`), stratified by levels of child mortality (`death`).
 
-<aside>[Click here](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic) for more help with boxplots using {ggplot2} </aside>
+<aside>[Click here](https://dghi-biostat.github.io/biostatlab/docs/help_ggplot2.html#generate-a-stratified-boxplot-by-adding-a-y-aesthetic) for more help with boxplots using {ggplot2} </aside>
 
 For this activity, we need boxplots that plot continuous variables based on child mortality. In ggplot2, we can stratify boxplots by using a second categorical variable when we specify our aesthetics (`aes()`). In other words, if you set `mbmi` to the y-axis, you can use a categorical variable, like `death` as the variable on the x-axis.
 
@@ -605,5 +605,5 @@ For __Table 3__, which risk factor has the strongest association with mortality?
 ## Task 11: Short answer
 Prepare a brief paragraph describing and interpreting risk, RD and RR estimates (from __Table 3__) for the 60 month risk of death in association with birth order and maternal age. 
 
-Begin the paragraph by reporting the overall risk or proportion of deaths in the study population. Don’t just repeat numbers that are already shown in the table; note the values of effect estimates you feel should be highlighted, but otherwise describe the results in words. Write this paragraph as if you were including it in the results section of a manuscript. (175 words maximum).
+Begin the paragraph by reporting the overall risk or proportion of deaths in the study population. Donâ€™t just repeat numbers that are already shown in the table; note the values of effect estimates you feel should be highlighted, but otherwise describe the results in words. Write this paragraph as if you were including it in the results section of a manuscript. (175 words maximum).
 

@@ -3,7 +3,7 @@ title: "Lab 2 (705)"
 description: |
     __Due:__ `r read.csv('../files/due_dates.csv')[3,2]` by `r read.csv('../files/due_dates.csv')[3,3]`
 date: "`r Sys.Date()`"
-output: word_document
+output: distill::distill_article
 always_allow_html: true
 ---
 
@@ -21,10 +21,10 @@ xaringanExtra::use_clipboard()
 
 ### LAB MATERIALS 
 
-* [__R Markdown file for Lab 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab2_705_fall2021.Rmd)
+* [__R Markdown file for Lab 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab2_705[assignment].Rmd)
 Click link to download. Fill it in with your answers to the following lab tasks. When you're ready to submit, name it as `Lab2_FirstinitialYourlastname.Rmd`, and submit it using the Sakai dropbox.
 
-* [__Excel document for Tables 1 & 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/Lab2_Tables.xlsx)
+* [__Excel document for Tables 1 & 2__](https://github.com/dghi-biostat/biostatlab/blob/main/assignments/lab2_705_tables[assignment].xlsx)
 
 * Lab_2_kenya.rds - data file available on Sakai
 
@@ -54,7 +54,7 @@ Click link to download. Fill it in with your answers to the following lab tasks.
 
 ## Task 1: Load libraries and data
 
-__INSTRUCTIONS:__ For this assignment, use the dataset that we have supplied you in the Sakai Resources tab – `Lab_2_kenya.rds`. 
+__INSTRUCTIONS:__ For this assignment, use the dataset that we have supplied you in the Sakai Resources tab â€“ `Lab_2_kenya.rds`. 
 
 <aside>
 Find it under Resources > Lab > Datasets > Lab_2_kenya.rds
@@ -112,7 +112,7 @@ __`size`__: Categorical variable describing size of child at birth (subjectively
 
 ### Task 2b: `belowavg` 
 
-__`belowavg`__: Dichotomous variable indicating if the child’s size was below average. Use the newly derived variable `size` to code the new variable with the following levels and labels:
+__`belowavg`__: Dichotomous variable indicating if the childâ€™s size was below average. Use the newly derived variable `size` to code the new variable with the following levels and labels:
 
 |   Level      |   Label   |
 |:------------:|:------------:|
@@ -150,12 +150,12 @@ __`education`__: Categorical educational level obtained by mother. Use the varia
 
 ### Task 2f: `death` 
 
-__`death`__: Dichotomous categorical variable for whether or not a child was dead or alive at the time of interview. Based on the variables `b5`, code `death` with the following levels and labels:
+__`death`__: Dichotomous categorical variable for whether or not a child was dead or alive at the age of 5 (60 months). Based on the variables `b5` and `b7`, code `death` with the following levels and labels:
 
 |   Level      |   Label   |
 |:------------:|:------------:|
-|     0        |  Alive at interview (reference)  |
-|     1        |  Dead at interview (index)  |
+|     0        |  Alive at 5 (reference)  |
+|     1        |  Dead at 5 (index)  |
 
 
 ### Task 2g: `time` 
@@ -166,7 +166,7 @@ You will use `case_when()` to create this derived variable according to the foll
 
 If a child was dead at the time of interview, assign it the value in variable `b7` (child's age at death).
 
-If a child was alive at the time of interview, calculate their age using using `v008` (date of interview) and `b3` (date of birth). Be sure to note that times are given in months.
+If a child was alive at the time of interview, calculate their age using `v008` (date of interview) and `b3` (date of birth). Be sure to note that times are given in months.
 
 
 ## Task 3: Close the cohort
@@ -183,20 +183,20 @@ Here is an example of the various logical outcomes around which we will be closi
 
 ![Closed cohort](../images/closed_cohort.png)
 
-A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If you’re adventurous, we recommend trying other ways to code this; you’ll learn a lot from that exercise.
+A closed cohort allows for estimation of absolute (unconditional) risks and associated effect measures. For this study, the risk period for child mortality begins at birth and ends when a child dies, or when 60 months of life have been completed. I recommend completing the steps below in order to generate what we want. There are other orders in which to do this, but sometimes you will get incorrect results. If youâ€™re adventurous, we recommend trying other ways to code this; youâ€™ll learn a lot from that exercise.
 
 *__ANOTHER NOTE:__* Complete all of task 3 before completing the remaining tasks.
 
 ### Task 3a: Exclude irrelevant observations
 
-__INSTRUCTIONS:__ For this task, you will use `%>%` and `filter()` to exclude those observations from the dataset where the child was alive (`death == 0`) and follow-up time was less than 60 months (`time < 60`) Think about which Boolean operator you’ll need to use to exclude those children on both of those conditions. You should end up with __*16,828 records*__ (i.e. rows) in the new data frame. 
+__INSTRUCTIONS:__ For this task, you will use `%>%` and `filter()` to *exclude* those observations from the dataset where the child was alive (`death == 0`) and follow-up time was less than 60 months (`time < 60`). Think about which Boolean operator youâ€™ll need to use to exclude those children on both of those conditions. You should end up with __*16,828 records*__ (i.e. rows) in the new data frame. 
 
 In this step, you should also use an assignment operator (`<-`) to assign this closed cohort to a different object name (effectively creating a "new" data frame). That way, you will be able to work with this data frame separately, while maintaining access to the original cohort of n = 22,534.
 
 
 ### Task 3b: Re-code `time`
 
-__INSTRUCTIONS:__ If a child was still alive by their 5th birthday, we need to re-code their variable for `time` to 60 (we are effectively censoring these observations). These children were alive at 5 years of age and so should not be counted as deaths in our analysis.
+__INSTRUCTIONS:__ If a child was still alive by their 5th birthday, we need to re-code their variable for `time` to 60 (we are effectively censoring these observations). These children were alive at 5 years of age and so should should all be considered "Alive" for the purposes of our analysis.
 
 You will do this in your newly closed cohort data frame using `mutate()` to re-generate `time` according to the following conditions:
 
@@ -208,7 +208,7 @@ __Hint:__ In `case_when()` you can use the statement `TRUE ~ time` at the end of
 
 ### Task 3c: Recode `time` to [`time` + 1]
 
-__INSTRUCTIONS:__ For this task, re-code `time` to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on `time` should now be 1 month – 61 months. 
+__INSTRUCTIONS:__ For this task, re-code `time` to indicate the month of life during which death or interview occurred (add 1 month to the current value). The range on `time` should now be 1 month â€“ 61 months. 
 
 To help understand why we might do this, imagine that the interview occurred in the same month that a child was born. For them, `time` is coded as 0. But for the purposes of analysis, that child's age should be considered as 1 month. Every observation for `time` contains this error, which is why we must add 1 to `time`.
 
@@ -218,17 +218,8 @@ Linking to our in-class learning, we would formally identify this as a type of "
 
 Just like in 3b, you will use `mutate()` to simply re-generate `time` with the equation `time + 1`. 
 
-### Task 3d: Recode `death`
 
-Now that time is re-coded, we have some conflicting information between the variables `death` and `time`. Consider this question: since we are only considering the mortality status of children before the age of 5, should children who died *after* 60 months be coded as `dead` or `alive`?
-
-<aside>
-__The answer:__ They are technically `alive` within the time frame of our analysis
-</aside>
-
-__INSTRUCTIONS:__ Re-code `death` so that when `time >= 61`, `death == "alive"`. 
-
-### Task 3e: Save new dataset
+### Task 3d: Save new dataset
 
 Save this new dataset containing 16,828 records (make sure to give it a new name).
 
@@ -264,21 +255,21 @@ ggplot(data = starwars, aes(x = height)) +
 ```
 
 
-<aside> [Help with histograms in ggplot2](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#create-a-histogram-with-geom_histogram) </aside>
+<aside> [Help with histograms in ggplot2](https://dghi-biostat.github.io/biostatlab/docs/help_ggplot2.html#create-a-histogram-with-geom_histogram) </aside>
 
 ## Task 5: Boxplots of time (using CLOSED COHORT)
 
 Similar to your histograms, generate boxplots of `time`, overall and separately for levels of `death`. Use `labs()` to put meaningful axis labels and a title on each figure.
 
-<aside> [Help with boxplots in ggplot2](https://dghi-biostat.github.io/biostatlab/help_ggplot2.html#create-a-boxplot-with-geom_boxplot) </aside>
+<aside> [Help with boxplots in ggplot2](https://dghi-biostat.github.io/biostatlab/docs/help_ggplot2.html#create-a-boxplot-with-geom_boxplot) </aside>
 
 ## Task 6: Frequency counts and percentages (using CLOSED COHORT)
 
-If you haven’t already, download the Excel file that’s linked [at the top of this webpage](https://dghi-biostat.github.io/biostatlab/lab_2.html#lab-materials). Then open the file, which is named `Lab2_Tables.xlsx`.
+If you havenâ€™t already, download the Excel file thatâ€™s linked [at the top of this webpage](https://dghi-biostat.github.io/biostatlab/docs/705_lab_2.html#lab-materials). Then open the file, which is named `Lab2_Tables.xlsx`.
 
 Fill in the sheet named Table 1 with the frequency counts and percentages for the levels of the new categorical variables you have generated.  Calculate percentages only for the non-missing values. __*Round percentages to 1 decimal place*__. 
 
-__Refer to [the previous lab](https://dghi-biostat.github.io/biostatlab/lab_1.html#task-5-frequency-table-table-1) for help on frequency counts and percentages.__
+__Refer to [the previous lab](https://dghi-biostat.github.io/biostatlab/docs/705_lab_1.html#task-5-frequency-table-table-1) for help on frequency counts and percentages.__
 
 #### Variables:
 

@@ -1,0 +1,53 @@
+---
+title: "Data Dictionary"
+description: |
+  Data Dictionary for Kenya's 2008 Demographic and Health Survey.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(DT)
+```
+
+```{r results = 'hide'}
+
+table <- read.csv('../files/data_dict.csv', header = TRUE)
+
+table
+
+```
+
+# Data Dictionary Help
+
+[__Guidelines for Data Collection & Data Entry__](../files/Data_Dictionary_Vanderbuilt.pdf) - Theresa A Scott, MS (Vanderbilt University)
+
+# Kenya DHS Data Dictionary ([file](../files/data_dict.csv))
+```{r}
+datatable(table, options = list(pagelength = 20), rownames = FALSE)
+```
+
+
+
+## Century Month Code
+
+All dates in the data file are expressed in terms of months and years and also as century month
+codes. A century month code (CMC) is the number of the month since the start of the century.
+
+For example, January 1900 is CMC 1, January 1901 is CMC 13, January 1980 is CMC 961,
+September 1994 is CMC 1137.
+
+The CMC for a date is calculated from the month and year as follows:
+    CMC = (YY * 12) + MM for month MM in year 19YY.
+    
+To calculate the month and year from the CMC use the following formulae:
+    YY = int((CMC - 1) / 12) MM = CMC - (YY * 12)
+    
+For Dates in 2000 and after the CMC is calculated as follows:
+    CMC = ((YYYY-1900) * 12) + MM for month MM in year YYYY.
+    
+To calculate the month and year from the CMC use the following formulae:
+    YYYY = int((CMC - 1) / 12)+1900 MM = CMC - ((YYYY-1900) * 12)
