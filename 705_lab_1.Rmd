@@ -57,7 +57,7 @@ In the following chunk, named `load data`, use the function `readRDS()` to load 
 *__Reminder:__* To run a line of code from within a code chunk in R Markdown, use the keyboard shortcut `ctrl + enter` (Windows) / `cmd + enter` (Mac) 
 
 <aside>
-Find more useful keyboard shortcuts [here](https://dghi-biostat.github.io/biostatlab/docs/help_rstudio.html#rmarkdown-keyboard-shortcuts)
+Find more useful keyboard shortcuts [here](docs/help_rstudio.html#rmarkdown-keyboard-shortcuts)
 </aside>
 
 
