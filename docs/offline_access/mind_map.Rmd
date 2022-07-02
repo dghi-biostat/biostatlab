@@ -1,0 +1,240 @@
+---
+title: "Mapping Our Steps"
+description: |
+  This page gives a birds-eye view of our analysis, where we've come from and where we're headed.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(DiagrammeR)
+```
+
+
+# The data science life cycle
+
+In Hadley Wickam and Garrett Grolemund's book, [*R for Data Science*](https://r4ds.had.co.nz/index.html), they introduce a model of tools found in the typical data analysis project:
+
+![DS Life Cycle](../images/ds_tools.png)
+
+This process consists of:
+
+__importing__ your data into R;
+
+__tidying__ your data by shaping and storing it in a consistent format (luckily, this has largely already been done for us).
+
+Once the data is tidy and coherent, we will need to:
+
+__transform__ the data by narrowing in on observations of interest, creating new variables, and calculating summary statistics;
+
+__visualize__ it to gain new perspective and insights;
+
+__model__ the data with a well-defined research question.
+
+And this will all be for naught if without effectively __communicating__ our findings.
+
+In the lab section for Biostat 705 and 707, we'll be working in a similar loop. To this toolbox, we might also add __Workflow Management__, which encompasses the bulk of what we do. 
+
+The below visualization aims to provide a visualization of this as we encounter it in-action. 
+
+
+```{r layout = '1-page', fig.height = 20}
+
+grViz("
+
+      digraph boxes_and_circles {
+      
+      graph[rankdir = LR, fontname = Helvetica]
+      
+      subgraph lab_1 {
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab0 [label = 'Lab 0', penwidth = 2.0]
+      
+      #Workflow
+      #Explore
+      #Transform
+      
+      node [shape = box]
+      
+      aa [label = 'Create workspace']
+      ab [label = 'Inspect dimensions']
+      ac [label = 'Generate summary statistics']
+      ad [label = 'Create derived variable for mothers age']
+      ae [label = 'Create categorical variable for mothers age']
+      
+      
+      
+      # add definition using node IDs
+      
+      lab0 -> aa #[label = 'Workflow']
+      lab0 -> ab #[label = 'Explore']
+      lab0 -> ac #[label = 'Explore']
+      lab0 -> ad #[label = 'Transform']
+      lab0 -> ae #[label = 'Transform')]
+      
+      #aa -> Workflow
+      #ab -> Explore
+      #ac -> Explore
+      #ad -> Transform
+      #ae -> Transform
+      
+      }
+      
+      subgraph lab_1 {
+    
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab1 [label = 'Lab 1', penwidth = 2.0]
+      
+      #Explore
+      #Transform
+      #Visualize
+      #Workflow
+      #Communicate
+
+      node [shape = box]
+
+      ba [label = 'Construct derived variables\\nbord5, male, mweight, mbmi']
+      bb [label = 'Visualize with\\nhistograms and boxplots']
+      bc [label = 'Calculate frequency counts\\nand percentages']
+      bd [label = 'Create data dictionary']
+      be [label = 'Consider implications of\\nmissing values']
+      
+      # edge definitions
+      
+      lab1 -> {ba, bb, bc, bd, be}
+      
+      #ba -> Transform
+      #bb -> Visualize
+      #bc -> Explore
+      #bd -> Workflow
+      #be -> Communicate
+      
+      
+      }
+      
+      {rank = same; lab0 -> lab1}
+      
+      subgraph lab_2 {
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab2 [label = 'Lab 2', penwidth = 2.0]
+      
+      #Explore
+      #Transform
+      #Workflow
+      #Visualize
+      #Communicate
+
+      node [shape = box]
+      
+      ca [label = 'Construct derived variables\\nsize, belowavg, pnc, rural\\neducation, death, and time']
+      cb [label = 'Update data dictionary']
+      cc [label = 'Exclude observations where child was alive\\nbut less than 60 months of age']
+      cd [label = 'Generate frequency histograms and\\nboxplo1ts for death and time']
+      ce [label = 'Calculate frequency counts\\nandpercentages']
+      cf [label = 'Consider implications of\\nanomalous and missing data']
+      
+      # define edges
+      
+      lab2 -> {ca, cb, cc, cd, ce, cf}
+      
+      #ca -> Transform
+      #cb -> Workflow
+      #cc -> Visualize
+      #cd -> Explore
+      #ce -> Explore
+      #cf -> Communicate
+      
+      }
+      
+      {rank = same; lab1 -> lab2}
+      
+      subgraph lab_3 {
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab3 [label = 'Lab 3', penwidth = 2.0]
+      
+      #Explore
+      #Workflow
+      #Communicate
+      #Model
+
+      node [shape = box]
+      
+      da [label = 'Define research question:\\nWhat are the factors that influence\\nthe outcome of child mortality by 5 years of age?']
+      db [label = 'Generate statistics\\nof continuous variables\\nmbmi and mage, by mortality status']
+      dc [label = 'Generate stratified frequency counts and\\npercentages of categorical variables, by mortality status']
+      dd [label = 'Calculate T-tests (continuous vars)\\nand Chi-square tests (categorical vars) across stratified levels']
+      de [label = 'Generate measures of association\\n(RD, RR, OR) of exposures and outcomes']
+      
+      df [label = 'Interpret results']
+      
+      # define edges
+      
+      lab3 -> {da, db, dc, dd, de, df}
+      
+      #da -> Workflow
+      #db -> Explore
+      #dc -> Explore
+      #dd -> Model
+      #de -> Model
+      #df -> Communicate
+      
+      }
+      
+      {rank = same; lab2 -> lab3}
+      
+      
+
+      subgraph lab_4 {
+    
+      
+      # adding node statements
+      
+      node [shape = circle]
+      
+      lab4 [label = 'Lab 4', penwidth = 2.0]
+      
+            
+      #Explore
+      #Communicate
+      #Model
+
+      node [shape = box]
+      
+      ea [label = 'Calculate measures of association (RD, RR) between\\nbirth order and child mortality by 5 years\\nwithin strata of other variables']
+      eb [label = 'Test for confounding and effect measure modification\\ndue to stratifying variables']
+      ec [label = 'Interpret results']
+
+      
+      # define edges
+      
+      lab4 -> {ea, eb, ec}
+      
+      #ea -> Explore
+      #eb -> Model
+      #ec -> Communicate
+      
+      }
+      
+      {rank = same; lab3 -> lab4}
+      
+      }
+    ")
+```

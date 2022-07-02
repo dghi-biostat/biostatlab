@@ -1,0 +1,41 @@
+---
+title: "Creating a New Project"
+description: |
+  This page provides advice on establishing a workflow and creating new projects with RStudio
+date: "`r Sys.Date()`"
+output: distill::distill_article
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In R, we organize our work by projects. It is best practice to keep no more than one project in any single folder on your computer. First, we should establish the file folders from which we'll be working. 
+
+## Create folders to store your work
+
+If you haven't already, now would be a good time to: 
+
+  1. Create a new folder on your computer called "705 Lab".
+  2. Within that folder, create a folder for whatever lab you're working on, "Lab X".
+  3. Finally, within that folder, create a folder for your data, called "data"
+  4. Save your dataset into the folder called "data". This helps keep things organized as the project grows.
+
+__Please make this a habit. We will expect you to do this for every lab, as it will keep your work organized and will keep *you* happy.__
+
+## Create a New Project in RStudio
+
+Now open RStudio and take a deep breath. Don't panic. This will all be very familiar in a few short months. 
+
+Initiate a new project by going to __*File*__ and clicking __*New Project*__. 
+
+Select __*Existing Directory*__:
+
+![Initiate a new project in an existing directory](../images/newproject.png)
+
+In the following window, hit __*Browse*__. Navigate to the folder where you'd like to house your new project (or create a new one if you haven't already. Open it, then hit __*Open*__. 
+
+
+
+

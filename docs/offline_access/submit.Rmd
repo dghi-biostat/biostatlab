@@ -1,0 +1,83 @@
+---
+title: "Lab Submission Guidelines"
+description: |
+  Submit your lab according to these guidelines to ensure you receive full points.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+__*Submit your documents electronically via the SAKAI DropBox by 14:00 ET on the date given for each respective lab (SAKAI time-stamps DropBox submissions).*__
+
+## Materials to submit
+
+* R Markdown (.Rmd) file with:
+  + your name in the YAML header
+  + requisite code under each task subheading
+
+* .html file - the file that results from hitting "Knit" on your R Markdown document
+
+* Excel (.xls/.xlsx) file with tables (except for Lab 0, where this doesn't apply)
+
+### File names
+
+__Name all files so that the beginning of the file name is "LabX", where "X" is the number that corresponds with that lab assignment (no spaces between "Lab" and "X").__
+
+__EXAMPLE:__
+
+If Liz Turner is submitting her lab materials for Lab 2, her files might have the following names:
+* `Lab2_LTurner.Rmd`
+* `Lab2_LTurner.html`
+* `Lab2_LTurner.xlsx`
+
+## __Notes:__ 
+
+### Submitting
+
+* The Rmarkdown file should run from start to finish with no errors, including calling in the analysis dataset, and should produce all of the results and graphs to complete this assignment.  
+
+* Late policy: 5 point deduction per 24 hour period past due date and time.
+
+
+### Rounding
+
+When completing tables, follow the rounding patterns specified below. This pattern will help in grading this assignment.
+
+* Do not round intermediate values. Only round final answers for submission.
+
+* If rounding for a given table is not specified or not clear, ask your lab instructor for clarification.
+
+* __Unless specified within the task instructions, use 3 decimal places for risks and differences and 2 decimal places for rates and ratios.__ 
+
+* To aid in our grading of these assignments, the last figure kept should be rounded UP when the first figure dropped is >= 5. For example, in rounding to 2 decimal places, 0.235 should be reported as 0.24 and 0.245 should be reported as 0.25. Note that this method will introduce a small bias to higher numbers, but another method, â€œrounding-to-even", confuses many users.
+
+### Grading:  
+
+* RMarkdown files will be graded on an all or nothing. If your markdown file runs from start to finish with no errors, you will receive full credit. If it hits an error message, you will receive NO credit 
+<aside>(for the purposes of grading, if any â€œchunkâ€ of code in your file contains special options, we will ask you to resubmit a file omitting them). </aside>
+
+* __R MARKDOWN FILE:__ Your markdown file MUST have the following components: 
+  + an informative [YAML header](help_jargon.html#yaml-header)
+  + a set of commands calling in all relevant packages
+  + a line of code calling in the analysis dataset
+  + each taskâ€™s code performed under the appropriate subheading
+
+* __TABLES:__ a certain number of points are allocated for each item. Errors include but are not limited to: incorrect values, omissions, and inappropriate rounding. For ease of grading, please do not alter the dimensions of any table. If you are confused on which values go where, please reach out to your instructors for clarification.
+
+* __SHORT ANSWER QUESTIONS:__ will generally be graded as follows: 
+20% of allocated points for some sign of sentience; 
+40% of allocated points for getting at least part of the answer; 
+60% of allocated points for a pretty good answer; 
+80% of allocated points for an excellent, solid answer; 
+100% of allocated points for an out-of-the-ballpark answer.
+
+
+
+
+
+
