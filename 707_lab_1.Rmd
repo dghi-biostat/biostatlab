@@ -94,6 +94,7 @@ And a spreadsheet application (e.g. Microsoft Excel) would display the data like
 
 Which in R Studio, would look like this:
 
+
 ```{r include = TRUE, echo = FALSE}
 
 knitr::kable(tribble(
