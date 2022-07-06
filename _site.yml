@@ -1,14 +1,14 @@
-name: "biostatlab"
-title: "DGHI/Biostat Lab"
-theme: stylesheets/spring.css
-favicon: images/favicon.ico
+name: "biostatlab" # this is the name of the website as it appears on your searchbar
+title: "DGHI/Biostat Lab" # this is what appears on the navbar
+theme: stylesheets/theme.css # this points to the .css file to use for things like color/web design
+favicon: images/favicon.ico # this is  tiny image that appears on a tab when you have this site open in chrome
 description: |
   Biostat & Epi Lab
-output_dir: "docs"
+output_dir: "docs" # instructs where to save rendered Distill .html pages
 navbar:
   logo:
-    image: images/narwhal.png
-    href: https://pngtree.com/so/llama
+    image: images/narwhal.png # logo in top-left. the .css file has been slightly altered to accomodate PNGs from pngtree.com
+    href: https://pngtree.com/so/llama # images on pngtree.com are free to use, but require attribution. apparently this suffices
   right:
     #- text: "Analysis Map"
     #  href: mind_map.html
@@ -49,7 +49,7 @@ navbar:
           href: 707_lab_4.html
     - text: "Submission Guidelines"
       href: submit.html
-    - text: "Dictionaries"
+    - text: "Dictionaries" # moreso than the Help guides, students utilized the dictionaries
       menu:
         - text: "Function Dictionary"
           href: fun_dict.html
@@ -57,9 +57,9 @@ navbar:
           href: data_dict.html
     #- text: "About"
     #  href: about.html
-    - icon: fab fa-github
-      href: https://github.com/dghi-biostat/biostatlab
+    - icon: fab fa-github # the GitHub cat logo that appears in the top-right
+      href: https://github.com/dghi-biostat/biostatlab # link to GitHub repo
 output: 
   distill::distill_article:
-    toc: true
-    highlight: rstudio
+    toc: true # table of contents in the left gutter of the page (have they enabled the floating toc option for Distill yet??)
+    highlight: rstudio # this is the syntax highlighting used in code chunks

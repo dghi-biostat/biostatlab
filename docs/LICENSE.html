@@ -2080,8 +2080,8 @@
 
   /* Edit the CSS properties in this file to create a custom
      Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
+     for each row; 
+     To return any property to the default (before Nathan screwed with it!),
      you may set its value to: unset
      All rows must end with a semi-colon.                      */
 
@@ -2113,11 +2113,11 @@
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    "Libre Baskerville", serif;
+    --heading-font:    "Libre Baskerville", serif; /*Page heading font*/
     --footer-font:     "Source Sans Pro", serif;
     --mono-font:       "DM Mono", monospace;
-    --body-font:       "Source Sans Pro", sans-serif;
-    --navbar-font:     "Libre Baskerville", serif;  /* websites + blogs only */
+    --body-font:       "Source Sans Pro", sans-serif; /*Resource guide font*/
+    --navbar-font:     "Libre Baskerville", serif;  /*Navbar font*/
   }
 
   /*-- ARTICLE METADATA --*/
@@ -2149,8 +2149,8 @@
     --title-size:       21px;    
     --text-color:       #FFFFFF;
     --text-size:        17px;
-    --hover-color:      #8A009D; 
-    --bkgd-color:       #009D8A;
+    --hover-color:      #8A009D;/*The text color when you hover over a tab in the Navbar */
+    --bkgd-color:       #009D8A;/*The color of the navbar itself*/
   }
 
 
@@ -2158,7 +2158,7 @@
     --text-color:       #FFFFFF;
     --text-size:        15px;
     --hover-color:      #9D0061;
-    --bkgd-color:       #999999;
+    --bkgd-color:       #999999; /* Background color of the website footer (currently grey) */
   }
 
   /*-- Additional custom styles --*/
@@ -2171,6 +2171,8 @@
 
   background turns transparent:
   <span class="spoiler2"> other test </span>
+
+  example of spoiler2 is in 705 lab 4
 
   */
 
@@ -2187,12 +2189,12 @@
     background-color:white; 
     }
 
-  /* Altering the monospace properties so that all monospace has a grey background and is slightly bolded */
+
 
   code {
     font-family: 'Fira Code', monospace;
-  color: #3C009D; 
-  background: #DEDEDE;
+    color: #3C009D; 
+    background: #DEDEDE; /* Alters the monospace properties so that all monospace has a grey background and is slightly bolded */
 
   /*background: #b3daf1; */
     font-weight: 500;
@@ -2207,16 +2209,16 @@
 
   /* Change link appearance */
   d-article a {
-    border-bottom: 2px solid #9D0061;
+    border-bottom: 2px solid #9D0061; /* color of the line underneath a hyperlink */
     text-decoration: none;
   }
 
   d-article a:hover{
-    background-color: #9D0061 ;
+    background-color: #9D0061 ; /*color that a link gets highlighted when you hover over it*/
     color: #FFFFFF;
   }
 
-  /* following are custom settings to make the cat image as tall as the navbar */
+  /* from here to the bottom are custom settings to make the Narwhal image fit on the Navbar */
   *.distill-site-header .logo img {
       display: inline-block;
       width: 60px;
@@ -2241,51 +2243,7 @@
 
   d-title{
     margin-top: 50px;
-  }
-
-  /* Collapsible section headers */
-  /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#customizing_the_disclosure_widget */
-
-  /*details.section-head {
-    width: 620px;
-    font-size: 30px;
-    list-style-type: disc;
-  }
-
-  details.section-head > summary {
-    /*font-size: 30px;*/
-  }
-
-  /*details[open] > summary {
-    color: #ededed;  
-  }
-
-  details[open] > summary > code {
-    color: #ededed;
-    background: #ededed;
-  }
-
-  details[open]{
-    background-color: #ededed;
-    border-radius: 10px 10px 10px 10px;
-    padding: 2px 10px;
-  } 
-
-  details.section-head > p {
-    font-size: 1.06rem;
-  }
-
-  details.section-head > ul > li {
-    font-size: 1.06rem;
-  }
-
-  details.section-head > h1 {
-    font-size: 30px;
-  }
-
-  details.section-head > details {
-    font-size: 1.10rem;
-  }*/</style>
+  }</style>
   <style type="text/css">
   /* base style */
 
@@ -2474,7 +2432,7 @@ Help With
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="help_rstudio.html">Using RStudio</a>
+<span class="nav-dropdown-header">Using RStudio</span>
 <a href="help_projects.html">Starting a new project</a>
 <a href="help_packages.html">Working with packages</a>
 <a href="help_jargon.html">jaRgon</a>

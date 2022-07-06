@@ -15,7 +15,7 @@ library(dplyr)
 
 ```{r results = 'hide'}
 
-table <- read.csv('files/R Function Dictionary.csv', header = TRUE)
+table <- read.csv('files/fun_dict.csv', header = TRUE)
 
 ```
 

@@ -1,10 +1,10 @@
-lab,date_due,due_time
-705 - 0,"Septermber 17, 2021","the start of your lab section"
-705 - 1,"October 1, 2021","14:00 ET"
-705 - 2,"October 22, 2021","14:00 ET"
-705 - 3,"November 12, 2021","14:00 ET"
-705 - 4,"November 23, 2021","22:00 ET"
-707 - 1,"February 25, 2022","14:00 ET"
-707 - 2,"March 18, 2022","14:00 ET"
-707 - 3,"April 1, 2022","14:00 ET"
-707 - 4,"April 15, 2022","15:00 ET"
+﻿lab,date_due,due_time,
+705 - 0,"Septermber 17, 2021",the start of your lab section,
+705 - 1,"October 1, 2021",14:00 ET,1-Oct-21
+705 - 2,"October 22, 2021",14:00 ET,22-Oct-21
+705 - 3,"November 12, 2021",14:00 ET,12-Nov-21
+705 - 4,44523,22:00 ET,23-Nov-21
+707 - 1,44617,14:00 ET,25-Feb-22
+707 - 2,44638,14:00 ET,18-Mar-22
+707 - 3,44652,14:00 ET,1-Apr-22
+707 - 4,44666,15:00 ET,15-Apr-22

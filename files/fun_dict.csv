@@ -74,9 +74,9 @@ Model,predict.lm(),model object (optional: newdata),"Returns a vector of model e
 Transform,cbind(),list of equal-length vectors,Binds columns into a new matrix or data.frame object,base
 Transform,Surv(),,,survival
 Model,survfit(),,,survival
-Plot,ggsurvplot(),,,
-Model,coxph(),,,
-,tt(),,,
-,strata(),,,
-,pyears(),,,
-,ratedifference(),,,
+Plot,ggsurvplot(),,,survival
+Model,coxph(),,,survival
+Model,tt(),,,survival
+Model,strata(),,,survival
+Model,pyears(),,,survival
+Model,ratedifference(),,,survival
