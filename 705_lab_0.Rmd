@@ -1,7 +1,7 @@
 ---
 title: "Lab 0 (705)"
 description: |
-    __Due:__ `r read.csv('files/due_dates.csv')[1,2]` by `r read.csv('files/due_dates.csv')[1,3]`
+    __Due:__ `r readxl::read_excel('files/due_dates.xlsx')[1,2]` by `r readxl::read_excel('files/due_dates.xlsx')[1,3]`
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -26,6 +26,7 @@ library(openintro)
 
 # devtools::install_github("gadenbuie/xaringanExtra")
 library(xaringanExtra)
+
 ```
 
 ```{r echo=FALSE}

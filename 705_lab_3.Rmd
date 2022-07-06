@@ -1,7 +1,7 @@
 ---
 title: "Lab 3 (705)"
 description: |
-    __Due:__ `r read.csv('files/due_dates.csv')[4,2]` by `r read.csv('files/due_dates.csv')[4,3]`
+    __Due:__ `r readxl::read_excel('files/due_dates.xlsx')[4,2]` by `r readxl::read_excel('files/due_dates.xlsx')[4,3]`
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -217,7 +217,6 @@ kruskal.test(height ~ gender, data = starwars)
 Notice the difference in the conclusion you would draw from either test. For the t-test, we should conclude that we cannot reject the null hypothesis, whereas the nonparametric test tells us that there is a statistically significant difference in the mean height of the two groups. 
 
 
-## Task 4: Table 2
 
 ### Tabular analysis of categorical variables by `death`
 
